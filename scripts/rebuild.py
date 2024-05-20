@@ -31,7 +31,6 @@ def rebuild_home(args):
         if process.info["name"] == ".eww-wrapped":
             process.kill()
 
-    # Rebuild using home-manager
     try:
         subprocess.run(["home-manager", "switch", "--flake", f"/home/{args.user}/nix/flakes/nixos#{args.user}@{args.flake}"])
     except Exception as e:
