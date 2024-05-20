@@ -76,7 +76,7 @@
       bind = $mainMod, d, exec, $HOME/.config/eww/scripts/window.sh --toggle dashboard
       bind = $altMod, b, exec, $HOME/.config/eww/scripts/dropdown.sh --battery
       bind = $altMod, c, exec, $HOME/.config/eww/scripts/dropdown.sh --calendar
-      bind = $mainMod, x, exec, $HOME/.config/eww/scripts/window.sh --toggle bar
+      bind = $mainMod, x, exec, $HOME/.config/eww/scripts/window.sh --toggle status-bar && $HOME/.config/eww/scripts/window.sh --toggle workspaces-toolbar
       bind = $mainMod, s, exec, $HOME/.config/eww/scripts/window.sh --toggle fuzzylauncher
 
       # Close dashboard when switching workspaces
