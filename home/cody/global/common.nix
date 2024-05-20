@@ -61,7 +61,7 @@
     qflipper
 
     # Gaming
-    # webcord # discord alternative
+    webcord # discord alternative
     winetricks
     wineWowPackages.waylandFull
 
