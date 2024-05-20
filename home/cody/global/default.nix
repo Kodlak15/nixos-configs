@@ -1,0 +1,19 @@
+{
+  imports = [
+    ./neovim
+    ./tmux
+    ./sops
+    ./swwwmgr
+    ./weather
+    ./firefox
+    ./gaming
+    ./common.nix
+    ./git.nix
+    ./alacritty.nix
+    ./zsh.nix
+    ./virtualization.nix
+    ./gtk.nix
+    ./zellij.nix
+    ./nixpkgs.nix
+  ];
+}
