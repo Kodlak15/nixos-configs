@@ -5,7 +5,7 @@
 }: let
   cfg = builtins.fetchGit {
     url = "https://github.com/Kodlak15/eww-configs";
-    rev = "e48b34c23c85ef052e3bc69b6fb817a8e79c6680";
+    rev = "febb2fdffe9211d6d3127cfa8d0e9d7da6ac2aac";
   };
 in {
   programs.eww = {
