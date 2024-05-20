@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  nix.settings.experimental-features = ["nix-command" "nix/flakes"];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
