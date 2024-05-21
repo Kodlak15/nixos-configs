@@ -1,14 +1,42 @@
-let
-  firefox-addons = builtins.fetchurl {
-    # url = "https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons";
-    url = "https://raw.githubusercontent.com/nix-community/nur-combined/master/repos/rycee/pkgs/firefox-addons/default.nix";
-    sha256 = "1svb9l8cf7bmjvmxwp15bm5cjbgyvda72cy856n1v46g7ill53ax";
-  };
+{
+  lib,
+  stdenv,
+  fetchurl,
+}: let
+  # Credit to rycee: https://github.com/nix-community/nur-combined/tree/master/repos/rycee
+  buildFirefoxXpiAddon = lib.makeOverridable ({
+    pname,
+    version,
+    addonId,
+    url,
+    sha256,
+    meta,
+    ...
+  }:
+    stdenv.mkDerivation {
+      name = "${pname}-${version}";
+
+      inherit meta;
+
+      src = fetchurl {inherit url sha256;};
+
+      preferLocalBuild = true;
+      allowSubstitutes = true;
+
+      passthru = {inherit addonId;};
+
+      buildCommand = ''
+        dst="$out/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        mkdir -p "$dst"
+        install -v -m644 "$src" "$dst/${addonId}.xpi"
+      '';
+    });
 in
-  firefox-addons.buildFirefoxXpiAddon {
-    pname = "ddark-space";
+  buildFirefoxXpiAddon {
+    pname = "dark-space";
     version = "v1.1.2";
     addonId = "{22b0eca1-8c02-4c0d-a5d7-6604ddd9836e}";
     url = "https://addons.mozilla.org/firefox/downloads/file/4226329/nicothin_space-1.1.2.xpi";
-    sha256 = "0k82mjqxdm0gdgm13mviflwks2n3s8d267s53d8p4wgaqsa4kjnj";
+    sha256 = "R7KFyeJhLVs7KsNiD34B/Yr88pp7rClvjZcHeDDN2XI=";
+    meta = {};
   }
