@@ -45,7 +45,7 @@ in {
                 bookmarks = [
                   {
                     name = "NixOS and Flakes Book";
-                    url = "https://nixos-and-nix/flakes.thiscute.world/";
+                    url = "https://nixos-and-flakes.thiscute.world/";
                   }
                   {
                     name = "Nix Packages Search";
