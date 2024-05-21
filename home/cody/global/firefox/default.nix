@@ -4,6 +4,7 @@
   ...
 }: let
   pname = "firefox-unwrapped";
+  customExtensions = with pkgs; [dark-space];
 in {
   programs.firefox = {
     enable = true;
@@ -64,11 +65,13 @@ in {
             ];
           }
         ];
-        extensions = with config.nur.repos.rycee.firefox-addons; [
-          bitwarden
-          darkreader
-          ublock-origin
-        ];
+        extensions = with config.nur.repos.rycee.firefox-addons;
+          [
+            bitwarden
+            darkreader
+            ublock-origin
+          ]
+          ++ customExtensions;
         settings = {
           extensions.autoDisableScopes = 0;
         };

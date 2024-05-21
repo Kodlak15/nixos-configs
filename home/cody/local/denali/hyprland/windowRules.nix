@@ -8,7 +8,11 @@
       windowrule = opacity 1.0 override 1.0 override, ^(thunar)$          # Remove opacity for thunar
       windowrule = opacity 1.0 override 1.0 override, ^(spotify)$         # Remove opacity for spotify
       windowrule = opacity 1.0 override 1.0 override, ^(electron)$        # Remove opacity for electron apps
-      windowrule = opacity 0.95 0.95, class:^(nvim)$                      # Reduce opacity for neovim
+      windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Mozilla Firefox)
+      windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Firefox Developer Edition)
+      windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Spotify Premium)
+      windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Smithay)
+      windowrule = opacity 0.95 0.95, class:^(nvim)$
     '';
   };
 }

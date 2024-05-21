@@ -38,8 +38,9 @@ def rebuild_home(args):
 
     # Restart eww
     if shutil.which("eww") is not None:
-        subprocess.run(["eww", "open", "status-bar"])
-        subprocess.run(["eww", "open", "workspaces-toolbar"])
+        with open("/dev/null", "w") as devnull:
+            subprocess.run(["eww", "open", "status-bar"], stdout=devnull, stderr=devnull)
+            subprocess.run(["eww", "open", "workspaces-toolbar"], stdout=devnull, stderr=devnull)
 
     # Create pywal symlinks
     if shutil.which("wal") is not None:

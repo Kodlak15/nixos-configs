@@ -6,6 +6,7 @@
       windowrule = opacity 1.0 override 1.0 override, ^(brave-browser)$
       windowrule = opacity 1.0 override 1.0 override, ^(virt-manager)$
       windowrule = opacity 1.0 override 1.0 override, ^(thunar)$
+      windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Mozilla Firefox)
       windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Firefox Developer Edition)
       windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Spotify Premium)
       windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Smithay)
