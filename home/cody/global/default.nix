@@ -7,13 +7,13 @@
     ./weather
     ./firefox
     ./gaming
+    ./zellij
     ./common.nix
     ./git.nix
     ./alacritty.nix
     ./zsh.nix
     ./virtualization.nix
     ./gtk.nix
-    ./zellij.nix
     ./nixpkgs.nix
   ];
 }
