@@ -16,6 +16,9 @@
       e = "fzedit";
       o = "fzopen";
       z = "zellij";
+      nd = "nix develop";
+      nb = "nix build";
+      nr = "nix run";
       alacritty = "nvidia-offload alacritty";
       screenshot = "$HOME/nix/flakes/nixos/scripts/screenshot.sh";
       cat = "bat";
