@@ -2,15 +2,11 @@
   wayland.windowManager.hyprland = {
     extraConfig = ''
       general {
-          # gaps_in = 2.5
-          # gaps_out = 5
           gaps_in = 2
           gaps_out = 4
           border_size = 2
-          # col.active_border = rgba(89ddffff) rgba(89ddffff) 90deg
-          col.active_border = $color11
-          # col.inactive_border = rgba(3d59a1ff)
-          col.inactive_border = rgba(ffffffff)
+          col.active_border = rgba(ffffffff)
+          col.inactive_border = $color11 rgba(00000000) 90deg
           layout = dwindle
       }
 
@@ -24,8 +20,6 @@
           shadow_render_power = 3
           col.shadow = rgba(1a1a1aee)
           fullscreen_opacity = 1.0
-          # active_opacity = 0.95
-          # inactive_opacity = 0.95
           active_opacity = 0.90
           inactive_opacity = 0.90
       }

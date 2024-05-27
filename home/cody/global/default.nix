@@ -7,6 +7,7 @@
     ./weather
     ./firefox
     ./gaming
+    ./pywal
     ./zellij
     ./common.nix
     ./git.nix

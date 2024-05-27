@@ -107,7 +107,7 @@
     slurp
 
     # Pywal
-    pywal
+    # pywal
     python311Packages.colorthief
 
     # Neovim/Vim plugins

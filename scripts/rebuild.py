@@ -3,11 +3,13 @@
 #! nix-shell -i python3
 
 import argparse
-import subprocess
-import psutil
-import shutil
-import sys
 import os
+import shutil
+import subprocess
+import sys
+
+import psutil
+
 
 def rebuild_system(args):
     # If hardware-configuration.nix is not in the host directory, copy it there
@@ -23,7 +25,15 @@ def rebuild_system(args):
         subprocess.run(["mount", "/dev/disk/by-label/EFI-NIXOS", "/boot"])
 
     # Rebuild using the system configuration
-    subprocess.run(["nixos-rebuild", "switch", "--flake", f"/home/{args.user}/nix/flakes/nixos#{args.flake}"])
+    subprocess.run(
+        [
+            "nixos-rebuild",
+            "switch",
+            "--flake",
+            f"/home/{args.user}/nix/flakes/nixos#{args.flake}",
+        ]
+    )
+
 
 def rebuild_home(args):
     # Kill eww
@@ -32,27 +42,40 @@ def rebuild_home(args):
             process.kill()
 
     try:
-        subprocess.run(["home-manager", "switch", "--flake", f"/home/{args.user}/nix/flakes/nixos#{args.user}@{args.flake}"])
+        subprocess.run(
+            [
+                "home-manager",
+                "switch",
+                "--flake",
+                f"/home/{args.user}/nix/flakes/nixos#{args.user}@{args.flake}",
+            ]
+        )
     except Exception as e:
         print(f"Failed to rebuild home configuration: {e}", file=sys.stderr)
 
     # Restart eww
     if shutil.which("eww") is not None:
         with open("/dev/null", "w") as devnull:
-            subprocess.run(["eww", "open", "status-bar"], stdout=devnull, stderr=devnull)
-            subprocess.run(["eww", "open", "workspaces-toolbar"], stdout=devnull, stderr=devnull)
+            subprocess.run(
+                ["eww", "open", "status-bar"], stdout=devnull, stderr=devnull
+            )
+            subprocess.run(
+                ["eww", "open", "workspaces-toolbar"], stdout=devnull, stderr=devnull
+            )
 
     # Create pywal symlinks
-    if shutil.which("wal") is not None:
-        subprocess.run(["ln", "-sfn", f"/home/{args.user}/nix/flakes/nixos/config/wal/", f"/home/{args.user}/.config/"])
+    # TODO remove???
+    # if shutil.which("wal") is not None:
+    #     subprocess.run(["ln", "-sfn", f"/home/{args.user}/nix/flakes/nixos/config/wal/", f"/home/{args.user}/.config/"])
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog="NixOS Rebuild Script",
-        description="A simple script used to rebuild my NixOS systems using nix/flakes"
+        description="A simple script used to rebuild my NixOS systems using nix/flakes",
     )
     parser.add_argument(
-        "-f", 
+        "-f",
         "--flake",
         action="store",
         help="The flake used to rebuild the system",
@@ -60,7 +83,7 @@ if __name__ == "__main__":
         required=True,
     )
     parser.add_argument(
-        "-o", 
+        "-o",
         "--option",
         action="store",
         help="Rebuild the system configuration, home configuration, or both",
@@ -69,7 +92,7 @@ if __name__ == "__main__":
         choices=["system", "home", "full"],
     )
     parser.add_argument(
-        "-u", 
+        "-u",
         "--user",
         action="store",
         help="The username to pass to home manager (needed if rebuilding the home configuration)",
