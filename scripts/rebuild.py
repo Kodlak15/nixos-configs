@@ -25,14 +25,18 @@ def rebuild_system(args):
         subprocess.run(["mount", "/dev/disk/by-label/EFI-NIXOS", "/boot"])
 
     # Rebuild using the system configuration
-    subprocess.run(
-        [
-            "nixos-rebuild",
-            "switch",
-            "--flake",
-            f"/home/{args.user}/nix/flakes/nixos#{args.flake}",
-        ]
-    )
+    try:
+        subprocess.run(
+            [
+                "nixos-rebuild",
+                "switch",
+                "--flake",
+                f"/home/{args.user}/nix/flakes/nixos#{args.flake}",
+            ]
+        )
+    except Exception as e:
+        print(f"Failed to rebuild system configuration: {e}", file=sys.stderr)
+        sys.exit(1)
 
 
 def rebuild_home(args):
@@ -52,6 +56,7 @@ def rebuild_home(args):
         )
     except Exception as e:
         print(f"Failed to rebuild home configuration: {e}", file=sys.stderr)
+        sys.exit(1)
 
     # Restart eww
     if shutil.which("eww") is not None:
@@ -62,11 +67,6 @@ def rebuild_home(args):
             subprocess.run(
                 ["eww", "open", "workspaces-toolbar"], stdout=devnull, stderr=devnull
             )
-
-    # Create pywal symlinks
-    # TODO remove???
-    # if shutil.which("wal") is not None:
-    #     subprocess.run(["ln", "-sfn", f"/home/{args.user}/nix/flakes/nixos/config/wal/", f"/home/{args.user}/.config/"])
 
 
 if __name__ == "__main__":
