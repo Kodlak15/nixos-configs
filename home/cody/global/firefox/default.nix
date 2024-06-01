@@ -20,6 +20,10 @@ in {
             toolbar = true;
             bookmarks = [
               {
+                name = "CWS";
+                url = "https://cascadewebservices.org";
+              }
+              {
                 name = "GitHub";
                 url = "https://github.com/Kodlak15";
               }
@@ -58,6 +62,19 @@ in {
                   {
                     name = "nix.dev";
                     url = "https://nix.dev/";
+                  }
+                ];
+              }
+              {
+                name = "Wayland";
+                bookmarks = [
+                  {
+                    name = "wlroots";
+                    url = "https://gitlab.freedesktop.org/wlroots/wlroots";
+                  }
+                  {
+                    name = "river";
+                    url = "https://github.com/riverwm/river";
                   }
                 ];
               }
