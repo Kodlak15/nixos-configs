@@ -15,6 +15,7 @@
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced"
+      "libXNVCtrl"
       "steam"
       "steam-original"
       "steam-run"
@@ -62,9 +63,9 @@
     openssh.enable = true;
     dbus.enable = true;
     printing.enable = true;
+    libinput.enable = true;
     xserver = {
       videoDrivers = ["nvidia"];
-      libinput.enable = true;
     };
     pipewire = {
       enable = true;
