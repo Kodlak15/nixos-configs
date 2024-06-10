@@ -17,5 +17,7 @@
     gtk.enable = true;
     name = "Catppuccin-Mocha-Dark-Cursors";
     package = pkgs.catppuccin-cursors.mochaDark;
+    # package = pkgs.vanilla-dmz;
+    # name = "Vanilla-DMZ";
   };
 }

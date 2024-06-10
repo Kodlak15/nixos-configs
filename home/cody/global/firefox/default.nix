@@ -40,6 +40,10 @@ in {
                 url = "https://pwn.college/dojos";
               }
               {
+                name = "hackthebox";
+                url = "https://www.hackthebox.com/";
+              }
+              {
                 name = "Chess";
                 url = "https://www.chess.com/";
               }
