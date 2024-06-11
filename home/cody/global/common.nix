@@ -36,6 +36,12 @@
     inotify-tools
     unzip
 
+    # Torrent client
+    qbittorrent
+
+    # VPN
+    mullvad-vpn
+
     # Blue light filter
     wlsunset
 
@@ -100,7 +106,7 @@
     # zellij
 
     # Yubikey
-    yubikey-personalization
+    # yubikey-personalization
 
     # Screenshots
     grim

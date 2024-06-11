@@ -57,6 +57,7 @@
       enable = true;
       package = pkgs.wireshark-qt;
     };
+    ssh.startAgent = false; # TODO may need to delete later
   };
 
   services = {
@@ -75,11 +76,23 @@
       };
       pulse.enable = true;
     };
+    # pcscd.enable = false;
+    pcscd.enable = true;
+    mullvad-vpn.enable = true;
+    udev.packages = with pkgs; [
+      yubikey-personalization
+    ];
     getty.autologinUser = "cody";
   };
 
   security = {
     rtkit.enable = true;
+    # pam.yubico = {
+    #   enable = true;
+    #   debug = true;
+    #   mode = "challenge-response";
+    #   id = ["23985811"];
+    # };
   };
 
   users = {
@@ -91,6 +104,10 @@
     variables = {
       EDITOR = "${pkgs.neovim}";
     };
+    shellInit = ''
+      gpg-connect-agent /bye
+      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    '';
   };
 
   fonts.packages = with pkgs; [
@@ -109,7 +126,11 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+
+  hardware = {
+    gpgSmartcards.enable = true;
+    pulseaudio.enable = false;
+  };
 
   virtualisation = {
     docker.enable = true;

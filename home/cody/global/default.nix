@@ -9,6 +9,7 @@
     ./gaming
     ./pywal
     ./zellij
+    ./yubikey
     # ./go-blueprint
     ./common.nix
     ./git.nix
