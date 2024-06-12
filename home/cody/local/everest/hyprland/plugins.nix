@@ -8,7 +8,8 @@
   ];
   wayland.windowManager.hyprland = {
     plugins = [
-      inputs.hyprcursor.packages.${pkgs.system}.default
+      # TODO
+      # inputs.hyprcursor.packages.${pkgs.system}.default
     ];
   };
 }
