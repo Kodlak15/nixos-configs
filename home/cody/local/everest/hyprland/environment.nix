@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   wayland.windowManager.hyprland = {
     extraConfig = ''
       # Toolkit-specific scale

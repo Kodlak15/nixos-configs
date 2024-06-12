@@ -16,8 +16,7 @@
     };
 
     hyprland = {
-      # url = "github:hyprwm/Hyprland";
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # TODO temporary
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
