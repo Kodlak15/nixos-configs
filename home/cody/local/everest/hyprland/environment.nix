@@ -8,8 +8,9 @@
       # Toolkit-specific scale
       env = GDK_SCALE,2
       # env = XCURSOR_SIZE,32
-      env = HYPRCURSOR_THEME,rose-pine-hyprcursor
-      env = HYPRCURSOR_SIZE,32
+      # TODO
+      # env = HYPRCURSOR_THEME,rose-pine-hyprcursor
+      # env = HYPRCURSOR_SIZE,32
 
       # Environment variables
       env = WLR_NO_HARDWARE_CURSORS,1

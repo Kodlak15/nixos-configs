@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [
     ./keybinds.nix
     ./environment.nix
@@ -9,9 +9,8 @@
     ./animations.nix
     ./colors.nix
     ./startup.nix
+    ./plugins.nix
   ];
-
-  home.packages = with pkgs; [hyprcursor];
 
   wayland.windowManager.hyprland = {
     enable = true;

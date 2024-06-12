@@ -24,13 +24,16 @@
       url = "github:hyprwm/hyprland-plugins";
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
+    hyprcursor = {
+      url = "github:hyprwm/hyprcursor";
     };
 
     rose-pine-hyprcursor = {
       url = "github:ndom91/rose-pine-hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
     };
 
     nixvim = {
