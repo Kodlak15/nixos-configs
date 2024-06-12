@@ -40,7 +40,7 @@ in {
                 url = "https://pwn.college/dojos";
               }
               {
-                name = "hackthebox";
+                name = "htb";
                 url = "https://www.hackthebox.com/";
               }
               {
