@@ -19,6 +19,7 @@
       bind = $mainMod, F, fullscreen
       # bind = $mainMod, b, exec, firefox-devedition
       bind = $mainMod, b, exec, firefox
+      bind = $mainMod $altMod, b, exec, brave
       bind = $mainMod, t, exec, thunar
       bind = $mainMod, e, exec, /usr/bin/alacritty -e $SHELL -c 'nvim && exec $SHELL' & 2> ./logs/nvim
       bind = $mainMod $altMod, v, exec, virt-manager
