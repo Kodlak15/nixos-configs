@@ -118,16 +118,6 @@
         modules = [./hosts/denali.nix];
         specialArgs = {inherit inputs outputs;};
       };
-      # Security VM (desktop)
-      "security/poltergeist" = lib.nixosSystem {
-        modules = [./hosts/poltergeist.nix];
-        specialArgs = {inherit inputs outputs;};
-      };
-      # Security VM (laptop)
-      "security/casper" = lib.nixosSystem {
-        modules = [./hosts/casper.nix];
-        specialArgs = {inherit inputs outputs;};
-      };
     };
 
     homeConfigurations = {
@@ -155,18 +145,6 @@
           pkgs-stable = pkgsForStable.x86_64-linux;
           inherit inputs outputs;
         };
-      };
-      # Security VM (desktop)
-      "anon@security/poltergeist" = lib.homeManagerConfiguration {
-        modules = [./home/anon/poltergeist.nix];
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-      };
-      # Security VM (laptop)
-      "anon@security/casper" = lib.homeManagerConfiguration {
-        modules = [./home/anon/casper.nix];
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
       };
     };
   };
