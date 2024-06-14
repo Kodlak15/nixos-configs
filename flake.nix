@@ -103,7 +103,7 @@
     nixosModules = import ./modules/nixos;
     homeManagerModules = import ./modules/home-manager;
     packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
-    shells = forEachSystem (pkgs: import ./shells {});
+    devShells = forEachSystem (pkgs: import ./shells.nix {inherit pkgs;});
     formatter = forEachSystem (pkgs: pkgs.alejandra);
     overlays = import ./overlays {inherit inputs;};
 
