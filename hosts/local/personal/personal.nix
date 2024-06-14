@@ -76,8 +76,10 @@
       };
       pulse.enable = true;
     };
-    # pcscd.enable = false;
-    pcscd.enable = true;
+    # NOTE
+    # pcscd must be disabled to use smartcard w/ gpg
+    # enable pcscd to access some settings/info on smartcard
+    pcscd.enable = false;
     mullvad-vpn.enable = true;
     udev.packages = with pkgs; [
       yubikey-personalization
@@ -87,12 +89,6 @@
 
   security = {
     rtkit.enable = true;
-    # pam.yubico = {
-    #   enable = true;
-    #   debug = true;
-    #   mode = "challenge-response";
-    #   id = ["23985811"];
-    # };
   };
 
   users = {
