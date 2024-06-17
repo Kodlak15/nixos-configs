@@ -110,12 +110,12 @@
     nixosConfigurations = {
       # Desktop
       "personal/everest" = lib.nixosSystem {
-        modules = [./hosts/everest.nix];
+        modules = [./hosts/personal/everest.nix];
         specialArgs = {inherit inputs outputs;};
       };
       # Laptop
       "personal/denali" = lib.nixosSystem {
-        modules = [./hosts/denali.nix];
+        modules = [./hosts/personal/denali.nix];
         specialArgs = {inherit inputs outputs;};
       };
     };

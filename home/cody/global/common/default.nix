@@ -102,22 +102,14 @@
     # File expolorer
     xfce.thunar
 
-    # Terminal multiplexer
-    # zellij
-
-    # Yubikey
-    # yubikey-personalization
-
     # Screenshots
     grim
     slurp
 
-    # Pywal
-    # pywal
+    # Pywal (is this needed???)
     python311Packages.colorthief
 
-    # Neovim/Vim plugins
-    # vimPlugins.friendly-snippets
+    # Neovim/Vim plugins (place in nvim config???)
     vimPlugins.nvim-treesitter-parsers.templ
 
     # Language servers (place these elsewhere)

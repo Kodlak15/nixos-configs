@@ -1,7 +1,7 @@
 {config, ...}: {
   imports = [
-    ./local/personal/personal.nix
-    ./local/personal/everest
+    ./personal.nix
+    ./everest
   ];
 
   networking.hostName = "everest";

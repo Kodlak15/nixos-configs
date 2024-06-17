@@ -3,7 +3,7 @@
     inputs.hyprland.homeManagerModules.default
     inputs.nixvim.homeManagerModules.nixvim
     ./global
-    ./local/everest
+    ./everest
   ];
 
   home = {

@@ -12,13 +12,16 @@
       package = pkgs.rose-pine-icon-theme;
     };
     cursorTheme = {
-      # name = "Catppuccin-Mocha-Dark-Cursors";
-      # package = pkgs.catppuccin-cursors.mochaDark;
-      # package = pkgs.vanilla-dmz;
-      # name = "Vanilla-DMZ";
       name = "Bibata-Modern-Classic";
       package = pkgs.bibata-cursors;
       size = 16;
     };
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 16;
   };
 }

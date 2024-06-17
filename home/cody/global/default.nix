@@ -10,23 +10,12 @@
     ./pywal
     ./zellij
     ./yubikey
-    ./common.nix
-    ./git.nix
-    ./alacritty.nix
-    ./zsh.nix
-    ./virtualization.nix
-    ./gtk.nix
-    ./nixpkgs.nix
+    ./common
+    ./git
+    ./alacritty
+    ./zsh
+    ./virtualization
+    ./gtk
+    ./nixpkgs
   ];
-
-  home.pointerCursor = {
-    gtk.enable = true;
-    # name = "Catppuccin-Mocha-Dark-Cursors";
-    # package = pkgs.catppuccin-cursors.mochaDark;
-    # package = pkgs.vanilla-dmz;
-    # name = "Vanilla-DMZ";
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
-    size = 16;
-  };
 }

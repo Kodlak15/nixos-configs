@@ -1,7 +1,7 @@
 {config, ...}: {
   imports = [
-    ./local/personal/personal.nix
-    ./local/personal/denali
+    ./personal.nix
+    ./denali
   ];
 
   networking.hostName = "denali";

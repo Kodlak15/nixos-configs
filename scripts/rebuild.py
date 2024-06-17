@@ -13,7 +13,7 @@ import psutil
 
 def rebuild_system(args):
     # If hardware-configuration.nix is not in the host directory, copy it there
-    flake_hardware_config = f"/home/{args.user}/nix/flakes/nixos/hosts/local/{args.flake}/hardware-configuration.nix"
+    flake_hardware_config = f"/home/{args.user}/nix/flakes/nixos/hosts/{args.flake}/hardware-configuration.nix"
     if not os.path.exists(flake_hardware_config):
         shutil.copy("/etc/nixos/hardware-configuration.nix", flake_hardware_config)
 
