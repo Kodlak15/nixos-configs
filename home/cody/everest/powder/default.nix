@@ -15,9 +15,8 @@
         nixos:
           name: "personal/everest"
         hm:
-          name: "personal/everest"
           user: "cody"
-        jobs: 4
+        jobs: 8
     '';
   };
 }
