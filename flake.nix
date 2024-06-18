@@ -125,7 +125,6 @@
     homeConfigurations = {
       # Desktop
       "cody@personal/everest" = lib.homeManagerConfiguration {
-        # modules = [./home/cody/everest.nix];
         modules = [
           ./home/cody/everest.nix
           nur.hmModules.nur # Nix User Repository
