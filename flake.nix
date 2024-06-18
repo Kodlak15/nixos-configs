@@ -6,6 +6,8 @@
 
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
 
+    powder.url = "github:Kodlak15/powder";
+
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
