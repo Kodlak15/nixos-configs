@@ -1,22 +1,20 @@
 everest:
-	sudo ./scripts/rebuild.py --flake personal/everest --option system --user cody
+	powder --config nixos --system everest rebuild
 
 denali:
-	sudo ./scripts/rebuild.py --flake personal/denali --option system --user cody
+	powder --config nixos --system denali rebuild
 
 everest-home:
-	./scripts/rebuild.py --flake personal/everest --option home --user cody
+	powder --config home-manager --system everest rebuild
 
 denali-home:
-	./scripts/rebuild.py --flake personal/denali --option home --user cody
+	powder --config home-manager --system denali rebuild
 
 everest-full:
-	sudo ./scripts/rebuild.py --flake personal/everest --option system --user cody 
-	./scripts/rebuild.py --flake personal/everest --option home --user cody
+	powder --config all --system everest rebuild
 
 denali-full:
-	sudo ./scripts/rebuild.py --flake personal/denali --option system --user cody 
-	./scripts/rebuild.py --flake personal/denali --option home --user cody
+	powder --config all --system everest rebuild
 
 update:
 	nix flake update
