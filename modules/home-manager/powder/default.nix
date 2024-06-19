@@ -1,15 +1,31 @@
 {
-  pkgs,
   lib,
   config,
+  ...
 }: let
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption mkIf types;
   cfg = config.powder;
 in {
-  options.powder = mkOption {
-    enable = lib.mkEnableOption "Whether to enable powder";
-    config = lib.mkIf cfg.enable {
-      type = lib.types.path;
+  options.powder = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enables powder
+      '';
     };
+    config = mkOption {
+      type = types.string;
+      default = '''';
+      description = ''
+        The powder yaml configuration
+      '';
+    };
+  };
+
+  config = mkIf cfg.enable {
+    xdg.configFile."powder/config.yaml".text = ''
+
+    '';
   };
 }

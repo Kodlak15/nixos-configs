@@ -1,8 +1,19 @@
 {
   pkgs,
   inputs,
+  # outputs,
   ...
 }: {
+  # imports = builtins.attrValues outputs.homeManagerModules;
+
+  # powder = {
+  #   enable = true;
+  #   config = ''
+  #     test:
+  #       positive: true
+  #   '';
+  # };
+
   home.packages = [
     inputs.powder.packages.${pkgs.system}.default
   ];
