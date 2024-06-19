@@ -16,6 +16,21 @@
           name: "personal/everest"
         hm:
           user: "cody"
+        install:
+          disks:
+            encryption:
+              enable: 1
+              label: "NIXOS-CRYPT"
+              smartcard:
+                enable: 1
+                slot: 2
+            root:
+              label: "NIXOS"
+              size: -1 # Units: GB (set to -1 to use rest of disk)
+              filesystem: "btrfs"
+            boot:
+              label: "EFI-NIXOS"
+              size: 512 # Units: MB
         jobs: 8
     '';
   };

@@ -94,11 +94,15 @@
       import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        # TODO Temporary solution
+        # config.permittedInsecurePackages = ["electron"];
       });
     pkgsForStable = lib.genAttrs supportedSystems (system:
       import nixpkgs-stable {
         inherit system;
         config.allowUnfree = true;
+        # TODO Temporary solution
+        # config.permittedInsecurePackages = ["electron"];
       });
   in {
     inherit lib;
