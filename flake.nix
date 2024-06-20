@@ -124,6 +124,10 @@
         modules = [./hosts/personal/denali.nix];
         specialArgs = {inherit inputs outputs;};
       };
+      "test-vm" = lib.nixosSystem {
+        modules = [./hosts/test-vm.nix];
+        specialArgs = {inherit inputs outputs;};
+      };
     };
 
     homeConfigurations = {
