@@ -1,48 +1,34 @@
 {
-  pkgs,
-  inputs,
-  # outputs,
-  ...
-}: {
-  # imports = builtins.attrValues outputs.homeManagerModules;
-
-  # powder = {
-  #   enable = true;
-  #   config = ''
-  #     test:
-  #       positive: true
-  #   '';
-  # };
-
-  home.packages = [
-    inputs.powder.packages.${pkgs.system}.default
-  ];
-
-  xdg.configFile = {
-    "powder/config.yaml".text = ''
-      everest:
-        default: 1
-        flake: "/home/cody/nix/flakes/nixos"
-        nixos:
-          name: "personal/everest"
-        hm:
-          user: "cody"
-        install:
-          disks:
-            encryption:
-              enable: 1
-              label: "NIXOS-CRYPT"
-              smartcard:
-                enable: 1
-                slot: 2
-            root:
-              label: "NIXOS"
-              size: -1 # Units: GB (set to -1 to use rest of disk)
-              filesystem: "btrfs"
-            boot:
-              label: "EFI-NIXOS"
-              size: 512 # Units: MB
-        jobs: 8
-    '';
+  powder = {
+    enable = true;
+    systems = {
+      default = true;
+      flake = /home/cody/nix/flakes/nixos;
+      nixos.name = "personal/everest";
+      hm.user = "testtesttest";
+      install = {
+        disks = {
+          encryption = {
+            enable = true;
+            label = "NIXOS-CRYPT";
+            smartcard = {
+              enable = true;
+              slot = 2;
+            };
+          };
+          root = {
+            label = "NIXOS";
+            size = null; # use rest of disk
+            filesystem = "btrfs";
+          };
+          boot = {
+            label = "EFI-NIXOS";
+            size = 512;
+          };
+        };
+      };
+      jobs = 8;
+    };
+    # config = ./config.yaml;
   };
 }

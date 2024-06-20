@@ -1,0 +1,30 @@
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}: let
+  cfg = config.powder;
+in {
+  options.powder = {
+    enable = lib.mkEnableOption "Enable powder";
+    config = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = null;
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    xdg.configFile = {
+      "powder/config.yaml".text =
+        if cfg.config != null
+        then builtins.readFile cfg.config
+        else '''';
+    };
+
+    home.packages = [
+      inputs.powder.packages.${pkgs.system}.default
+    ];
+  };
+}
