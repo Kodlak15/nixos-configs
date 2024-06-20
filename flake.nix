@@ -114,24 +114,21 @@
     overlays = import ./overlays {inherit inputs;};
 
     nixosConfigurations = {
-      # Desktop
       "personal/everest" = lib.nixosSystem {
         modules = [./hosts/personal/everest.nix];
         specialArgs = {inherit inputs outputs;};
       };
-      # Laptop
       "personal/denali" = lib.nixosSystem {
         modules = [./hosts/personal/denali.nix];
         specialArgs = {inherit inputs outputs;};
       };
       "test-vm" = lib.nixosSystem {
-        modules = [./hosts/test-vm];
+        modules = [./hosts/test/test-vm];
         specialArgs = {inherit inputs outputs;};
       };
     };
 
     homeConfigurations = {
-      # Desktop
       "cody@personal/everest" = lib.homeManagerConfiguration {
         modules = [
           ./home/cody/everest.nix
@@ -143,7 +140,6 @@
           inherit inputs outputs;
         };
       };
-      # Laptop
       "cody@personal/denali" = lib.homeManagerConfiguration {
         modules = [
           ./home/cody/denali.nix

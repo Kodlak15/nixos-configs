@@ -4,6 +4,7 @@
   hwconfig = ./${uuid}/hardware-configuration.nix;
 in {
   imports = [
-    hwconfig
+    # hwconfig
+    ./hardware-configuration.nix
   ];
 }
