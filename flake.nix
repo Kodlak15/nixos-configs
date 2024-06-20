@@ -125,7 +125,7 @@
         specialArgs = {inherit inputs outputs;};
       };
       "test-vm" = lib.nixosSystem {
-        modules = [./hosts/test-vm.nix];
+        modules = [./hosts/test-vm];
         specialArgs = {inherit inputs outputs;};
       };
     };
