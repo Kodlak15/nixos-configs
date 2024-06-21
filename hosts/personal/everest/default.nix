@@ -11,22 +11,22 @@ in {
 
   fileSystems = {
     "/" = {
-      device = "${rootPart}";
+      device = rootPart;
       fsType = "btrfs";
       options = ["subvol=@"];
     };
     "/home" = {
-      device = "${rootPart}";
+      device = rootPart;
       fsType = "btrfs";
       options = ["subvol=@home"];
     };
     "/tmp" = {
-      device = "${rootPart}";
+      device = rootPart;
       fsType = "btrfs";
       options = ["subvol=@tmp"];
     };
     "/var" = {
-      device = "${rootPart}";
+      device = rootPart;
       fsType = "btrfs";
       options = ["subvol=@var"];
     };

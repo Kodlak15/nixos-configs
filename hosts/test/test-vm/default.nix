@@ -5,8 +5,8 @@
 }: let
   username = "user";
   version = "24.05";
-  # luks = "nixos-crypt";
-  # luksPart = "/dev/disk/by-label/NIXOS";
+  luks = "nixos-crypt";
+  luksPart = "/dev/disk/by-label/NIXOS";
   rootPart = "/dev/disk/by-label/ROOT";
 in {
   imports = [
@@ -53,8 +53,9 @@ in {
         # Support for Yubikey PBA
         yubikeySupport = true;
 
-        devices."nixos-crypt" = {
-          device = lib.mkDefault "/dev/disk/by-label/NIXOS"; # Be sure to update this to the correct volume
+        devices.${luks} = {
+          # device = lib.mkDefault "/dev/disk/by-label/NIXOS"; # Be sure to update this to the correct volume
+          device = luksPart; # Be sure to update this to the correct volume
 
           yubikey = {
             slot = 2;
