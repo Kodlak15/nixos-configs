@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = [
-    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+    # inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   ];
   wayland.windowManager.hyprland = {
     plugins = [

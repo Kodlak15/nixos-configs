@@ -30,10 +30,6 @@
       url = "github:hyprwm/hyprcursor";
     };
 
-    rose-pine-hyprcursor = {
-      url = "github:ndom91/rose-pine-hyprcursor";
-    };
-
     nur = {
       url = "github:nix-community/NUR";
     };
@@ -55,11 +51,6 @@
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    templ = {
-      url = "github:a-h/templ";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

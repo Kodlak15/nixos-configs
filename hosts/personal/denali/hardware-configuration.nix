@@ -17,39 +17,6 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/115efedc-7af7-4923-bb60-84731091dddc";
-    fsType = "btrfs";
-    options = ["subvol=@"];
-  };
-
-  boot.initrd.luks.devices."nixos-crypt".device = "/dev/disk/by-uuid/e0f6f5de-f694-41a9-b5b9-aa497f395c5b";
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/115efedc-7af7-4923-bb60-84731091dddc";
-    fsType = "btrfs";
-    options = ["subvol=@home"];
-  };
-
-  fileSystems."/tmp" = {
-    device = "/dev/disk/by-uuid/115efedc-7af7-4923-bb60-84731091dddc";
-    fsType = "btrfs";
-    options = ["subvol=@tmp"];
-  };
-
-  fileSystems."/var" = {
-    device = "/dev/disk/by-uuid/115efedc-7af7-4923-bb60-84731091dddc";
-    fsType = "btrfs";
-    options = ["subvol=@var"];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/8770-C65E";
-    fsType = "vfat";
-  };
-
-  swapDevices = [];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
