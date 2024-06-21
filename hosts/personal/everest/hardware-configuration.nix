@@ -17,33 +17,43 @@
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/063f0d8d-c9a8-439d-9753-d2a177fc630b";
-    fsType = "btrfs";
-    options = ["subvol=@"];
-  };
-
-  boot.initrd.luks.devices."nixos-crypt".device = "/dev/disk/by-uuid/93d41d59-c9c5-4960-a27b-afeb217fd11e";
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/063f0d8d-c9a8-439d-9753-d2a177fc630b";
-    fsType = "btrfs";
-    options = ["subvol=@home"];
-  };
-
-  fileSystems."/tmp" = {
-    device = "/dev/disk/by-uuid/063f0d8d-c9a8-439d-9753-d2a177fc630b";
-    fsType = "btrfs";
-    options = ["subvol=@tmp"];
-  };
-
-  fileSystems."/var" = {
-    device = "/dev/disk/by-uuid/063f0d8d-c9a8-439d-9753-d2a177fc630b";
-    fsType = "btrfs";
-    options = ["subvol=@var"];
-  };
-
-  swapDevices = [];
+  # fileSystems."/" = {
+  #   # device = "/dev/disk/by-uuid/063f0d8d-c9a8-439d-9753-d2a177fc630b";
+  #   # NOTE my change: use label instead of uuid
+  #   device = "/dev/disk/by-label/ROOT";
+  #   fsType = "btrfs";
+  #   options = ["subvol=@"];
+  # };
+  #
+  # # boot.initrd.luks.devices."nixos-crypt".device = "/dev/disk/by-uuid/93d41d59-c9c5-4960-a27b-afeb217fd11e";
+  # # NOTE my change: use label instead of uuid
+  # boot.initrd.luks.devices."nixos-crypt".device = "/dev/disk/by-label/NIXOS";
+  #
+  # fileSystems."/home" = {
+  #   # device = "/dev/disk/by-uuid/063f0d8d-c9a8-439d-9753-d2a177fc630b";
+  #   # NOTE my change: use label instead of uuid
+  #   device = "/dev/disk/by-label/ROOT";
+  #   fsType = "btrfs";
+  #   options = ["subvol=@home"];
+  # };
+  #
+  # fileSystems."/tmp" = {
+  #   # device = "/dev/disk/by-uuid/063f0d8d-c9a8-439d-9753-d2a177fc630b";
+  #   # NOTE my change: use label instead of uuid
+  #   device = "/dev/disk/by-label/ROOT";
+  #   fsType = "btrfs";
+  #   options = ["subvol=@tmp"];
+  # };
+  #
+  # fileSystems."/var" = {
+  #   # device = "/dev/disk/by-uuid/063f0d8d-c9a8-439d-9753-d2a177fc630b";
+  #   # NOTE my change: use label instead of uuid
+  #   device = "/dev/disk/by-label/ROOT";
+  #   fsType = "btrfs";
+  #   options = ["subvol=@var"];
+  # };
+  #
+  # swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
