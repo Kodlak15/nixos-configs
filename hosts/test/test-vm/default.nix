@@ -94,6 +94,8 @@ in {
   environment.systemPackages = with pkgs; [
     neovim
     wget
+    neofetch
+    btop
   ];
 
   programs.gnupg.agent = {
