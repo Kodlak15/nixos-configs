@@ -119,7 +119,6 @@
       "iso-minimal" = lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          # Load custom configurations as well as everything from the minimal CD
           ./hosts/iso/minimal
           installers.minimal
         ];
