@@ -148,6 +148,16 @@
           inherit inputs outputs;
         };
       };
+      "user@test/test-vm" = lib.homeManagerConfiguration {
+        modules = [
+          ./home/user/testvm.nix
+        ];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {
+          pkgs-stable = pkgsForStable.x86_64-linux;
+          inherit inputs outputs;
+        };
+      };
     };
   };
 }
