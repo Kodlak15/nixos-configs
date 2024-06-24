@@ -9,8 +9,8 @@
       gnumake
     ];
 
-    shellHook = ''
-      exec "$SHELL"
-    '';
+    # shellHook = ''
+    #   exec "$SHELL"
+    # '';
   };
 }
