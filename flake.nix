@@ -91,11 +91,14 @@
         inherit system;
         config.allowUnfree = true;
       });
+    installers = {
+      minimal = "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix";
+    };
   in {
     inherit lib;
     nixosModules = import ./modules/nixos;
     homeManagerModules = import ./modules/home-manager;
-    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+    packages = forEachSystem (pkgs: import ./pkgs {inherit self pkgs;});
     devShells = forEachSystem (pkgs: import ./shells.nix {inherit pkgs;});
     formatter = forEachSystem (pkgs: pkgs.alejandra);
     overlays = import ./overlays {inherit inputs;};
@@ -112,6 +115,14 @@
       "test-vm" = lib.nixosSystem {
         modules = [./hosts/test/test-vm];
         specialArgs = {inherit inputs outputs;};
+      };
+      "iso-minimal" = lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          # Load custom configurations as well as everything from the minimal CD
+          ./hosts/iso/minimal
+          installers.minimal
+        ];
       };
     };
 
