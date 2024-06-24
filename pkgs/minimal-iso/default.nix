@@ -1,1 +1,3 @@
-{self, ...}: self.nixosConfigurations."iso-minimal".config.system.build.isoImage
+{self, ...}:
+self.nixosConfigurations."iso-minimal".config.system.build.isoImage
+{}
