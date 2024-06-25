@@ -13,7 +13,7 @@ pkgs.writeShellScriptBin "install.sh" ''
   FLAKE="github:Kodlak15/nixos-flake"
 
   # Disk to be used and its partitions
-  DISK="/dev/vda"
+  LUKSDISK="/dev/vda"
   BOOTPART="/dev/vda1"
   ROOTPART="/dev/vda2"
 
