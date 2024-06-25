@@ -72,8 +72,8 @@ in {
   networking.hostName = "default";
   networking.networkmanager.enable = true;
 
-  sound.enable = false; # NOTE enabling this was causing issues
-  hardware.pulseaudio.enable = true;
+  sound.enable = false;
+  hardware.pulseaudio.enable = false;
 
   users.users.${username} = {
     isNormalUser = true;
