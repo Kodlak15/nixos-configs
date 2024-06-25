@@ -96,15 +96,15 @@ in
     KEY_LENGTH=512
     ITERATIONS=1000000
     LUKS_KEY="$(echo -n $USER_PASSPHRASE | ${pbkdf2Sha512}/bin/pbkdf2-sha512 $(($KEY_LENGTH / 8)) $ITERATIONS $RESPONSE | ${rbtohex}/bin/rbtohex)"
-    echo "$LUKS_KEY"
-
-    echo "exiting..."
-    exit 0
 
     # Create the LUKS device
     CIPHER=aes-xts-plain64
     HASH=sha512
+    # Issue here???
     echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup luksFormat --label "NIXOS" --cipher="$CIPHER" --key-size="$KEY_LENGTH" --hash="$HASH" --key-file=- "$ROOTPART"
+
+    echo "exiting..."
+    exit 0
 
     # Create the boot filesystem
     mkfs.fat -F 32 -n "EFI-NIXOS" "$BOOTPART"
