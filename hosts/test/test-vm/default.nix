@@ -90,11 +90,19 @@ in {
     ];
   };
 
+  users.users.root = {
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBFPX5biiGhDszrPE8BWvgKz4Ow1etck3E9aacuKXObQ cody@everest"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP7mmexgGczAjP9//7snhntiHNA+w8iQl2DAZ/qPSyUm cody@denali"
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     neovim
     wget
     neofetch
     btop
+    brave
   ];
 
   programs.gnupg.agent = {
