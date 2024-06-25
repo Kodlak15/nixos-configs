@@ -40,8 +40,8 @@ pkgs.writeShellScriptBin "install.sh" ''
     fi
   fi
 
-  LUKSPART="/$LUKSDISK$ENDLUKS"
-  BOOTPART="/$BOOTDISK$ENDBOOT"
+  LUKSPART="$LUKSDISK$ENDLUKS"
+  BOOTPART="$BOOTDISK$ENDBOOT"
   echo "Luks partition selected: $LUKSPART"
   echo "Boot partition selected: $BOOTPART"
 
