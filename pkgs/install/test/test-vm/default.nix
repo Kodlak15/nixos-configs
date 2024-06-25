@@ -100,11 +100,7 @@ in
     # Create the LUKS device
     CIPHER=aes-xts-plain64
     HASH=sha512
-    # Issue here???
     echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup luksFormat --label "NIXOS" --cipher="$CIPHER" --key-size="$KEY_LENGTH" --hash="$HASH" --key-file=- "$LUKSPART"
-
-    echo "exiting..."
-    exit 0
 
     # Create the boot filesystem
     mkfs.fat -F 32 -n "EFI-NIXOS" "$BOOTPART"
