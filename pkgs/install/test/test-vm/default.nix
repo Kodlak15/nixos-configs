@@ -18,6 +18,8 @@ pkgs.writeShellScriptBin "install.sh" ''
   read -p "Choose the disk to use for boot: " BOOTDISK
   LUKSDISK="/dev/$LUKSDISK"
   BOOTDISK="/dev/$BOOTDISK"
+  echo "Luks disk selected: $LUKSPART"
+  echo "Boot disk selected: $BOOTPART"
 
   if [[ "$LUKSDISK" == "$BOOTDISK" ]]; then
     if [[ -n "$(echo "$LUKSDISK" | grep "nvme")" ]]; then
