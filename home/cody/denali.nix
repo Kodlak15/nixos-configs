@@ -1,7 +1,12 @@
-{inputs, ...}: {
+{
+  inputs,
+  outputs,
+  ...
+}: {
   imports = [
     inputs.hyprland.homeManagerModules.default
     inputs.nixvim.homeManagerModules.nixvim
+    outputs.homeManagerModules.powder
     ./global
     ./denali
   ];

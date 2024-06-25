@@ -74,6 +74,7 @@ in {
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  nixpkgs.config.pulseaudio = true;
 
   users.users.${username} = {
     isNormalUser = true;
@@ -83,6 +84,10 @@ in {
       gnumake
       git
       tree
+    ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBFPX5biiGhDszrPE8BWvgKz4Ow1etck3E9aacuKXObQ cody@everest"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP7mmexgGczAjP9//7snhntiHNA+w8iQl2DAZ/qPSyUm cody@denali"
     ];
   };
 
@@ -101,7 +106,24 @@ in {
   # Yubikey support
   hardware.gpgSmartcards.enable = true;
 
-  services.openssh.enable = true;
+  services = {
+    openssh = {
+      enable = true;
+      ports = [22];
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
+    };
+    xserver = {
+      enable = true;
+      desktopManager = {
+        xterm.enable = false;
+        xfce.enable = true;
+      };
+      displayManager.defaultSession = "xfce";
+    };
+  };
 
   # Do not change this value!
   system.stateVersion = "${version}";
