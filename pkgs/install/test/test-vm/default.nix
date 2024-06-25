@@ -10,6 +10,11 @@
   pbkdf2Sha512 = pkgs.callPackage ../../pbkdf2-sha512.nix {};
 in
   pkgs.writeShellScriptBin "install.sh" ''
+    echo "${rbtohex}"
+    echo "${hextorb}"
+    echo "${pbkdf2Sha512}"
+    exit 0
+
     set -e
 
     # Make sure user running the script is root
@@ -56,11 +61,6 @@ in
     BOOTPART="$BOOTDISK$ENDBOOT"
     echo "Luks partition selected: $LUKSPART"
     echo "Boot partition selected: $BOOTPART"
-
-    # Disk to be used and its partitions
-    # LUKSDISK="/dev/vda"
-    # BOOTPART="/dev/vda1"
-    # ROOTPART="/dev/vda2"
 
     # The size of the boot partition (mb)
     BOOTSIZE=512
