@@ -74,7 +74,6 @@ in {
 
   sound.enable = false; # NOTE enabling this was causing issues
   hardware.pulseaudio.enable = true;
-  nixpkgs.config.pulseaudio = true;
 
   users.users.${username} = {
     isNormalUser = true;
