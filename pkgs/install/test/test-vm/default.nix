@@ -36,8 +36,8 @@ in
         ENDBOOT="p1"
         ENDLUKS="p2"
       else
-        ENDLUKS="1"
-        ENDBOOT="2"
+        ENDBOOT="1"
+        ENDLUKS="2"
       fi
     else
       if [[ -n "$(echo "$BOOTDISK" | grep "nvme")" ]]; then
