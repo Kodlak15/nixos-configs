@@ -10,9 +10,9 @@
   pbkdf2Sha512 = pkgs.callPackage ../../pbkdf2-sha512.nix {};
 in
   pkgs.writeShellScriptBin "install.sh" ''
-    echo "${rbtohex}"
-    echo "${hextorb}"
-    echo "${pbkdf2Sha512}"
+    tree "${rbtohex}"
+    tree "${hextorb}"
+    tree "${pbkdf2Sha512}"
     exit 0
 
     set -e
@@ -23,6 +23,10 @@ in
     	echo "Run 'sudo -i' to switch to the root user."
     	exit 1
     fi
+
+    rbtohex="${rbtohex}/bin/rbtohex"
+    hextorb="${hextorb}/bin/hextorb"
+    pbkdf2sha512="${pbkdf2Sha512}/bin/pbkdf2-sha512"
 
     # The flake to use
     FLAKE="github:Kodlak15/nixos-flake"
@@ -101,7 +105,7 @@ in
     KEY_LENGTH=512
     ITERATIONS=1000000
     # LUKS_KEY="$(echo -n $USER_PASSPHRASE | pbkdf2-sha512 $(($KEY_LENGTH / 8)) $ITERATIONS $RESPONSE | ${rbtohex}/bin/rbtohex)"
-    LUKS_KEY="$(echo -n $USER_PASSPHRASE | pbkdf2-sha512 $(($KEY_LENGTH / 8)) $ITERATIONS $RESPONSE | ${rbtohex}/bin/rbtohex)"
+    LUKS_KEY="$(echo -n $USER_PASSPHRASE | pbkdf2sha512 $(($KEY_LENGTH / 8)) $ITERATIONS $RESPONSE | ${rbtohex}/bin/rbtohex)"
 
     # Create the LUKS device
     CIPHER=aes-xts-plain64
