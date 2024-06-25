@@ -1,7 +1,6 @@
 {pkgs, ...}:
 pkgs.writeShellScriptBin "install.sh" ''
   set -e
-  lsblk -d -n | awk -F ' ' '{print $1}'
 
   # Make sure user running the script is root
   if [[ ! "$EUID" -eq 0 ]]; then

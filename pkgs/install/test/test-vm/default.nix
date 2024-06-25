@@ -13,6 +13,7 @@ pkgs.writeShellScriptBin "install.sh" ''
   FLAKE="github:Kodlak15/nixos-flake"
 
   # Select disks to use
+  lsblk -d -n | awk -F ' ' '{print $1}'
   read -p "Choose the disk to use for LUKS: " LUKSDISK
   read -p "Choose the disk to use for boot: " BOOTDISK
 
@@ -37,8 +38,8 @@ pkgs.writeShellScriptBin "install.sh" ''
     fi
   fi
 
-  LUKSPART="$LUKSDISK$ENDLUKS"
-  BOOTPART="$BOOTDISK$ENDBOOT"
+  LUKSPART="/dev/$LUKSDISK$ENDLUKS"
+  BOOTPART="/dev/$BOOTDISK$ENDBOOT"
 
   # Disk to be used and its partitions
   # LUKSDISK="/dev/vda"
