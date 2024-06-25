@@ -103,11 +103,25 @@ in {
     neofetch
     btop
     brave
+    cmatrix
   ];
 
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+  };
+
+  programs = {
+    ssh = {
+      knownHosts = {
+        everest = {
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBFPX5biiGhDszrPE8BWvgKz4Ow1etck3E9aacuKXObQ cody@everest";
+        };
+        denali = {
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP7mmexgGczAjP9//7snhntiHNA+w8iQl2DAZ/qPSyUm cody@denali";
+        };
+      };
+    };
   };
 
   # Yubikey support
