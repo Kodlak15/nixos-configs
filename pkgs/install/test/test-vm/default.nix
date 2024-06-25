@@ -42,6 +42,8 @@ pkgs.writeShellScriptBin "install.sh" ''
 
   LUKSPART="/$LUKSDISK$ENDLUKS"
   BOOTPART="/$BOOTDISK$ENDBOOT"
+  echo "Luks partition selected: $LUKSPART"
+  echo "Boot partition selected: $BOOTPART"
 
   # Disk to be used and its partitions
   # LUKSDISK="/dev/vda"
