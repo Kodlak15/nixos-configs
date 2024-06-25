@@ -117,13 +117,11 @@ in {
     };
     xserver = {
       enable = true;
-      desktopManager = {
-        xterm.enable = false;
-        xfce.enable = true;
-      };
-      displayManager.defaultSession = "xfce";
+      displayManager.sddm.enable = true;
+      desktopManager.plasma6.enable = true;
     };
   };
+  # You may need to comment out "services.displayManager.gdm.enable = true;"
 
   # Do not change this value!
   system.stateVersion = "${version}";
