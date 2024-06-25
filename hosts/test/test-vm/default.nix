@@ -16,8 +16,6 @@ in {
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # boot.initrd.luks.devices.${luks}.device = luksPart;
-
   fileSystems = {
     "/" = {
       device = rootPart;
@@ -142,7 +140,6 @@ in {
       desktopManager.plasma6.enable = true;
     };
   };
-  # You may need to comment out "services.displayManager.gdm.enable = true;"
 
   # Do not change this value!
   system.stateVersion = "${version}";

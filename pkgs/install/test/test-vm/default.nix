@@ -12,10 +12,38 @@ pkgs.writeShellScriptBin "install.sh" ''
   # The flake to use
   FLAKE="github:Kodlak15/nixos-flake"
 
+  # Select disks to use
+  read -p "Choose the disk to use for LUKS: " LUKSDISK
+  read -p "Choose the disk to use for boot: " BOOTDISK
+
+  if [[ "$LUKSDISK" == "$BOOTDISK" ]]; then
+    if [[ -n "$(echo "$LUKSDISK" | grep "nvme")" ]]; then
+      ENDBOOT="p1"
+      ENDLUKS="p2"
+    else
+      ENDLUKS="1"
+      ENDBOOT="2"
+    fi
+  else
+    if [[ -n "$(echo "$BOOTDISK" | grep "nvme")" ]]; then
+      ENDBOOT="p1"
+    else
+      ENDBOOT="1"
+    fi
+    if [[ -n "$(echo "$LUKSDISK" | grep "nvme")" ]]; then
+      ENDLUKS="p1"
+    else
+      ENDLUKS="1"
+    fi
+  fi
+
+  LUKSPART="$LUKSDISK$ENDLUKS"
+  BOOTPART="$BOOTDISK$ENDBOOT"
+
   # Disk to be used and its partitions
-  LUKSDISK="/dev/vda"
-  BOOTPART="/dev/vda1"
-  ROOTPART="/dev/vda2"
+  # LUKSDISK="/dev/vda"
+  # BOOTPART="/dev/vda1"
+  # ROOTPART="/dev/vda2"
 
   # The size of the boot partition (mb)
   BOOTSIZE=512
