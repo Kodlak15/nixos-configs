@@ -21,7 +21,7 @@ in
 
     rbtohex="${rbtohex}/bin/rbtohex"
     hextorb="${hextorb}/bin/hextorb"
-    pbkdf2_sha512="${pbkdf2Sha512}/bin/pbkdf2-sha512"
+    pbkdf2sha512="${pbkdf2Sha512}/bin/pbkdf2-sha512"
 
     # The flake to use
     FLAKE="github:Kodlak15/nixos-flake"
@@ -90,22 +90,22 @@ in
 
     # Calculate the initial salt (length can be any integer in range 16-64)
     SALT_LENGTH=16
-    SALT="$(dd if=/dev/random bs=1 count=$SALT_LENGTH 2>/dev/null | rbtohex)"
+    SALT="$(dd if=/dev/random bs=1 count=$SALT_LENGTH 2>/dev/null | "$rbtohex")"
 
     # Calculate the initial challenge and response
-    CHALLENGE="$(echo -n $SALT | openssl dgst -binary -sha512 | rbtohex)"
+    CHALLENGE="$(echo -n $SALT | openssl dgst -binary -sha512 | "$rbtohex")"
     RESPONSE=$(ykchalresp -2 -x $CHALLENGE 2>/dev/null)
 
     # Calculate the LUKS slot key
     KEY_LENGTH=512
     ITERATIONS=1000000
     # LUKS_KEY="$(echo -n $USER_PASSPHRASE | pbkdf2-sha512 $(($KEY_LENGTH / 8)) $ITERATIONS $RESPONSE | ${rbtohex}/bin/rbtohex)"
-    LUKS_KEY="$(echo -n $USER_PASSPHRASE | pbkdf2_sha512 $(($KEY_LENGTH / 8)) $ITERATIONS $RESPONSE | rbtohex)"
+    LUKS_KEY="$(echo -n $USER_PASSPHRASE | "$pbkdf2sha512" $(($KEY_LENGTH / 8)) $ITERATIONS $RESPONSE | "$rbtohex")"
 
     # Create the LUKS device
     CIPHER=aes-xts-plain64
     HASH=sha512
-    echo -n "$LUKS_KEY" | hextorb | cryptsetup luksFormat --label "NIXOS" --cipher="$CIPHER" --key-size="$KEY_LENGTH" --hash="$HASH" --key-file=- "$ROOTPART"
+    echo -n "$LUKS_KEY" | "$hextorb" | cryptsetup luksFormat --label "NIXOS" --cipher="$CIPHER" --key-size="$KEY_LENGTH" --hash="$HASH" --key-file=- "$ROOTPART"
 
     # Create the boot filesystem
     mkfs.fat -F 32 -n "EFI-NIXOS" "$BOOTPART"
@@ -117,7 +117,7 @@ in
     umount /boot
 
     # Open the LUKS device
-    echo -n "$LUKS_KEY" | hextorb | cryptsetup open "$ROOTPART" nixos-crypt --key-file=-
+    echo -n "$LUKS_KEY" | "$hextorb" | cryptsetup open "$ROOTPART" nixos-crypt --key-file=-
 
     # The encrypted root partition of the new system
     ROOT="/dev/mapper/nixos-crypt"
