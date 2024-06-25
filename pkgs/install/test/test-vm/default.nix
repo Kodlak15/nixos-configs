@@ -96,6 +96,7 @@ in
     KEY_LENGTH=512
     ITERATIONS=1000000
     LUKS_KEY="$(echo -n $USER_PASSPHRASE | ${pbkdf2Sha512}/bin/pbkdf2-sha512 $(($KEY_LENGTH / 8)) $ITERATIONS $RESPONSE | ${rbtohex}/bin/rbtohex)"
+    echo "$LUKS_KEY"
 
     echo "exiting..."
     exit 0
