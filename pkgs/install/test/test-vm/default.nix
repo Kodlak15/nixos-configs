@@ -101,7 +101,7 @@ in
     CIPHER=aes-xts-plain64
     HASH=sha512
     # Issue here???
-    echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup luksFormat --label "NIXOS" --cipher="$CIPHER" --key-size="$KEY_LENGTH" --hash="$HASH" --key-file=- "$ROOTPART"
+    echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup luksFormat --label "NIXOS" --cipher="$CIPHER" --key-size="$KEY_LENGTH" --hash="$HASH" --key-file=- "$LUKSPART"
 
     echo "exiting..."
     exit 0
