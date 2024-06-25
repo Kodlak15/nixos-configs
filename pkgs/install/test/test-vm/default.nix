@@ -112,7 +112,7 @@ in
     umount /boot
 
     # Open the LUKS device
-    echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup open "$ROOTPART" nixos-crypt --key-file=-
+    echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup open "$LUKSPART" nixos-crypt --key-file=-
 
     # The encrypted root partition of the new system
     ROOT="/dev/mapper/nixos-crypt"
