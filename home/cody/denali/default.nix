@@ -2,6 +2,6 @@
   imports = [
     ./hyprland
     ./eww
-    ./powder
+    # ./powder
   ];
 }
