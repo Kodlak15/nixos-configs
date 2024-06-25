@@ -16,6 +16,8 @@ pkgs.writeShellScriptBin "install.sh" ''
   lsblk -d -n | awk -F ' ' '{print $1}'
   read -p "Choose the disk to use for LUKS: " LUKSDISK
   read -p "Choose the disk to use for boot: " BOOTDISK
+  LUKSDISK="/dev/$LUKSDISK"
+  BOOTDISK="/dev/$BOOTDISK"
 
   if [[ "$LUKSDISK" == "$BOOTDISK" ]]; then
     if [[ -n "$(echo "$LUKSDISK" | grep "nvme")" ]]; then
@@ -38,8 +40,8 @@ pkgs.writeShellScriptBin "install.sh" ''
     fi
   fi
 
-  LUKSPART="/dev/$LUKSDISK$ENDLUKS"
-  BOOTPART="/dev/$BOOTDISK$ENDBOOT"
+  LUKSPART="/$LUKSDISK$ENDLUKS"
+  BOOTPART="/$BOOTDISK$ENDBOOT"
 
   # Disk to be used and its partitions
   # LUKSDISK="/dev/vda"
