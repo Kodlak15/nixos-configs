@@ -18,7 +18,7 @@ in
     # Select disks to use
     lsblk
     read -p "Choose the disk to use for LUKS: " LUKSDISK
-    read -p "Choose the disk to use for boot: " BOOTDISK
+    read -p "Choose the disk to use for BOOT: " BOOTDISK
     LUKSDISK="/dev/$LUKSDISK"
     BOOTDISK="/dev/$BOOTDISK"
 
@@ -89,7 +89,7 @@ in
     # Create the LUKS device
     CIPHER=aes-xts-plain64
     HASH=sha512
-    echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup luksFormat --label "NIXOS" --cipher="$CIPHER" --key-size="$KEY_LENGTH" --hash="$HASH" --key-file=- "$LUKSPART"
+    echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup luksFormat --label "NIXOS" --cipher="$CIPHER" --key-size="$KEY_LENGTH" --hash="$HASH" --key-file=- "$LUKSPART" &>/dev/null
 
     # Create the boot filesystem
     mkfs.fat -F 32 -n "EFI-NIXOS" "$BOOTPART" &>/dev/null
@@ -129,8 +129,8 @@ in
     # Generate the initial configuration
     nixos-generate-config --root "$MOUNTPOINT" --no-filesystems &>/dev/null
 
-    # Install the system
-    nixos-install --root "$MOUNTPOINT" --flake "$FLAKE#$NIXCFG"
+    # Install the system (skip setting initial password)
+    nixos-install --root "$MOUNTPOINT" --flake "$FLAKE#$NIXCFG" &>/dev/null
 
     # Unmount all volumes
     umount -R "$MOUNTPOINT"
