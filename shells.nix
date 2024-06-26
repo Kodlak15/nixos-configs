@@ -8,9 +8,5 @@
       gnupg
       gnumake
     ];
-
-    # shellHook = ''
-    #   exec "$SHELL"
-    # '';
   };
 }

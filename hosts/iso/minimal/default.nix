@@ -46,6 +46,15 @@ in {
 
   systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
 
+  system.activationScripts = {
+    base-dirs = {
+      text = ''
+        mkdir -p /nix/var/nix/profiles/per-user/user
+      '';
+      deps = [];
+    };
+  };
+
   # Should make build go faster
   isoImage.squashfsCompression = "gzip -Xcompression-level 1";
 
@@ -53,6 +62,7 @@ in {
     neofetch
     neovim
     tmux
+    home-manager
     # For setting up Yubikey based FDE
     gcc
     yubikey-personalization
