@@ -22,25 +22,24 @@ in
     LUKSDISK="/dev/$LUKSDISK"
     BOOTDISK="/dev/$BOOTDISK"
 
-    if [[ "$LUKSDISK" == "$BOOTDISK" ]]; then
-      if [[ -n "$(echo "$LUKSDISK" | grep "nvme")" ]]; then
-        ENDBOOT="p1"
-        ENDLUKS="p2"
-      else
-        ENDBOOT="1"
-        ENDLUKS="2"
-      fi
+    read -p "Choose the partition number for LUKS: " NLUKS
+    read -p "Choose the partition number for BOOT: " NBOOT
+
+    if [[ "$LUKSDISK" == "$BOOTDISK" && "$NLUKS" == "$NBOOT" ]]; then
+      echo "Error: attempting to use the same partition for LUKS and BOOT, exiting..."
+      exit 1
+    fi
+
+    if [[ -n "$(echo "$LUKSDISK" | grep "nvme")" ]]; then
+      ENDLUKS="p$NLUKS"
     else
-      if [[ -n "$(echo "$BOOTDISK" | grep "nvme")" ]]; then
-        ENDBOOT="p1"
-      else
-        ENDBOOT="1"
-      fi
-      if [[ -n "$(echo "$LUKSDISK" | grep "nvme")" ]]; then
-        ENDLUKS="p1"
-      else
-        ENDLUKS="1"
-      fi
+      ENDLUKS="$NLUKS"
+    fi
+
+    if [[ -n "$(echo "$BOOTDISK" | grep "nvme")" ]]; then
+      ENDBOOT="p$NBOOT"
+    else
+      ENDBOOT="$NBOOT"
     fi
 
     LUKSPART="$LUKSDISK$ENDLUKS"
