@@ -60,14 +60,14 @@ in
 
     # Program the yubikey
     if [[ ! "$SLOT" == "0" ]]; then
-    	ykpersonalize -"$SLOT" -ochal-resp -ochal-hmac
+    	ykpersonalize -"$SLOT" -y -ochal-resp -ochal-hmac &>/dev/null
     fi
 
     # Create the partitions
-    sgdisk -g "$LUKSDISK"
-    sgdisk -n 1::+"$BOOTSIZE"M --typecode=1:ef00 "$LUKSDISK"
-    sgdisk -n 2::-0 --typecode=2:8300 "$LUKSDISK"
-    partprobe "$LUKSDISK"
+    sgdisk -g "$LUKSDISK" &>/dev/null
+    sgdisk -n 1::+"$BOOTSIZE"M --typecode=1:ef00 "$LUKSDISK" &>/dev/null
+    sgdisk -n 2::-0 --typecode=2:8300 "$LUKSDISK" &>/dev/null
+    partprobe "$LUKSDISK" &>/dev/null
 
     # Read 2FA password
     echo "Enter 2FA password:"
@@ -92,7 +92,7 @@ in
     echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup luksFormat --label "NIXOS" --cipher="$CIPHER" --key-size="$KEY_LENGTH" --hash="$HASH" --key-file=- "$LUKSPART"
 
     # Create the boot filesystem
-    mkfs.fat -F 32 -n "EFI-NIXOS" "$BOOTPART"
+    mkfs.fat -F 32 -n "EFI-NIXOS" "$BOOTPART" &>/dev/null
 
     # Store the salt and iterations on the boot volume
     mount --mkdir "$BOOTPART" /boot
@@ -107,14 +107,14 @@ in
     ROOT="/dev/mapper/nixos-crypt"
 
     # Create the root filesytem
-    mkfs.btrfs -L "ROOT" "$ROOT" -f
+    mkfs.btrfs -L "ROOT" "$ROOT" -f &>/dev/null
 
     # Create subvolumes
     mount --mkdir "$ROOT" "$MOUNTPOINT"
-    btrfs subvolume create "$MOUNTPOINT/@"
-    btrfs subvolume create "$MOUNTPOINT/@home"
-    btrfs subvolume create "$MOUNTPOINT/@tmp"
-    btrfs subvolume create "$MOUNTPOINT/@var"
+    btrfs subvolume create "$MOUNTPOINT/@" &>/dev/null
+    btrfs subvolume create "$MOUNTPOINT/@home" &>/dev/null
+    btrfs subvolume create "$MOUNTPOINT/@tmp" &>/dev/null
+    btrfs subvolume create "$MOUNTPOINT/@var" &>/dev/null
     umount "$MOUNTPOINT"
 
     # Mount the subvolumes
@@ -127,7 +127,7 @@ in
     mount -o umask=0077 --mkdir "$BOOTPART" "$MOUNTPOINT/boot"
 
     # Generate the initial configuration
-    nixos-generate-config --root "$MOUNTPOINT" --no-filesystems
+    nixos-generate-config --root "$MOUNTPOINT" --no-filesystems &>/dev/null
 
     # Install the system
     nixos-install --root "$MOUNTPOINT" --flake "$FLAKE#$NIXCFG"
