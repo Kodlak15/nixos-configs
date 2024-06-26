@@ -130,7 +130,7 @@ in
     nixos-generate-config --root "$MOUNTPOINT" --no-filesystems &>/dev/null
 
     # Install the system (skip setting initial password)
-    nixos-install --root "$MOUNTPOINT" --flake "$FLAKE#$NIXCFG" 2>/dev/null
+    nixos-install --root "$MOUNTPOINT" --flake "$FLAKE#$NIXCFG" --no-root-password &>/dev/null
 
     # Unmount all volumes
     umount -R "$MOUNTPOINT"
