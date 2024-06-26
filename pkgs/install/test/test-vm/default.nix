@@ -69,7 +69,7 @@ in
       echo "Exiting..."
       exit 0
     else
-      sgdisk -o "$DISK" &>/dev/null
+      sgdisk -o "$LUKSDISK" &>/dev/null
       sgdisk -g "$LUKSDISK" &>/dev/null
     fi
 
