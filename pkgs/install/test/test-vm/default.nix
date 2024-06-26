@@ -1,13 +1,5 @@
 {pkgs, ...}: let
-  rbtohex =
-    pkgs.writeShellScriptBin
-    "rbtohex"
-    ''( od -An -vtx1 | tr -d ' \n' )'';
-  hextorb =
-    pkgs.writeShellScriptBin
-    "hextorb"
-    ''( tr '[:lower:]' '[:upper:]' | sed -e 's/\([0-9A-F]\{2\}\)/\\\\\\x\1/gI'| xargs printf )'';
-  pbkdf2Sha512 = pkgs.callPackage ../../pbkdf2-sha512.nix {};
+  inherit (../../helpers.nix) rbtohex hextorb pbkdf2Sha512;
 in
   pkgs.writeShellScriptBin "install.sh" ''
     set -e
@@ -23,7 +15,6 @@ in
     FLAKE="github:Kodlak15/nixos-flake"
 
     # Select disks to use
-    # lsblk -d -n | awk -F ' ' '{print $1}'
     lsblk | awk -F ' ' '{print $1}'
     read -p "Choose the disk to use for LUKS: " LUKSDISK
     read -p "Choose the disk to use for boot: " BOOTDISK
