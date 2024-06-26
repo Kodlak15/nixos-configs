@@ -23,13 +23,12 @@ in
     FLAKE="github:Kodlak15/nixos-flake"
 
     # Select disks to use
-    lsblk -d -n | awk -F ' ' '{print $1}'
+    # lsblk -d -n | awk -F ' ' '{print $1}'
+    lsblk | awk -F ' ' '{print $1}'
     read -p "Choose the disk to use for LUKS: " LUKSDISK
     read -p "Choose the disk to use for boot: " BOOTDISK
     LUKSDISK="/dev/$LUKSDISK"
     BOOTDISK="/dev/$BOOTDISK"
-    echo "Luks disk selected: $LUKSDISK"
-    echo "Boot disk selected: $BOOTDISK"
 
     if [[ "$LUKSDISK" == "$BOOTDISK" ]]; then
       if [[ -n "$(echo "$LUKSDISK" | grep "nvme")" ]]; then
@@ -54,8 +53,6 @@ in
 
     LUKSPART="$LUKSDISK$ENDLUKS"
     BOOTPART="$BOOTDISK$ENDBOOT"
-    echo "Luks partition selected: $LUKSPART"
-    echo "Boot partition selected: $BOOTPART"
 
     # The size of the boot partition (mb)
     BOOTSIZE=512
