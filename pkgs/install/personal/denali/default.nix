@@ -52,7 +52,7 @@ in
     MOUNTPOINT="/mnt/nixos"
 
     # The NixOS configuration to use
-    NIXCFG="test/test-vm"
+    NIXCFG="personal/denali"
 
     # Slot to be used on the yubikey (set to 0 to skip programming)
     SLOT="2"
