@@ -16,7 +16,7 @@ in
     FLAKE="github:Kodlak15/nixos-flake"
 
     # Select disks to use
-    lsblk | awk -F ' ' '{print $1}'
+    lsblk
     read -p "Choose the disk to use for LUKS: " LUKSDISK
     read -p "Choose the disk to use for boot: " BOOTDISK
     LUKSDISK="/dev/$LUKSDISK"
