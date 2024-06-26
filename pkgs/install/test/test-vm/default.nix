@@ -1,5 +1,6 @@
 {pkgs, ...}: let
-  inherit (../../helpers.nix) rbtohex hextorb pbkdf2Sha512;
+  helpers = import ../../helpers.nix;
+  inherit (helpers) rbtohex hextorb pbkdf2Sha512;
 in
   pkgs.writeShellScriptBin "install.sh" ''
     set -e
