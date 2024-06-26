@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  helpers = import ../../helpers.nix;
+  helpers = import ../../helpers.nix {inherit pkgs;};
   inherit (helpers) rbtohex hextorb pbkdf2Sha512;
 in
   pkgs.writeShellScriptBin "install.sh" ''
