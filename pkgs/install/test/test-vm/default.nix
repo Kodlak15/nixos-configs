@@ -62,10 +62,20 @@ in
     	ykpersonalize -"$SLOT" -y -ochal-resp -ochal-hmac &>/dev/null
     fi
 
+    # Wipe and format the LUKS disk
+    echo "$LUKSDISK will now be formatted and all data will be wiped!"
+    read -p "Continue? (y/n): " CONFIRM
+    if [[ "$CONFIRM" != "y" ]]; then
+      echo "Exiting..."
+      exit 0
+    else
+      sgdisk -o "$DISK" &>/dev/null
+      sgdisk -g "$LUKSDISK" &>/dev/null
+    fi
+
     # Create the partitions
-    sgdisk -g "$LUKSDISK" &>/dev/null
-    sgdisk -n 1::+"$BOOTSIZE"M --typecode=1:ef00 "$LUKSDISK" &>/dev/null
-    sgdisk -n 2::-0 --typecode=2:8300 "$LUKSDISK" &>/dev/null
+    sgdisk -n "$NBOOT"::+"$BOOTSIZE"M --typecode=1:ef00 "$LUKSDISK" &>/dev/null
+    sgdisk -n "$NLUKS"::-0 --typecode=2:8300 "$LUKSDISK" &>/dev/null
     partprobe "$LUKSDISK" &>/dev/null
 
     # Read 2FA password
