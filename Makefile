@@ -1,20 +1,20 @@
-everest:
-	powder --option nixos --system everest --command rebuild
+personal: 
+	nix run .#rebuild.personal.nixos && nix run .#rebuild.personal.home
 
-denali:
-	powder --option nixos --system denali --command rebuild
+test: 
+	nix run .#rebuild.test.nixos && nix run .#rebuild.test.home
 
-everest-home:
-	powder --option home-manager --system everest --command rebuild
+personal-nixos:
+	nix run .#rebuild.personal.nixos
 
-denali-home:
-	powder --option home-manager --system denali --command rebuild
+test-nixos:
+	nix run .#rebuild.test.nixos
 
-everest-full:
-	powder --option all --system everest --command rebuild
+personal-home:
+	nix run .#rebuild.personal.home
 
-denali-full:
-	powder --option all --system everest --command rebuild
+test-home:
+	nix run .#rebuild.test.home
 
 update:
 	nix flake update

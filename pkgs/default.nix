@@ -12,4 +12,14 @@
       test-vm = pkgs.callPackage ./install/test/test-vm {};
     };
   };
+  install = {
+    personal = {
+      nixos = pkgs.callPackage ./rebuild/personal/nixos {};
+      home = pkgs.callPackage ./rebuild/personal/home {};
+    };
+    test = {
+      nixos = pkgs.callPackage ./rebuild/test/nixos {};
+      home = pkgs.callPackage ./rebuild/test/home {};
+    };
+  };
 }
