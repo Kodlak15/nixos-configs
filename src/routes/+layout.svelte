@@ -1,16 +1,11 @@
 <script>
 	import "../tailwind.css";
-	import logo from "$lib/assets/images/logos/logo.png";
+	import Navbar from "$lib/components/Navbar.svelte";
+	import Footer from "$lib/components/Footer.svelte";
 </script>
 
-<nav>
-	<div class="bg-feldgrau flex justify-center items-center p-12">
-		<a href="/">
-			<img src={logo} alt="Cascade Botanicals Logo" width="300" height="300" />
-		</a>
-	</div>
-</nav>
+<Navbar />
 <div>
 	<slot />
 </div>
-<footer></footer>
+<Footer />
