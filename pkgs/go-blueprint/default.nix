@@ -1,15 +1,12 @@
 {
   pkgs,
   lib,
-  fetchFromGitHub,
-  buildGoModule,
-  symlinkJoin,
 }: let
-  module = buildGoModule rec {
+  go-blueprint = pkgs.buildGoModule rec {
     pname = "go-blueprint";
     version = "0.5.14";
 
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "Melkeydev";
       repo = "go-blueprint";
       rev = "v${version}";
@@ -25,10 +22,10 @@
     };
   };
 in
-  symlinkJoin rec {
+  pkgs.writeShellApplication {
     name = "go-blueprint";
-    # Go needed in PATH to generate go.mod
-    paths = [module] ++ [pkgs.go];
-    buildInputs = [pkgs.makeWrapper];
-    postBuild = "wrapProgram $out/bin/${name} --prefix PATH : $out/bin";
+    runtimeInputs = with pkgs; [go];
+    text = ''
+      "${go-blueprint}/bin/go-blueprint" "$@"
+    '';
   }
