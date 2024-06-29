@@ -1,12 +1,21 @@
+<script>
+	import trailImg from "$lib/assets/images/trail.jpg";
+</script>
+
 <div>
-	<section class="p-24">
-		<div class="flex flex-col gap-6">
+	<section class="relative px-24 py-48">
+		<div
+			class="absolute flex justify-center items-center inset-0 min-w-[50rem] overflow-hidden"
+		>
+			<img src={trailImg} alt="Navbar background" />
+		</div>
+		<div class="relative flex flex-col gap-6 z-50">
 			<form method="POST">
 				<div
-					class="flex flex-col gap-4 justify-center items-center m-auto p-24 border-onyx border-2 rounded-xl max-w-screen-md"
+					class="bg-white flex flex-col gap-4 justify-center items-center m-auto p-24 border-onyx border-2 rounded-xl max-w-screen-md"
 				>
-					<div>
-						<h1 class="text-feldgrau text-2xl font-bold">Log in:</h1>
+					<div class="relative font-dancing-script">
+						<h1 class="text-feldgrau text-4xl font-bold">Log in:</h1>
 					</div>
 					<div
 						class="flex flex-row justify-center items-center gap-2 m-auto w-full"
@@ -41,17 +50,17 @@
 							/>
 						</div>
 					</div>
+					<div class="flex justify-center items-center">
+						<p>
+							Don't have an account? Click <a
+								href="/account/create"
+								class="text-feldgrau font-bold cursor-pointer hover:opacity-50"
+								>here</a
+							> to create one!
+						</p>
+					</div>
 				</div>
 			</form>
-			<div class="flex justify-center items-center">
-				<p>
-					Don't have an account? Click <a
-						href="/account/create"
-						class="text-feldgrau font-bold cursor-pointer hover:opacity-50"
-						>here</a
-					> to create one!
-				</p>
-			</div>
 		</div>
 	</section>
 </div>

@@ -1,12 +1,21 @@
+<script>
+	import trailImg from "$lib/assets/images/trail.jpg";
+</script>
+
 <div>
-	<section class="p-24">
+	<section class="relative px-24 py-48">
+		<div
+			class="absolute flex justify-center items-center inset-0 min-w-[50rem] overflow-hidden"
+		>
+			<img src={trailImg} alt="Navbar background" />
+		</div>
 		<div class="flex flex-col gap-6">
 			<form method="POST">
 				<div
-					class="flex flex-col gap-4 justify-center items-center m-auto p-24 border-onyx border-2 rounded-xl max-w-screen-md"
+					class="bg-white relative flex flex-col gap-4 justify-center items-center m-auto p-24 border-onyx border-2 rounded-xl max-w-screen-md z-20"
 				>
-					<div>
-						<h1 class="text-feldgrau text-2xl font-bold">New account:</h1>
+					<div class="relative font-dancing-script">
+						<h1 class="text-feldgrau text-4xl font-bold">New account:</h1>
 					</div>
 					<div
 						class="flex flex-row justify-center items-center gap-2 m-auto w-full"
@@ -41,17 +50,17 @@
 							/>
 						</div>
 					</div>
+					<div class="flex justify-center items-center">
+						<p>
+							Already have an account? Click <a
+								href="/account/login"
+								class="text-feldgrau font-bold cursor-pointer hover:opacity-50"
+								>here</a
+							> to log in!
+						</p>
+					</div>
 				</div>
 			</form>
-			<div class="flex justify-center items-center">
-				<p>
-					Already have an account? Click <a
-						href="/account/login"
-						class="text-feldgrau font-bold cursor-pointer hover:opacity-50"
-						>here</a
-					> to log in!
-				</p>
-			</div>
 		</div>
 	</section>
 </div>

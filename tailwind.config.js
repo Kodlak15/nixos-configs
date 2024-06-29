@@ -9,7 +9,11 @@ export default {
 				"ash-gray": "#9fb8ad",
 				"feldgrau": "#475841",
 				"onyx": "#3f403f",
-			}
+			},
+			fontFamily: {
+				"dancing-script": ['"Dancing Script"', "cursive"],
+				"noto-sans": ['"Noto Sans"', "sans-serif"],
+			},
 		},
 	},
 	plugins: [],
