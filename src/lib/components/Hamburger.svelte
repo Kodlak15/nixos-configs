@@ -26,13 +26,13 @@
 			case false: {
 				hamburger.classList.add("open");
 				if (hamburgerTop !== null) {
-					hamburgerTop.style.transform = "rotate(45deg)";
+					hamburgerTop.style.transform = "rotate(45deg) translateY(20px)";
 				}
 				if (hamburgerMid !== null) {
 					hamburgerMid.style.transform = "translateX(-100%)";
 				}
 				if (hamburgerBot !== null) {
-					hamburgerBot.style.transform = "rotate(-45deg)";
+					hamburgerBot.style.transform = "rotate(-45deg) translateY(-20px)";
 				}
 				if (navMenu !== null) {
 					navMenu.style.transform = "translateX(0)";
@@ -52,7 +52,7 @@
 				width="60"
 				height="10"
 				fill="#475841"
-				x="40"
+				x="20"
 				y="25"
 				rx="7.5"
 			></rect>
@@ -62,7 +62,7 @@
 				width="60"
 				height="10"
 				fill="#475841"
-				x="40"
+				x="20"
 				y="45"
 				rx="7.5"
 			></rect>
@@ -72,7 +72,7 @@
 				width="60"
 				height="10"
 				fill="#475841"
-				x="40"
+				x="20"
 				y="65"
 				rx="7.5"
 			></rect>

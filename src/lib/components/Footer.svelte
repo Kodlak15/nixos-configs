@@ -1,6 +1,6 @@
 <footer class="font-dancing-script relative z-10">
 	<div
-		class="bg-feldgrau flex flex-col justify-center items-center gap-2 px-12 py-24"
+		class="bg-feldgrau flex flex-col justify-center items-center gap-4 px-12 py-24"
 	>
 		<div>
 			<button
