@@ -3,9 +3,9 @@
 </script>
 
 <div>
-	<section class="relative px-6 md:px-24 py-48">
+	<section class="relative px-6 md:px-24 py-48 overflow-hidden">
 		<div
-			class="absolute flex justify-center items-center inset-0 min-w-[80rem] overflow-hidden"
+			class="absolute flex justify-center items-center inset-0 max-w-[100vw] min-w-[80rem] overflow-hidden"
 		>
 			<img src={trailImg} alt="Navbar background" />
 		</div>
@@ -18,11 +18,11 @@
 						<h1 class="text-feldgrau text-4xl font-bold">New account:</h1>
 					</div>
 					<div
-						class="flex flex-col md:flex-row justify-center items-center gap-2 m-auto w-full"
+						class="flex flex-col md:flex-row justify-center items-center gap-1 md:gap-2 w-full"
 					>
 						<label
 							for="username"
-							class="flex-1 text-center md:text-right w-full md:w-1/3"
+							class="flex-1 text-left md:text-right w-full md:w-1/3"
 							>Username:</label
 						>
 						<input
@@ -33,11 +33,11 @@
 						/>
 					</div>
 					<div
-						class="flex flex-col md:flex-row justify-center items-center gap-2 w-full"
+						class="flex flex-col md:flex-row justify-center items-center gap-1 md:gap-2 w-full"
 					>
 						<label
 							for="password"
-							class="flex-1 text-center md:text-right w-full md:w-1/3"
+							class="flex-1 text-left md:text-right w-full md:w-1/3"
 							>Password:</label
 						>
 						<input
