@@ -1,8 +1,8 @@
 import { redirect } from "@sveltejs/kit";
 import type { Actions } from "./$types";
 import pkg from "pg";
-import dotenv from "dotenv";
 const { Pool } = pkg;
+import dotenv from "dotenv";
 
 // Load environment variables from .env
 dotenv.config();

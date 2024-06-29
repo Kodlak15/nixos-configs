@@ -2,13 +2,24 @@ import { redirect } from "@sveltejs/kit";
 import type { Actions } from "./$types";
 import pkg from "pg";
 const { Pool } = pkg;
+import dotenv from "dotenv";
 
+// Load environment variables from .env
+dotenv.config();
+
+
+// Docker Postgres
+// const pool = new Pool({
+// 	user: "postgres",
+// 	host: "172.19.0.1",
+// 	database: "cascade-botanicals",
+// 	password: "example",
+// 	port: 5432,
+// });
+
+// Vercel Postgres
 const pool = new Pool({
-	user: "postgres",
-	host: "172.19.0.1",
-	database: "cascade-botanicals",
-	password: "example",
-	port: 5432,
+	connectionString: process.env.POSTGRES_URL,
 });
 
 function query(text: string, params?: any[]) {
