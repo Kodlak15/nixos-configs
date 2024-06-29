@@ -3,12 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
-
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -20,17 +15,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-    };
+    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    hyprcursor.url = "github:hyprwm/hyprcursor";
 
-    hyprcursor = {
-      url = "github:hyprwm/hyprcursor";
-    };
-
-    nur = {
-      url = "github:nix-community/NUR";
-    };
+    nur.url = "github:nix-community/NUR";
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -43,9 +31,7 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
 
-    eww-configs = {
-      url = "github:Kodlak15/eww-configs";
-    };
+    eww-configs.url = "github:Kodlak15/eww-configs";
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -57,13 +43,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    swwwmgr = {
-      url = "github:Kodlak15/swww-manager";
-    };
-
-    nvim = {
-      url = "github:Kodlak15/nvim-flake";
-    };
+    swwwmgr.url = "github:Kodlak15/swww-manager";
+    nvim.url = "github:Kodlak15/nvim-flake";
   };
 
   outputs = {
