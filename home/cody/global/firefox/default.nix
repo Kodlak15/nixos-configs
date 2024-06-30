@@ -3,8 +3,14 @@
   config,
   ...
 }: let
+  addons = config.nur.repos.rycee.firefox-addons;
   pname = "firefox-unwrapped";
 in {
+  imports = [
+    ./policies.nix
+    ./bookmarks.nix
+  ];
+
   programs.firefox = {
     enable = true;
     # For screen sharing under wayland
@@ -13,85 +19,34 @@ in {
       kodlak = {
         name = "kodlak";
         id = 0; # Set to 0 to make default profile
-        bookmarks = [
-          {
-            # Bookmarks that will appear on the toolbar
-            name = "Toolbar";
-            toolbar = true;
-            bookmarks = [
-              {
-                name = "CWS";
-                url = "https://cascadewebservices.org";
-              }
-              {
-                name = "GitHub";
-                url = "https://github.com/Kodlak15";
-              }
-              {
-                name = "DigitalOcean";
-                url = "https://cloud.digitalocean.com";
-              }
-              {
-                name = "ChatGPT";
-                url = "https://chatgpt.com/";
-              }
-              {
-                name = "pwn.college";
-                url = "https://pwn.college/dojos";
-              }
-              {
-                name = "htb";
-                url = "https://www.hackthebox.com/";
-              }
-              {
-                name = "Chess";
-                url = "https://www.chess.com/";
-              }
-              {
-                # Nix resources
-                name = "Nix";
-                bookmarks = [
-                  {
-                    name = "NixOS and Flakes Book";
-                    url = "https://nixos-and-flakes.thiscute.world/";
-                  }
-                  {
-                    name = "Nix Packages Search";
-                    url = "https://search.nixos.org/packages";
-                  }
-                  {
-                    name = "Home Manager Options";
-                    url = "https://nix-community.github.io/home-manager/options.xhtml";
-                  }
-                  {
-                    name = "nix.dev";
-                    url = "https://nix.dev/";
-                  }
-                ];
-              }
-              {
-                name = "Wayland";
-                bookmarks = [
-                  {
-                    name = "wlroots";
-                    url = "https://gitlab.freedesktop.org/wlroots/wlroots";
-                  }
-                  {
-                    name = "river";
-                    url = "https://github.com/riverwm/river";
-                  }
-                ];
-              }
-            ];
-          }
-        ];
-        extensions = with config.nur.repos.rycee.firefox-addons; [
+        extensions = with addons; [
           bitwarden
           darkreader
           ublock-origin
         ];
         settings = {
           extensions.autoDisableScopes = 0;
+        };
+        search.engines = {
+          "Nix Packages" = {
+            urls = [
+              {
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@np"];
+          };
         };
       };
     };
