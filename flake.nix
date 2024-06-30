@@ -95,6 +95,10 @@
         modules = [./hosts/test/test-vm];
         specialArgs = {inherit inputs outputs;};
       };
+      "vm/korriban" = lib.nixosSystem {
+        modules = [./hosts/vm/korriban];
+        specialArgs = {inherit inputs outputs;};
+      };
       "iso-minimal" = lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

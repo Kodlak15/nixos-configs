@@ -1,5 +1,9 @@
-{pkgs, ...}: let
-  # NOTE set up this way in case stable packages are desired at any point
+{
+  pkgs,
+  pkgs-stable,
+  ...
+}: let
+  stable = with pkgs-stable; [eza]; # Using due to autocomplete bug (see Issue 1038)
   unstable = with pkgs; [
     # Browsers
     librewolf
@@ -22,7 +26,7 @@
 
     # System tools
     bat
-    eza
+    # eza # Disabling due to autocomplete bug (see Issue 1038)
     ripgrep
     fzf
     tree
@@ -121,5 +125,5 @@
     shfmt
   ];
 in {
-  home.packages = unstable;
+  home.packages = unstable ++ stable;
 }

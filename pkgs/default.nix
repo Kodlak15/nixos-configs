@@ -11,6 +11,9 @@
     test = {
       test-vm = pkgs.callPackage ./install/test/test-vm {};
     };
+    vm = {
+      korriban = pkgs.callPackage ./install/vm/korriban {};
+    };
   };
   rebuild = {
     personal = {
@@ -20,6 +23,10 @@
     test = {
       nixos = pkgs.callPackage ./rebuild/test/nixos {};
       home = pkgs.callPackage ./rebuild/test/home {};
+    };
+    vm = {
+      nixos = pkgs.callPackage ./rebuild/vm/nixos {};
+      home = pkgs.callPackage ./rebuild/vm/home {};
     };
   };
 }
