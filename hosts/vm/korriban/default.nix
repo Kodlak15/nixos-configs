@@ -138,9 +138,12 @@ in {
     };
     xserver = {
       enable = true;
-      displayManager.sddm.enable = true;
-      desktopManager.plasma6.enable = true;
+      windowManager.i3 = {
+        enable = true;
+        package = pkgs.i3-gaps;
+      };
     };
+    displayManager.defaultSession = "none+i3";
   };
 
   # Do not change this value!

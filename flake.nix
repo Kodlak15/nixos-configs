@@ -78,10 +78,11 @@
     nixosModules = import ./modules/nixos;
     homeManagerModules = import ./modules/home-manager;
     packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
-    devShells = forEachSystem (pkgs: import ./shells.nix {inherit pkgs;});
+    devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs;});
     formatter = forEachSystem (pkgs: pkgs.alejandra);
     overlays = import ./overlays {inherit inputs;};
 
+    # Nixos system configurations
     nixosConfigurations = {
       "personal/everest" = lib.nixosSystem {
         modules = [./hosts/personal/everest.nix];
@@ -96,7 +97,15 @@
         specialArgs = {inherit inputs outputs;};
       };
       "vm/korriban" = lib.nixosSystem {
-        modules = [./hosts/vm/korriban];
+        modules = [
+          ./hosts/vm/korriban
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.sion = import ./home/sion/korriban.nix;
+          }
+        ];
         specialArgs = {inherit inputs outputs;};
       };
       "iso-minimal" = lib.nixosSystem {
@@ -108,6 +117,7 @@
       };
     };
 
+    # Standalone home manager configurations
     homeConfigurations = {
       "cody@personal/everest" = lib.homeManagerConfiguration {
         modules = [

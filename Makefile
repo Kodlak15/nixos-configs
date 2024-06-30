@@ -21,3 +21,6 @@ update:
 
 gc:
 	nix-collect-garbage
+
+deploy-korriban:
+	nix run .#deploy.vm.korriban

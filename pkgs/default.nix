@@ -3,6 +3,7 @@
   swww-manager = pkgs.python3Packages.callPackage ./swww-manager {};
   go-blueprint = pkgs.callPackage ./go-blueprint {};
   # minimal-iso = pkgs.callPackage ./minimal-iso {inherit self;};
+  # Automatically install NixOS
   install = {
     personal = {
       everest = pkgs.callPackage ./install/personal/everest {};
@@ -15,18 +16,17 @@
       korriban = pkgs.callPackage ./install/vm/korriban {};
     };
   };
+  # Rebuild personal system
   rebuild = {
     personal = {
       nixos = pkgs.callPackage ./rebuild/personal/nixos {};
       home = pkgs.callPackage ./rebuild/personal/home {};
     };
-    test = {
-      nixos = pkgs.callPackage ./rebuild/test/nixos {};
-      home = pkgs.callPackage ./rebuild/test/home {};
-    };
+  };
+  # Rebuild and deploy to remote host
+  deploy = {
     vm = {
-      nixos = pkgs.callPackage ./rebuild/vm/nixos {};
-      home = pkgs.callPackage ./rebuild/vm/home {};
+      korriban = pkgs.callPackage ./deploy/korriban {};
     };
   };
 }
