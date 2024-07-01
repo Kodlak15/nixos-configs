@@ -29,4 +29,8 @@
       korriban = pkgs.callPackage ./deploy/korriban {};
     };
   };
+  image = {
+    # digital-ocean = pkgs.callPackage ./image/digital-ocean {};
+    digital-ocean = pkgs.callPackage ./image/digital-ocean {};
+  };
 }
