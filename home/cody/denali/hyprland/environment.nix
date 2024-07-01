@@ -5,7 +5,8 @@
 
       # Toolkit-specific scale
       env = GDK_SCALE,2
-      env = XCURSOR_SIZE,32
+      # env = XCURSOR_SIZE,32
+      env = XCURSOR_SIZE,16
 
       # Environment variables
       env = WLR_NO_HARDWARE_CURSORS,1

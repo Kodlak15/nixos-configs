@@ -101,6 +101,7 @@
       bind = $mainMod $altMod, d, exec, swwwmgr -d $HOME/images/wallpaper/digital/ && eww reload
       bind = $mainMod $altMod, n, exec, swwwmgr -n && eww reload
       bind = $mainMod $altMod, p, exec, swwwmgr -p && eww reload
+      bind = $mainMod $altMod, r, exec, swwwmgr -r && eww reload
     '';
   };
 }
