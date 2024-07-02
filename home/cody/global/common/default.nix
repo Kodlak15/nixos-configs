@@ -90,7 +90,7 @@
     pinta
 
     # Media
-    # spotify
+    spotify
     playerctl
     pavucontrol
     vlc
