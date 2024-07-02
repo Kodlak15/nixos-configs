@@ -1,4 +1,4 @@
-let
+{lib, ...}: let
   luks = "nixos-crypt";
   luksPart = "/dev/disk/by-label/NIXOS";
   rootPart = "/dev/disk/by-label/ROOT";
@@ -8,6 +8,24 @@ in {
   ];
 
   boot.initrd.luks.devices.${luks}.device = luksPart;
+
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    initrd = {
+      availableKernelModules = [
+        "cryptd"
+      ];
+      luks.devices = {
+        nixos-crypt = {
+          device = lib.mkDefault "/dev/disk/by-label/NIXOS";
+          allowDiscards = true;
+        };
+      };
+    };
+  };
 
   fileSystems = {
     "/" = {

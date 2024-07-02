@@ -22,23 +22,23 @@
       "cudatoolkit"
     ];
 
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-    initrd = {
-      availableKernelModules = [
-        "cryptd"
-      ];
-      luks.devices = {
-        nixos-crypt = {
-          device = lib.mkDefault "/dev/disk/by-label/NIXOS";
-          allowDiscards = true;
-        };
-      };
-    };
-  };
+  # boot = {
+  #   loader = {
+  #     systemd-boot.enable = true;
+  #     efi.canTouchEfiVariables = true;
+  #   };
+  #   initrd = {
+  #     availableKernelModules = [
+  #       "cryptd"
+  #     ];
+  #     luks.devices = {
+  #       nixos-crypt = {
+  #         device = lib.mkDefault "/dev/disk/by-label/NIXOS";
+  #         allowDiscards = true;
+  #       };
+  #     };
+  #   };
+  # };
 
   programs = {
     steam = {
