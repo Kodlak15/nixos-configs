@@ -74,9 +74,8 @@ in
     fi
 
     # Create the partitions
-    sgdisk -n "$NBOOT"::+"$BOOTSIZE"M --typecode=1:ef00 "$BOOTDISK" &>/dev/null
-    # sgdisk -n "$NLUKS"::-0 --typecode=2:8300 "$LUKSDISK"
-    sgdisk -n "$NLUKS"::-0 --typecode=2:8308 "$LUKSDISK"
+    sgdisk -n "$NBOOT"::+"$BOOTSIZE"M --typecode="$NBOOT":ef00 "$BOOTDISK" &>/dev/null
+    sgdisk -n "$NLUKS"::-0 --typecode="$NLUKS":8300 "$LUKSDISK"
     partprobe "$LUKSDISK" &>/dev/null
 
     # Read 2FA password
