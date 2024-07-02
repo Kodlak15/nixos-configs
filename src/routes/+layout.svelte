@@ -6,6 +6,7 @@
 	export let data: {
 		firstName: string | null;
 	};
+	console.log("data: ", data);
 </script>
 
 <svelte:head>
