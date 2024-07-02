@@ -20,6 +20,7 @@
             zellij
             nodejs
             nodePackages.typescript
+            postgresql_16
           ];
 
           shellHook = ''
