@@ -108,12 +108,15 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
-      "iso-minimal" = lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/iso/minimal
-          installers.minimal
-        ];
+      iso = {
+        minimal = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            installers.minimal
+            ./hosts/iso/minimal
+          ];
+          specialArgs = {inherit inputs outputs;};
+        };
       };
     };
 

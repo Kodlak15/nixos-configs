@@ -16,6 +16,9 @@ personal-home:
 test-home:
 	nix run .#rebuild.test.home
 
+iso-minimal:
+	nix build .#nixosConfigurations.iso.minimal.config.system.build.isoImage > /home/cody/iso/nixos-minimal.iso
+
 update:
 	nix flake update
 
