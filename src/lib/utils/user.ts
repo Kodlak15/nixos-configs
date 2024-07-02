@@ -42,6 +42,7 @@ async function getSessions(): Promise<Session[]> {
 
 export async function getActiveUser({ cookies }: { cookies: Cookies }): Promise<User | undefined> {
 	const current_session = cookies.get("session");
+	console.log("current session:", current_session)
 	if (current_session === undefined) {
 		return;
 	}
