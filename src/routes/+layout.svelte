@@ -1,7 +1,11 @@
-<script>
+<script lang="ts">
 	import "../tailwind.css";
 	import Navbar from "$lib/components/Navbar.svelte";
 	import Footer from "$lib/components/Footer.svelte";
+
+	export let data: {
+		firstName: string | null;
+	};
 </script>
 
 <svelte:head>
@@ -17,7 +21,7 @@
 	/>
 </svelte:head>
 
-<Navbar />
+<Navbar firstName={data.firstName} />
 <div>
 	<slot />
 </div>

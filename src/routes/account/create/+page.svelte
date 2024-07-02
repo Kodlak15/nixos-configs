@@ -21,13 +21,43 @@
 						class="flex flex-col md:flex-row justify-center items-center gap-1 md:gap-2 w-full"
 					>
 						<label
-							for="username"
+							for="first_name"
 							class="flex-1 text-left md:text-right w-full md:w-1/3"
-							>Username:</label
-						>
+							>First Name:
+						</label>
 						<input
 							type="text"
-							name="username"
+							name="first_name"
+							class="border-onyx border-2 border-solid w-full md:w-2/3"
+							required
+						/>
+					</div>
+					<div
+						class="flex flex-col md:flex-row justify-center items-center gap-1 md:gap-2 w-full"
+					>
+						<label
+							for="last_name"
+							class="flex-1 text-left md:text-right w-full md:w-1/3"
+							>Last Name:
+						</label>
+						<input
+							type="text"
+							name="last_name"
+							class="border-onyx border-2 border-solid w-full md:w-2/3"
+							required
+						/>
+					</div>
+					<div
+						class="flex flex-col md:flex-row justify-center items-center gap-1 md:gap-2 w-full"
+					>
+						<label
+							for="email"
+							class="flex-1 text-left md:text-right w-full md:w-1/3"
+							>Email:
+						</label>
+						<input
+							type="text"
+							name="email"
 							class="border-onyx border-2 border-solid w-full md:w-2/3"
 							required
 						/>
@@ -38,8 +68,8 @@
 						<label
 							for="password"
 							class="flex-1 text-left md:text-right w-full md:w-1/3"
-							>Password:</label
-						>
+							>Password:
+						</label>
 						<input
 							type="text"
 							name="password"

@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
 	import logo from "$lib/assets/images/logos/logo.png";
 	import Hamburger from "$lib/components/Hamburger.svelte";
+
+	export let firstName: string | null;
 </script>
 
 <nav class="relative font-dancing-script z-20">
@@ -26,12 +28,18 @@
 		</div>
 		<div class="flex flex-1 flex-row justify-end items-center gap-4">
 			<div class="hidden md:flex md:flex-row md:gap-4">
-				<h1 class="text-feldgrau text-2xl font-bold">
-					<a href="/account/create">Create Account</a>
-				</h1>
-				<h1 class="text-feldgrau text-2xl font-bold">
-					<a href="/account/login">Log In</a>
-				</h1>
+				{#if firstName !== undefined}
+					<h1 class="text-feldgrau text-2xl font-bold">
+						<a href="/account/create">User: {firstName}</a>
+					</h1>
+				{:else}
+					<h1 class="text-feldgrau text-2xl font-bold">
+						<a href="/account/create">Create Account</a>
+					</h1>
+					<h1 class="text-feldgrau text-2xl font-bold">
+						<a href="/account/login">Log In</a>
+					</h1>
+				{/if}
 			</div>
 			<div class="flex flex-col justify-center items-center gap-2">
 				<div class="bg-feldgrau p-1.5 rounded-full md:hidden">

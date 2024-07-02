@@ -65,5 +65,10 @@
 				</a>
 			</div>
 		</div>
+		<div>
+			<h1 class="text-white font-dancing-script text-2xl font-bold">
+				Cascade Botanicals
+			</h1>
+		</div>
 	</div>
 </footer>
