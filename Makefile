@@ -19,6 +19,9 @@ test-home:
 iso-minimal:
 	nix build .#nixosConfigurations.iso.minimal.config.system.build.isoImage
 
+image-digital-ocean:
+	nix build .#nixosConfigurations.image.digitalOcean.config.system.build.digitalOceanImage
+
 update:
 	nix flake update
 

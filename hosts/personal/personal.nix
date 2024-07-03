@@ -121,7 +121,7 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  sound.enable = true;
+  # sound.enable = true;
 
   hardware = {
     gpgSmartcards.enable = true;
