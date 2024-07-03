@@ -70,9 +70,6 @@
         inherit system;
         config.allowUnfree = true;
       });
-    installers = {
-      minimal = "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix";
-    };
   in {
     inherit lib;
     nixosModules = import ./modules/nixos;
@@ -112,8 +109,17 @@
         minimal = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            installers.minimal
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             ./hosts/iso/minimal
+          ];
+          specialArgs = {inherit inputs outputs;};
+        };
+      };
+      image = {
+        digitalOcean = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            "${nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
           ];
           specialArgs = {inherit inputs outputs;};
         };
