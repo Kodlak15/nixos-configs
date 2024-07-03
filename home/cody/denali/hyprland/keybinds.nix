@@ -93,12 +93,12 @@
       bind = $mainMod, 0, exec, $HOME/.config/eww/scripts/window.sh --close dashboard
 
       # Change wallpaper
-      bind = $mainMod $altMod, s, exec, swwwmgr -d $HOME/images/wallpaper/space/ && eww reload
-      bind = $mainMod $altMod, f, exec, swwwmgr -d $HOME/images/wallpaper/forest/ && eww reload
-      bind = $mainMod $altMod, o, exec, swwwmgr -d $HOME/images/wallpaper/ocean/ && eww reload
-      bind = $mainMod $altMod, m, exec, swwwmgr -d $HOME/images/wallpaper/mountains/ && eww reload
-      bind = $mainMod $altMod, g, exec, swwwmgr -d $HOME/images/wallpaper/gaming/ && eww reload
-      bind = $mainMod $altMod, d, exec, swwwmgr -d $HOME/images/wallpaper/digital/ && eww reload
+      bind = $mainMod $altMod, s, exec, swwwmgr -d $HOME/nix/flakes/nixos/assets/wallpaper/space/ && eww reload
+      bind = $mainMod $altMod, f, exec, swwwmgr -d $HOME/nix/flakes/nixos/assets/wallpaper/forest/ && eww reload
+      bind = $mainMod $altMod, o, exec, swwwmgr -d $HOME/nix/flakes/nixos/assets/wallpaper/ocean/ && eww reload
+      bind = $mainMod $altMod, m, exec, swwwmgr -d $HOME/nix/flakes/nixos/assets/wallpaper/mountains/ && eww reload
+      bind = $mainMod $altMod, g, exec, swwwmgr -d $HOME/nix/flakes/nixos/assets/wallpaper/gaming/ && eww reload
+      bind = $mainMod $altMod, d, exec, swwwmgr -d $HOME/nix/flakes/nixos/assets/wallpaper/digital/ && eww reload
       bind = $mainMod $altMod, n, exec, swwwmgr -n && eww reload
       bind = $mainMod $altMod, p, exec, swwwmgr -p && eww reload
       bind = $mainMod $altMod, r, exec, swwwmgr -r && eww reload

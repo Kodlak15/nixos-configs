@@ -1,10 +1,9 @@
-{pkgs, ...}: {
+{
   imports = [
+    ./alacritty
     ./neovim
     ./tmux
     ./sops
-    ./swwwmgr
-    ./weather
     ./firefox
     ./gaming
     ./pywal
@@ -12,10 +11,12 @@
     ./yubikey
     ./common
     ./git
-    ./alacritty
-    ./zsh
-    ./virtualization
     ./gtk
     ./nixpkgs
+    ./swwwmgr
+    ./virtualization
+    ./wallpaper
+    ./weather
+    ./zsh
   ];
 }
