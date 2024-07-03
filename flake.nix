@@ -120,6 +120,7 @@
           system = "x86_64-linux";
           modules = [
             "${nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
+            ./hosts/digital-ocean
           ];
           specialArgs = {inherit inputs outputs;};
         };
