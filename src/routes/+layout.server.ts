@@ -6,6 +6,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 	const token = cookies.get("session");
 
 	if (token) {
+		// NOTE this will not work as intended locally due to system time != UTC
 		const result = await pool.query("\
 			SELECT uid\
 			FROM sessions\

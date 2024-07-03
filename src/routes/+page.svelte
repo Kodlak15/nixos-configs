@@ -26,5 +26,10 @@
 		<h1 class="text-feldgrau text-2xl font-bold">
 			<a href="/account/login">Log in</a>
 		</h1>
+		<h1 class="text-feldgrau text-2xl font-bold">
+			<form action="/account/logout" method="POST">
+				<input type="submit" value="Log out" class="hover:cursor-pointer" />
+			</form>
+		</h1>
 	</section>
 </div>

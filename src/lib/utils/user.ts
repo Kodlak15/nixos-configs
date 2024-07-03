@@ -1,6 +1,7 @@
 import { type Cookies } from "@sveltejs/kit";
 import { v4 as uuid } from "uuid";
 import { pool } from "$lib/utils/db";
+import bcrypt from "bcrypt";
 
 interface User {
 	id: number,
@@ -57,10 +58,10 @@ export async function getActiveUser({ cookies }: { cookies: Cookies }): Promise<
 }
 
 async function newSession(user: User, cookies: Cookies) {
-	const sessionMinutes = 10;
-	const userSessionLength = sessionMinutes * 60 * 1000; // length of user session in ms
 	const token = uuid();
 	const uid = user.id;
+	const sessionMinutes = 10;
+	const userSessionLength = sessionMinutes * 60 * 1000; // length of user session in ms
 	const expires = new Date(Date.now() + userSessionLength);
 
 	// Delete any existing session(s) for this uid
@@ -86,7 +87,8 @@ export async function login({ request, cookies }: { request: Request, cookies: C
 
 	for (var i = 0; i < users.length; i++) {
 		const user = users[i];
-		if (user.email === email && user.password === password) {
+		const isValidPassword = await checkPassword(password, user.password);
+		if (user.email === email && isValidPassword) {
 			await newSession(user, cookies);
 			return;
 		}
@@ -95,8 +97,17 @@ export async function login({ request, cookies }: { request: Request, cookies: C
 	throw new Error("Invalid email and/or password!");
 }
 
-// TODO
-export async function logout({ request, cookies }: { request: Request, cookies: Cookies }) {
+export async function logout({ cookies }: { cookies: Cookies }) {
+	const token = cookies.get("session");
+
+	// Delete the session token from sessions table
+	await pool.query("\
+		DELETE FROM sessions\
+		WHERE token = $1\
+	", [token]);
+
+	// Delete the session cookie from the browsers memory 
+	cookies.delete("session", { path: "/" });
 }
 
 export async function createUser({ request }: { request: Request }) {
@@ -110,8 +121,19 @@ export async function createUser({ request }: { request: Request }) {
 		throw new Error("Invalid form data");
 	}
 
+	const hash = await hashPassword(password);
 	await pool.query("\
 		INSERT INTO users (first_name, last_name, email, password)\
 		VALUES ($1, $2, $3, $4)\
-		", [firstName, lastName, email, password])
+		", [firstName, lastName, email, hash])
+}
+
+async function hashPassword(password: string): Promise<string> {
+	const hash = await bcrypt.hash(password, 10);
+	return hash;
+}
+
+async function checkPassword(password: string, hash: string): Promise<boolean> {
+	const isValidPassword = await bcrypt.compare(password, hash);
+	return isValidPassword;
 }

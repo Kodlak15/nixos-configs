@@ -12,6 +12,6 @@ export const actions = {
 			return { success: false };
 		}
 
-		throw redirect(303, "/");
+		throw redirect(303, "/account/login");
 	},
 } satisfies Actions;
