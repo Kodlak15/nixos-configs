@@ -21,17 +21,6 @@
 		</div>
 	</section>
 	<section class="p-6 sm:p-12 lg:p-24">
-		<!-- <h1 class="text-feldgrau text-2xl font-bold"> -->
-		<!-- 	<a href="/account/create">Create an account</a> -->
-		<!-- </h1> -->
-		<!-- <h1 class="text-feldgrau text-2xl font-bold"> -->
-		<!-- 	<a href="/account/login">Log in</a> -->
-		<!-- </h1> -->
-		<!-- <h1 class="text-feldgrau text-2xl font-bold"> -->
-		<!-- 	<form action="/account/logout" method="POST"> -->
-		<!-- 		<input type="submit" value="Log out" class="hover:cursor-pointer" /> -->
-		<!-- 	</form> -->
-		<!-- </h1> -->
 		<div
 			class="flex flex-col xl:flex-row justify-center items-center gap-6 lg:gap-12"
 		>
