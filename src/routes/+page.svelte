@@ -1,5 +1,6 @@
 <script>
 	import bgImg from "$lib/assets/images/pavl-polo-IzsQez6h6WY-unsplash.jpg";
+	import peppersImg from "$lib/assets/images/peppers.jpg";
 </script>
 
 <div>
@@ -19,17 +20,58 @@
 			</p>
 		</div>
 	</section>
-	<section class="p-24">
-		<h1 class="text-feldgrau text-2xl font-bold">
-			<a href="/account/create">Create an account</a>
-		</h1>
-		<h1 class="text-feldgrau text-2xl font-bold">
-			<a href="/account/login">Log in</a>
-		</h1>
-		<h1 class="text-feldgrau text-2xl font-bold">
-			<form action="/account/logout" method="POST">
-				<input type="submit" value="Log out" class="hover:cursor-pointer" />
-			</form>
-		</h1>
+	<section class="p-6 sm:p-12 lg:p-24">
+		<!-- <h1 class="text-feldgrau text-2xl font-bold"> -->
+		<!-- 	<a href="/account/create">Create an account</a> -->
+		<!-- </h1> -->
+		<!-- <h1 class="text-feldgrau text-2xl font-bold"> -->
+		<!-- 	<a href="/account/login">Log in</a> -->
+		<!-- </h1> -->
+		<!-- <h1 class="text-feldgrau text-2xl font-bold"> -->
+		<!-- 	<form action="/account/logout" method="POST"> -->
+		<!-- 		<input type="submit" value="Log out" class="hover:cursor-pointer" /> -->
+		<!-- 	</form> -->
+		<!-- </h1> -->
+		<div
+			class="flex flex-col xl:flex-row justify-center items-center gap-6 lg:gap-12"
+		>
+			<div class="flex justify-center self-center min-w-[20rem]">
+				<img
+					src={peppersImg}
+					alt="A collection of peppers"
+					width="800"
+					height="800"
+				/>
+			</div>
+			<div class="max-w-[800px]">
+				<h1 class="text-feldgrau text-4xl font-dancing-script font-bold">
+					Some Nice Header
+				</h1>
+				<p class="text-lg">
+					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem corporis
+					exercitationem doloribus maxime neque nesciunt facilis repellat,
+					molestiae, ex magnam corrupti a perspiciatis dicta temporibus minus.
+					Animi harum cupiditate deserunt. Lorem ipsum dolor sit, amet
+					consectetur adipisicing elit. Rem corporis exercitationem doloribus
+					maxime neque nesciunt facilis repellat, molestiae, ex magnam corrupti
+					a perspiciatis dicta temporibus minus. Animi harum cupiditate
+					deserunt. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+					Rem corporis exercitationem doloribus maxime neque nesciunt facilis
+					repellat, molestiae, ex magnam corrupti a perspiciatis dicta
+					temporibus minus. Animi harum cupiditate deserunt. Lorem ipsum dolor
+					sit, amet consectetur adipisicing elit. Rem corporis exercitationem
+					doloribus maxime neque nesciunt facilis repellat, molestiae, ex magnam
+					corrupti a perspiciatis dicta temporibus minus. Animi harum cupiditate
+					deserunt. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+					Rem corporis exercitationem doloribus maxime neque nesciunt facilis
+					repellat, molestiae, ex magnam corrupti a perspiciatis dicta
+					temporibus minus. Animi harum cupiditate deserunt. Lorem ipsum dolor
+					sit, amet consectetur adipisicing elit. Rem corporis exercitationem
+					doloribus maxime neque nesciunt facilis repellat, molestiae, ex magnam
+					corrupti a perspiciatis dicta temporibus minus. Animi harum cupiditate
+					deserunt.
+				</p>
+			</div>
+		</div>
 	</section>
 </div>

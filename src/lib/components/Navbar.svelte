@@ -29,14 +29,23 @@
 		<div class="flex flex-1 flex-row justify-end items-center gap-4">
 			<div class="hidden md:flex md:flex-row md:gap-4">
 				{#if firstName !== undefined}
-					<h1 class="text-feldgrau text-2xl font-bold">
-						<a href="/account/create">User: {firstName}</a>
-					</h1>
+					<div class="flex flex-col justify-center items-end">
+						<h1 class="text-feldgrau text-xl font-bold">
+							<a href="/account/create">User: {firstName}</a>
+						</h1>
+						<form action="/account/logout" method="POST">
+							<input
+								type="submit"
+								value="Log out"
+								class="text-feldgrau text-md font-bold hover:cursor-pointer"
+							/>
+						</form>
+					</div>
 				{:else}
-					<h1 class="text-feldgrau text-2xl font-bold">
+					<h1 class="text-feldgrau text-xl font-bold">
 						<a href="/account/create">Create Account</a>
 					</h1>
-					<h1 class="text-feldgrau text-2xl font-bold">
+					<h1 class="text-feldgrau text-xl font-bold">
 						<a href="/account/login">Log In</a>
 					</h1>
 				{/if}
