@@ -34,6 +34,7 @@
       "wireshark"
       "usb"
       "plugdev"
+      "networkmanager"
     ];
     openssh.authorizedKeys.keys = [];
   };
