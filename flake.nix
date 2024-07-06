@@ -79,7 +79,6 @@
     formatter = forEachSystem (pkgs: pkgs.alejandra);
     overlays = import ./overlays {inherit inputs;};
 
-    # Nixos system configurations
     nixosConfigurations = {
       "personal/everest" = lib.nixosSystem {
         modules = [./hosts/personal/everest.nix];
@@ -127,7 +126,6 @@
       };
     };
 
-    # Standalone home manager configurations
     homeConfigurations = {
       "cody@personal/everest" = lib.homeManagerConfiguration {
         modules = [
