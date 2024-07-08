@@ -22,7 +22,5 @@
 </svelte:head>
 
 <Navbar firstName={data.firstName} />
-<div>
-	<slot />
-</div>
+<slot />
 <Footer />

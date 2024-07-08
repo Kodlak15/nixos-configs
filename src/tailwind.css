@@ -8,4 +8,8 @@
 		font-optical-sizing: auto;
 		font-weight: 400;
 	}
+
+	a:hover {
+		opacity: 50%;
+	}
 }

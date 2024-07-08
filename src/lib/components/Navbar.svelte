@@ -2,16 +2,46 @@
 	import logo from "$lib/assets/images/logos/logo.png";
 	import Hamburger from "$lib/components/Hamburger.svelte";
 
-	function toggleAccountOverlay() {
-		const overlay = document.getElementById("account-overlay");
-		if (overlay !== null) {
-			switch (overlay.classList.contains("h-[100rem]")) {
-				case true:
-					overlay.classList.remove("h-[100rem]");
-					break;
-				case false:
-					overlay.classList.add("h-[100rem]");
-					break;
+	// TODO repeat definition (Hamburger.svelte)
+	function toggleNavmenu() {
+		var hamburger = document.getElementById("hamburger");
+		var hamburgerTop = document.getElementById("hamburger-top");
+		var hamburgerMid = document.getElementById("hamburger-mid");
+		var hamburgerBot = document.getElementById("hamburger-bot");
+		var navMenu = document.getElementById("navmenu");
+
+		switch (hamburger?.classList.contains("open")) {
+			case true: {
+				hamburger.classList.remove("open");
+				if (hamburgerTop !== null) {
+					hamburgerTop.style.transform = "rotate(0)";
+				}
+				if (hamburgerMid !== null) {
+					hamburgerMid.style.transform = "translateX(0)";
+				}
+				if (hamburgerBot !== null) {
+					hamburgerBot.style.transform = "rotate(0)";
+				}
+				if (navMenu !== null) {
+					navMenu.style.transform = "translateY(-100%)";
+				}
+				break;
+			}
+			case false: {
+				hamburger.classList.add("open");
+				if (hamburgerTop !== null) {
+					hamburgerTop.style.transform = "rotate(45deg) translateY(20px)";
+				}
+				if (hamburgerMid !== null) {
+					hamburgerMid.style.transform = "translateX(-100%)";
+				}
+				if (hamburgerBot !== null) {
+					hamburgerBot.style.transform = "rotate(-45deg) translateY(-20px)";
+				}
+				if (navMenu !== null) {
+					navMenu.style.transform = "translateY(0)";
+				}
+				break;
 			}
 		}
 	}
@@ -19,7 +49,7 @@
 	export let firstName: string | null;
 </script>
 
-<nav class="relative font-dancing-script z-20">
+<nav class="relative font-dancing-script z-60">
 	<div
 		class="bg-white text-black flex flex-row justify-between items-center p-6"
 	>
@@ -65,20 +95,6 @@
 				{/if}
 			</div>
 			<div class="flex flex-col justify-center items-center gap-2">
-				<button on:click={() => toggleAccountOverlay()}>
-					<div class="bg-feldgrau p-1.5 rounded-full md:hidden">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 448 512"
-							width="15"
-							height="15"
-							fill="#ffffff"
-							><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
-								d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-							/>
-						</svg>
-					</div>
-				</button>
 				<button>
 					<div class="bg-feldgrau p-1.5 rounded-full">
 						<svg
@@ -96,11 +112,22 @@
 			</div>
 		</div>
 	</div>
-	<!-- TODO animate this, or consider using a simple popup overlay instead -->
-	<div class="relative">
+	<button class="cursor-auto" on:click={() => toggleNavmenu()}>
 		<div
-			id="account-overlay"
-			class="bg-black absolute top-0 left-0 w-full transition duration-500"
-		></div>
-	</div>
+			id="navmenu"
+			class="bg-white fixed top-0 left-0 bottom-0 flex justify-center items-center border-b-feldgrau border-solid border-b-8 w-full z-[99] transition duration-500 translate-y-[-100%]"
+		>
+			<ul
+				class="text-4xl text-feldgrau font-bold flex flex-col justify-center items-center gap-4"
+			>
+				<li><a href="/">Home</a></li>
+				{#if firstName !== undefined}
+					<li><a href="/account/login">Account</a></li>
+				{:else}
+					<li><a href="/account/login">Log In</a></li>
+					<li><a href="/account/create">Create Account</a></li>
+				{/if}
+			</ul>
+		</div>
+	</button>
 </nav>

@@ -1,10 +1,11 @@
 <script>
-	function toggleNavMenu() {
+	// TODO repeat definition (Navbar.svelte)
+	function toggleNavmenu() {
 		var hamburger = document.getElementById("hamburger");
 		var hamburgerTop = document.getElementById("hamburger-top");
 		var hamburgerMid = document.getElementById("hamburger-mid");
 		var hamburgerBot = document.getElementById("hamburger-bot");
-		var navMenu = document.getElementById("nav-menu");
+		var navMenu = document.getElementById("navmenu");
 
 		switch (hamburger?.classList.contains("open")) {
 			case true: {
@@ -19,7 +20,7 @@
 					hamburgerBot.style.transform = "rotate(0)";
 				}
 				if (navMenu !== null) {
-					navMenu.style.transform = "translateX(100%)";
+					navMenu.style.transform = "translateY(-100%)";
 				}
 				break;
 			}
@@ -35,7 +36,7 @@
 					hamburgerBot.style.transform = "rotate(-45deg) translateY(-20px)";
 				}
 				if (navMenu !== null) {
-					navMenu.style.transform = "translateX(0)";
+					navMenu.style.transform = "translateY(0)";
 				}
 				break;
 			}
@@ -43,8 +44,8 @@
 	}
 </script>
 
-<div class="z-[100]">
-	<button on:click={() => toggleNavMenu()} aria-label="navigation menu">
+<div class="relative z-[100]">
+	<button on:click={() => toggleNavmenu()} aria-label="navigation menu">
 		<svg id="hamburger" class="fill-moonstone w-8 h-8" viewBox="0 0 100 100">
 			<rect
 				id="hamburger-top"
