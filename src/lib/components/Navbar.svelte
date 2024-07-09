@@ -1,6 +1,7 @@
 <script lang="ts">
 	import logo from "$lib/assets/images/logos/logo.png";
 	import Hamburger from "$lib/components/Hamburger.svelte";
+	import { onMount } from "svelte";
 
 	// TODO repeat definition (Hamburger.svelte)
 	function toggleNavmenu() {
@@ -44,6 +45,12 @@
 				break;
 			}
 		}
+	}
+
+	function countCart() {
+		const json = localStorage.getItem("cart");
+		let cart = json ? JSON.parse(json) : [];
+		return cart.length;
 	}
 
 	export let firstName: string | null;
@@ -94,7 +101,14 @@
 					</h1>
 				{/if}
 			</div>
-			<div class="flex flex-col justify-center items-center gap-2">
+			<div class="relative flex flex-col justify-center items-center gap-2">
+				<div
+					id="cart-items"
+					class="text-[0.6rem] font-noto-sans bg-red-700 text-white text-center absolute top-[-0.5rem] right-[-0.5rem] p-[0.1rem] w-[3ch] rounded-full"
+				>
+					<!-- TODO apply count on page reload -->
+					0
+				</div>
 				<button>
 					<div class="bg-feldgrau p-1.5 rounded-full">
 						<svg
