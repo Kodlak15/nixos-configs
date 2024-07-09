@@ -5,7 +5,7 @@
 <div>
 	<section class="relative px-6 md:px-24 py-48 overflow-hidden">
 		<div
-			class="absolute flex justify-center items-center inset-0 max-w-[100vw] h-auto min-w-[80rem] overflow-hidden"
+			class="absolute flex justify-center items-center inset-0 max-w-[100vw] h-auto min-w-[100rem] overflow-hidden"
 		>
 			<img src={trailImg} alt="Navbar background" />
 		</div>

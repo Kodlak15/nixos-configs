@@ -121,6 +121,7 @@
 				class="text-4xl text-feldgrau font-bold flex flex-col justify-center items-center gap-4"
 			>
 				<li><a href="/">Home</a></li>
+				<li><a href="/shop">Shop</a></li>
 				{#if firstName !== undefined}
 					<li><a href="/account/login">Account</a></li>
 				{:else}
