@@ -24,7 +24,9 @@
 		<div
 			class="flex flex-col xl:flex-row justify-center items-center gap-6 lg:gap-12"
 		>
-			<div class="flex justify-center self-center min-w-[20rem]">
+			<div
+				class="flex justify-center self-center rounded-xl min-w-[20rem] overflow-hidden"
+			>
 				<img
 					src={peppersImg}
 					alt="A collection of peppers"
