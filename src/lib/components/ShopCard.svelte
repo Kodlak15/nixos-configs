@@ -25,8 +25,13 @@
 	}
 </script>
 
-<div class="relative flex flex-col gap-2 rounded-xl overflow-hidden">
-	<div class="border-black border-solid border-4 rounded-xl overflow-hidden">
+<div
+	class="
+	bg-feldgrau relative flex flex-col gap-2 rounded-xl overflow-hidden
+	shadow-sm shadow-feldgrau hover:shadow-black hover:shadow-md transition duration-100
+	"
+>
+	<div class="rounded-t-xl overflow-hidden">
 		<img
 			src={imgSrc}
 			alt=""
@@ -35,14 +40,14 @@
 			class="w-[350px] h-[350px] object-cover"
 		/>
 	</div>
-	<div class="text-center flex flex-col gap-2">
-		<div>
-			<h1 class="text-xl">Peppers</h1>
-			<h3 class="text-md">$5.99</h3>
+	<div class="text-center flex flex-col">
+		<div class="bg-feldgrau text-white h-full">
+			<h1 class="text-xl font-bold">Peppers</h1>
+			<h2 class="text-md font-bold">$5.99</h2>
 		</div>
 		<button
 			on:click={() => addToCart("todo-some-item")}
-			class="bg-feldgrau text-white text-xl font-bold p-1 border-black border-solid border-4 rounded-xl"
+			class="bg-feldgrau text-white text-xl font-bold p-2"
 		>
 			<!-- TODO apply count on page reload -->
 			Add to cart
