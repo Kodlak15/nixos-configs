@@ -1,7 +1,10 @@
 <script lang="ts">
 	import logo from "$lib/assets/images/logos/logo.png";
 	import Hamburger from "$lib/components/Hamburger.svelte";
-	import { onMount } from "svelte";
+
+	// NOTE PageData can only be used on pages!
+	// Need to find a way to get the data (probably in layout.svelte) and pass it to the navbar as a prop
+	// import type { PageData } from "./$types";
 
 	// TODO repeat definition (Hamburger.svelte)
 	function toggleNavmenu() {
@@ -47,13 +50,12 @@
 		}
 	}
 
-	function countCart() {
-		const json = localStorage.getItem("cart");
-		let cart = json ? JSON.parse(json) : [];
-		return cart.length;
-	}
-
 	export let firstName: string | null;
+	// export let data: PageData; // THIS WON'T WORK
+	// export let itemsInCart: string | null; // THIS SHOULD WORK (should null be an option?)
+
+	// TODO temporary solution to test UI
+	const itemsInCart = 0;
 </script>
 
 <nav class="relative font-dancing-script z-60">
@@ -107,7 +109,7 @@
 					class="text-[0.6rem] font-noto-sans bg-red-700 text-white text-center absolute top-[-0.5rem] right-[-0.5rem] p-[0.1rem] w-[3ch] rounded-full"
 				>
 					<!-- TODO apply count on page reload -->
-					0
+					{itemsInCart}
 				</div>
 				<button>
 					<div class="bg-feldgrau p-1.5 rounded-full">

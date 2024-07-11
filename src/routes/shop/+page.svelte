@@ -10,16 +10,24 @@
 		<!-- TODO shop header -->
 	</section>
 	<section>
-		<div
-			class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-6 m-auto max-w-screen-lg"
-		>
-			<ShopCard imgSrc={peppers} />
-			<ShopCard imgSrc={trail} />
-			<ShopCard imgSrc={peppers} />
-			<ShopCard imgSrc={trail} />
-			<ShopCard imgSrc={peppers} />
-			<ShopCard imgSrc={trail} />
+		<div class="flex flex-col gap-6">
+			<div>
+				<h1
+					class="text-4xl text-feldgrau font-dancing-script text-center underline"
+				>
+					Our Products
+				</h1>
+			</div>
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-6 m-auto max-w-screen-lg"
+			>
+				<ShopCard imgSrc={peppers} />
+				<ShopCard imgSrc={trail} />
+				<ShopCard imgSrc={peppers} />
+				<ShopCard imgSrc={trail} />
+				<ShopCard imgSrc={peppers} />
+				<ShopCard imgSrc={trail} />
+			</div>
 		</div>
 	</section>
 </div>
-
