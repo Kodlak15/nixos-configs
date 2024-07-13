@@ -1,6 +1,6 @@
 import { redirect } from "@sveltejs/kit";
 import { type Actions } from "@sveltejs/kit";
-import { logout } from "$lib/utils/user";
+import { logout } from "$lib/server/user";
 
 export const actions = {
 	default: async (event) => {

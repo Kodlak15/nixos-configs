@@ -1,23 +1,14 @@
-import { pool } from "$lib/utils/db";
+import { getCartItems } from "$lib/server/shop";
+import { getCurrentUser } from "$lib/server/user";
 import type { LayoutServerLoad } from "./$types";
-import { getUser } from "$lib/utils/user";
 
+// Get data from the server that is needed upon page load
 export const load: LayoutServerLoad = async ({ cookies }) => {
-	const token = cookies.get("session");
+	const user = await getCurrentUser({ cookies });
+	// const cartItems = await getCartItems(user?.id);
 
-	if (token) {
-		// NOTE this will not work as intended locally due to system time != UTC
-		const result = await pool.query("\
-			SELECT uid\
-			FROM sessions\
-			WHERE token = $1 AND expires_at > NOW()", [token]);
-
-		const rows = result.rows;
-		if (rows.length === 1) {
-			const user = await getUser(rows[0].uid);
-			return {
-				firstName: user.firstName
-			};
-		}
-	}
-}
+	return {
+		firstName: user?.firstName, // TODO temporary
+		// itemsInCart: cartItems?.length, // TODO temporary
+	};
+};

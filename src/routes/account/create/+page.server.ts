@@ -1,6 +1,6 @@
 import { redirect } from "@sveltejs/kit";
 import type { Actions } from "./$types";
-import { createUser } from "$lib/utils/user";
+import { createUser } from "$lib/server/user";
 
 
 export const actions = {

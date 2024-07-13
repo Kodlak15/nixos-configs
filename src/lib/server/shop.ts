@@ -101,11 +101,20 @@ async function getCartItemId(uid: number, productName: string): Promise<number |
 export async function addToCart(uid: number | undefined, productName: string) {
 	console.log("HEY AT LEAST THIS IS GETTING CALLED YEAH?");
 
-	if (!uid) { return; } // TODO this just sucks
-	if (!productName) { return; } // TODO this just sucks
+	if (!uid) {
+		console.log("No user logged in");
+		return;
+	} // TODO this just sucks
+	if (!productName) {
+		console.log("No product name");
+		return;
+	} // TODO this just sucks
 
 	const cartItemId = await getCartItemId(uid, productName);
-	if (!cartItemId) { return; } // TODO better error handling
+	if (!cartItemId) {
+		console.log("Problem getting cart item id:", cartItemId);
+		return;
+	} // TODO better error handling
 
 	// TODO error handling???
 	await pool.query(`

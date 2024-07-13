@@ -4,7 +4,8 @@
 	import Footer from "$lib/components/Footer.svelte";
 
 	export let data: {
-		firstName: string | null;
+		firstName: string | undefined;
+		itemsInCart: string | undefined;
 	};
 </script>
 
@@ -21,6 +22,9 @@
 	/>
 </svelte:head>
 
-<Navbar firstName={data.firstName} />
+<Navbar
+	firstName={data.firstName}
+	itemsInCart={data.itemsInCart ? data.itemsInCart : "0"}
+/>
 <slot />
 <Footer />

@@ -67,41 +67,46 @@
 			<h2 class="text-lg font-bold">$5.99</h2>
 		</div>
 		<div class="flex flex-row justify-center items-center gap-4">
-			<button
-				class="text-white text-2xl"
-				on:click={() => removeFromCart("thing")}
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 512 512"
-					class="fill-white w-6 h-6"
-				>
-					<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-					<path
-						d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232H328c13.3 0 24 10.7 24 24s-10.7 24-24 24H184c-13.3 0-24-10.7-24-24s10.7-24 24-24z"
+			<!-- <button class="text-white text-2xl" formaction="?/addToCart"> -->
+			<form action="?/addToCart" method="POST">
+				<div class="relative hover:cursor-pointer">
+					<input
+						type="submit"
+						value=""
+						class="absolute bg-red top-0 left-0 w-full h-full hover:cursor-pointer"
 					/>
-				</svg>
-			</button>
-			<!-- <button class="text-white text-2xl" on:click={() => addToCart("thing")}> -->
-			<form
-				class="text-white text-2xl hover:cursor-pointer"
-				method="POST"
-				action="/shop"
-			>
-				<!-- TODO this seems very jank -->
-				<input type="text" class="hidden" name="name" value="peppers" />
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 512 512"
-					class="fill-white w-6 h-6"
-				>
-					<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-					<path
-						d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
-					/>
-				</svg>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 512 512"
+						class="fill-white w-6 h-6"
+					>
+						<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+						<path
+							d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
+						/>
+					</svg>
+				</div>
 			</form>
-			<!-- </button> -->
+			<!-- TODO how do I pass along the name/id of the item in the POST request? -->
+			<form action="?/addToCart" method="POST">
+				<div class="relative hover:cursor-pointer">
+					<input
+						type="submit"
+						value=""
+						class="absolute bg-red top-0 left-0 w-full h-full hover:cursor-pointer"
+					/>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 512 512"
+						class="fill-white w-6 h-6"
+					>
+						<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+						<path
+							d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
+						/>
+					</svg>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>

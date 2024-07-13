@@ -19,10 +19,9 @@ interface User {
 	password: string,
 }
 
-export async function getCurrentUid({ cookies }: { cookies: Cookies }): Promise<number | undefined> {
+export async function getCurrentUser({ cookies }: { cookies: Cookies }): Promise<User | undefined> {
 	const session_token = cookies.get("session");
 	if (session_token) {
-		// TODO Is this necessary?
 		// TODO temporarily disabled
 		// const result = await pool.query(`
 		// 	SELECT Users.*, Sessions.token, Sessions.expires_at
@@ -31,41 +30,27 @@ export async function getCurrentUid({ cookies }: { cookies: Cookies }): Promise<
 		// 	WHERE token = $1 AND expires_at > NOW()
 		// `, [session_token]);
 
-		// TODO Is this necessary?
-		// TODO temporarily enabled due to time issues on local computer
-		// const result = await pool.query(`
-		// 	SELECT Users.*, Sessions.token, Sessions.expires_at
-		// 	FROM Users
-		// 	INNER JOIN Sessions ON Users.id = Sessions.uid
-		// 	WHERE token = $1 AND expires_at < NOW()
-		// `, [session_token]);
-
 		// TODO temporarily enabled due to time issues on local computer
 		const result = await pool.query(`
-			SELECT Users.id
+			SELECT Users.*, Sessions.token, Sessions.expires_at
 			FROM Users
 			INNER JOIN Sessions ON Users.id = Sessions.uid
 			WHERE token = $1 AND expires_at < NOW()
 		`, [session_token]);
 
-		if (result.rows.length === 1) {
-			return result.rows[0].id;
-		}
+		const numRows = result.rowCount;
+		if (numRows && numRows === 1) {
+			const row = result.rows.pop();
+			const user: User = {
+				id: row.id,
+				firstName: row.first_name,
+				lastName: row.last_name,
+				email: row.email,
+				password: row.password,
+			};
 
-		// TODO Is this necessary?
-		// const numRows = result.rowCount;
-		// if (numRows && numRows === 1) {
-		// 	const row = result.rows.pop();
-		// 	const user: User = {
-		// 		id: row.id,
-		// 		firstName: row.first_name,
-		// 		lastName: row.last_name,
-		// 		email: row.email,
-		// 		password: row.password,
-		// 	};
-		//
-		// 	return user;
-		// }
+			return user;
+		}
 	}
 }
 
