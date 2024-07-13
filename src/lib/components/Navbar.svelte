@@ -50,12 +50,11 @@
 		}
 	}
 
-	export let firstName: string | null;
-	// export let data: PageData; // THIS WON'T WORK
-	// export let itemsInCart: string | null; // THIS SHOULD WORK (should null be an option?)
+	export let firstName: string | undefined;
+	export let itemsInCart: string | undefined;
 
 	// TODO temporary solution to test UI
-	const itemsInCart = 0;
+	// const itemsInCart = 0;
 </script>
 
 <nav class="relative font-dancing-script z-60">
@@ -67,7 +66,7 @@
 		</div>
 		<div class="relative flex flex-1 flex-col justify-center items-center z-50">
 			<div>
-				<a href="/">
+				<a href="/" class="hover:opacity-100">
 					<div class="bg-[#476530] border-white border-4 rounded-full">
 						<img
 							src={logo}

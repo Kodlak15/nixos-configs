@@ -1,6 +1,6 @@
 import { type Cookies } from "@sveltejs/kit";
 import { v4 as uuid } from "uuid";
-import { pool } from "$lib/utils/db";
+import { pool } from "$lib/server/db";
 import bcrypt from "bcrypt";
 
 interface User {
@@ -11,11 +11,64 @@ interface User {
 	password: string,
 }
 
-interface Session {
-	token: string,
-	uid: number,
-	expires: Date,
+interface User {
+	id: number,
+	firstName: string,
+	lastName: string,
+	email: string,
+	password: string,
 }
+
+export async function getCurrentUid({ cookies }: { cookies: Cookies }): Promise<number | undefined> {
+	const session_token = cookies.get("session");
+	if (session_token) {
+		// TODO Is this necessary?
+		// TODO temporarily disabled
+		// const result = await pool.query(`
+		// 	SELECT Users.*, Sessions.token, Sessions.expires_at
+		// 	FROM Users
+		// 	INNER JOIN Sessions ON Users.id = Sessions.uid
+		// 	WHERE token = $1 AND expires_at > NOW()
+		// `, [session_token]);
+
+		// TODO Is this necessary?
+		// TODO temporarily enabled due to time issues on local computer
+		// const result = await pool.query(`
+		// 	SELECT Users.*, Sessions.token, Sessions.expires_at
+		// 	FROM Users
+		// 	INNER JOIN Sessions ON Users.id = Sessions.uid
+		// 	WHERE token = $1 AND expires_at < NOW()
+		// `, [session_token]);
+
+		// TODO temporarily enabled due to time issues on local computer
+		const result = await pool.query(`
+			SELECT Users.id
+			FROM Users
+			INNER JOIN Sessions ON Users.id = Sessions.uid
+			WHERE token = $1 AND expires_at < NOW()
+		`, [session_token]);
+
+		if (result.rows.length === 1) {
+			return result.rows[0].id;
+		}
+
+		// TODO Is this necessary?
+		// const numRows = result.rowCount;
+		// if (numRows && numRows === 1) {
+		// 	const row = result.rows.pop();
+		// 	const user: User = {
+		// 		id: row.id,
+		// 		firstName: row.first_name,
+		// 		lastName: row.last_name,
+		// 		email: row.email,
+		// 		password: row.password,
+		// 	};
+		//
+		// 	return user;
+		// }
+	}
+}
+
 
 export async function getUser(uid: number): Promise<User> {
 	const result = await pool.query("SELECT * FROM users WHERE id = $1", [uid])
@@ -34,27 +87,6 @@ export async function getUser(uid: number): Promise<User> {
 async function getAllUsers(): Promise<User[]> {
 	const result = await pool.query(`SELECT * FROM users`);
 	return result.rows;
-}
-
-async function getSessions(): Promise<Session[]> {
-	const result = await pool.query("SELECT * FROM sessions");
-	return result.rows;
-}
-
-export async function getActiveUser({ cookies }: { cookies: Cookies }): Promise<User | undefined> {
-	const current_session = cookies.get("session");
-	if (current_session === undefined) {
-		return;
-	}
-
-	const sessions = await getSessions();
-	for (let i = 0; i < sessions.length; i++) {
-		const session = sessions[i];
-		if (session.token === current_session) {
-			const user = await getUser(session.uid);
-			return user;
-		}
-	}
 }
 
 async function newSession(user: User, cookies: Cookies) {
