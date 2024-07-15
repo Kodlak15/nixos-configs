@@ -1,44 +1,36 @@
 <script lang="ts">
+	import { onMount } from "svelte";
+
 	export let imgSrc: string;
 
-	// TODO create a struct/interface for shop items
-	function addToCart(item: any) {
-		const json = localStorage.getItem("cart");
-		let cart = json ? JSON.parse(json) : [];
+	onMount(() => {
+		const addToCart = document.getElementById("add-to-cart") as HTMLFormElement;
+		const removeFromCart = document.getElementById(
+			"remove-from-cart",
+		) as HTMLFormElement;
 
-		cart.push(item);
-		localStorage.setItem("cart", JSON.stringify(cart));
-		updateCart();
-	}
+		[addToCart, removeFromCart].forEach((form) =>
+			form.addEventListener("submit", async (event) => {
+				event.preventDefault();
+				const formData = new FormData(form);
 
-	function removeFromCart(item: any) {
-		const json = localStorage.getItem("cart");
-		let cart = json ? JSON.parse(json) : [];
+				try {
+					const response = await fetch(form.action, {
+						method: "POST",
+						body: formData,
+					});
 
-		const idx = cart.indexOf(item);
-		if (idx !== -1) {
-			cart.splice(idx, 1);
-			localStorage.setItem("cart", JSON.stringify(cart));
-		}
-
-		updateCart();
-	}
-
-	function itemsInCart(): number {
-		const json = localStorage.getItem("cart");
-		let cart = json ? JSON.parse(json) : [];
-		return cart.length;
-	}
-
-	function updateCart() {
-		const cartItems = document.getElementById("cart-items");
-
-		if (cartItems) {
-			cartItems.innerText = itemsInCart().toString();
-		} else {
-			console.log("failed to update cart");
-		}
-	}
+					if (response.ok) {
+						console.log("Item added to cart");
+					} else {
+						console.log("Failed to add item to cart");
+					}
+				} catch (error) {
+					console.error("Error:", error);
+				}
+			}),
+		);
+	});
 </script>
 
 <div
@@ -67,8 +59,7 @@
 			<h2 class="text-lg font-bold">$5.99</h2>
 		</div>
 		<div class="flex flex-row justify-center items-center gap-4">
-			<!-- <button class="text-white text-2xl" formaction="?/addToCart"> -->
-			<form action="?/addToCart" method="POST">
+			<form id="remove-from-cart" action="?/addToCart" method="POST">
 				<div class="relative hover:cursor-pointer">
 					<input
 						type="submit"
@@ -88,7 +79,7 @@
 				</div>
 			</form>
 			<!-- TODO how do I pass along the name/id of the item in the POST request? -->
-			<form action="?/addToCart" method="POST">
+			<form id="add-to-cart" action="?/addToCart" method="POST">
 				<div class="relative hover:cursor-pointer">
 					<input
 						type="submit"

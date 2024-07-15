@@ -1,129 +1,99 @@
 import { type Cookies } from "@sveltejs/kit";
 import { v4 as uuid } from "uuid";
 import { pool } from "$lib/server/db";
-import bcrypt from "bcrypt";
+import { checkPassword, hashPassword } from "./hash";
 
 interface User {
 	id: number,
 	firstName: string,
 	lastName: string,
 	email: string,
-	password: string,
-}
-
-interface User {
-	id: number,
-	firstName: string,
-	lastName: string,
-	email: string,
-	password: string,
-}
+};
 
 export async function getCurrentUser({ cookies }: { cookies: Cookies }): Promise<User | undefined> {
-	const session_token = cookies.get("session");
-	if (session_token) {
-		// TODO temporarily disabled
-		// const result = await pool.query(`
-		// 	SELECT Users.*, Sessions.token, Sessions.expires_at
-		// 	FROM Users
-		// 	INNER JOIN Sessions ON Users.id = Sessions.uid
-		// 	WHERE token = $1 AND expires_at > NOW()
-		// `, [session_token]);
+	const token = cookies.get("session");
+	if (!token) {
+		console.log("Get current user: No session cookie found");
+		return;
+	};
 
-		// TODO temporarily enabled due to time issues on local computer
-		const result = await pool.query(`
-			SELECT Users.*, Sessions.token, Sessions.expires_at
-			FROM Users
-			INNER JOIN Sessions ON Users.id = Sessions.uid
-			WHERE token = $1 AND expires_at < NOW()
-		`, [session_token]);
+	const result = await pool.query(`
+		SELECT Users.id, Users.first_name, Users.last_name, Users.email
+		FROM Users
+		INNER JOIN Sessions ON Users.id = Sessions.user_id
+		WHERE token = $1
+	`, [token]);
 
-		const numRows = result.rowCount;
-		if (numRows && numRows === 1) {
-			const row = result.rows.pop();
-			const user: User = {
-				id: row.id,
-				firstName: row.first_name,
-				lastName: row.last_name,
-				email: row.email,
-				password: row.password,
-			};
-
-			return user;
-		}
+	if (result.rowCount && result.rowCount === 1) {
+		const row = result.rows.pop();
+		const user: User = {
+			id: row.id,
+			firstName: row.first_name,
+			lastName: row.last_name,
+			email: row.email,
+		};
+		return user;
+	} else {
+		console.log("Get current user: Invalid session token");
 	}
 }
 
-
-export async function getUser(uid: number): Promise<User> {
-	const result = await pool.query("SELECT * FROM users WHERE id = $1", [uid])
-	const row = result.rows.pop();
-	const user: User = {
-		id: row.id,
-		firstName: row.first_name,
-		lastName: row.last_name,
-		email: row.email,
-		password: row.password,
-	}
-
-	return user;
-}
-
-async function getAllUsers(): Promise<User[]> {
-	const result = await pool.query(`SELECT * FROM users`);
-	return result.rows;
-}
-
-async function newSession(user: User, cookies: Cookies) {
+// Create a new session for the given user ID
+// Deletes any old session from sessions, adds a new row to sessions, and set a session cookie
+async function newSession(userId: number, cookies: Cookies) {
 	const token = uuid();
-	const uid = user.id;
 	const sessionMinutes = 10;
 	const userSessionLength = sessionMinutes * 60 * 1000; // length of user session in ms
 	const expires = new Date(Date.now() + userSessionLength);
 
-	// Delete any existing session(s) for this uid
-	await pool.query("\
-		DELETE FROM sessions\
-		WHERE uid = $1\
-	", [uid]);
-
-	// Add the new session to the sessions table
-	await pool.query("\
-		INSERT INTO sessions (token, uid, expires_at)\
-		VALUES ($1, $2, $3)\
-	", [token, uid, expires]);
+	await pool.query(`
+		WITH deleted AS (
+			DELETE FROM sessions
+			WHERE user_id = $1
+		)
+		INSERT INTO sessions (token, user_id, expires_at)
+		VALUES ($2, $1, $3)
+	`, [userId, token, expires]);
 
 	cookies.set("session", token, { path: "/", expires: expires });
 }
 
 export async function login({ request, cookies }: { request: Request, cookies: Cookies }) {
-	const users = await getAllUsers();
 	const formData = await request.formData();
 	const email = formData.get("email") as string;
 	const password = formData.get("password") as string;
 
-	for (var i = 0; i < users.length; i++) {
-		const user = users[i];
-		const isValidPassword = await checkPassword(password, user.password);
-		if (user.email === email && isValidPassword) {
-			await newSession(user, cookies);
-			return;
-		}
-	}
+	const result = await pool.query(`
+		SELECT id, password
+		FROM Users
+		WHERE email = $1
+	`, [email]);
 
-	throw new Error("Invalid email and/or password!");
+	if (result.rowCount && result.rowCount === 1) {
+		const row = result.rows.pop();
+		const hash = row.password;
+		const isValidPassword = await checkPassword(password, hash);
+		if (isValidPassword) {
+			await newSession(row.id, cookies);
+		} else {
+			throw new Error("Invalid password!");
+		}
+	} else {
+		console.log(email, "not found in users");
+		throw new Error("Invalid email!");
+	}
 }
 
+// Log out the current user
+// Deletes the session cookie as well as the corresponding row from the sessions table
 export async function logout({ cookies }: { cookies: Cookies }) {
 	const token = cookies.get("session");
 
-	// Delete the session token from sessions table
 	await pool.query("\
 		DELETE FROM sessions\
 		WHERE token = $1\
 	", [token]);
 
-	// Delete the session cookie from the browsers memory 
 	cookies.delete("session", { path: "/" });
 }
 
@@ -132,7 +102,7 @@ export async function createUser({ request }: { request: Request }) {
 	const firstName = formData.get("first_name");
 	const lastName = formData.get("last_name");
 	const email = formData.get("email") as string;
-	const password = formData.get("password") as string; // TODO hash me
+	const password = formData.get("password") as string;
 
 	if (!firstName || !lastName || !email || !password) {
 		throw new Error("Invalid form data");
@@ -143,14 +113,4 @@ export async function createUser({ request }: { request: Request }) {
 		INSERT INTO users (first_name, last_name, email, password)\
 		VALUES ($1, $2, $3, $4)\
 		", [firstName, lastName, email, hash])
-}
-
-async function hashPassword(password: string): Promise<string> {
-	const hash = await bcrypt.hash(password, 10);
-	return hash;
-}
-
-async function checkPassword(password: string, hash: string): Promise<boolean> {
-	const isValidPassword = await bcrypt.compare(password, hash);
-	return isValidPassword;
 }
