@@ -14,5 +14,5 @@ buildPythonPackage rec {
     hash = "sha256-xwQnd2xivTVxns2YH/g+JPWqVVQykK9nx6DTr5CYv14=";
   };
 
-  propagatedBuildInputs = with pkgs; [python311Packages.pyyaml swww pywal];
+  propagatedBuildInputs = with pkgs; [python312Packages.pyyaml swww pywal];
 }

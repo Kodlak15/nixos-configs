@@ -7,8 +7,6 @@ in {
     ./hardware-configuration.nix
   ];
 
-  boot.initrd.luks.devices.${luks}.device = luksPart;
-
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -19,8 +17,8 @@ in {
         "cryptd"
       ];
       luks.devices = {
-        nixos-crypt = {
-          device = lib.mkDefault "/dev/disk/by-label/NIXOS";
+        ${luks} = {
+          device = lib.mkDefault luksPart;
           allowDiscards = true;
         };
       };
