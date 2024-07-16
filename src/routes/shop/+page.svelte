@@ -21,12 +21,12 @@
 			<div
 				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-6 m-auto max-w-screen-lg"
 			>
-				<ShopCard imgSrc={peppers} />
-				<ShopCard imgSrc={trail} />
-				<ShopCard imgSrc={peppers} />
-				<ShopCard imgSrc={trail} />
-				<ShopCard imgSrc={peppers} />
-				<ShopCard imgSrc={trail} />
+				<ShopCard imgSrc={peppers} productId="7" />
+				<ShopCard imgSrc={trail} productId="1" />
+				<ShopCard imgSrc={peppers} productId="2" />
+				<ShopCard imgSrc={trail} productId="3" />
+				<ShopCard imgSrc={peppers} productId="4" />
+				<ShopCard imgSrc={trail} productId="5" />
 			</div>
 		</div>
 	</section>

@@ -1,36 +1,54 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	export let imgSrc: string; // consider storing this (or image itself) in db?
+	export let productId: string;
 
-	export let imgSrc: string;
-
-	onMount(() => {
-		const addToCart = document.getElementById("add-to-cart") as HTMLFormElement;
-		const removeFromCart = document.getElementById(
-			"remove-from-cart",
+	async function addToCart(event: SubmitEvent) {
+		const form = document.getElementById(
+			"add-to-cart-" + productId,
 		) as HTMLFormElement;
 
-		[addToCart, removeFromCart].forEach((form) =>
-			form.addEventListener("submit", async (event) => {
-				event.preventDefault();
-				const formData = new FormData(form);
+		event.preventDefault();
+		const formData = new FormData(form);
 
-				try {
-					const response = await fetch(form.action, {
-						method: "POST",
-						body: formData,
-					});
+		try {
+			const response = await fetch(form.action, {
+				method: "POST",
+				body: formData,
+			});
 
-					if (response.ok) {
-						console.log("Item added to cart");
-					} else {
-						console.log("Failed to add item to cart");
-					}
-				} catch (error) {
-					console.error("Error:", error);
-				}
-			}),
-		);
-	});
+			if (response.ok) {
+				console.log("Item added to cart");
+			} else {
+				console.log("Failed to add item to cart");
+			}
+		} catch (error) {
+			console.error("Error:", error);
+		}
+	}
+
+	async function removeFromCart(event: SubmitEvent) {
+		const form = document.getElementById(
+			"remove-from-cart-" + productId,
+		) as HTMLFormElement;
+
+		event.preventDefault();
+		const formData = new FormData(form);
+
+		try {
+			const response = await fetch(form.action, {
+				method: "POST",
+				body: formData,
+			});
+
+			if (response.ok) {
+				console.log("Item added to cart");
+			} else {
+				console.log("Failed to add item to cart");
+			}
+		} catch (error) {
+			console.error("Error:", error);
+		}
+	}
 </script>
 
 <div
@@ -59,7 +77,13 @@
 			<h2 class="text-lg font-bold">$5.99</h2>
 		</div>
 		<div class="flex flex-row justify-center items-center gap-4">
-			<form id="remove-from-cart" action="?/addToCart" method="POST">
+			<!-- TODO this needs to be set up -->
+			<form
+				id={"remove-from-cart-" + productId}
+				action={"/shop/" + productId}
+				method="POST"
+				on:submit={async (event) => await removeFromCart(event)}
+			>
 				<div class="relative hover:cursor-pointer">
 					<input
 						type="submit"
@@ -78,8 +102,13 @@
 					</svg>
 				</div>
 			</form>
-			<!-- TODO how do I pass along the name/id of the item in the POST request? -->
-			<form id="add-to-cart" action="?/addToCart" method="POST">
+			<!-- TODO replace the {2} with the product id -->
+			<form
+				id={"add-to-cart-" + productId}
+				action={"/shop/" + productId}
+				method="POST"
+				on:submit={async (event) => await addToCart(event)}
+			>
 				<div class="relative hover:cursor-pointer">
 					<input
 						type="submit"

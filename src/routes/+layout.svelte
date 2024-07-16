@@ -3,6 +3,9 @@
 	import Navbar from "$lib/components/Navbar.svelte";
 	import Footer from "$lib/components/Footer.svelte";
 
+	// TODO figure out how to pull cart data from database on load (for navbar icon)
+	// Manage visual state client side after load
+
 	export let data: {
 		firstName: string | undefined;
 		itemsInCart: string | undefined;

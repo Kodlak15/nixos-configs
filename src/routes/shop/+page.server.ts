@@ -1,6 +1,7 @@
 import { addToCart } from "$lib/server/shop";
 import { getCurrentUser } from "$lib/server/user";
-import { redirect, type Actions } from "@sveltejs/kit";
+// import { redirect, type Actions } from "@sveltejs/kit";
+import { type Actions } from "@sveltejs/kit";
 
 // TODO the actions on this page are being performed, and buttons are set up to handle them
 // The endpoints themselves, however, are borked af
@@ -8,17 +9,18 @@ import { redirect, type Actions } from "@sveltejs/kit";
 // .............................. :{
 
 export const actions = {
-	addToCart: async ({ request, cookies }) => {
+	addToCart: async ({ params, cookies }) => {
 		const user = await getCurrentUser({ cookies });
 		if (!user) {
 			console.log("No user logged in")
 			return;
 		}
-		const data = await request.formData();
-		// const productName = data.get("name") as string;
-		const productName = "peppers"; // TODO temporary
-		await addToCart(user.id, productName);
-		// TODO is there a way I can trigger this action without needing to refresh the page?
-		redirect(303, "/shop");
+
+		const { productId } = params;
+		if (productId) {
+			await addToCart(user.id.toString(), productId);
+		}
+
+		// redirect(303, "/shop");
 	},
 } satisfies Actions;
