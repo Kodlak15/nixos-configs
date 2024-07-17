@@ -2,10 +2,6 @@
 	import logo from "$lib/assets/images/logos/logo.png";
 	import Hamburger from "$lib/components/Hamburger.svelte";
 
-	// NOTE PageData can only be used on pages!
-	// Need to find a way to get the data (probably in layout.svelte) and pass it to the navbar as a prop
-	// import type { PageData } from "./$types";
-
 	// TODO repeat definition (Hamburger.svelte)
 	function toggleNavmenu() {
 		var hamburger = document.getElementById("hamburger");
@@ -50,11 +46,18 @@
 		}
 	}
 
-	export let firstName: string | undefined;
-	export let itemsInCart: string | undefined;
+	interface CartItem {
+		productId: string;
+		quantity: number;
+		price: number;
+	}
 
-	// TODO temporary solution to test UI
-	// const itemsInCart = 0;
+	export let firstName: string | undefined;
+	export let cart: Array<CartItem> | undefined;
+
+	const itemsInCart = cart
+		? cart.reduce((total, item) => total + item.quantity, 0)
+		: 0;
 </script>
 
 <nav class="relative font-dancing-script z-60">
@@ -78,52 +81,67 @@
 				</a>
 			</div>
 		</div>
-		<div class="flex flex-1 flex-row justify-end items-center gap-4">
-			<div class="hidden md:flex md:flex-row md:gap-4">
-				{#if firstName !== undefined}
-					<div class="flex flex-col justify-center items-end">
-						<h1 class="text-feldgrau text-xl font-bold">
-							<a href="/account/create">User: {firstName}</a>
-						</h1>
-						<form action="/account/logout" method="POST">
-							<input
-								type="submit"
-								value="Log out"
-								class="text-feldgrau text-md font-bold hover:cursor-pointer"
-							/>
-						</form>
+		<div class=" relative flex flex-1 justify-end items-center">
+			<!-- TODO cart popup here -->
+			<!-- TODO get rid of hidden class to make it appear again -->
+			<div
+				class="hidden bg-white absolute top-full mt-2 p-2 border-black border-2 border-solid rounded-md w-full z-[99]"
+			>
+				{#each cart ? cart : [] as item}
+					<div class="flex flex-row gap-2">
+						<h1>{item.price},</h1>
+						<h1>{item.quantity},</h1>
+						<h1>{item.productId}</h1>
 					</div>
-				{:else}
-					<h1 class="text-feldgrau text-xl font-bold">
-						<a href="/account/create">Create Account</a>
-					</h1>
-					<h1 class="text-feldgrau text-xl font-bold">
-						<a href="/account/login">Log In</a>
-					</h1>
-				{/if}
+				{/each}
 			</div>
-			<div class="relative flex flex-col justify-center items-center gap-2">
-				<div
-					id="items-in-cart"
-					class="text-[0.6rem] font-noto-sans bg-red-700 text-white text-center absolute top-[-0.5rem] right-[-0.5rem] p-[0.1rem] w-[3ch] rounded-full"
-				>
-					<!-- TODO apply count on page reload -->
-					{itemsInCart}
+			<div class="relative flex flex-row justify-center items-center gap-4">
+				<div class="hidden md:flex md:flex-row md:gap-4">
+					{#if firstName !== undefined}
+						<div class="flex flex-col justify-center items-end">
+							<h1 class="text-feldgrau text-xl font-bold">
+								<a href="/account/create">User: {firstName}</a>
+							</h1>
+							<form action="/account/logout" method="POST">
+								<input
+									type="submit"
+									value="Log out"
+									class="text-feldgrau text-md font-bold hover:cursor-pointer"
+								/>
+							</form>
+						</div>
+					{:else}
+						<h1 class="text-feldgrau text-xl font-bold">
+							<a href="/account/create">Create Account</a>
+						</h1>
+						<h1 class="text-feldgrau text-xl font-bold">
+							<a href="/account/login">Log In</a>
+						</h1>
+					{/if}
 				</div>
-				<button>
-					<div class="bg-feldgrau p-1.5 rounded-full">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 576 512"
-							width="15"
-							height="15"
-							fill="#ffffff"
-							><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
-								d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-							/>
-						</svg>
+				<div class="relative flex flex-col justify-center items-center gap-2">
+					<div
+						id="items-in-cart"
+						class="text-[0.6rem] font-noto-sans bg-red-700 text-white text-center absolute top-[-0.5rem] right-[-0.5rem] p-[0.1rem] w-[3ch] rounded-full"
+					>
+						{itemsInCart}
 					</div>
-				</button>
+					<button>
+						<div class="bg-feldgrau p-1.5 rounded-full">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 576 512"
+								width="15"
+								height="15"
+								fill="#ffffff"
+								><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
+									d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
+								/>
+							</svg>
+						</div>
+					</button>
+				</div>
+				<!-- TODO alternate cart popup here (maybe, idk) -->
 			</div>
 		</div>
 	</div>

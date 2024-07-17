@@ -71,7 +71,7 @@
 							>Password:
 						</label>
 						<input
-							type="text"
+							type="password"
 							name="password"
 							class="border-onyx border-2 border-solid w-full md:w-2/3"
 							required

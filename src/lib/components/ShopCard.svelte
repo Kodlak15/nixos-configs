@@ -65,7 +65,7 @@
 	export let description: string;
 	export let price: number;
 	// export let stock: number; NOTE may need this later
-	// export let imageSrc: string; NOTE not sure that this will work (see hacky solution below)
+	export let imageSrc: string; // NOTE not sure that this will work (see hacky solution below)
 	// ^^^ May need to use a CDN in practice if loading images from the database ^^^
 
 	import peppersImg from "$lib/assets/images/peppers.jpg";
@@ -79,8 +79,11 @@
 
 <div
 	class="bg-feldgrau relative flex flex-col rounded-xl overflow-hidden
-	shadow-sm shadow-feldgrau hover:shadow-black hover:shadow-md transition duration-200"
+	hover:shadow-black hover:shadow-md transition duration-200"
 >
+	<div
+		class="absolute top-0 left-0 border-black border-2 rounded-xl w-full h-full z-10"
+	></div>
 	<div class="relative rounded-t-xl overflow-hidden">
 		<img
 			src={productImages[productId]}
@@ -92,12 +95,14 @@
 		<div
 			id="card-info"
 			class="bg-[rgba(0,0,0,0)] hover:bg-[rgba(0,0,0,0.9)] absolute top-0 left-0 flex flex-col
-			justify-center items-center gap-2 p-6 w-full h-full transition duration-200"
+			justify-center items-center gap-2 p-6 w-full h-full transition duration-200 z-20"
 		>
-			<p class="text-white font-dancing-script text-2xl">{description}</p>
+			<p class="text-white text-md text-center">
+				{description}
+			</p>
 		</div>
 	</div>
-	<div class="text-center flex flex-col gap-2 p-4">
+	<div class="text-center flex flex-col gap-2 p-4 border-black border-t-2">
 		<div class="bg-feldgrau font-dancing-script text-white h-full">
 			<h1 class="text-2xl font-bold">{name}</h1>
 			<h2 class="text-lg font-bold">${price}</h2>
@@ -110,7 +115,7 @@
 				on:submit={async (event) => await removeFromCart(event)}
 			>
 				<div
-					class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black"
+					class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black z-50"
 				>
 					<input
 						type="submit"
@@ -136,7 +141,7 @@
 				on:submit={async (event) => await addToCart(event)}
 			>
 				<div
-					class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black"
+					class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black z-50"
 				>
 					<input
 						type="submit"

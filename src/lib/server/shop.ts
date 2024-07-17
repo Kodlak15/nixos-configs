@@ -6,7 +6,7 @@ interface Product {
 	description: string,
 	price: number,
 	stock: number,
-	image: string,
+	imageSrc: string,
 }
 
 interface CartItem {
@@ -27,7 +27,7 @@ export async function getProducts(): Promise<Array<Product>> {
 			description: row.description,
 			price: row.price,
 			stock: row.stock,
-			image: row.image,
+			imageSrc: row.image,
 		};
 
 		return product;
