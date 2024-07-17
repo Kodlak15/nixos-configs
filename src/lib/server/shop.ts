@@ -28,8 +28,8 @@ export async function getCartItems(userId: number): Promise<Array<CartItem> | un
 }
 
 export async function addToCart(userId: string, productId: string) {
-	// TODO for some reason this isn't working???
-	console.log("Adding the thing to the cart");
+	// TODO set up this query such that it will not increase quantity beyond stock
+	// May also be a good idea to pass back to UI so that the UI is always in sync with the server
 	try {
 		await pool.query(`
 			WITH CreateCart AS (
@@ -85,4 +85,12 @@ export async function removeFromCart(userId: string, productId: string) {
 		ON CONFLICT (cart_id, product_id)
 		DO UPDATE SET quantity = GREATEST(0, CartItems.quantity - 1)
 	`, [userId, productId]);
-} 
+}
+
+export async function getNumCartItems(cart: Array<CartItem>): Promise<number> {
+	return cart.reduce((total, item) => total + item.quantity, 0);
+}
+
+export async function computeTotalCost(cart: Array<CartItem>): Promise<number> {
+	return cart.reduce((price, item) => price + (item.price * item.quantity), 0);
+}

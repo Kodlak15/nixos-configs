@@ -1,23 +1,44 @@
-import { addToCart } from "$lib/server/shop";
+import { addToCart, removeFromCart } from "$lib/server/shop";
 import { getCurrentUser } from "$lib/server/user";
-import { redirect, type Actions } from "@sveltejs/kit";
+import { type Actions } from "@sveltejs/kit";
 
 export const actions = {
-	default: async ({ request, cookies }) => {
+	addToCart: async ({ request, cookies }) => {
 		const user = await getCurrentUser({ cookies });
 		const userId = user?.id.toString();
 		const urlParts = request.url.split("/");
-		const productId = urlParts[urlParts.length - 1]
+		const productId = urlParts
+			.map((part) => part.replace("?", ""))
+			.find((_, index, obj) => obj[index - 1] === "shop");
+
+		if (!userId) return { success: false };
+		if (!productId) return { success: false };
 
 		try {
-			if (userId) {
-				addToCart(userId, productId);
-			}
+			addToCart(userId, productId);
 		} catch (error) {
-			console.error("Failed to add item to cart:", error);
 			return { success: false };
 		}
 
 		console.log("User", userId, "added product", productId, "to their cart")
+	},
+	removeFromCart: async ({ request, cookies }) => {
+		const user = await getCurrentUser({ cookies });
+		const userId = user?.id.toString();
+		const urlParts = request.url.split("/");
+		const productId = urlParts
+			.map((part) => part.replace("?", ""))
+			.find((_, index, obj) => obj[index - 1] === "shop");
+
+		if (!userId) return { success: false };
+		if (!productId) return { success: false };
+
+		try {
+			removeFromCart(userId, productId);
+		} catch (error) {
+			return { success: false };
+		}
+
+		console.log("User", userId, "removed product", productId, "from their cart")
 	},
 } satisfies Actions;

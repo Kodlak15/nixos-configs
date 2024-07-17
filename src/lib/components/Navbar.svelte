@@ -104,7 +104,7 @@
 			</div>
 			<div class="relative flex flex-col justify-center items-center gap-2">
 				<div
-					id="cart-items"
+					id="items-in-cart"
 					class="text-[0.6rem] font-noto-sans bg-red-700 text-white text-center absolute top-[-0.5rem] right-[-0.5rem] p-[0.1rem] w-[3ch] rounded-full"
 				>
 					<!-- TODO apply count on page reload -->

@@ -2,6 +2,19 @@
 	export let imgSrc: string; // consider storing this (or image itself) in db?
 	export let productId: string;
 
+	// Adds x to the value displayed inside the cart widget
+	// Can perform subtraction as well given a negative x
+	async function updateCartWidget(x: number) {
+		const itemsInCart = document.getElementById("items-in-cart");
+		if (!itemsInCart) {
+			console.log("Unable to update UI: Missing items-in-cart widget");
+			return;
+		}
+
+		const newValue = Number(itemsInCart.innerText) + x;
+		itemsInCart.innerText = newValue.toString();
+	}
+
 	async function addToCart(event: SubmitEvent) {
 		const form = document.getElementById(
 			"add-to-cart-" + productId,
@@ -17,7 +30,7 @@
 			});
 
 			if (response.ok) {
-				console.log("Item added to cart");
+				updateCartWidget(1);
 			} else {
 				console.log("Failed to add item to cart");
 			}
@@ -41,7 +54,7 @@
 			});
 
 			if (response.ok) {
-				console.log("Item added to cart");
+				updateCartWidget(-1);
 			} else {
 				console.log("Failed to add item to cart");
 			}
@@ -80,24 +93,25 @@
 			<!-- TODO this needs to be set up -->
 			<form
 				id={"remove-from-cart-" + productId}
-				action={"/shop/" + productId}
+				action={"/shop/" + productId + "?/removeFromCart"}
 				method="POST"
 				on:submit={async (event) => await removeFromCart(event)}
 			>
-				<div class="relative hover:cursor-pointer">
+				<div
+					class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black"
+				>
 					<input
 						type="submit"
 						value=""
-						class="absolute bg-red top-0 left-0 w-full h-full hover:cursor-pointer"
+						class="absolute top-0 left-0 w-full h-full hover:cursor-pointer"
 					/>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 512 512"
 						class="fill-white w-6 h-6"
 					>
-						<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-						<path
-							d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
+						<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
+							d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z"
 						/>
 					</svg>
 				</div>
@@ -105,15 +119,17 @@
 			<!-- TODO replace the {2} with the product id -->
 			<form
 				id={"add-to-cart-" + productId}
-				action={"/shop/" + productId}
+				action={"/shop/" + productId + "?/addToCart"}
 				method="POST"
 				on:submit={async (event) => await addToCart(event)}
 			>
-				<div class="relative hover:cursor-pointer">
+				<div
+					class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black"
+				>
 					<input
 						type="submit"
 						value=""
-						class="absolute bg-red top-0 left-0 w-full h-full hover:cursor-pointer"
+						class="absolute top-0 left-0 w-full h-full hover:cursor-pointer"
 					/>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
