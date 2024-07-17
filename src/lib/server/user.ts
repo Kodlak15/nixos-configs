@@ -35,11 +35,19 @@ export async function getCurrentUser({ cookies }: { cookies: Cookies }): Promise
 		return;
 	};
 
+	// NOTE just for testing locally
+	// const result = await pool.query(`
+	// 	SELECT Users.id, Users.first_name, Users.last_name, Users.email
+	// 	FROM Users
+	// 	INNER JOIN Sessions ON Users.id = Sessions.user_id
+	// 	WHERE token = $1
+	// `, [token]);
+
 	const result = await pool.query(`
 		SELECT Users.id, Users.first_name, Users.last_name, Users.email
 		FROM Users
 		INNER JOIN Sessions ON Users.id = Sessions.user_id
-		WHERE token = $1
+		WHERE token = $1 AND expires_at > NOW()
 	`, [token]);
 
 	if (result.rowCount && result.rowCount === 1) {
