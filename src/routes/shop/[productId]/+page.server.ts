@@ -7,6 +7,7 @@ export const actions = {
 		const user = await getCurrentUser({ cookies });
 		const userId = user?.id.toString();
 		const urlParts = request.url.split("/");
+		console.log(urlParts);
 		const productId = urlParts
 			.map((part) => part.replace("?", ""))
 			.find((_, index, obj) => obj[index - 1] === "shop");
@@ -26,6 +27,7 @@ export const actions = {
 		const user = await getCurrentUser({ cookies });
 		const userId = user?.id.toString();
 		const urlParts = request.url.split("/");
+		console.log(urlParts);
 		const productId = urlParts
 			.map((part) => part.replace("?", ""))
 			.find((_, index, obj) => obj[index - 1] === "shop");
