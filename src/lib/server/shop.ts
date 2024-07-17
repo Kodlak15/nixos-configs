@@ -1,9 +1,37 @@
 import { pool } from "./db";
 
+interface Product {
+	id: number,
+	name: string,
+	description: string,
+	price: number,
+	stock: number,
+	image: string,
+}
+
 interface CartItem {
 	productId: string,
 	quantity: number,
 	price: number,
+}
+
+export async function getProducts(): Promise<Array<Product>> {
+	const result = await pool.query(`
+		SELECT * FROM Products
+	`);
+
+	return result.rows.map((row) => {
+		const product: Product = {
+			id: row.id,
+			name: row.name,
+			description: row.description,
+			price: row.price,
+			stock: row.stock,
+			image: row.image,
+		};
+
+		return product;
+	});
 }
 
 // Get the cart items for the current active user
@@ -62,29 +90,28 @@ export async function addToCart(userId: string, productId: string) {
 
 export async function removeFromCart(userId: string, productId: string) {
 	try {
-
+		await pool.query(`
+			WITH Cart AS (
+				SELECT Carts.id
+				FROM Carts
+				INNER JOIN Users ON Carts.user_id = Users.id
+				WHERE Users.id = $1
+			),
+			ThisProduct AS (
+				SELECT id, price
+				FROM Products 
+				WHERE id = $2
+			)
+			INSERT INTO CartItems (cart_id, product_id, quantity, price_at_time_of_addition)
+			SELECT Cart.id, ThisProduct.id, 0, ThisProduct.price
+			FROM Cart, ThisProduct
+			ON CONFLICT (cart_id, product_id)
+			DO UPDATE SET quantity = GREATEST(0, CartItems.quantity - 1)
+		`, [userId, productId]);
 	} catch (error) {
 		console.log("Error occurred while removing item from cart:", error);
 		return;
 	}
-	await pool.query(`
-		WITH Cart AS (
-			SELECT Carts.id
-			FROM Carts
-			INNER JOIN Users ON Carts.user_id = Users.id
-			WHERE Users.id = $1
-		),
-		ThisProduct AS (
-			SELECT id, price
-			FROM Products 
-			WHERE id = $2
-		)
-		INSERT INTO CartItems (cart_id, product_id, quantity, price_at_time_of_addition)
-		SELECT Cart.id, ThisProduct.id, 0, ThisProduct.price
-		FROM Cart, ThisProduct
-		ON CONFLICT (cart_id, product_id)
-		DO UPDATE SET quantity = GREATEST(0, CartItems.quantity - 1)
-	`, [userId, productId]);
 }
 
 export async function getNumCartItems(cart: Array<CartItem>): Promise<number> {

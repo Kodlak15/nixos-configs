@@ -1,7 +1,4 @@
 <script lang="ts">
-	export let imgSrc: string; // consider storing this (or image itself) in db?
-	export let productId: string;
-
 	// Adds x to the value displayed inside the cart widget
 	// Can perform subtraction as well given a negative x
 	async function updateCartWidget(x: number) {
@@ -62,6 +59,13 @@
 			console.error("Error:", error);
 		}
 	}
+
+	export let productId: number;
+	export let name: string;
+	export let description: string;
+	export let price: number;
+	// export let stock: number; NOTE may need this later
+	export let imageSrc: string;
 </script>
 
 <div
@@ -70,7 +74,7 @@
 >
 	<div class="relative rounded-t-xl overflow-hidden">
 		<img
-			src={imgSrc}
+			src={imageSrc}
 			alt=""
 			height="350"
 			width="350"
@@ -81,16 +85,15 @@
 			class="bg-[rgba(0,0,0,0)] hover:bg-[rgba(0,0,0,0.9)] absolute top-0 left-0 flex flex-col
 			justify-center items-center gap-2 p-6 w-full h-full transition duration-200"
 		>
-			<p class="text-white font-dancing-script text-2xl">Product description</p>
+			<p class="text-white font-dancing-script text-2xl">{description}</p>
 		</div>
 	</div>
 	<div class="text-center flex flex-col gap-2 p-4">
 		<div class="bg-feldgrau font-dancing-script text-white h-full">
-			<h1 class="text-2xl font-bold">Peppers</h1>
-			<h2 class="text-lg font-bold">$5.99</h2>
+			<h1 class="text-2xl font-bold">{name}</h1>
+			<h2 class="text-lg font-bold">${price}</h2>
 		</div>
 		<div class="flex flex-row justify-center items-center gap-4">
-			<!-- TODO this needs to be set up -->
 			<form
 				id={"remove-from-cart-" + productId}
 				action={"/shop/" + productId + "?/removeFromCart"}
