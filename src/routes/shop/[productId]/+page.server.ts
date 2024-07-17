@@ -7,9 +7,8 @@ export const actions = {
 		const user = await getCurrentUser({ cookies });
 		const userId = user?.id.toString();
 		const urlParts = request.url.split("/");
-		console.log(urlParts);
 		const productId = urlParts
-			.map((part) => part.replace("?", ""))
+			.map((part) => part.split("?")[0])
 			.find((_, index, obj) => obj[index - 1] === "shop");
 
 		if (!userId) return { success: false };
@@ -27,9 +26,8 @@ export const actions = {
 		const user = await getCurrentUser({ cookies });
 		const userId = user?.id.toString();
 		const urlParts = request.url.split("/");
-		console.log(urlParts);
 		const productId = urlParts
-			.map((part) => part.replace("?", ""))
+			.map((part) => part.split("?")[0])
 			.find((_, index, obj) => obj[index - 1] === "shop");
 
 		if (!userId) return { success: false };
