@@ -65,7 +65,16 @@
 	export let description: string;
 	export let price: number;
 	// export let stock: number; NOTE may need this later
-	export let imageSrc: string;
+	// export let imageSrc: string; NOTE not sure that this will work (see hacky solution below)
+	// ^^^ May need to use a CDN in practice if loading images from the database ^^^
+
+	import peppersImg from "$lib/assets/images/peppers.jpg";
+	import trailImg from "$lib/assets/images/trail.jpg";
+
+	const productImages: { [key: number]: string } = {
+		3: peppersImg as string,
+		4: trailImg as string,
+	};
 </script>
 
 <div
@@ -74,8 +83,8 @@
 >
 	<div class="relative rounded-t-xl overflow-hidden">
 		<img
-			src={imageSrc}
-			alt=""
+			src={productImages[productId]}
+			alt="TODO"
 			height="350"
 			width="350"
 			class="w-[350px] h-[350px] object-cover"
