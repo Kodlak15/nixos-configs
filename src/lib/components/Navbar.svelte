@@ -149,7 +149,7 @@
 											<CartButton
 												productId={Number(item.productId)}
 												operation="sub"
-												color="feldgrau"
+												color="#475841"
 												buttonId={"remove-from-cart-nav-" + item.productId}
 											/>
 											<span class={"num-cart-items-" + item.productId}>
@@ -158,7 +158,7 @@
 											<CartButton
 												productId={Number(item.productId)}
 												operation="add"
-												color="feldgrau"
+												color="#475841"
 												buttonId={"add-to-cart-nav-" + item.productId}
 											/>
 										</div>
