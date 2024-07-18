@@ -121,7 +121,8 @@
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 512 512"
-				class={"fill-" + color + " w-6 h-6"}
+				class="w-6 h-6"
+				fill={color}
 			>
 				<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
 					d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z"
@@ -148,7 +149,8 @@
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 512 512"
-				class={"fill-" + color + " w-6 h-6"}
+				class={"w-6 h-6"}
+				fill={color}
 			>
 				<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
 				<path
