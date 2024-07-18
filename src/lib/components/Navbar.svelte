@@ -46,6 +46,20 @@
 		}
 	}
 
+	function toggleCartPopup() {
+		const cartPopup = document.getElementById("cart-popup");
+		if (!cartPopup) {
+			console.log("Error: No element with id 'cart-popup' found");
+			return;
+		}
+
+		if (cartPopup.classList.contains("hidden")) {
+			cartPopup.classList.remove("hidden");
+		} else {
+			cartPopup.classList.add("hidden");
+		}
+	}
+
 	interface CartItem {
 		productId: string;
 		quantity: number;
@@ -86,6 +100,7 @@
 			<!-- TODO get rid of hidden class to make it appear again -->
 			<div
 				class="hidden bg-white absolute top-full mt-2 p-2 border-black border-2 border-solid rounded-md w-full z-[99]"
+				id="cart-popup"
 			>
 				{#each cart ? cart : [] as item}
 					<div class="flex flex-row gap-2">
@@ -126,7 +141,7 @@
 					>
 						{itemsInCart}
 					</div>
-					<button>
+					<button on:click={toggleCartPopup}>
 						<div class="bg-feldgrau p-1.5 rounded-full">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"

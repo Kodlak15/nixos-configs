@@ -15,12 +15,13 @@ export const actions = {
 		if (!productId) return { success: false };
 
 		try {
-			addToCart(userId, productId);
+			const quantity = await addToCart(userId, productId);
+			const response = { success: true, quantity: quantity };
+			console.log("User", userId, "added product", productId, "to their cart")
+			return response;
 		} catch (error) {
 			return { success: false };
 		}
-
-		console.log("User", userId, "added product", productId, "to their cart")
 	},
 	removeFromCart: async ({ request, cookies }) => {
 		const user = await getCurrentUser({ cookies });
@@ -34,11 +35,12 @@ export const actions = {
 		if (!productId) return { success: false };
 
 		try {
-			removeFromCart(userId, productId);
+			const quantity = await removeFromCart(userId, productId);
+			const response = { success: true, quantity: quantity };
+			console.log("User", userId, "removed product", productId, "to their cart")
+			return response;
 		} catch (error) {
 			return { success: false };
 		}
-
-		console.log("User", userId, "removed product", productId, "from their cart")
 	},
 } satisfies Actions;

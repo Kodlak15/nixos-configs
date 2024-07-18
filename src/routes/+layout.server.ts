@@ -1,4 +1,4 @@
-import { getCartItems, getNumCartItems } from "$lib/server/shop";
+import { getCartItems } from "$lib/server/shop";
 import { getCurrentUser } from "$lib/server/user";
 import type { LayoutServerLoad } from "./$types";
 
@@ -12,8 +12,6 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 		return {
 			// TODO why not return all (non-sensitive, ie. password) user info?
 			firstName: user?.firstName,
-			// TODO why not return all cart item information rather than just number of items?
-			// itemsInCart: cart ? await getNumCartItems(cart) : 0,
 			cart: cart,
 		};
 	}

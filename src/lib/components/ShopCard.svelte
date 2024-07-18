@@ -1,15 +1,12 @@
 <script lang="ts">
-	// Adds x to the value displayed inside the cart widget
-	// Can perform subtraction as well given a negative x
-	async function updateCartWidget(x: number) {
+	async function updateCartWidget(quantity: number) {
 		const itemsInCart = document.getElementById("items-in-cart");
 		if (!itemsInCart) {
 			console.log("Unable to update UI: Missing items-in-cart widget");
 			return;
 		}
 
-		const newValue = Number(itemsInCart.innerText) + x;
-		itemsInCart.innerText = newValue.toString();
+		itemsInCart.innerText = quantity.toString();
 	}
 
 	async function addToCart(event: SubmitEvent) {
@@ -27,7 +24,9 @@
 			});
 
 			if (response.ok) {
-				updateCartWidget(1);
+				const result = await response.json();
+				const quantity = JSON.parse(result.data)[2];
+				updateCartWidget(quantity);
 			} else {
 				console.log("Failed to add item to cart");
 			}
@@ -51,9 +50,11 @@
 			});
 
 			if (response.ok) {
-				updateCartWidget(-1);
+				const result = await response.json();
+				const quantity = JSON.parse(result.data)[2];
+				updateCartWidget(quantity);
 			} else {
-				console.log("Failed to add item to cart");
+				console.log("Failed to remove item from cart");
 			}
 		} catch (error) {
 			console.error("Error:", error);

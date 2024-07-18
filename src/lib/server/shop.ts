@@ -35,41 +35,35 @@ export async function getProducts(): Promise<Array<Product>> {
 }
 
 // Get the cart items for the current active user
-export async function getCartItems(userId: number): Promise<Array<CartItem> | undefined> {
+export async function getCartItems(userId: string): Promise<Array<CartItem>> {
 	const result = await pool.query(`
-		SELECT CartItems.product_id, CartItems.quantity, CartItems.price_at_time_of_addition as price
-		FROM CartItems
-		INNER JOIN Carts ON CartItems.cart_id = Carts.id
-		INNER JOIN Users ON Carts.user_id = Users.id
-		WHERE Users.id = $1
-	`, [userId]);
+			SELECT *
+			FROM CartItems
+			INNER JOIN Carts ON CartItems.cart_id = Carts.id
+			WHERE Carts.user_id = $1
+		`, [userId]);
 
 	return result.rows.map((row) => {
 		const item: CartItem = {
 			productId: row.product_id,
 			quantity: row.quantity,
-			price: row.price,
-		};
-
+			price: row.price_at_time_of_addition,
+		}
 		return item;
 	});
 }
 
-export async function addToCart(userId: string, productId: string) {
-	// TODO set up this query such that it will not increase quantity beyond stock
-	// May also be a good idea to pass back to UI so that the UI is always in sync with the server
+export async function addToCart(userId: string, productId: string): Promise<number | undefined> {
 	try {
+		// Query to update database
 		await pool.query(`
-			WITH CreateCart AS (
+			WITH Cart AS (
 				INSERT INTO Carts (user_id)
 				VALUES ($1)
-				ON CONFLICT DO NOTHING
-			),
-			Cart AS (
-				SELECT Carts.id
-				FROM Carts
-				INNER JOIN Users ON Carts.user_id = Users.id
-				WHERE Users.id = $1
+				ON CONFLICT (user_id) 
+				DO UPDATE
+				SET user_id = EXCLUDED.user_id
+				RETURNING id
 			),
 			ThisProduct AS (
 				SELECT id, price, stock 
@@ -80,36 +74,53 @@ export async function addToCart(userId: string, productId: string) {
 			SELECT Cart.id, ThisProduct.id, 1, ThisProduct.price
 			FROM Cart, ThisProduct
 			ON CONFLICT (cart_id, product_id)
-			DO UPDATE SET quantity = LEAST(20, CartItems.quantity + 1)
+			DO UPDATE 
+			SET quantity = LEAST(CartItems.quantity + 1, (
+				SELECT stock
+				FROM Products
+				WHERE id = CartItems.product_id
+			))
 	`, [userId, productId]);
+
+		// TODO would be better to not have to make a separate query to get udpated cart items
+		const cart = await getCartItems(userId);
+		return getNumCartItems(cart);
 	} catch (error) {
 		console.log("Error occurred while adding item to cart:", error);
 		return;
 	}
 }
 
-export async function removeFromCart(userId: string, productId: string) {
+export async function removeFromCart(userId: string, productId: string): Promise<number | undefined> {
 	try {
+		// Query to update database
 		await pool.query(`
 			WITH Cart AS (
-				SELECT Carts.id
-				FROM Carts
-				INNER JOIN Users ON Carts.user_id = Users.id
-				WHERE Users.id = $1
+				INSERT INTO Carts (user_id)
+				VALUES ($1)
+				ON CONFLICT (user_id) 
+				DO UPDATE
+				SET user_id = EXCLUDED.user_id
+				RETURNING id
 			),
 			ThisProduct AS (
-				SELECT id, price
+				SELECT id, price, stock 
 				FROM Products 
 				WHERE id = $2
 			)
 			INSERT INTO CartItems (cart_id, product_id, quantity, price_at_time_of_addition)
-			SELECT Cart.id, ThisProduct.id, 0, ThisProduct.price
+			SELECT Cart.id, ThisProduct.id, 1, ThisProduct.price
 			FROM Cart, ThisProduct
 			ON CONFLICT (cart_id, product_id)
-			DO UPDATE SET quantity = GREATEST(0, CartItems.quantity - 1)
-		`, [userId, productId]);
+			DO UPDATE 
+			SET quantity = GREATEST(CartItems.quantity - 1, 0)
+	`, [userId, productId]);
+
+		// TODO would be better to not have to make a separate query to get udpated cart items
+		const cart = await getCartItems(userId);
+		return getNumCartItems(cart);
 	} catch (error) {
-		console.log("Error occurred while removing item from cart:", error);
+		console.log("Error occurred while adding item to cart:", error);
 		return;
 	}
 }
