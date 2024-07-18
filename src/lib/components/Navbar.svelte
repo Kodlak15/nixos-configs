@@ -47,6 +47,7 @@
 		}
 	}
 
+	// TODO make it possible to add and remove items dynamically
 	function toggleCartPopup() {
 		const cartPopup = document.getElementById("cart-popup");
 		if (!cartPopup) {

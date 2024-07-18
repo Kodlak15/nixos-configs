@@ -33,7 +33,6 @@
 		}
 	}
 
-	// TODO repeated all over
 	async function addToCart(event: SubmitEvent) {
 		const form = document.getElementById(
 			"add-to-cart-" + productId,
@@ -50,9 +49,16 @@
 
 			if (response.ok) {
 				const result = await response.json();
-				const quantity = JSON.parse(result.data)[2];
-				updateCartWidget(quantity);
-				updateCartWidgetProduct(quantity, productId.toString());
+				const json = JSON.parse(result.data);
+
+				const quantityTotalIdx = json[0]["quantityTotal"];
+				const quantityProductIdx = json[0]["quantityProduct"];
+				const quantityTotal = JSON.parse(result.data)[quantityTotalIdx];
+				const quantityProduct = JSON.parse(result.data)[quantityProductIdx];
+				console.log("Total:", quantityTotal);
+				console.log("Product:", quantityProduct);
+				updateCartWidget(quantityTotal);
+				updateCartWidgetProduct(quantityProduct, productId.toString());
 			} else {
 				console.log("Failed to add item to cart");
 			}
@@ -61,7 +67,6 @@
 		}
 	}
 
-	// TODO repeated all over
 	async function removeFromCart(event: SubmitEvent) {
 		const form = document.getElementById(
 			"remove-from-cart-" + productId,
@@ -78,9 +83,17 @@
 
 			if (response.ok) {
 				const result = await response.json();
-				const quantity = JSON.parse(result.data)[2];
-				updateCartWidget(quantity);
-				updateCartWidgetProduct(quantity, productId.toString());
+				const json = JSON.parse(result.data);
+
+				const quantityTotalIdx = json[0]["quantityTotal"];
+				const quantityProductIdx = json[0]["quantityProduct"];
+				const quantityTotal = JSON.parse(result.data)[quantityTotalIdx];
+				const quantityProduct = JSON.parse(result.data)[quantityProductIdx];
+				console.log(result.data);
+				console.log("Total:", quantityTotal);
+				console.log("Product:", quantityProduct);
+				updateCartWidget(quantityTotal);
+				updateCartWidgetProduct(quantityProduct, productId.toString());
 			} else {
 				console.log("Failed to remove item from cart");
 			}

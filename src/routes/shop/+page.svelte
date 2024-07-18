@@ -18,9 +18,8 @@
 		if (!data.cart) return;
 
 		const item = data.cart.find(
-			(value) => value.productId === productId.toString(),
+			(value) => value.productId.toString() === productId,
 		);
-		console.log(item);
 
 		return item;
 	}
