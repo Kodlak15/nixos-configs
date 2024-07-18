@@ -9,6 +9,14 @@
 	const itemsInCart = data.cart
 		? data.cart.reduce((total, item) => total + item.quantity, 0)
 		: 0;
+
+	import peppersImg from "$lib/assets/images/peppers.jpg";
+	import trailImg from "$lib/assets/images/trail.jpg";
+
+	const productImages: { [key: number]: string } = {
+		3: peppersImg as string,
+		4: trailImg as string,
+	};
 </script>
 
 <svelte:head>
@@ -25,6 +33,11 @@
 </svelte:head>
 
 <!-- itemsInCart={data.itemsInCart ? data.itemsInCart : 0} -->
-<Navbar firstName={data.firstName} {itemsInCart} cart={data.cart} />
+<Navbar
+	firstName={data.firstName}
+	{itemsInCart}
+	cart={data.cart}
+	{productImages}
+/>
 <slot />
 <Footer />

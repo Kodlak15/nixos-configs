@@ -72,6 +72,12 @@
 	const itemsInCart = cart
 		? cart.reduce((total, item) => total + item.quantity, 0)
 		: 0;
+
+	export let productImages: { [key: number]: string };
+
+	function getProductImage(productId: string) {
+		return productImages[Number(productId)];
+	}
 </script>
 
 <nav class="relative font-dancing-script z-60">
@@ -99,16 +105,105 @@
 			<!-- TODO cart popup here -->
 			<!-- TODO get rid of hidden class to make it appear again -->
 			<div
-				class="hidden bg-white absolute top-full mt-2 p-2 border-black border-2 border-solid rounded-md w-full z-[99]"
+				class="bg-white absolute top-full mt-2 p-6 border-black border-2 border-solid rounded-md w-full
+				z-[99] overflow-auto max-h-96"
 				id="cart-popup"
 			>
-				{#each cart ? cart : [] as item}
-					<div class="flex flex-row gap-2">
-						<h1>{item.price},</h1>
-						<h1>{item.quantity},</h1>
-						<h1>{item.productId}</h1>
-					</div>
-				{/each}
+				<div class="flex flex-col gap-6">
+					{#if itemsInCart === 0}
+						<div class="text-2xl text-feldgrau text-center font-bold">
+							<h1>Subtotal: $0.00</h1>
+						</div>
+						<div class="flex justify-center items-center">
+							<h1 class="text-feldgrau text-2xl font-bold">No items in cart</h1>
+						</div>
+					{:else}
+						<div class="text-2xl text-feldgrau text-center font-bold">
+							<h1>Subtotal: $9.99</h1>
+						</div>
+						{#each cart ? cart : [] as item}
+							{#if item.quantity > 0}
+								<div class="flex flex-row gap-2 h-40">
+									<div
+										class="relative flex justify-center items-center basis-[50%] min-h-40 min-w-[125px]"
+									>
+										<img
+											src={getProductImage(item.productId)}
+											alt="TODO"
+											width="200"
+											height="200"
+											class="absolute border-2 border-black rounded-md object-cover min-h-full"
+										/>
+									</div>
+									<div
+										class="flex flex-col justify-center gap-2 text-center basis-[50%]"
+									>
+										<!-- TODO should probably include name as well -->
+										<!-- TODO unfortunately have to edit a decent amount of stuff to do so -->
+										<h1>${item.price}</h1>
+										<div
+											class="flex flex-row gap-2 justify-center items-center"
+										>
+											<!-- TODO this should really be its own component -->
+											<form
+												id={"add-to-cart-navbar-" + item.productId}
+												action={"/shop/" + item.productId + "?/addToCart"}
+												method="POST"
+											>
+												<div
+													class="relative rounded-full hover:cursor-pointer z-50"
+												>
+													<input
+														type="submit"
+														value=""
+														class="absolute top-0 left-0 w-full h-full hover:cursor-pointer"
+													/>
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														viewBox="0 0 512 512"
+														class="fill-feldgrau w-6 h-6"
+													>
+														<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+														<path
+															d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
+														/>
+													</svg>
+												</div>
+											</form>
+											<h1>{item.quantity}</h1>
+											<!-- TODO this should really be its own component -->
+											<form
+												id={"add-to-cart-navbar-" + item.productId}
+												action={"/shop/" + item.productId + "?/addToCart"}
+												method="POST"
+											>
+												<div
+													class="relative rounded-full hover:cursor-pointer z-50"
+												>
+													<input
+														type="submit"
+														value=""
+														class="absolute top-0 left-0 w-full h-full hover:cursor-pointer"
+													/>
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														viewBox="0 0 512 512"
+														class="fill-feldgrau w-6 h-6"
+													>
+														<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+														<path
+															d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
+														/>
+													</svg>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							{/if}
+						{/each}
+					{/if}
+				</div>
 			</div>
 			<div class="relative flex flex-row justify-center items-center gap-4">
 				<div class="hidden md:flex md:flex-row md:gap-4">

@@ -7,7 +7,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 	const user = await getCurrentUser({ cookies });
 
 	if (user) {
-		const cart = await getCartItems(user.id);
+		const cart = await getCartItems(user.id.toString());
 
 		return {
 			// TODO why not return all (non-sensitive, ie. password) user info?
