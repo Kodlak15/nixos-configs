@@ -53,6 +53,7 @@ export async function getCartItems(userId: string): Promise<Array<CartItem>> {
 	});
 }
 
+// Consider just returning the cart to make this more broadly useful
 export async function addToCart(userId: string, productId: string): Promise<number | undefined> {
 	try {
 		// Query to update database
@@ -91,6 +92,7 @@ export async function addToCart(userId: string, productId: string): Promise<numb
 	}
 }
 
+// Consider just returning the cart to make this more broadly useful
 export async function removeFromCart(userId: string, productId: string): Promise<number | undefined> {
 	try {
 		// Query to update database

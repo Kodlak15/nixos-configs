@@ -1,5 +1,14 @@
 <script lang="ts">
 	export let productId: number;
+	export let buttonId: string; // TODO This name is somewhat deceiving (element is a form)
+
+	export let color: string | undefined;
+	if (!color) {
+		color = "white";
+	}
+
+	// TODO would be best to find way to limit options for this
+	export let operation: string;
 
 	async function updateCartWidget(quantity: number) {
 		const itemsInCart = document.getElementById("items-in-cart");
@@ -11,6 +20,20 @@
 		itemsInCart.innerText = quantity.toString();
 	}
 
+	// TODO stupid stupid naming
+	// This should get the number of items for this product, not the total number
+	async function updateCartWidgetProduct(quantity: number, productId: string) {
+		const spans = document.getElementsByClassName(
+			"num-cart-items-" + productId,
+		);
+
+		for (let i = 0; i < spans.length; i++) {
+			const span = spans[i] as HTMLElement;
+			span.innerText = quantity.toString();
+		}
+	}
+
+	// TODO repeated all over
 	async function addToCart(event: SubmitEvent) {
 		const form = document.getElementById(
 			"add-to-cart-" + productId,
@@ -29,6 +52,7 @@
 				const result = await response.json();
 				const quantity = JSON.parse(result.data)[2];
 				updateCartWidget(quantity);
+				updateCartWidgetProduct(quantity, productId.toString());
 			} else {
 				console.log("Failed to add item to cart");
 			}
@@ -37,6 +61,7 @@
 		}
 	}
 
+	// TODO repeated all over
 	async function removeFromCart(event: SubmitEvent) {
 		const form = document.getElementById(
 			"remove-from-cart-" + productId,
@@ -55,6 +80,7 @@
 				const result = await response.json();
 				const quantity = JSON.parse(result.data)[2];
 				updateCartWidget(quantity);
+				updateCartWidgetProduct(quantity, productId.toString());
 			} else {
 				console.log("Failed to remove item from cart");
 			}
@@ -64,28 +90,58 @@
 	}
 </script>
 
-<form
-	id={"remove-from-cart-" + productId}
-	action={"/shop/" + productId + "?/removeFromCart"}
-	method="POST"
-	on:submit={async (event) => await removeFromCart(event)}
->
-	<div
-		class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black z-50"
+{#if operation === "sub"}
+	<form
+		id={buttonId}
+		action={"/shop/" + productId + "?/removeFromCart"}
+		method="POST"
+		on:submit={async (event) => await removeFromCart(event)}
 	>
-		<input
-			type="submit"
-			value=""
-			class="absolute top-0 left-0 w-full h-full hover:cursor-pointer"
-		/>
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 512 512"
-			class="fill-white w-6 h-6"
+		<div
+			class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black z-50"
 		>
-			<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
-				d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z"
+			<input
+				type="submit"
+				value=""
+				class="absolute top-0 left-0 w-full h-full hover:cursor-pointer"
 			/>
-		</svg>
-	</div>
-</form>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 512 512"
+				class={"fill-" + color + " w-6 h-6"}
+			>
+				<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
+					d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z"
+				/>
+			</svg>
+		</div>
+	</form>
+{:else}
+	<form
+		id={buttonId}
+		class={"add-to-cart-" + productId}
+		action={"/shop/" + productId + "?/addToCart"}
+		method="POST"
+		on:submit={async (event) => await addToCart(event)}
+	>
+		<div
+			class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black z-50"
+		>
+			<input
+				type="submit"
+				value=""
+				class={"absolute top-0 left-0 w-full h-full hover:cursor-pointer"}
+			/>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 512 512"
+				class={"fill-" + color + " w-6 h-6"}
+			>
+				<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+				<path
+					d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
+				/>
+			</svg>
+		</div>
+	</form>
+{/if}

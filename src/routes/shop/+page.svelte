@@ -5,6 +5,25 @@
 	import peakImg from "$lib/assets/images/peak.jpg";
 
 	export let data: PageData;
+
+	interface CartItem {
+		productId: string;
+		quantity: number;
+		price: number;
+	}
+
+	// TODO this is absolutely atrocious
+	// Fix it idiot
+	function getProductFromCart(productId: string): CartItem | undefined {
+		if (!data.cart) return;
+
+		const item = data.cart.find(
+			(value) => value.productId === productId.toString(),
+		);
+		console.log(item);
+
+		return item;
+	}
 </script>
 
 <!-- <div class="px-6 sm:px-12 py-24"> -->
@@ -30,8 +49,8 @@
 							productId={product.id}
 							name={product.name}
 							description={product.description}
-							imageSrc={product.image}
 							price={product.price}
+							item={getProductFromCart(product.id.toString())}
 						/>
 					{/each}
 					<!-- TODO delete these later, just here to make things look nice while there arent enough products -->
@@ -40,8 +59,8 @@
 							productId={product.id}
 							name={product.name}
 							description={product.description}
-							imageSrc={product.image}
 							price={product.price}
+							item={getProductFromCart(product.id.toString())}
 						/>
 					{/each}
 					{#each data.products as product}
@@ -49,8 +68,8 @@
 							productId={product.id}
 							name={product.name}
 							description={product.description}
-							imageSrc={product.image}
 							price={product.price}
+							item={getProductFromCart(product.id.toString())}
 						/>
 					{/each}
 				</div>

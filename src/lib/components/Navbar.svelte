@@ -1,6 +1,7 @@
 <script lang="ts">
 	import logo from "$lib/assets/images/logos/logo.png";
 	import Hamburger from "$lib/components/Hamburger.svelte";
+	import CartButton from "$lib/components/CartButton.svelte";
 
 	// TODO repeat definition (Hamburger.svelte)
 	function toggleNavmenu() {
@@ -144,59 +145,21 @@
 										<div
 											class="flex flex-row gap-2 justify-center items-center"
 										>
-											<!-- TODO this should really be its own component -->
-											<form
-												id={"add-to-cart-navbar-" + item.productId}
-												action={"/shop/" + item.productId + "?/addToCart"}
-												method="POST"
-											>
-												<div
-													class="relative rounded-full hover:cursor-pointer z-50"
-												>
-													<input
-														type="submit"
-														value=""
-														class="absolute top-0 left-0 w-full h-full hover:cursor-pointer"
-													/>
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														viewBox="0 0 512 512"
-														class="fill-feldgrau w-6 h-6"
-													>
-														<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-														<path
-															d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
-														/>
-													</svg>
-												</div>
-											</form>
-											<h1>{item.quantity}</h1>
-											<!-- TODO this should really be its own component -->
-											<form
-												id={"add-to-cart-navbar-" + item.productId}
-												action={"/shop/" + item.productId + "?/addToCart"}
-												method="POST"
-											>
-												<div
-													class="relative rounded-full hover:cursor-pointer z-50"
-												>
-													<input
-														type="submit"
-														value=""
-														class="absolute top-0 left-0 w-full h-full hover:cursor-pointer"
-													/>
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														viewBox="0 0 512 512"
-														class="fill-feldgrau w-6 h-6"
-													>
-														<!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-														<path
-															d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
-														/>
-													</svg>
-												</div>
-											</form>
+											<CartButton
+												productId={Number(item.productId)}
+												operation="sub"
+												color="feldgrau"
+												buttonId={"remove-from-cart-nav-" + item.productId}
+											/>
+											<span class={"num-cart-items-" + item.productId}>
+												{item.quantity}
+											</span>
+											<CartButton
+												productId={Number(item.productId)}
+												operation="add"
+												color="feldgrau"
+												buttonId={"add-to-cart-nav-" + item.productId}
+											/>
 										</div>
 									</div>
 								</div>
@@ -232,7 +195,7 @@
 				<div class="relative flex flex-col justify-center items-center gap-2">
 					<div
 						id="items-in-cart"
-						class="text-[0.6rem] font-noto-sans bg-red-700 text-white text-center absolute top-[-0.5rem] right-[-0.5rem] p-[0.1rem] w-[3ch] rounded-full"
+						class={"num-cart-items text-[0.6rem] font-noto-sans bg-red-700 text-white text-center absolute top-[-0.5rem] right-[-0.5rem] p-[0.1rem] w-[3ch] rounded-full"}
 					>
 						{itemsInCart}
 					</div>
