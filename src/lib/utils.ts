@@ -1,4 +1,4 @@
-import type { Cart, CartItem } from "./types";
+import type { Cart, CartItem, Product } from "./types";
 import { productImages } from "./images";
 
 export function getNumCartItems(cart: Cart): number {
@@ -26,4 +26,8 @@ export function getProductImage(productId: string) {
 export function getItemFromCart(cart: Cart, productId: string): CartItem | undefined {
 	if (!cart) return;
 	return cart.find((value) => value.productId === productId);
+}
+
+export function getProduct(products: Array<Product>, productId: string): Product | undefined {
+	return products.find((product) => product.id === productId);
 }

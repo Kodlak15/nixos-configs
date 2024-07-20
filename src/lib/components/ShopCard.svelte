@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import CartIncrementor from "$lib/components/CartIncrementor.svelte";
-	import type { Product, CartItem } from "$lib/types";
+	import type { Product, Cart, CartItem } from "$lib/types";
 	import { Incrementor } from "$lib/types";
 	import { getProductImage } from "$lib/utils";
 
 	export let item: CartItem | undefined;
 	export let product: Product | undefined;
+	export let cart: Cart | undefined;
 
 	onMount(() => {
 		if (product) {
@@ -56,10 +57,11 @@
 			</div>
 			<div class="flex flex-row justify-center items-center gap-4">
 				<CartIncrementor
-					productId={product.id}
+					{product}
 					incrementor={Incrementor.Dec}
 					incrementorId={"remove-from-cart-" + product.id}
 					color="white"
+					{cart}
 				/>
 				<span
 					class={"num-cart-items-" +
@@ -69,10 +71,11 @@
 					{item ? item.quantity : 0}
 				</span>
 				<CartIncrementor
-					productId={product.id}
+					{product}
 					incrementor={Incrementor.Inc}
 					incrementorId={"add-to-cart-" + product.id}
 					color="white"
+					{cart}
 				/>
 			</div>
 		</div>

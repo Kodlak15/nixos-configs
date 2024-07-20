@@ -1,14 +1,14 @@
 <script lang="ts">
 	import logo from "$lib/assets/images/logos/logo.png";
 	import Hamburger from "$lib/components/Hamburger.svelte";
-	import CartIncrementor from "$lib/components/CartIncrementor.svelte";
-	import type { User, CartItem } from "$lib/types";
-	import { Incrementor } from "$lib/types";
+	import CartPopup from "$lib/components/CartPopup.svelte";
+	import type { User, CartItem, Product } from "$lib/types";
 	import { toggleNavmenu, toggleCartPopup } from "$lib/ui";
-	import { numItemsInCart, getProductImage } from "$lib/utils";
+	import { numItemsInCart } from "$lib/utils";
 
 	export let user: User | undefined;
 	export let cart: Array<CartItem>;
+	export let products: Array<Product>;
 </script>
 
 <nav class="relative font-dancing-script z-60">
@@ -34,70 +34,7 @@
 		</div>
 		<div class=" relative flex flex-1 justify-end items-center">
 			<!-- TODO cart popup here -->
-			<!-- TODO get rid of hidden class to make it appear again -->
-			<div
-				class="bg-white absolute top-full mt-2 p-6 border-black border-2 border-solid rounded-md w-full
-				z-[99] overflow-auto max-h-96"
-				id="cart-popup"
-			>
-				<div class="flex flex-col gap-6">
-					{#if numItemsInCart(cart) === 0}
-						<div class="text-2xl text-feldgrau text-center font-bold">
-							<h1>Subtotal: $0.00</h1>
-						</div>
-						<div class="flex justify-center items-center">
-							<h1 class="text-feldgrau text-2xl font-bold">No items in cart</h1>
-						</div>
-					{:else}
-						<div class="text-2xl text-feldgrau text-center font-bold">
-							<h1>Subtotal: $9.99</h1>
-						</div>
-						{#each cart ? cart : [] as item}
-							{#if item.quantity > 0}
-								<div class="flex flex-row gap-2 h-40">
-									<div
-										class="relative flex justify-center items-center basis-[50%] min-h-40 min-w-[125px]"
-									>
-										<img
-											src={getProductImage(item.productId)}
-											alt="TODO"
-											width="200"
-											height="200"
-											class="absolute border-2 border-black rounded-md object-cover min-h-full"
-										/>
-									</div>
-									<div
-										class="flex flex-col justify-center gap-2 text-center basis-[50%]"
-									>
-										<!-- TODO should probably include name as well -->
-										<!-- TODO unfortunately have to edit a decent amount of stuff to do so -->
-										<h1>${item.price}</h1>
-										<div
-											class="flex flex-row gap-2 justify-center items-center"
-										>
-											<CartIncrementor
-												productId={item.productId}
-												incrementor={Incrementor.Dec}
-												color="#475841"
-												incrementorId={"remove-from-cart-nav-" + item.productId}
-											/>
-											<span class={"num-cart-items-" + item.productId}>
-												{item.quantity}
-											</span>
-											<CartIncrementor
-												productId={item.productId}
-												incrementor={Incrementor.Inc}
-												color="#475841"
-												incrementorId={"add-to-cart-nav-" + item.productId}
-											/>
-										</div>
-									</div>
-								</div>
-							{/if}
-						{/each}
-					{/if}
-				</div>
-			</div>
+			<CartPopup {cart} {products} />
 			<div class="relative flex flex-row justify-center items-center gap-4">
 				<div class="hidden md:flex md:flex-row md:gap-4">
 					{#if user !== undefined}

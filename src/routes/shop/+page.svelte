@@ -27,14 +27,26 @@
 					class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-6 m-auto max-w-screen-lg"
 				>
 					{#each data.products as product}
-						<ShopCard {product} item={getItemFromCart(cart, product.id)} />
+						<ShopCard
+							{product}
+							item={getItemFromCart(cart, product.id)}
+							{cart}
+						/>
 					{/each}
 					<!-- TODO delete these later, just here to make things look nice while there arent enough products -->
 					{#each data.products as product}
-						<ShopCard {product} item={getItemFromCart(cart, product.id)} />
+						<ShopCard
+							{product}
+							item={getItemFromCart(cart, product.id)}
+							{cart}
+						/>
 					{/each}
 					{#each data.products as product}
-						<ShopCard {product} item={getItemFromCart(cart, product.id)} />
+						<ShopCard
+							{product}
+							item={getItemFromCart(cart, product.id)}
+							{cart}
+						/>
 					{/each}
 				</div>
 			</div>

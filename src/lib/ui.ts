@@ -1,3 +1,6 @@
+import type { Cart } from "./types";
+import { computeTotalCost } from "./utils";
+
 export function toggleNavmenu() {
 	var hamburger = document.getElementById("hamburger");
 	var hamburgerTop = document.getElementById("hamburger-top");
@@ -74,5 +77,14 @@ export function updateCartWidgetProduct(quantity: number, productId: string) {
 	for (let i = 0; i < spans.length; i++) {
 		const span = spans[i] as HTMLElement;
 		span.innerText = quantity.toString();
+	}
+}
+
+export function updateCartSubtotal(cart: Cart) {
+	const subtotal = computeTotalCost(cart);
+	const element = document.getElementById("cart-subtotal");
+
+	if (element && element.firstChild) {
+		element.firstChild.textContent = "Subtotal: $" + subtotal.toString();
 	}
 }

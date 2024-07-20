@@ -1,3 +1,6 @@
+<!-- TODO reconsider data flow strategy -->
+<!-- How do I optimally load necessary data and get it to the places it needs to go? -->
+
 <script lang="ts">
 	import "../tailwind.css";
 	import Navbar from "$lib/components/Navbar.svelte";
@@ -8,6 +11,7 @@
 
 	const user = data.user;
 	const cart = data.cart ? data.cart : [];
+	const products = data.products ? data.products : [];
 </script>
 
 <svelte:head>
@@ -23,6 +27,6 @@
 	/>
 </svelte:head>
 
-<Navbar {user} {cart} />
+<Navbar {user} {cart} {products} />
 <slot />
 <Footer />
