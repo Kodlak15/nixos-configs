@@ -1,28 +1,11 @@
 <script lang="ts">
 	import ShopCard from "$lib/components/ShopCard.svelte";
+	import { getItemFromCart } from "$lib/utils";
 	import type { PageData } from "./$types";
-
-	import peakImg from "$lib/assets/images/peak.jpg";
 
 	export let data: PageData;
 
-	interface CartItem {
-		productId: string;
-		quantity: number;
-		price: number;
-	}
-
-	// TODO this is absolutely atrocious
-	// Fix it idiot
-	function getProductFromCart(productId: string): CartItem | undefined {
-		if (!data.cart) return;
-
-		const item = data.cart.find(
-			(value) => value.productId.toString() === productId,
-		);
-
-		return item;
-	}
+	const cart = data.cart ? data.cart : [];
 </script>
 
 <!-- <div class="px-6 sm:px-12 py-24"> -->
@@ -44,32 +27,14 @@
 					class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-6 m-auto max-w-screen-lg"
 				>
 					{#each data.products as product}
-						<ShopCard
-							productId={product.id}
-							name={product.name}
-							description={product.description}
-							price={product.price}
-							item={getProductFromCart(product.id.toString())}
-						/>
+						<ShopCard {product} item={getItemFromCart(cart, product.id)} />
 					{/each}
 					<!-- TODO delete these later, just here to make things look nice while there arent enough products -->
 					{#each data.products as product}
-						<ShopCard
-							productId={product.id}
-							name={product.name}
-							description={product.description}
-							price={product.price}
-							item={getProductFromCart(product.id.toString())}
-						/>
+						<ShopCard {product} item={getItemFromCart(cart, product.id)} />
 					{/each}
 					{#each data.products as product}
-						<ShopCard
-							productId={product.id}
-							name={product.name}
-							description={product.description}
-							price={product.price}
-							item={getProductFromCart(product.id.toString())}
-						/>
+						<ShopCard {product} item={getItemFromCart(cart, product.id)} />
 					{/each}
 				</div>
 			</div>

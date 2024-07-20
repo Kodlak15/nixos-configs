@@ -1,4 +1,5 @@
-import { addToCart, getNumCartItems, getNumProductItems, removeFromCart } from "$lib/server/shop";
+import { addToCart, removeFromCart } from "$lib/server/shop";
+import { getNumCartItems, getNumProductItems } from "$lib/utils";
 import { getCurrentUser } from "$lib/server/user";
 import { type Actions } from "@sveltejs/kit";
 
@@ -18,8 +19,8 @@ export const actions = {
 			const cart = await addToCart(userId, productId);
 			if (!cart) return { success: false };
 
-			const quantityTotal = await getNumCartItems(cart);
-			const quantityProduct = await getNumProductItems(cart, productId);
+			const quantityTotal = getNumCartItems(cart);
+			const quantityProduct = getNumProductItems(cart, productId);
 			const response = { success: true, quantityTotal: quantityTotal, quantityProduct: quantityProduct };
 			console.log("User", userId, "added product", productId, "to their cart")
 			return response;
@@ -42,8 +43,8 @@ export const actions = {
 			const cart = await removeFromCart(userId, productId);
 			if (!cart) return { success: false };
 
-			const quantityTotal = await getNumCartItems(cart);
-			const quantityProduct = await getNumProductItems(cart, productId);
+			const quantityTotal = getNumCartItems(cart);
+			const quantityProduct = getNumProductItems(cart, productId);
 			const response = { success: true, quantityTotal: quantityTotal, quantityProduct: quantityProduct };
 			console.log("User", userId, "removed product", productId, "to their cart")
 			return response;

@@ -10,8 +10,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 		const cart = await getCartItems(user.id.toString());
 
 		return {
-			// TODO why not return all (non-sensitive, ie. password) user info?
-			firstName: user?.firstName,
+			user: user,
 			cart: cart,
 		};
 	}
