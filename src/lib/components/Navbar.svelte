@@ -1,85 +1,14 @@
 <script lang="ts">
 	import logo from "$lib/assets/images/logos/logo.png";
 	import Hamburger from "$lib/components/Hamburger.svelte";
-	import CartButton from "$lib/components/CartButton.svelte";
+	import CartIncrementor from "$lib/components/CartIncrementor.svelte";
+	import type { User, CartItem } from "$lib/types";
+	import { Incrementor } from "$lib/types";
+	import { toggleNavmenu, toggleCartPopup } from "$lib/ui";
+	import { numItemsInCart, getProductImage } from "$lib/utils";
 
-	// TODO repeat definition (Hamburger.svelte)
-	function toggleNavmenu() {
-		var hamburger = document.getElementById("hamburger");
-		var hamburgerTop = document.getElementById("hamburger-top");
-		var hamburgerMid = document.getElementById("hamburger-mid");
-		var hamburgerBot = document.getElementById("hamburger-bot");
-		var navMenu = document.getElementById("navmenu");
-
-		switch (hamburger?.classList.contains("open")) {
-			case true: {
-				hamburger.classList.remove("open");
-				if (hamburgerTop !== null) {
-					hamburgerTop.style.transform = "rotate(0)";
-				}
-				if (hamburgerMid !== null) {
-					hamburgerMid.style.transform = "translateX(0)";
-				}
-				if (hamburgerBot !== null) {
-					hamburgerBot.style.transform = "rotate(0)";
-				}
-				if (navMenu !== null) {
-					navMenu.style.transform = "translateY(-100%)";
-				}
-				break;
-			}
-			case false: {
-				hamburger.classList.add("open");
-				if (hamburgerTop !== null) {
-					hamburgerTop.style.transform = "rotate(45deg) translateY(20px)";
-				}
-				if (hamburgerMid !== null) {
-					hamburgerMid.style.transform = "translateX(-100%)";
-				}
-				if (hamburgerBot !== null) {
-					hamburgerBot.style.transform = "rotate(-45deg) translateY(-20px)";
-				}
-				if (navMenu !== null) {
-					navMenu.style.transform = "translateY(0)";
-				}
-				break;
-			}
-		}
-	}
-
-	// TODO make it possible to add and remove items dynamically
-	function toggleCartPopup() {
-		const cartPopup = document.getElementById("cart-popup");
-		if (!cartPopup) {
-			console.log("Error: No element with id 'cart-popup' found");
-			return;
-		}
-
-		if (cartPopup.classList.contains("hidden")) {
-			cartPopup.classList.remove("hidden");
-		} else {
-			cartPopup.classList.add("hidden");
-		}
-	}
-
-	interface CartItem {
-		productId: string;
-		quantity: number;
-		price: number;
-	}
-
-	export let firstName: string | undefined;
-	export let cart: Array<CartItem> | undefined;
-
-	const itemsInCart = cart
-		? cart.reduce((total, item) => total + item.quantity, 0)
-		: 0;
-
-	export let productImages: { [key: number]: string };
-
-	function getProductImage(productId: string) {
-		return productImages[Number(productId)];
-	}
+	export let user: User | undefined;
+	export let cart: Array<CartItem>;
 </script>
 
 <nav class="relative font-dancing-script z-60">
@@ -112,7 +41,7 @@
 				id="cart-popup"
 			>
 				<div class="flex flex-col gap-6">
-					{#if itemsInCart === 0}
+					{#if numItemsInCart(cart) === 0}
 						<div class="text-2xl text-feldgrau text-center font-bold">
 							<h1>Subtotal: $0.00</h1>
 						</div>
@@ -146,20 +75,20 @@
 										<div
 											class="flex flex-row gap-2 justify-center items-center"
 										>
-											<CartButton
-												productId={Number(item.productId)}
-												operation="sub"
+											<CartIncrementor
+												productId={item.productId}
+												incrementor={Incrementor.Dec}
 												color="#475841"
-												buttonId={"remove-from-cart-nav-" + item.productId}
+												incrementorId={"remove-from-cart-nav-" + item.productId}
 											/>
 											<span class={"num-cart-items-" + item.productId}>
 												{item.quantity}
 											</span>
-											<CartButton
-												productId={Number(item.productId)}
-												operation="add"
+											<CartIncrementor
+												productId={item.productId}
+												incrementor={Incrementor.Inc}
 												color="#475841"
-												buttonId={"add-to-cart-nav-" + item.productId}
+												incrementorId={"add-to-cart-nav-" + item.productId}
 											/>
 										</div>
 									</div>
@@ -171,10 +100,10 @@
 			</div>
 			<div class="relative flex flex-row justify-center items-center gap-4">
 				<div class="hidden md:flex md:flex-row md:gap-4">
-					{#if firstName !== undefined}
+					{#if user !== undefined}
 						<div class="flex flex-col justify-center items-end">
 							<h1 class="text-feldgrau text-xl font-bold">
-								<a href="/account/create">User: {firstName}</a>
+								<a href="/account/create">User: {user.firstName}</a>
 							</h1>
 							<form action="/account/logout" method="POST">
 								<input
@@ -198,7 +127,7 @@
 						id="items-in-cart"
 						class={"num-cart-items text-[0.6rem] font-noto-sans bg-red-700 text-white text-center absolute top-[-0.5rem] right-[-0.5rem] p-[0.1rem] w-[3ch] rounded-full"}
 					>
-						{itemsInCart}
+						{numItemsInCart(cart)}
 					</div>
 					<button on:click={toggleCartPopup}>
 						<div class="bg-feldgrau p-1.5 rounded-full">
@@ -229,7 +158,7 @@
 			>
 				<li><a href="/">Home</a></li>
 				<li><a href="/shop">Shop</a></li>
-				{#if firstName !== undefined}
+				{#if user !== undefined}
 					<li><a href="/account/login">Account</a></li>
 				{:else}
 					<li><a href="/account/login">Log In</a></li>

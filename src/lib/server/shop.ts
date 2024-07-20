@@ -1,22 +1,5 @@
 import { pool } from "./db";
-
-// NOTE conversion of product id is biting me in the ass all over
-// Look at types if weird errors start happening, and try to find a more consistent way of dealing with this
-
-interface Product {
-	id: number,
-	name: string,
-	description: string,
-	price: number,
-	stock: number,
-	imageSrc: string,
-}
-
-interface CartItem {
-	productId: string,
-	quantity: number,
-	price: number,
-}
+import type { Product, Cart, CartItem } from "$lib/types";
 
 export async function getProducts(): Promise<Array<Product>> {
 	const result = await pool.query(`
@@ -38,7 +21,7 @@ export async function getProducts(): Promise<Array<Product>> {
 }
 
 // Get the cart items for the current active user
-export async function getCartItems(userId: string): Promise<Array<CartItem>> {
+export async function getCartItems(userId: string): Promise<Cart> {
 	const result = await pool.query(`
 			SELECT *
 			FROM CartItems
@@ -57,7 +40,7 @@ export async function getCartItems(userId: string): Promise<Array<CartItem>> {
 }
 
 // Consider just returning the cart to make this more broadly useful
-export async function addToCart(userId: string, productId: string): Promise<Array<CartItem> | undefined> {
+export async function addToCart(userId: string, productId: string): Promise<Cart | undefined> {
 	try {
 		// Query to update database
 		await pool.query(`
@@ -95,7 +78,7 @@ export async function addToCart(userId: string, productId: string): Promise<Arra
 }
 
 // Consider just returning the cart to make this more broadly useful
-export async function removeFromCart(userId: string, productId: string): Promise<Array<CartItem> | undefined> {
+export async function removeFromCart(userId: string, productId: string): Promise<Cart | undefined> {
 	try {
 		// Query to update database
 		await pool.query(`
@@ -126,18 +109,4 @@ export async function removeFromCart(userId: string, productId: string): Promise
 		console.log("Error occurred while adding item to cart:", error);
 		return;
 	}
-}
-
-export async function getNumCartItems(cart: Array<CartItem>): Promise<number> {
-	return cart.reduce((total, item) => total + item.quantity, 0);
-}
-
-export async function getNumProductItems(cart: Array<CartItem>, productId: string): Promise<number> {
-	return cart
-		.filter((item) => item.productId.toString() === productId)
-		.reduce((total, item) => total + item.quantity, 0);
-}
-
-export async function computeTotalCost(cart: Array<CartItem>): Promise<number> {
-	return cart.reduce((price, item) => price + (item.price * item.quantity), 0);
 }

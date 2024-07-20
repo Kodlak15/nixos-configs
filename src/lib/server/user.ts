@@ -2,13 +2,7 @@ import { type Cookies } from "@sveltejs/kit";
 import { v4 as uuid } from "uuid";
 import { pool } from "$lib/server/db";
 import { checkPassword, hashPassword } from "./hash";
-
-interface User {
-	id: number,
-	firstName: string,
-	lastName: string,
-	email: string,
-};
+import type { User } from "$lib/types";
 
 export async function createUser({ request }: { request: Request }) {
 	const formData = await request.formData();
