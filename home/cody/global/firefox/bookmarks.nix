@@ -68,6 +68,24 @@
             }
           ];
         }
+        {
+          name = "GameDev";
+          bookmarks = [
+            {
+              name = "Bevy";
+              bookmarks = [
+                {
+                  name = "examples";
+                  url = "https://github.com/bevyengine/bevy/tree/latest/examples#examples";
+                }
+                {
+                  name = "cheatbook";
+                  url = "https://bevy-cheatbook.github.io/fundamentals.html";
+                }
+              ];
+            }
+          ];
+        }
       ];
     }
   ];
