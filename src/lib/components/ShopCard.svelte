@@ -55,6 +55,7 @@
 				<h2 class="text-lg font-bold">${product.price}</h2>
 			</div>
 			<div class="flex flex-row justify-center items-center gap-4">
+				<!-- TODO allow non-users to interact with the store -->
 				{#if item}
 					<CartIncrementor
 						{product}

@@ -21,7 +21,7 @@
 				id="cart-subtotal"
 				class="text-2xl text-feldgrau text-center font-bold"
 			>
-				<h1>Subtotal: {$cartSubtotal.toFixed(2)}</h1>
+				<h1>Subtotal: ${$cartSubtotal.toFixed(2)}</h1>
 			</div>
 			{#each $cart as item}
 				{#if item.quantity > 0}

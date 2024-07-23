@@ -90,7 +90,7 @@
 			>
 				<li><a href="/">Home</a></li>
 				<li><a href="/shop">Shop</a></li>
-				{#if user !== undefined}
+				{#if $user !== undefined}
 					<li><a href="/account/login">Account</a></li>
 				{:else}
 					<li><a href="/account/login">Log In</a></li>
