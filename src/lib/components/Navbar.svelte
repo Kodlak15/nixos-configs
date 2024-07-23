@@ -2,13 +2,9 @@
 	import logo from "$lib/assets/images/logos/logo.png";
 	import Hamburger from "$lib/components/Hamburger.svelte";
 	import CartPopup from "$lib/components/CartPopup.svelte";
-	import type { User } from "$lib/types";
 	import { toggleNavmenu, toggleCartPopup } from "$lib/ui";
-	import { getContext } from "svelte";
-	import type { Writable } from "svelte/store";
 	import { numItemsInCart } from "$lib/stores";
-
-	const user: Writable<User> = getContext("user");
+	import { user } from "$lib/stores";
 </script>
 
 <nav class="relative font-dancing-script z-60">
@@ -38,7 +34,7 @@
 			<!-- <CartPopup /> -->
 			<div class="relative flex flex-row justify-center items-center gap-4">
 				<div class="hidden md:flex md:flex-row md:gap-4">
-					{#if user !== undefined}
+					{#if $user !== undefined}
 						<div class="flex flex-col justify-center items-end">
 							<h1 class="text-feldgrau text-xl font-bold">
 								<a href="/account/create">User: {$user.firstName}</a>
