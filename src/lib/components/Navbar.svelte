@@ -30,8 +30,6 @@
 		</div>
 		<CartPopup />
 		<div class="relative flex flex-1 justify-end items-center">
-			<!-- TODO cart popup here -->
-			<!-- <CartPopup /> -->
 			<div class="relative flex flex-row justify-center items-center gap-4">
 				<div class="hidden md:flex md:flex-row md:gap-4">
 					{#if $user !== undefined}

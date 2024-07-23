@@ -4,7 +4,7 @@
 </script>
 
 <div
-	class="bg-white absolute top-full right-6 mt-2 p-6 border-black border-2 border-solid rounded-md
+	class="hidden bg-white absolute top-full right-6 mt-2 p-6 border-black border-2 border-solid rounded-md
 				z-[99] overflow-auto h-96 min-w-[20rem]"
 	id="cart-popup"
 >
