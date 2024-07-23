@@ -1,12 +1,14 @@
 <script lang="ts">
 	import CartIncrementor from "$lib/components/CartIncrementor.svelte";
-	import type { Product, Cart, CartItem } from "$lib/types";
+	import type { Product, CartItem } from "$lib/types";
 	import { Incrementor } from "$lib/types";
 	import { getProductImage, getProduct } from "$lib/utils";
+	import { getContext } from "svelte";
+	import type { Writable } from "svelte/store";
 
-	export let products: Array<Product>;
 	export let item: CartItem;
-	export let cart: Cart;
+
+	const products: Writable<Array<Product>> = getContext("products");
 </script>
 
 <div class="flex flex-row gap-2 h-40">
@@ -23,25 +25,24 @@
 	</div>
 	<div class="flex flex-col justify-center gap-2 text-center basis-[50%]">
 		<!-- TODO should probably include name as well -->
-		<!-- TODO unfortunately have to edit a decent amount of stuff to do so -->
 		<h1>${item.price}</h1>
 		<div class="flex flex-row gap-2 justify-center items-center">
 			<CartIncrementor
-				product={getProduct(products, item.productId)}
+				product={getProduct($products, item.productId)}
 				incrementor={Incrementor.Dec}
 				color="#475841"
 				incrementorId={"remove-from-cart-nav-" + item.productId}
-				{cart}
+				{item}
 			/>
 			<span class={"num-cart-items-" + item.productId}>
 				{item.quantity}
 			</span>
 			<CartIncrementor
-				product={getProduct(products, item.productId)}
+				product={getProduct($products, item.productId)}
 				incrementor={Incrementor.Inc}
 				color="#475841"
 				incrementorId={"add-to-cart-nav-" + item.productId}
-				{cart}
+				{item}
 			/>
 		</div>
 	</div>

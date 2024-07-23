@@ -2,18 +2,18 @@
 	import logo from "$lib/assets/images/logos/logo.png";
 	import Hamburger from "$lib/components/Hamburger.svelte";
 	import CartPopup from "$lib/components/CartPopup.svelte";
-	import type { User, CartItem, Product } from "$lib/types";
+	import type { User } from "$lib/types";
 	import { toggleNavmenu, toggleCartPopup } from "$lib/ui";
-	import { numItemsInCart } from "$lib/utils";
+	import { getContext } from "svelte";
+	import type { Writable } from "svelte/store";
+	import { numItemsInCart } from "$lib/stores";
 
-	export let user: User | undefined;
-	export let cart: Array<CartItem>;
-	export let products: Array<Product>;
+	const user: Writable<User> = getContext("user");
 </script>
 
 <nav class="relative font-dancing-script z-60">
 	<div
-		class="bg-white text-black flex flex-row justify-between items-center p-6"
+		class="relative bg-white text-black flex flex-row justify-between items-center p-6"
 	>
 		<div class="flex-1">
 			<Hamburger />
@@ -32,15 +32,16 @@
 				</a>
 			</div>
 		</div>
-		<div class=" relative flex flex-1 justify-end items-center">
+		<CartPopup />
+		<div class="relative flex flex-1 justify-end items-center">
 			<!-- TODO cart popup here -->
-			<CartPopup {cart} {products} />
+			<!-- <CartPopup /> -->
 			<div class="relative flex flex-row justify-center items-center gap-4">
 				<div class="hidden md:flex md:flex-row md:gap-4">
 					{#if user !== undefined}
 						<div class="flex flex-col justify-center items-end">
 							<h1 class="text-feldgrau text-xl font-bold">
-								<a href="/account/create">User: {user.firstName}</a>
+								<a href="/account/create">User: {$user.firstName}</a>
 							</h1>
 							<form action="/account/logout" method="POST">
 								<input
@@ -64,7 +65,7 @@
 						id="items-in-cart"
 						class={"num-cart-items text-[0.6rem] font-noto-sans bg-red-700 text-white text-center absolute top-[-0.5rem] right-[-0.5rem] p-[0.1rem] w-[3ch] rounded-full"}
 					>
-						{numItemsInCart(cart)}
+						{$numItemsInCart}
 					</div>
 					<button on:click={toggleCartPopup}>
 						<div class="bg-feldgrau p-1.5 rounded-full">

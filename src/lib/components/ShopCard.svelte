@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import CartIncrementor from "$lib/components/CartIncrementor.svelte";
-	import type { Product, Cart, CartItem } from "$lib/types";
+	import type { Product, CartItem } from "$lib/types";
 	import { Incrementor } from "$lib/types";
 	import { getProductImage } from "$lib/utils";
 
 	export let item: CartItem | undefined;
 	export let product: Product | undefined;
-	export let cart: Cart | undefined;
 
 	onMount(() => {
 		if (product) {
@@ -56,27 +55,29 @@
 				<h2 class="text-lg font-bold">${product.price}</h2>
 			</div>
 			<div class="flex flex-row justify-center items-center gap-4">
-				<CartIncrementor
-					{product}
-					incrementor={Incrementor.Dec}
-					incrementorId={"remove-from-cart-" + product.id}
-					color="white"
-					{cart}
-				/>
-				<span
-					class={"num-cart-items-" +
-						product.id +
-						" font-dancing-script text-white font-bold"}
-				>
-					{item ? item.quantity : 0}
-				</span>
-				<CartIncrementor
-					{product}
-					incrementor={Incrementor.Inc}
-					incrementorId={"add-to-cart-" + product.id}
-					color="white"
-					{cart}
-				/>
+				{#if item}
+					<CartIncrementor
+						{product}
+						incrementor={Incrementor.Dec}
+						incrementorId={"remove-from-cart-" + product.id}
+						color="white"
+						{item}
+					/>
+					<span
+						class={"num-cart-items-" +
+							product.id +
+							" font-dancing-script text-white font-bold"}
+					>
+						{item ? item.quantity : 0}
+					</span>
+					<CartIncrementor
+						{product}
+						incrementor={Incrementor.Inc}
+						incrementorId={"add-to-cart-" + product.id}
+						color="white"
+						{item}
+					/>
+				{/if}
 			</div>
 		</div>
 	</div>

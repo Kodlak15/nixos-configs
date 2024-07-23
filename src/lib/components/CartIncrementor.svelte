@@ -1,15 +1,20 @@
 <script lang="ts">
 	import { updateCart } from "$lib/post";
-	import type { Cart, Product } from "$lib/types";
+	import type { Cart, CartItem, Product } from "$lib/types";
 	import { Incrementor } from "$lib/types";
+	import { getContext } from "svelte";
+	import type { Writable } from "svelte/store";
 
 	export let product: Product | undefined;
 	export let incrementorId: string;
 	export let incrementor: Incrementor;
-	export let cart: Cart | undefined;
 	export let color: string | undefined;
 
+	export let item: CartItem;
+
 	color = color ? color : "white";
+
+	const cart: Writable<Cart> = getContext("cart");
 </script>
 
 {#if cart && product}
@@ -18,8 +23,7 @@
 			id={incrementorId}
 			action={"/shop/" + product.id + "?/removeFromCart"}
 			method="POST"
-			on:submit={async (event) =>
-				await updateCart(event, cart, product.id, incrementor)}
+			on:submit={async (event) => await updateCart(event, item)}
 		>
 			<div
 				class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black z-50"
@@ -47,8 +51,7 @@
 			class={"add-to-cart-" + product.id}
 			action={"/shop/" + product.id + "?/addToCart"}
 			method="POST"
-			on:submit={async (event) =>
-				await updateCart(event, cart, product.id, incrementor)}
+			on:submit={async (event) => await updateCart(event, item)}
 		>
 			<div
 				class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black z-50"

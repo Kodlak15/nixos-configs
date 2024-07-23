@@ -1,8 +1,9 @@
-import { Incrementor, type Cart } from "./types";
-import { updateCartSubtotal, updateCartWidget, updateCartWidgetProduct } from "./ui";
-import { getProduct } from "./utils";
+import { type CartItem } from "./types";
+import { updateCartWidget, updateCartWidgetProduct } from "./ui";
+import { cart } from "./stores";
 
-export async function updateCart(event: SubmitEvent, cart: Cart, productId: string, incrementor: Incrementor) {
+
+export async function updateCart(event: SubmitEvent, item: CartItem) {
 	event.preventDefault();
 	const form = event.currentTarget as HTMLFormElement;
 	const formData = new FormData(form);
@@ -22,32 +23,22 @@ export async function updateCart(event: SubmitEvent, cart: Cart, productId: stri
 			const quantityTotal = JSON.parse(result.data)[quantityTotalIdx];
 			const quantityProduct = JSON.parse(result.data)[quantityProductIdx];
 
+			cart.update((items) => {
+				const existingItem: CartItem | undefined = items.find(
+					(value) => value.productId === item.productId,
+				);
+
+				if (existingItem) {
+					existingItem.quantity = quantityProduct;
+				}
+
+				return items;
+			});
 
 			updateCartWidget(quantityTotal);
-			updateCartWidgetProduct(quantityProduct, productId.toString());
-			updateCartSubtotal(cart.map((item) => {
-				if (item.productId === productId) {
-					// TODO need to find a more convenient way to pass the list of products around
-					// Also consider merging queries in main +layout.server.svelte file to improve performance a bit
-					// const product = getProduct(item.productId);
-					switch (incrementor) {
-						case Incrementor.Inc: {
-							if (item.quantity === 0) {
-								const cartPopup = document.getElementById("cart-popup");
-							}
-							item.quantity = Math.min(item.quantity + 1, 20);
-							break
-						};
-						case Incrementor.Dec: {
-							item.quantity = Math.max(item.quantity - 1, 0);
-							break
-						};
-					}
-				}
-				return item;
-			}));
+			updateCartWidgetProduct(quantityProduct, item.productId.toString());
 		} else {
-			console.log("Failed to remove item from cart");
+			console.log("Failed to update the cart");
 		}
 	} catch (error) {
 		console.error("Error:", error);

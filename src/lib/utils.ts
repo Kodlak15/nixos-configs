@@ -15,10 +15,6 @@ export function computeTotalCost(cart: Cart): number {
 	return cart.reduce((price, item) => price + (item.price * item.quantity), 0);
 }
 
-export function numItemsInCart(cart: Cart): number {
-	return cart.reduce((total, item) => total + item.quantity, 0)
-}
-
 export function getProductImage(productId: string) {
 	return productImages[Number(productId)];
 }

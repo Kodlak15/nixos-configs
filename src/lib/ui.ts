@@ -79,12 +79,3 @@ export function updateCartWidgetProduct(quantity: number, productId: string) {
 		span.innerText = quantity.toString();
 	}
 }
-
-export function updateCartSubtotal(cart: Cart) {
-	const subtotal = computeTotalCost(cart);
-	const element = document.getElementById("cart-subtotal");
-
-	if (element && element.firstChild) {
-		element.firstChild.textContent = "Subtotal: $" + subtotal.toString();
-	}
-}
