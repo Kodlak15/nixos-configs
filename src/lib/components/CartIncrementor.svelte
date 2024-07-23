@@ -10,7 +10,7 @@
 	export let incrementor: Incrementor;
 	export let color: string | undefined;
 
-	export let item: CartItem;
+	// export let item: CartItem | undefined;
 
 	color = color ? color : "white";
 
@@ -23,7 +23,7 @@
 			id={incrementorId}
 			action={"/shop/" + product.id + "?/removeFromCart"}
 			method="POST"
-			on:submit={async (event) => await updateCart(event, item)}
+			on:submit={async (event) => await updateCart(event, product.id)}
 		>
 			<div
 				class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black z-50"
@@ -51,7 +51,7 @@
 			class={"add-to-cart-" + product.id}
 			action={"/shop/" + product.id + "?/addToCart"}
 			method="POST"
-			on:submit={async (event) => await updateCart(event, item)}
+			on:submit={async (event) => await updateCart(event, product.id)}
 		>
 			<div
 				class="relative border-2 border-transparent border-solid rounded-full hover:cursor-pointer hover:border-black z-50"

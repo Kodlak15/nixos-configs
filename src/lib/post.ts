@@ -3,7 +3,7 @@ import { updateCartWidget, updateCartWidgetProduct } from "./ui";
 import { cart } from "./stores";
 
 
-export async function updateCart(event: SubmitEvent, item: CartItem) {
+export async function updateCart(event: SubmitEvent, productId: string) {
 	event.preventDefault();
 	const form = event.currentTarget as HTMLFormElement;
 	const formData = new FormData(form);
@@ -20,12 +20,13 @@ export async function updateCart(event: SubmitEvent, item: CartItem) {
 
 			const quantityTotalIdx = json[0]["quantityTotal"];
 			const quantityProductIdx = json[0]["quantityProduct"];
+
 			const quantityTotal = JSON.parse(result.data)[quantityTotalIdx];
 			const quantityProduct = JSON.parse(result.data)[quantityProductIdx];
 
 			cart.update((items) => {
 				const existingItem: CartItem | undefined = items.find(
-					(value) => value.productId === item.productId,
+					(value) => value.productId === productId,
 				);
 
 				if (existingItem) {
@@ -36,7 +37,7 @@ export async function updateCart(event: SubmitEvent, item: CartItem) {
 			});
 
 			updateCartWidget(quantityTotal);
-			updateCartWidgetProduct(quantityProduct, item.productId.toString());
+			updateCartWidgetProduct(quantityProduct, productId.toString());
 		} else {
 			console.log("Failed to update the cart");
 		}

@@ -3,9 +3,10 @@
 	import { cart, cartSubtotal, numItemsInCart } from "$lib/stores";
 </script>
 
+<!-- TODO this could look better -->
 <div
-	class="hidden bg-white absolute top-full right-6 mt-2 p-6 border-black border-2 border-solid rounded-md
-				z-[99] overflow-auto h-96 min-w-[20rem]"
+	class="bg-white absolute top-full right-6 mt-2 p-6 border-black border-2 border-solid rounded-md
+				z-[99] overflow-auto h-96 w-[22rem]"
 	id="cart-popup"
 >
 	<div class="flex flex-col gap-6">

@@ -56,29 +56,27 @@
 			</div>
 			<div class="flex flex-row justify-center items-center gap-4">
 				<!-- TODO allow non-users to interact with the store -->
-				{#if item}
-					<CartIncrementor
-						{product}
-						incrementor={Incrementor.Dec}
-						incrementorId={"remove-from-cart-" + product.id}
-						color="white"
-						{item}
-					/>
-					<span
-						class={"num-cart-items-" +
-							product.id +
-							" font-dancing-script text-white font-bold"}
-					>
-						{item ? item.quantity : 0}
-					</span>
-					<CartIncrementor
-						{product}
-						incrementor={Incrementor.Inc}
-						incrementorId={"add-to-cart-" + product.id}
-						color="white"
-						{item}
-					/>
-				{/if}
+				<!-- {#if item} -->
+				<CartIncrementor
+					{product}
+					incrementor={Incrementor.Dec}
+					incrementorId={"remove-from-cart-" + product.id}
+					color="white"
+				/>
+				<span
+					class={"num-cart-items-" +
+						product.id +
+						" font-dancing-script text-white font-bold"}
+				>
+					{item ? item.quantity : 0}
+				</span>
+				<CartIncrementor
+					{product}
+					incrementor={Incrementor.Inc}
+					incrementorId={"add-to-cart-" + product.id}
+					color="white"
+				/>
+				<!-- {/if} -->
 			</div>
 		</div>
 	</div>

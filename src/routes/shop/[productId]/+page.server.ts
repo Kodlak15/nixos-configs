@@ -21,7 +21,12 @@ export const actions = {
 
 			const quantityTotal = getNumCartItems(cart);
 			const quantityProduct = getNumProductItems(cart, productId);
-			const response = { success: true, quantityTotal: quantityTotal, quantityProduct: quantityProduct };
+			const response = {
+				success: true,
+				quantityTotal: quantityTotal,
+				quantityProduct: quantityProduct,
+				productId: productId,
+			};
 			console.log("User", userId, "added product", productId, "to their cart")
 			return response;
 		} catch (error) {
@@ -45,7 +50,12 @@ export const actions = {
 
 			const quantityTotal = getNumCartItems(cart);
 			const quantityProduct = getNumProductItems(cart, productId);
-			const response = { success: true, quantityTotal: quantityTotal, quantityProduct: quantityProduct };
+			const response = {
+				success: true,
+				quantityTotal: quantityTotal,
+				quantityProduct: quantityProduct,
+				productId: productId,
+			};
 			console.log("User", userId, "removed product", productId, "to their cart")
 			return response;
 		} catch (error) {

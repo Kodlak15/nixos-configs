@@ -32,7 +32,6 @@
 				incrementor={Incrementor.Dec}
 				color="#475841"
 				incrementorId={"remove-from-cart-nav-" + item.productId}
-				{item}
 			/>
 			<span class={"num-cart-items-" + item.productId}>
 				{item.quantity}
@@ -42,7 +41,6 @@
 				incrementor={Incrementor.Inc}
 				color="#475841"
 				incrementorId={"add-to-cart-nav-" + item.productId}
-				{item}
 			/>
 		</div>
 	</div>
