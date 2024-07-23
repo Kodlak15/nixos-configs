@@ -35,13 +35,13 @@
 					{#if $user !== undefined}
 						<div class="flex flex-col justify-center items-end">
 							<h1 class="text-feldgrau text-xl font-bold">
-								<a href="/account/create">User: {$user.firstName}</a>
+								<a href="/account/dashboard">User: {$user.firstName}</a>
 							</h1>
 							<form action="/account/logout" method="POST">
 								<input
 									type="submit"
 									value="Log out"
-									class="text-feldgrau text-md font-bold hover:cursor-pointer"
+									class="text-feldgrau text-md font-bold hover:cursor-pointer hover:opacity-50"
 								/>
 							</form>
 						</div>
@@ -91,7 +91,7 @@
 				<li><a href="/">Home</a></li>
 				<li><a href="/shop">Shop</a></li>
 				{#if $user !== undefined}
-					<li><a href="/account/login">Account</a></li>
+					<li><a href="/account/dashboard">Account</a></li>
 				{:else}
 					<li><a href="/account/login">Log In</a></li>
 					<li><a href="/account/create">Create Account</a></li>
