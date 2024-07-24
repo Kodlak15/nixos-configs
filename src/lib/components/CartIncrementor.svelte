@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { updateCart } from "$lib/post";
-	import type { Cart, CartItem, Product } from "$lib/types";
+	import type { Cart, Product } from "$lib/types";
 	import { Incrementor } from "$lib/types";
 	import { getContext } from "svelte";
 	import type { Writable } from "svelte/store";
@@ -9,8 +9,6 @@
 	export let incrementorId: string;
 	export let incrementor: Incrementor;
 	export let color: string | undefined;
-
-	// export let item: CartItem | undefined;
 
 	color = color ? color : "white";
 

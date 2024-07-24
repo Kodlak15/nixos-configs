@@ -27,7 +27,6 @@ export const actions = {
 				quantityProduct: quantityProduct,
 				productId: productId,
 			};
-			console.log("User", userId, "added product", productId, "to their cart")
 			return response;
 		} catch (error) {
 			return { success: false };
@@ -56,7 +55,6 @@ export const actions = {
 				quantityProduct: quantityProduct,
 				productId: productId,
 			};
-			console.log("User", userId, "removed product", productId, "to their cart")
 			return response;
 		} catch (error) {
 			return { success: false };
