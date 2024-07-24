@@ -28,5 +28,8 @@
           '';
         };
       };
+      packages = {
+        default = pkgs.callPackage ./default.nix {};
+      };
     });
 }
