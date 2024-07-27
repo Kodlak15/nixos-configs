@@ -46,9 +46,9 @@
           workspace_swipe = false
       }
 
-      # device:epic-mouse-v1 {
-      #     sensitivity = -0.5
-      # }
+      cursor {
+        no_hardware_cursors = true
+      }
     '';
   };
 }

@@ -38,13 +38,13 @@
           sensitivity = 0.25 # -1.0 - 1.0, 0 means no modification.
       }
 
+      cursor {
+        no_hardware_cursors = true
+      }
+
       gestures {
           workspace_swipe = false
       }
-
-      # device:epic-mouse-v1 {
-      #     sensitivity = -0.5
-      # }
     '';
   };
 }

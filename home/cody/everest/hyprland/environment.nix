@@ -9,11 +9,10 @@
       env = GDK_SCALE,2
       # env = XCURSOR_SIZE,32
       # TODO
-      # env = HYPRCURSOR_THEME,rose-pine-hyprcursor
-      # env = HYPRCURSOR_SIZE,32
+      env = HYPRCURSOR_THEME,rose-pine-hyprcursor
+      env = HYPRCURSOR_SIZE,16
 
       # Environment variables
-      env = WLR_NO_HARDWARE_CURSORS,1
       env = CLUTTER_BACKEND,wayland
       env = SDL_VIDEODRIVER,wayland
       env = XDG_SESSION_TYPE,wayland

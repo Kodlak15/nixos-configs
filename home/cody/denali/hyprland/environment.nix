@@ -9,7 +9,6 @@
       env = XCURSOR_SIZE,16
 
       # Environment variables
-      env = WLR_NO_HARDWARE_CURSORS,1
       env = CLUTTER_BACKEND,wayland
       env = SDL_VIDEODRIVER,wayland
       env = XDG_SESSION_TYPE,wayland
