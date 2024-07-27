@@ -60,7 +60,7 @@ in
 
     # Program the yubikey
     if [[ ! "$SLOT" == "0" ]]; then
-    	ykpersonalize -"$SLOT" -y -ochal-resp -ochal-hmac &>/dev/null
+    	ykpersonalize -"$SLOT" -y -ochal-resp -ochal-hmac
     fi
 
     # Wipe and format the LUKS disk
