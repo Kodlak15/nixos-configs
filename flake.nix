@@ -45,6 +45,7 @@
 
     swwwmgr.url = "github:Kodlak15/swww-manager";
     nvim.url = "github:Kodlak15/nvim-flake";
+    tweather.url = "github:Kodlak15/tweather";
   };
 
   outputs = {
