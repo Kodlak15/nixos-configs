@@ -10,8 +10,8 @@
     # '';
     extraConfig = ''
       monitor = DP-1, highrr, 1920x0, 1
-      monitor = DP-2, 1920x1080@144, 0x0, 1
-      monitor = DP-3, 2560x1440@165, 4480x0, 1
+      monitor = DP-2, highrr, 0x0,    1
+      monitor = DP-3, highrr, 4480x0, 1
     '';
   };
 }

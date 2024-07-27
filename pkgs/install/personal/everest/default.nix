@@ -22,6 +22,7 @@ in
     LUKSDISK="/dev/$LUKSDISK"
     BOOTDISK="/dev/$BOOTDISK"
 
+    lsblk
     read -p "Choose the partition number for LUKS: " NLUKS
     read -p "Choose the partition number for BOOT: " NBOOT
 
