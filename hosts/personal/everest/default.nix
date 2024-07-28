@@ -9,8 +9,17 @@ in {
   ];
 
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    # loader.systemd-boot.enable = true;
+    # loader.efi.canTouchEfiVariables = true;
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        devices = ["nodev"];
+        efiSupport = true;
+        useOSProber = true;
+      };
+    };
     initrd = {
       kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
       luks = {

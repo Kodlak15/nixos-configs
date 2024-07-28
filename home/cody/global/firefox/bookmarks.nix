@@ -75,6 +75,10 @@
               name = "Bevy";
               bookmarks = [
                 {
+                  name = "bevy";
+                  url = "https://bevyengine.org/";
+                }
+                {
                   name = "examples";
                   url = "https://github.com/bevyengine/bevy/tree/latest/examples#examples";
                 }
