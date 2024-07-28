@@ -46,6 +46,10 @@
           workspace_swipe = false
       }
 
+      debug {
+        disable_logs = false
+      }
+
       cursor {
         no_hardware_cursors = true
       }

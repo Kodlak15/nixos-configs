@@ -92,12 +92,18 @@
     '';
     loginExtra = ''
       if [ "$(tty)" = "/dev/tty1" ]; then
-        exec Hyprland &> /dev/null
+        case "$(hostname)" in
+          "everest") exec Hyprland &> /dev/null ;;
+          "denali") exec nvidia-offload Hyprland &> /dev/null ;;
+        esac
       fi
     '';
     profileExtra = ''
       if [ "$(tty)" = "/dev/tty1" ]; then
-        exec Hyprland &> /dev/null
+        case "$(hostname)" in
+          "everest") exec Hyprland &> /dev/null ;;
+          "denali") exec nvidia-offload Hyprland &> /dev/null ;;
+        esac
       fi
     '';
   };

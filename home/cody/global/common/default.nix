@@ -6,13 +6,10 @@
   stable = with pkgs-stable; [eza]; # Using due to autocomplete bug (see Issue 1038)
   unstable = with pkgs; [
     # Browsers
-    librewolf
     brave
-    tor-browser-bundle-bin
 
     # Debugging and reverse engineering
     gdb
-    ghidra
 
     # System info
     neofetch
@@ -49,12 +46,6 @@
     # Blue light filter
     wlsunset
 
-    # Dev tools
-    trunk
-
-    # Markdown editor
-    logseq
-
     # Wallpaper
     swww
 
@@ -86,9 +77,6 @@
     # Manage GoPro videos
     gopro
 
-    # Paint
-    pinta
-
     # Media
     spotify
     playerctl
@@ -111,13 +99,13 @@
     slurp
 
     # Pywal (is this needed???)
-    python311Packages.colorthief
+    # python311Packages.colorthief
 
     # Neovim/Vim plugins (place in nvim config???)
-    vimPlugins.nvim-treesitter-parsers.templ
+    # vimPlugins.nvim-treesitter-parsers.templ
 
     # Language servers (place these elsewhere)
-    nodePackages.bash-language-server
+    # nodePackages.bash-language-server
 
     # Formatters (place these elsewhere)
     nixpkgs-fmt

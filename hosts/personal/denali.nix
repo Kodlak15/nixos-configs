@@ -27,12 +27,6 @@
       enable = true;
       enable32Bit = true;
     };
-    # NOTE DEPRECATED
-    # opengl = {
-    #   enable = true;
-    #   driSupport = true;
-    #   driSupport32Bit = true;
-    # };
   };
 
   users.users.cody = {

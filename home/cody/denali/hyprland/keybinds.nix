@@ -22,7 +22,7 @@
       bind = $mainMod, o, exec, obs
       bind = $mainMod, e, exec, /usr/bin/alacritty -e $SHELL -c 'nvim && exec $SHELL' & 2> ./logs/nvim
       bind = $mainMod $altMod, v, exec, virt-manager
-      bind = $ctlR, m, exec, spotify
+      # bind = $ctlR, m, exec, spotify
       bind = $ctlR, s, exec, $HOME/nix/flakes/nixos/scripts/screenshot.sh
       bind = $ctlR $altMod, v, exec, pavucontrol
 
