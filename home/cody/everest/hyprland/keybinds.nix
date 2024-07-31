@@ -23,7 +23,7 @@
       bind = $mainMod, t, exec, thunar
       bind = $mainMod, e, exec, /usr/bin/alacritty -e $SHELL -c 'nvim && exec $SHELL' & 2> ./logs/nvim
       bind = $mainMod $altMod, v, exec, virt-manager
-      bind = $ctlR, m, exec, spotify
+      # bind = $ctlR, m, exec, spotify
       # bind = $ctlR, s, exec, grim -g "$(slurp)" $HOME/screenshots/$(date + '%s_grim.png') 2> $HOME/screenshots/error.log
       bind = $ctlR, s, exec, $HOME/nix/flakes/nixos/scripts/screenshot.sh
       bind = $ctlR $altMod, v, exec, pavucontrol

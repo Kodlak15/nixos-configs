@@ -88,6 +88,15 @@
                 }
               ];
             }
+            {
+              name = "blender";
+              bookmarks = [
+                {
+                  name = "manual";
+                  url = "https://docs.blender.org/manual/en/dev/";
+                }
+              ];
+            }
           ];
         }
       ];
