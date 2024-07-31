@@ -11,6 +11,9 @@
     # Debugging and reverse engineering
     gdb
 
+    # LLM Clients
+    gpt4all
+
     # System info
     neofetch
     nix-output-monitor
