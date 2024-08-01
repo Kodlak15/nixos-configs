@@ -19,9 +19,6 @@ test-home:
 iso-minimal:
 	nix build .#nixosConfigurations.iso.minimal.config.system.build.isoImage
 
-image-digital-ocean:
-	nix build .#nixosConfigurations.image.digitalOcean.config.system.build.digitalOceanImage
-
 update:
 	nix flake update
 
@@ -33,3 +30,6 @@ deploy-korriban:
 
 deploy-alduin:
 	nix run .#deploy.do.alduin
+
+image-alduin:
+	nix build .#nixosConfigurations.image.do.alduin.config.system.build.digitalOceanImage

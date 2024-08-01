@@ -122,13 +122,15 @@
         };
       };
       image = {
-        digitalOcean = lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            "${nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
-            ./hosts/digital-ocean
-          ];
-          specialArgs = {inherit inputs outputs;};
+        do = {
+          alduin = lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              "${nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
+              ./hosts/digital-ocean/alduin
+            ];
+            specialArgs = {inherit inputs outputs;};
+          };
         };
       };
     };
