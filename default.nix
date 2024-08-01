@@ -1,5 +1,6 @@
 {pkgs, ...}: let
-  _ = pkgs.buildNpmPackage {
+  # NOTE can use to test build locally, but doesn't seem as practical as docker to run on remote server
+  cb = pkgs.buildNpmPackage {
     name = "cascade-botanicals-svelte";
     src = ./.;
     npmDepsHash = "sha256-A652NvAZsVn9w+yO5ljxBEPGZV04rGIAYgyj29/u8Yo=";
