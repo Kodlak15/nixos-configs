@@ -20,6 +20,11 @@ in
     NBOOT="1"
     NROOT="2"
 
+    if [[ "$ROOTDISK" == "$BOOTDISK" && "$NLUKS" == "$NBOOT" ]]; then
+      echo "Error: attempting to use the same partition for LUKS and BOOT, exiting..."
+      exit 1
+    fi
+
     if [[ -n "$(echo "$ROOTDISK" | grep "nvme")" ]]; then
       ENDLUKS="p$NLUKS"
     else
@@ -44,16 +49,9 @@ in
     # The NixOS configuration to use
     NIXCFG="do/alduin"
 
-    # Wipe and format the LUKS disk
-    echo "$ROOTDISK will now be formatted and all data will be wiped!"
-    read -p "Continue? (y/n): " CONFIRM
-    if [[ "$CONFIRM" != "y" ]]; then
-      echo "Exiting..."
-      exit 0
-    else
-      sgdisk -o "$ROOTDISK" &>/dev/null
-      sgdisk -g "$ROOTDISK" &>/dev/null
-    fi
+    # Wipe and format the Root disk
+    sgdisk -o "$ROOTDISK" &>/dev/null
+    sgdisk -g "$ROOTDISK" &>/dev/null
 
     # Create the partitions
     sgdisk -n "$NBOOT"::+"$BOOTSIZE"M --typecode=1:ef00 "$ROOTDISK" &>/dev/null
