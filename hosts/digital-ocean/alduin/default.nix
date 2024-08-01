@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   inputs,
   ...
 }: {
@@ -11,6 +12,10 @@
 
   virtualisation.digitalOceanImage.compressionMethod = "bzip2";
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  networking.hostName = "alduin";
+
   environment.systemPackages = with pkgs; [
     neovim
     neofetch
@@ -21,14 +26,37 @@
     nginx = {
       enable = true;
       virtualHosts."myhost.org" = {
-        addSSL = true;
-        enableACME = true;
+        # addSSL = true;
+        # enableACME = true;
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:3000";
           };
         };
       };
+    };
+    postgresql = {
+      enable = true;
+      ensureDatabases = ["mydb"];
+      authentication = pkgs.lib.mkOverride 10 ''
+        #Type #Database #User #auth-method
+        local all       all   trust
+      '';
+    };
+  };
+
+  security = {
+    acme = {
+      defaults = {
+        email = "stanlcod15@protonmail.com";
+      };
+      acceptTerms = true;
+    };
+  };
+
+  virtualisation = {
+    docker = {
+      enable = true;
     };
   };
 

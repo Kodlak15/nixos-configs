@@ -30,3 +30,6 @@ gc:
 
 deploy-korriban:
 	nix run .#deploy.vm.korriban
+
+deploy-alduin:
+	nix run .#deploy.do.alduin

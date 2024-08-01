@@ -105,6 +105,12 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
+      "do/alduin" = lib.nixosSystem {
+        modules = [
+          ./hosts/digital-ocean/alduin/default.nix
+        ];
+        specialArgs = {inherit inputs outputs;};
+      };
       iso = {
         minimal = lib.nixosSystem {
           system = "x86_64-linux";
