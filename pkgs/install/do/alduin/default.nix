@@ -20,11 +20,6 @@ in
     NBOOT="1"
     NROOT="2"
 
-    if [[ "$ROOTDISK" == "$BOOTDISK" && "$NLUKS" == "$NBOOT" ]]; then
-      echo "Error: attempting to use the same partition for LUKS and BOOT, exiting..."
-      exit 1
-    fi
-
     if [[ -n "$(echo "$ROOTDISK" | grep "nvme")" ]]; then
       ENDLUKS="p$NLUKS"
     else
