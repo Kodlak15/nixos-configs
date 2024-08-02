@@ -25,7 +25,7 @@
   services = {
     nginx = {
       enable = true;
-      virtualHosts."myhost.org" = {
+      virtualHosts."my-domain.com" = {
         # addSSL = true;
         # enableACME = true;
         locations = {

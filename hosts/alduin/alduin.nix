@@ -17,7 +17,14 @@
   services = {
     nginx = {
       enable = true;
-      virtualHosts."myhost.org" = {
+      logError = "stderr debug";
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+      virtualHosts."cascade-botanicals.com" = {
+        ##
+        # enableACME = true;
+        # forceSSL = true;
+        ##
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:3000";
@@ -56,6 +63,11 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwaOrqTJ6Xq8qU3y/Vn02tHMUZJISNRA/fLAVfYCN21 openpgp:0x344DA983"
       ];
     };
+  };
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [80 443];
   };
 
   system.stateVersion = "24.11";
