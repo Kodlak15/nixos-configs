@@ -105,9 +105,8 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
-      alduin = lib.nixosSystem {
-        vm = {
-          system = lib.mkDefault "x86_64-linux";
+      alduin = {
+        vm = lib.nixosSystem {
           modules = [./hosts/alduin/vm];
           specialArgs = {inherit inputs outputs;};
         };
