@@ -14,7 +14,7 @@
     vm = {
       korriban = pkgs.callPackage ./install/vm/korriban {};
     };
-    alduin = pkgs.callPackage ./install/do/alduin {};
+    alduin = pkgs.callPackage ./install/alduin {};
   };
   rebuild = {
     personal = {
