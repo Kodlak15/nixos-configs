@@ -14,10 +14,7 @@
     vm = {
       korriban = pkgs.callPackage ./install/vm/korriban {};
     };
-    # Test do configs in a VM
-    do = {
-      alduin = pkgs.callPackage ./install/do/alduin {};
-    };
+    alduin = pkgs.callPackage ./install/do/alduin {};
   };
   rebuild = {
     personal = {
