@@ -106,7 +106,7 @@
         specialArgs = {inherit inputs outputs;};
       };
       alduin = {
-        vm = {
+        vm = lib.nixosSystem {
           modules = [./hosts/alduin/vm];
           specialArgs = {inherit inputs outputs;};
         };
