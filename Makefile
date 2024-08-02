@@ -29,10 +29,10 @@ deploy-korriban:
 	nix run .#deploy.vm.korriban
 
 deploy-do-alduin:
-	nix run .#deploy.do.alduin
+	nix run .#deploy.alduin.digital-ocean
 
 deploy-vm-alduin:
-	nix run .#deploy.vm.alduin
+	nix run .#deploy.alduin.vm
 
 image-alduin:
 	nix build .#nixosConfigurations.alduin.digital-ocean.config.system.build.digitalOceanImage

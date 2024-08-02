@@ -26,8 +26,9 @@
     vm = {
       korriban = pkgs.callPackage ./deploy/korriban {};
     };
-    do = {
-      alduin = pkgs.callPackage ./deploy/alduin {};
+    alduin = {
+      vm = pkgs.callPackage ./deploy/alduin/vm {};
+      digital-ocean = pkgs.callPackage ./deploy/alduin/vm {};
     };
   };
   image = {
