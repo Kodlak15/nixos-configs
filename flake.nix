@@ -107,6 +107,7 @@
       };
       alduin = {
         vm = lib.nixosSystem {
+          system = "x86_64-linux";
           modules = [./hosts/alduin/vm];
           specialArgs = {inherit inputs outputs;};
         };
