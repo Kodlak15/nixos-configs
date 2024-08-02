@@ -106,7 +106,7 @@
         specialArgs = {inherit inputs outputs;};
       };
       alduin = {
-        image = {
+        vm = {
           modules = [./hosts/alduin/vm];
           specialArgs = {inherit inputs outputs;};
         };
