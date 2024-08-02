@@ -82,7 +82,7 @@ pkgs.writeShellScriptBin "install.sh" ''
   nixos-generate-config --root "$MOUNTPOINT" --no-filesystems
 
   # Install the system (skip setting initial password)
-  nixos-install --root "$MOUNTPOINT" --flake "$FLAKE#$NIXCFG" --no-root-password
+  nixos-install --root "$MOUNTPOINT" --flake "$FLAKE#$NIXCFG"
 
   # Unmount all volumes
   umount -R "$MOUNTPOINT"
