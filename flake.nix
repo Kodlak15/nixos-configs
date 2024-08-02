@@ -105,20 +105,32 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
-      alduin = {
-        vm = lib.nixosSystem {
-          modules = [./hosts/alduin/vm];
-          specialArgs = {inherit inputs outputs;};
-        };
-        digital-ocean = lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            "${nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
-            ./hosts/alduin/digital-ocean
-          ];
-          specialArgs = {inherit inputs outputs;};
-        };
+      "alduin/vm" = lib.nixosSystem {
+        modules = [./hosts/alduin/vm];
+        specialArgs = {inherit inputs outputs;};
       };
+      "alduin/digital-ocean" = lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          "${nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
+          ./hosts/alduin/digital-ocean
+        ];
+        specialArgs = {inherit inputs outputs;};
+      };
+      # alduin = {
+      #   vm = lib.nixosSyster {
+      #     modules = [./hosts/alduin/vm];
+      #     specialArgs = {inherit inputs outputs;};
+      #   };
+      #   digital-ocean = lib.nixosSystem {
+      #     system = "x86_64-linux";
+      #     modules = [
+      #       "${nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
+      #       ./hosts/alduin/digital-ocean
+      #     ];
+      #     specialArgs = {inherit inputs outputs;};
+      #   };
+      # };
       iso = {
         minimal = lib.nixosSystem {
           system = "x86_64-linux";
