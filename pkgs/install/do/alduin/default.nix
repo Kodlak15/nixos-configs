@@ -17,15 +17,15 @@ pkgs.writeShellScriptBin "install.sh" ''
   NBOOT="1"
   NROOT="2"
 
-  if [[ "$ROOTDISK" == "$BOOTDISK" && "$NLUKS" == "$NBOOT" ]]; then
+  if [[ "$ROOTDISK" == "$BOOTDISK" && "$NROOT" == "$NBOOT" ]]; then
     echo "Error: attempting to use the same partition for LUKS and BOOT, exiting..."
     exit 1
   fi
 
   if [[ -n "$(echo "$ROOTDISK" | grep "nvme")" ]]; then
-    ENDLUKS="p$NLUKS"
+    ENDLUKS="p$NROOT"
   else
-    ENDLUKS="$NLUKS"
+    ENDLUKS="$NROOT"
   fi
 
   if [[ -n "$(echo "$BOOTDISK" | grep "nvme")" ]]; then
@@ -51,8 +51,8 @@ pkgs.writeShellScriptBin "install.sh" ''
   sgdisk -g "$ROOTDISK"
 
   # Create the partitions
-  sgdisk -n "$NBOOT"::+"$BOOTSIZE"M --typecode=1:ef00 "$ROOTDISK"
-  sgdisk -n "$NLUKS"::-0 --typecode=2:8300 "$ROOTDISK"
+  sgdisk -n "$NBOOT"::+"$BOOTSIZE"M --typecode="$NBOOT":ef00 "$BOOTDISK"
+  sgdisk -n "$NROOT"::-0 --typecode="$NROOT":8300 "$ROOTDISK"
   partprobe "$ROOTDISK"
 
   # Create the boot filesystem
