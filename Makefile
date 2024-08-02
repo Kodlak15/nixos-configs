@@ -28,8 +28,11 @@ gc:
 deploy-korriban:
 	nix run .#deploy.vm.korriban
 
-deploy-alduin:
+deploy-do-alduin:
 	nix run .#deploy.do.alduin
 
+deploy-vm-alduin:
+	nix run .#deploy.vm.alduin
+
 image-alduin:
-	nix build .#nixosConfigurations.image.do.alduin.config.system.build.digitalOceanImage
+	nix build .#nixosConfigurations.alduin.digital-ocean.config.system.build.digitalOceanImage
