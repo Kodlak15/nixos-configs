@@ -17,11 +17,41 @@
       devShells = {
         default = pkgs.mkShell {
           packages = with pkgs; [
+            # Dev environment
             zellij
+            # JS
             nodejs
             nodePackages.typescript
+            # Database
             postgresql_16
+            goose
           ];
+
+          # Environment variables
+          GOOSE_MIGRATION_DIR = "./migrations/";
+          GOOSE_DBSTRING = "host=0.0.0.0 dbname=postgres user=postgres password=example sslmode=disable";
+          GOOSE_DRIVER = "postgres";
+
+          shellHook = ''
+            exec $SHELL -c zellij
+          '';
+        };
+        testLocal = pkgs.mkShell {
+          packages = with pkgs; [
+            # Dev environment
+            zellij
+            # JS
+            nodejs
+            nodePackages.typescript
+            # Database
+            postgresql_16
+            goose
+          ];
+
+          # Environment variables
+          GOOSE_MIGRATION_DIR = "./migrations/";
+          GOOSE_DBSTRING = "host=192.168.122.214 dbname=postgres user=postgres password=example sslmode=disable";
+          GOOSE_DRIVER = "postgres";
 
           shellHook = ''
             exec $SHELL -c zellij
