@@ -81,27 +81,17 @@
     overlays = import ./overlays {inherit inputs;};
 
     nixosConfigurations = {
-      "personal/everest" = lib.nixosSystem {
-        modules = [./hosts/personal/everest.nix];
-        specialArgs = {inherit inputs outputs;};
-      };
-      "personal/denali" = lib.nixosSystem {
-        modules = [./hosts/personal/denali.nix];
-        specialArgs = {inherit inputs outputs;};
-      };
-      "test/test-vm" = lib.nixosSystem {
-        modules = [./hosts/test/test-vm];
-        specialArgs = {inherit inputs outputs;};
-      };
-      "vm/korriban" = lib.nixosSystem {
+      "skyrim/desktop" = lib.nixosSystem {
         modules = [
-          ./hosts/vm/korriban
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.sion = import ./home/sion/korriban.nix;
-          }
+          ./hosts/skyrim
+          ./hosts/skyrim/desktop
+        ];
+        specialArgs = {inherit inputs outputs;};
+      };
+      "skyrim/laptop" = lib.nixosSystem {
+        modules = [
+          ./hosts/skyrim
+          ./hosts/skyrim/laptop
         ];
         specialArgs = {inherit inputs outputs;};
       };
@@ -117,22 +107,21 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
-      iso = {
-        minimal = lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-            ./hosts/minimal-iso
-          ];
-          specialArgs = {inherit inputs outputs;};
-        };
+      "minimal-iso" = lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          ./hosts/minimal-iso
+        ];
+        specialArgs = {inherit inputs outputs;};
       };
     };
 
     homeConfigurations = {
-      "cody@personal/everest" = lib.homeManagerConfiguration {
+      "cody@skyrim/desktop" = lib.homeManagerConfiguration {
         modules = [
-          ./home/cody/everest.nix
+          ./home/cody/skyrim
+          ./home/cody/skyrim/desktop
           nur.hmModules.nur # Nix User Repository
         ];
         pkgs = pkgsFor.x86_64-linux;
@@ -141,20 +130,11 @@
           inherit inputs outputs;
         };
       };
-      "cody@personal/denali" = lib.homeManagerConfiguration {
+      "cody@skyrim/laptop" = lib.homeManagerConfiguration {
         modules = [
-          ./home/cody/denali.nix
+          ./home/cody/skyrim
+          ./home/cody/skyrim/laptop
           nur.hmModules.nur # Nix User Repository
-        ];
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {
-          pkgs-stable = pkgsForStable.x86_64-linux;
-          inherit inputs outputs;
-        };
-      };
-      "user@test/test-vm" = lib.homeManagerConfiguration {
-        modules = [
-          ./home/user/testvm.nix
         ];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {

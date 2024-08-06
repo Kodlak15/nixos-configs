@@ -4,28 +4,22 @@
   go-blueprint = pkgs.callPackage ./go-blueprint {};
   minimal-iso = pkgs.callPackage ./minimal-iso {};
   install = {
-    personal = {
-      everest = pkgs.callPackage ./install/personal/everest {};
-      denali = pkgs.callPackage ./install/personal/denali {};
+    skyrim = {
+      desktop = pkgs.callPackage ./install/skyrim/desktop {};
+      laptop = pkgs.callPackage ./install/skyrim/laptop {};
     };
     test = {
       test-vm = pkgs.callPackage ./install/test/test-vm {};
     };
-    vm = {
-      korriban = pkgs.callPackage ./install/vm/korriban {};
-    };
     alduin = pkgs.callPackage ./install/alduin {};
   };
   rebuild = {
-    personal = {
-      nixos = pkgs.callPackage ./rebuild/personal/nixos {};
-      home = pkgs.callPackage ./rebuild/personal/home {};
+    skyrim = {
+      nixos = pkgs.callPackage ./rebuild/skyrim/nixos {};
+      home = pkgs.callPackage ./rebuild/skyrim/home {};
     };
   };
   deploy = {
-    vm = {
-      korriban = pkgs.callPackage ./deploy/korriban {};
-    };
     alduin = {
       vm = pkgs.callPackage ./deploy/alduin/vm {};
       digital-ocean = pkgs.callPackage ./deploy/alduin/vm {};

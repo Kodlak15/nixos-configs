@@ -1,20 +1,20 @@
-personal: 
-	nix run .#rebuild.personal.nixos && nix run .#rebuild.personal.home
+skyrim: 
+	nix run .#rebuild.skyrim.nixos && nix run .#rebuild.skyrim.home
 
-test: 
-	nix run .#rebuild.test.nixos && nix run .#rebuild.test.home
+skyrim-nixos:
+	nix run .#rebuild.skyrim.nixos
 
-personal-nixos:
-	nix run .#rebuild.personal.nixos
+skyrim-home:
+	nix run .#rebuild.skyrim.home
 
-test-nixos:
-	nix run .#rebuild.test.nixos
+alduin-deploy-do:
+	nix run .#deploy.alduin.digital-ocean
 
-personal-home:
-	nix run .#rebuild.personal.home
+alduin-deploy-vm:
+	nix run .#deploy.alduin.vm
 
-test-home:
-	nix run .#rebuild.test.home
+alduin-image-do:
+	nix build .#nixosConfigurations.alduin.digital-ocean.config.system.build.digitalOceanImage
 
 iso-minimal:
 	nix build .#nixosConfigurations.iso.minimal.config.system.build.isoImage
@@ -24,15 +24,3 @@ update:
 
 gc:
 	nix-collect-garbage
-
-deploy-korriban:
-	nix run .#deploy.vm.korriban
-
-deploy-do-alduin:
-	nix run .#deploy.alduin.digital-ocean
-
-deploy-vm-alduin:
-	nix run .#deploy.alduin.vm
-
-image-alduin:
-	nix build .#nixosConfigurations.alduin.digital-ocean.config.system.build.digitalOceanImage
