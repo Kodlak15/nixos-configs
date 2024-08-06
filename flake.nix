@@ -102,9 +102,10 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
-      "morrowind/postgres" = lib.nixosSystem {
+      "morrowind/vm/postgres" = lib.nixosSystem {
         modules = [
           ./hosts/digital-ocean/morrowind
+          ./hosts/digital-ocean/morrowind/vm
           ./hosts/digital-ocean/morrowind/postgres
         ];
         specialArgs = {inherit inputs outputs;};
@@ -121,6 +122,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/digital-ocean
+          ./hosts/digital-ocean/morrowind
           ./hosts/digital-ocean/morrowind/postgres
         ];
         specialArgs = {inherit inputs outputs;};
