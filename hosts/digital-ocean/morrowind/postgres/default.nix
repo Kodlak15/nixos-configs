@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  networking.hostName = lib.mkDefault "morrowind-pg";
+
   services.postgresql = {
     enable = true;
     ensureDatabases = ["mydb"];

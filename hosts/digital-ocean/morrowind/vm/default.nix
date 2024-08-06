@@ -1,5 +1,6 @@
 let
   rootPart = "/dev/disk/by-label/ROOT";
+  bootPart = "/dev/disk/by-label/EFI-NIXOS";
 in {
   imports = [
     ./hardware-configuration.nix
@@ -25,6 +26,10 @@ in {
       device = rootPart;
       fsType = "btrfs";
       options = ["subvol=@var"];
+    };
+    "/boot" = {
+      device = bootPart;
+      fsType = "vfat";
     };
   };
 
