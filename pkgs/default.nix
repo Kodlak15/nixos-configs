@@ -11,7 +11,7 @@
     test = {
       test-vm = pkgs.callPackage ./install/test/test-vm {};
     };
-    alduin = pkgs.callPackage ./install/alduin {};
+    morrowind = pkgs.callPackage ./install/morrowind {};
   };
   rebuild = {
     skyrim = {
@@ -20,14 +20,14 @@
     };
   };
   deploy = {
-    alduin = {
-      vm = pkgs.callPackage ./deploy/alduin/vm {};
-      digital-ocean = pkgs.callPackage ./deploy/alduin/vm {};
+    morrowind = {
+      vm = pkgs.callPackage ./deploy/morrowind/vm {};
+      digital-ocean = pkgs.callPackage ./deploy/morrowind/vm {};
     };
   };
   image = {
     do = {
-      alduin = pkgs.callPackage ./image/digital-ocean/alduin {};
+      morrowind = pkgs.callPackage ./image/digital-ocean/morrowind {};
     };
   };
 }

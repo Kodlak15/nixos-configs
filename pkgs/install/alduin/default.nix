@@ -44,7 +44,7 @@ pkgs.writeShellScriptBin "install.sh" ''
   MOUNTPOINT="/mnt/nixos"
 
   # The NixOS configuration to use
-  NIXCFG="alduin/vm"
+  NIXCFG="morrowind/vm"
 
   # Wipe and format the Root disk
   sgdisk -o "$ROOTDISK"

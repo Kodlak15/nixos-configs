@@ -95,15 +95,19 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
-      "alduin/vm" = lib.nixosSystem {
-        modules = [./hosts/alduin/vm];
+      "morrowind/vm" = lib.nixosSystem {
+        modules = [
+          ./hosts/morrowind
+          ./hosts/morrowind/vm
+        ];
         specialArgs = {inherit inputs outputs;};
       };
-      "alduin/digital-ocean" = lib.nixosSystem {
+      "morrowind/digital-ocean" = lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           "${nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
-          ./hosts/alduin/digital-ocean
+          ./hosts/morrowind
+          ./hosts/morrowind/digital-ocean
         ];
         specialArgs = {inherit inputs outputs;};
       };

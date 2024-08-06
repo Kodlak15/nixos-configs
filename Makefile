@@ -7,14 +7,14 @@ skyrim-nixos:
 skyrim-home:
 	nix run .#rebuild.skyrim.home
 
-alduin-deploy-do:
-	nix run .#deploy.alduin.digital-ocean
+morrowind-deploy-do:
+	nix run .#deploy.morrowind.digital-ocean
 
-alduin-deploy-vm:
-	nix run .#deploy.alduin.vm
+morrowind-deploy-vm:
+	nix run .#deploy.morrowind.vm
 
-alduin-image-do:
-	nix build .#nixosConfigurations.alduin.digital-ocean.config.system.build.digitalOceanImage
+morrowind-image-do:
+	nix build .#nixosConfigurations.morrowind.digital-ocean.config.system.build.digitalOceanImage
 
 iso-minimal:
 	nix build .#nixosConfigurations.iso.minimal.config.system.build.isoImage
