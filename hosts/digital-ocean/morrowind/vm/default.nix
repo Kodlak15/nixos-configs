@@ -3,7 +3,6 @@ let
 in {
   imports = [
     ./hardware-configuration.nix
-    ../alduin.nix
   ];
 
   fileSystems = {

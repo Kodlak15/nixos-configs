@@ -7,7 +7,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  networking.hostName = "alduin";
+  networking.hostName = "morrowind";
 
   environment.systemPackages = with pkgs; [
     neovim
