@@ -12,6 +12,7 @@
       test-vm = pkgs.callPackage ./install/test/test-vm {};
     };
     morrowind = pkgs.callPackage ./install/morrowind {};
+    morrowind-pg = pkgs.callPackage ./install/morrowind/postgres {};
   };
   rebuild = {
     skyrim = {
