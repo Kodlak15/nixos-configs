@@ -50,7 +50,7 @@
 
           # Environment variables
           GOOSE_MIGRATION_DIR = "./migrations/";
-          GOOSE_DBSTRING = "host=192.168.122.214 dbname=postgres user=postgres password=example sslmode=disable";
+          GOOSE_DBSTRING = "host=192.168.122.142 dbname=postgres user=postgres password=example sslmode=disable";
           GOOSE_DRIVER = "postgres";
 
           shellHook = ''

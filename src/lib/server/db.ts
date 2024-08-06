@@ -8,16 +8,20 @@ dotenv.config();
 // Docker Postgres (uncomment for dev)
 // export const pool = new Pool({
 // 	user: "postgres",
-// 	host: "172.19.0.1",
-// 	database: "cascade-botanicals",
+// 	// host: "172.19.0.1",
+// 	host: "127.0.0.1",
+// 	// host: "0.0.0.0",
+// 	// database: "cascade-botanicals",
+// 	database: "postgres",
 // 	password: "example",
 // 	port: 5432,
 // });
 
 // FIXME: cannot connect to postgres on test VM
+// Error: Cross-site POST form submissions are forbidden :( whyyyyyyyyyyyyyyyyyyyyyy
 export const pool = new Pool({
 	user: "postgres",
-	host: "192.168.122.214", // for some reason this is redirecting to another ip???
+	host: "192.168.122.142", // Why is the request going to the application vm?
 	database: "postgres",
 	password: "example",
 	port: 5432,
