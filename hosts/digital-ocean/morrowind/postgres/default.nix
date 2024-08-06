@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  postgresql = {
+  services.postgresql = {
     enable = true;
     ensureDatabases = ["mydb"];
     authentication = pkgs.lib.mkOverride 10 ''
