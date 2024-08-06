@@ -23,6 +23,7 @@
     morrowind = {
       vm = pkgs.callPackage ./deploy/morrowind/vm {};
       digital-ocean = pkgs.callPackage ./deploy/morrowind/vm {};
+      postgres = pkgs.callPackage ./deploy/morrowind/postgres {};
     };
   };
   image = {
