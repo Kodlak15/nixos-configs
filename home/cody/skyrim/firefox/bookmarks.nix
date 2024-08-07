@@ -18,6 +18,10 @@
           url = "https://cloud.digitalocean.com";
         }
         {
+          name = "Hetzner";
+          url = "https://www.hetzner.com/";
+        }
+        {
           name = "ChatGPT";
           url = "https://chatgpt.com/";
         }

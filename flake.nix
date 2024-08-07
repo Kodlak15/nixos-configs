@@ -71,6 +71,7 @@
         inherit system;
         config.allowUnfree = true;
       });
+    digitalOceanImg = import "${inputs.nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix";
   in {
     inherit lib;
     nixosModules = import ./modules/nixos;
@@ -97,32 +98,32 @@
       };
       "morrowind/vm" = lib.nixosSystem {
         modules = [
-          ./hosts/digital-ocean/morrowind
-          ./hosts/digital-ocean/morrowind/vm
+          ./hosts/morrowind
+          ./hosts/morrowind/vm
         ];
         specialArgs = {inherit inputs outputs;};
       };
       "morrowind/vm/postgres" = lib.nixosSystem {
         modules = [
-          ./hosts/digital-ocean/morrowind
-          ./hosts/digital-ocean/morrowind/postgres
+          ./hosts/morrowind
+          ./hosts/morrowind/postgres
         ];
         specialArgs = {inherit inputs outputs;};
       };
       "digital-ocean/morrowind" = lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/digital-ocean
-          ./hosts/digital-ocean/morrowind
+          digitalOceanImg
+          ./hosts/morrowind
         ];
         specialArgs = {inherit inputs outputs;};
       };
       "digital-ocean/morrowind/postgres" = lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./hosts/digital-ocean
-          ./hosts/digital-ocean/morrowind
-          ./hosts/digital-ocean/morrowind/postgres
+          digitalOceanImg
+          ./hosts/morrowind
+          ./hosts/morrowind/postgres
         ];
         specialArgs = {inherit inputs outputs;};
       };
