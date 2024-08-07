@@ -37,7 +37,12 @@ in {
 
   boot = {
     loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+      };
+    };
   };
 
   services = {
