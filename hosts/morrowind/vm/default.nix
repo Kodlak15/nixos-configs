@@ -42,7 +42,7 @@ in {
       grub = {
         enable = true;
         # devices = ["nodev"];
-        devices = bootPart;
+        device = bootPart;
         efiSupport = true;
       };
     };
