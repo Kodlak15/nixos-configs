@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   rootPart = "/dev/disk/by-label/ROOT";
   bootPart = "/dev/disk/by-label/EFI-NIXOS";
 in {
@@ -39,6 +43,8 @@ in {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
+
+  networking.hostName = lib.mkDefault "morrowind-pg";
 
   services = {
     openssh = {

@@ -2,6 +2,7 @@
   openweathercli = pkgs.callPackage ./openweathercli {};
   swww-manager = pkgs.python3Packages.callPackage ./swww-manager {};
   go-blueprint = pkgs.callPackage ./go-blueprint {};
+  coolify = pkgs.callPackage ./coolify {};
   minimal-iso = pkgs.callPackage ./minimal-iso {};
   install = {
     skyrim = {
