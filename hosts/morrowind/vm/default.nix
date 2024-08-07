@@ -42,8 +42,10 @@ in {
       grub = {
         enable = true;
         # devices = ["nodev"];
-        device = bootPart;
+        # device = bootPart;
+        device = "/dev/sda1";
         efiSupport = true;
+        efiInstallAsRemovable = true;
       };
     };
   };
