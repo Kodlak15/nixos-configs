@@ -38,7 +38,6 @@ in {
   boot = {
     # loader.systemd-boot.enable = true;
     loader = {
-      efi.canTouchEfiVariables = true;
       grub = {
         enable = true;
         # devices = ["nodev"];
