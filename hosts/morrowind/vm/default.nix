@@ -40,6 +40,7 @@ in {
     loader = {
       grub = {
         enable = true;
+        version = 2;
         # devices = ["nodev"];
         # device = bootPart;
         device = "/dev/sda";
