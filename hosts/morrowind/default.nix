@@ -11,7 +11,6 @@
 
   environment.systemPackages = with pkgs; [
     neovim
-    neofetch
     tmux
   ];
 
@@ -24,7 +23,9 @@
       virtualHosts."cascade-botanicals.com" = {
         ##
         enableACME = true;
-        forceSSL = true;
+        # FIXME:
+        # forceSSL = true;
+        forceSSL = false;
         ##
         locations = {
           "/" = {
@@ -37,10 +38,10 @@
 
   security = {
     acme = {
+      acceptTerms = true;
       defaults = {
         email = "stanlcod15@protonmail.com";
       };
-      acceptTerms = true;
     };
   };
 
