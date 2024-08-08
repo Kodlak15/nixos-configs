@@ -60,7 +60,7 @@ pkgs.writeShellScriptBin "install.sh" ''
 
   # Create the root filesytem
   # mkfs.btrfs -L "ROOT" "$ROOTPART" -f
-  mkfs.ext4 -L "ROOT" "$ROOTPART" -f
+  mkfs.ext4 -L "ROOT" "$ROOTPART"
 
   # Create subvolumes
   # mount --mkdir "$ROOTPART" "$MOUNTPOINT"
