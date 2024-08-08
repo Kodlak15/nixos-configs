@@ -1,6 +1,5 @@
 let
   rootPart = "/dev/disk/by-label/ROOT";
-  bootPart = "/dev/disk/by-label/EFI-NIXOS";
 in {
   imports = [
     ./hardware-configuration.nix
@@ -27,24 +26,15 @@ in {
       fsType = "btrfs";
       options = ["subvol=@var"];
     };
-    # "/boot" = {
-    #   device = bootPart;
-    #   fsType = "vfat";
-    # };
   };
 
   swapDevices = [];
 
   boot = {
-    # loader.systemd-boot.enable = true;
     loader = {
       grub = {
         enable = true;
-        # devices = ["nodev"];
-        # device = bootPart;
         device = "/dev/sda";
-        # efiSupport = true;
-        # efiInstallAsRemovable = true;
       };
     };
   };

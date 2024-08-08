@@ -21,11 +21,10 @@
       logError = "stderr debug";
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
-      # virtualHosts."cascade-botanicals.com" = {
-      virtualHosts."localhost" = {
+      virtualHosts."cascade-botanicals.com" = {
         ##
-        # enableACME = true;
-        # forceSSL = true;
+        enableACME = true;
+        forceSSL = true;
         ##
         locations = {
           "/" = {
@@ -61,7 +60,7 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [80 443 22 5432];
+    allowedTCPPorts = [80 443];
   };
 
   system.stateVersion = "24.11";
