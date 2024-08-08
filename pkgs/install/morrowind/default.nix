@@ -51,7 +51,9 @@ pkgs.writeShellScriptBin "install.sh" ''
   sgdisk -g "$ROOTDISK"
 
   # Create the partitions
-  sgdisk -n "$NBOOT"::+"$BOOTSIZE"M --typecode="$NBOOT":ef00 "$BOOTDISK"
+  # sgdisk -n "$NBOOT"::+"$BOOTSIZE"M --typecode="$NBOOT":ef00 "$BOOTDISK"
+  # NOTE: hetzner cloud shared servers do not have efi enabled (should rename things)
+  sgdisk -n "$NBOOT"::+"$BOOTSIZE"M --typecode="$NBOOT":ef02 "$BOOTDISK"
   sgdisk -n "$NROOT"::-0 --typecode="$NROOT":8300 "$ROOTDISK"
   partprobe "$ROOTDISK"
 
@@ -67,6 +69,8 @@ pkgs.writeShellScriptBin "install.sh" ''
   btrfs subvolume create "$MOUNTPOINT/@home"
   btrfs subvolume create "$MOUNTPOINT/@tmp"
   btrfs subvolume create "$MOUNTPOINT/@var"
+  # NOTE: for BIOS boot
+  btrfs subvolume create "$MOUNTPOINT/@boot"
   umount "$MOUNTPOINT"
 
   # Mount the subvolumes
@@ -76,7 +80,7 @@ pkgs.writeShellScriptBin "install.sh" ''
   mount --mkdir -o subvol="@var" "$ROOTPART" "$MOUNTPOINT/var"
 
   # Mount the boot partition
-  mount -o umask=0077 --mkdir "$BOOTPART" "$MOUNTPOINT/boot"
+  mount -o umask=0077,subvol="@boot" --mkdir "$BOOTPART" "$MOUNTPOINT/boot"
 
   # Generate the initial configuration
   nixos-generate-config --root "$MOUNTPOINT" --no-filesystems
