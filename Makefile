@@ -7,6 +7,9 @@ skyrim-nixos:
 skyrim-home:
 	nix run .#rebuild.skyrim.home
 
+morrowind:
+	nix run .#deploy.morrowind
+
 morrowind-deploy-do:
 	nix run .#deploy.morrowind.digital-ocean
 
