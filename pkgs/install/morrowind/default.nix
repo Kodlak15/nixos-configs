@@ -59,23 +59,21 @@ pkgs.writeShellScriptBin "install.sh" ''
   mkfs.fat -F 32 -n "EFI-NIXOS" "$BOOTPART"
 
   # Create the root filesytem
-  # mkfs.btrfs -L "ROOT" "$ROOTPART" -f
-  mkfs.ext4 -L "ROOT" "$ROOTPART"
+  mkfs.btrfs -L "ROOT" "$ROOTPART" -f
 
   # Create subvolumes
-  # mount --mkdir "$ROOTPART" "$MOUNTPOINT"
-  # btrfs subvolume create "$MOUNTPOINT/@"
-  # btrfs subvolume create "$MOUNTPOINT/@home"
-  # btrfs subvolume create "$MOUNTPOINT/@tmp"
-  # btrfs subvolume create "$MOUNTPOINT/@var"
-  # umount "$MOUNTPOINT"
+  mount --mkdir "$ROOTPART" "$MOUNTPOINT"
+  btrfs subvolume create "$MOUNTPOINT/@"
+  btrfs subvolume create "$MOUNTPOINT/@home"
+  btrfs subvolume create "$MOUNTPOINT/@tmp"
+  btrfs subvolume create "$MOUNTPOINT/@var"
+  umount "$MOUNTPOINT"
 
   # Mount the subvolumes
-  # mount -o subvol="@" "$ROOTPART" "$MOUNTPOINT"
-  # mount --mkdir -o subvol="@home" "$ROOTPART" "$MOUNTPOINT/home"
-  # mount --mkdir -o subvol="@tmp" "$ROOTPART" "$MOUNTPOINT/tmp"
-  # mount --mkdir -o subvol="@var" "$ROOTPART" "$MOUNTPOINT/var"
-  mount --mkdir "$ROOTPART" "$MOUNTPOINT"
+  mount -o subvol="@" "$ROOTPART" "$MOUNTPOINT"
+  mount --mkdir -o subvol="@home" "$ROOTPART" "$MOUNTPOINT/home"
+  mount --mkdir -o subvol="@tmp" "$ROOTPART" "$MOUNTPOINT/tmp"
+  mount --mkdir -o subvol="@var" "$ROOTPART" "$MOUNTPOINT/var"
 
   # Mount the boot partition
   mount -o umask=0077 --mkdir "$BOOTPART" "$MOUNTPOINT/boot"

@@ -7,29 +7,25 @@ in {
   ];
 
   fileSystems = {
-    # "/" = {
-    #   device = rootPart;
-    #   fsType = "btrfs";
-    #   options = ["subvol=@"];
-    # };
-    # "/home" = {
-    #   device = rootPart;
-    #   fsType = "btrfs";
-    #   options = ["subvol=@home"];
-    # };
-    # "/tmp" = {
-    #   device = rootPart;
-    #   fsType = "btrfs";
-    #   options = ["subvol=@tmp"];
-    # };
-    # "/var" = {
-    #   device = rootPart;
-    #   fsType = "btrfs";
-    #   options = ["subvol=@var"];
-    # };
     "/" = {
       device = rootPart;
-      fsType = "ext4";
+      fsType = "btrfs";
+      options = ["subvol=@"];
+    };
+    "/home" = {
+      device = rootPart;
+      fsType = "btrfs";
+      options = ["subvol=@home"];
+    };
+    "/tmp" = {
+      device = rootPart;
+      fsType = "btrfs";
+      options = ["subvol=@tmp"];
+    };
+    "/var" = {
+      device = rootPart;
+      fsType = "btrfs";
+      options = ["subvol=@var"];
     };
     "/boot" = {
       device = bootPart;
@@ -46,7 +42,7 @@ in {
         enable = true;
         # devices = ["nodev"];
         # device = bootPart;
-        device = "/dev/sda1";
+        device = "/dev/sda";
         efiSupport = true;
         efiInstallAsRemovable = true;
       };
