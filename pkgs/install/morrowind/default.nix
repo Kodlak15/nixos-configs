@@ -80,13 +80,10 @@ pkgs.writeShellScriptBin "install.sh" ''
   mount --mkdir -o subvol="@var" "$ROOTPART" "$MOUNTPOINT/var"
   mount --mkdir -o umask=0077,subvol="@boot" "$ROOTPART" "$MOUNTPOINT/boot"
 
-  # Mount the boot partition
-  # mount -o umask=0077,subvol="@boot" --mkdir "$BOOTPART" "$MOUNTPOINT/boot"
-
   # Generate the initial configuration
   nixos-generate-config --root "$MOUNTPOINT" --no-filesystems
 
-  # Install the system (skip setting initial password)
+  # Install the system
   nixos-install --root "$MOUNTPOINT" --flake "$FLAKE#$NIXCFG"
 
   # Unmount all volumes

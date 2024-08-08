@@ -27,10 +27,10 @@ in {
       fsType = "btrfs";
       options = ["subvol=@var"];
     };
-    "/boot" = {
-      device = bootPart;
-      fsType = "vfat";
-    };
+    # "/boot" = {
+    #   device = bootPart;
+    #   fsType = "vfat";
+    # };
   };
 
   swapDevices = [];
@@ -40,12 +40,11 @@ in {
     loader = {
       grub = {
         enable = true;
-        version = 2;
         # devices = ["nodev"];
         # device = bootPart;
         device = "/dev/sda";
-        efiSupport = true;
-        efiInstallAsRemovable = true;
+        # efiSupport = true;
+        # efiInstallAsRemovable = true;
       };
     };
   };
