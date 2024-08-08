@@ -78,9 +78,10 @@ pkgs.writeShellScriptBin "install.sh" ''
   mount --mkdir -o subvol="@home" "$ROOTPART" "$MOUNTPOINT/home"
   mount --mkdir -o subvol="@tmp" "$ROOTPART" "$MOUNTPOINT/tmp"
   mount --mkdir -o subvol="@var" "$ROOTPART" "$MOUNTPOINT/var"
+  mount --mkdir -o umask=0077,subvol="@boot" "$ROOTPART" "$MOUNTPOINT/boot"
 
   # Mount the boot partition
-  mount -o umask=0077,subvol="@boot" --mkdir "$BOOTPART" "$MOUNTPOINT/boot"
+  # mount -o umask=0077,subvol="@boot" --mkdir "$BOOTPART" "$MOUNTPOINT/boot"
 
   # Generate the initial configuration
   nixos-generate-config --root "$MOUNTPOINT" --no-filesystems
