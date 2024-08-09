@@ -2,17 +2,57 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  rootPart = "/dev/disk/by-label/ROOT";
+in {
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   networking.hostName = "morrowind";
 
+  fileSystems = {
+    "/" = {
+      device = rootPart;
+      fsType = "btrfs";
+      options = ["subvol=@"];
+    };
+    "/home" = {
+      device = rootPart;
+      fsType = "btrfs";
+      options = ["subvol=@home"];
+    };
+    "/tmp" = {
+      device = rootPart;
+      fsType = "btrfs";
+      options = ["subvol=@tmp"];
+    };
+    "/var" = {
+      device = rootPart;
+      fsType = "btrfs";
+      options = ["subvol=@var"];
+    };
+  };
+
+  swapDevices = [];
+
   environment.systemPackages = with pkgs; [
     neovim
     tmux
   ];
+
+  boot = {
+    loader = {
+      grub = {
+        enable = true;
+        device = "/dev/sda";
+      };
+    };
+  };
 
   services = {
     nginx = {
@@ -28,6 +68,14 @@
             proxyPass = "http://127.0.0.1:3000";
           };
         };
+      };
+    };
+    openssh = {
+      enable = true;
+      ports = [22];
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
       };
     };
   };
