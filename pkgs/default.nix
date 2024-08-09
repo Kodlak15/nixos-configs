@@ -8,18 +8,6 @@
       desktop = pkgs.callPackage ./install/skyrim/desktop {};
       laptop = pkgs.callPackage ./install/skyrim/laptop {};
     };
-    test = {
-      test-vm = pkgs.callPackage ./install/test/test-vm {};
-    };
     morrowind = pkgs.callPackage ./install/morrowind {};
-    morrowind-pg = pkgs.callPackage ./install/morrowind/postgres {};
-  };
-  deploy = {
-    morrowind = pkgs.callPackage ./deploy/morrowind {};
-  };
-  image = {
-    do = {
-      morrowind = pkgs.callPackage ./image/digital-ocean/morrowind {};
-    };
   };
 }
