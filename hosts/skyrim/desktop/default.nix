@@ -66,7 +66,7 @@ in {
 
   swapDevices = [];
 
-  networking.hostName = "everest";
+  networking.hostName = "skyrim";
 
   hardware = {
     nvidia = {

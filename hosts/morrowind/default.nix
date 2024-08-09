@@ -21,12 +21,8 @@
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       virtualHosts."cascade-botanicals.com" = {
-        ##
         enableACME = true;
-        # FIXME:
-        # forceSSL = true;
-        forceSSL = false;
-        ##
+        forceSSL = true;
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:3000";
@@ -61,7 +57,7 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [80 443];
+    allowedTCPPorts = [80 443 5432];
   };
 
   system.stateVersion = "24.11";

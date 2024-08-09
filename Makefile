@@ -1,29 +1,14 @@
 skyrim: 
-	nix run .#rebuild.skyrim.nixos && nix run .#rebuild.skyrim.home
+	./scripts/rebuild.sh --all
 
 skyrim-nixos:
-	nix run .#rebuild.skyrim.nixos
+	./scripts/rebuild.sh --nixos
 
 skyrim-home:
-	nix run .#rebuild.skyrim.home
+	./scripts/rebuild.sh --home
 
 morrowind:
-	nix run .#deploy.morrowind
-
-morrowind-deploy-do:
-	nix run .#deploy.morrowind.digital-ocean
-
-morrowind-deploy-vm:
-	nix run .#deploy.morrowind.vm
-
-morrowind-deploy-pg:
-	nix run .#deploy.morrowind.postgres
-
-morrowind-image-do:
-	nix build .#nixosConfigurations.morrowind.digital-ocean.config.system.build.digitalOceanImage
-
-morrowind-image-pg:
-	nix build .#nixosConfigurations.morrowind.digital-ocean.config.system.build.digitalOceanImage
+	./scripts/deploy.sh morrowind --local
 
 iso-minimal:
 	nix build .#nixosConfigurations.iso.minimal.config.system.build.isoImage

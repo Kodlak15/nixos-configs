@@ -2,7 +2,6 @@
   openweathercli = pkgs.callPackage ./openweathercli {};
   swww-manager = pkgs.python3Packages.callPackage ./swww-manager {};
   go-blueprint = pkgs.callPackage ./go-blueprint {};
-  coolify = pkgs.callPackage ./coolify {};
   minimal-iso = pkgs.callPackage ./minimal-iso {};
   install = {
     skyrim = {
@@ -15,19 +14,8 @@
     morrowind = pkgs.callPackage ./install/morrowind {};
     morrowind-pg = pkgs.callPackage ./install/morrowind/postgres {};
   };
-  rebuild = {
-    skyrim = {
-      nixos = pkgs.callPackage ./rebuild/skyrim/nixos {};
-      home = pkgs.callPackage ./rebuild/skyrim/home {};
-    };
-  };
   deploy = {
     morrowind = pkgs.callPackage ./deploy/morrowind {};
-    # morrowind = {
-    #   vm = pkgs.callPackage ./deploy/morrowind/vm {};
-    #   digital-ocean = pkgs.callPackage ./deploy/morrowind/vm {};
-    #   postgres = pkgs.callPackage ./deploy/morrowind/postgres {};
-    # };
   };
   image = {
     do = {
