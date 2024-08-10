@@ -55,6 +55,7 @@ in {
   environment.systemPackages = with pkgs; [
     neovim
     tmux
+    age
   ];
 
   boot = {

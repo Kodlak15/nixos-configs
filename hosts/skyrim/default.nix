@@ -28,19 +28,19 @@
       "cudatoolkit"
     ];
 
-  # sops = {
-  #   age.keyFile = "/home/cody/.config/sops/age/keys.txt";
-  #   secrets = {
-  #     "testSops" = {
-  #       sopsFile = ./secrets.yaml;
-  #     };
-  #   };
-  #   templates = {
-  #     "./secrets.yaml".content = ''
-  #       testSops = "${config.sops.placeholder.testSops}"
-  #     '';
-  #   };
-  # };
+  sops = {
+    age = {
+      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
+    };
+    secrets = {
+      password = {
+        sopsFile = ./secrets.yaml;
+        neededForUsers = true;
+      };
+    };
+  };
 
   programs = {
     steam = {
@@ -146,5 +146,6 @@
     gnumake
     bc
     killall
+    age
   ];
 }

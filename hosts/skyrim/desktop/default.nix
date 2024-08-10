@@ -88,23 +88,25 @@ in {
   # TEST_SOPS = "testSops";
   # };
 
-  users.users.cody = {
-    # initialPassword = "towerponyforestjeep";
-    initialPassword = "towerponyforestjeep";
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "audio"
-      "video"
-      "input"
-      "docker"
-      "libvirtd"
-      "wireshark"
-      "usb"
-      "plugdev"
-      "networkmanager"
-    ];
-    openssh.authorizedKeys.keys = [];
+  users = {
+    mutableUsers = false;
+    users.cody = {
+      hashedPasswordFile = config.sops.secrets.password.path;
+      isNormalUser = true;
+      extraGroups = [
+        "wheel"
+        "audio"
+        "video"
+        "input"
+        "docker"
+        "libvirtd"
+        "wireshark"
+        "usb"
+        "plugdev"
+        "networkmanager"
+      ];
+      openssh.authorizedKeys.keys = [];
+    };
   };
 
   system.stateVersion = "23.05";
