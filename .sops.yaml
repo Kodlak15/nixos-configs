@@ -12,6 +12,11 @@ creation_rules:
     - age:
       - *cody
       - *skyrim
+  - path_regex: home/cody/skyrim/secrets.yaml$
+    key_groups:
+    - age:
+      - *cody
+      - *skyrim
   - path_regex: hosts/morrowind/secrets.yaml$
     key_groups:
     - age:
