@@ -28,18 +28,19 @@
       "cudatoolkit"
     ];
 
-  sops = {
-    defaultSopsFile = ./secrets.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/cody/sops/age/skyrim.txt";
-    secrets = {
-      "testSops" = {
-        mode = "0440";
-        owner = config.users.users.cody.name;
-        group = config.users.users.cody.group;
-      };
-    };
-  };
+  # sops = {
+  #   age.keyFile = "/home/cody/.config/sops/age/keys.txt";
+  #   secrets = {
+  #     "testSops" = {
+  #       sopsFile = ./secrets.yaml;
+  #     };
+  #   };
+  #   templates = {
+  #     "./secrets.yaml".content = ''
+  #       testSops = "${config.sops.placeholder.testSops}"
+  #     '';
+  #   };
+  # };
 
   programs = {
     steam = {

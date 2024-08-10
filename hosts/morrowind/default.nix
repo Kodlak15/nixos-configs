@@ -43,19 +43,14 @@ in {
 
   swapDevices = [];
 
-  sops = {
-    defaultSopsFile = ./secrets.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/cody/sops/age/morrowind.txt";
-    secrets = {
-      "proxy-pass" = {
-        # mode = "0440";
-        mode = "0777";
-        owner = config.users.users.cody.name;
-        group = config.users.users.cody.group;
-      };
-    };
-  };
+  # sops = {
+  #   age.keyFile = "/home/cody/.config/sops/age/keys.txt";
+  #   secrets = {
+  #     "proxyPass" = {
+  #       sopsFile = ./secrets.yaml;
+  #     };
+  #   };
+  # };
 
   environment.systemPackages = with pkgs; [
     neovim
@@ -83,7 +78,7 @@ in {
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:3000";
-            # proxyPass = "$__file{${config.sops.secrets.proxy-pass.path}}";
+            # proxyPass = "$__file{${config.sops.secrets.proxyPass.path}}";
           };
         };
       };
