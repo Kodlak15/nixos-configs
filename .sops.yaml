@@ -1,0 +1,19 @@
+keys:
+  # Users
+  - &cody 551AEB843C3400D674642567CA568027F56CB64D
+  # Hosts
+  - &skyrim age1tgyusa0h4zqn6uvug3ajheafauf4jc4fvqwydc8wdtpky2rshfes76hchc
+  - &morrowind age158r5qju0n06v09dayvl23r0k2lc8m5fykmsfzv533hvyh68xuguqs5fcg3
+creation_rules:
+  - path_regex: hosts/skyrim/secrets.yaml$
+    key_groups:
+      - age:
+        - *skyrim
+      # - pgp:
+      #   - *cody
+  - path_regex: hosts/morrowind/secrets.yaml$
+    key_groups:
+      - age:
+        - *morrowind
+      - pgp:
+        - *cody

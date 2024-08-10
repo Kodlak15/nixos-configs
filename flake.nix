@@ -98,7 +98,6 @@
       "morrowind" = lib.nixosSystem {
         modules = [
           ./hosts/morrowind
-          ./hosts/morrowind/vm
         ];
         specialArgs = {inherit inputs outputs;};
       };

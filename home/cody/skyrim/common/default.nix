@@ -8,6 +8,9 @@
     # Browsers
     brave
 
+    # Secret management
+    sops
+
     # Debugging and reverse engineering
     gdb
 

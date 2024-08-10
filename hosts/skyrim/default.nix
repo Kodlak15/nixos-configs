@@ -1,9 +1,15 @@
 {
   pkgs,
   lib,
+  inputs,
+  config,
   ...
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
@@ -21,6 +27,19 @@
       "steam-run"
       "cudatoolkit"
     ];
+
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/cody/sops/age/skyrim.txt";
+    secrets = {
+      "testSops" = {
+        mode = "0440";
+        owner = config.users.users.cody.name;
+        group = config.users.users.cody.group;
+      };
+    };
+  };
 
   programs = {
     steam = {

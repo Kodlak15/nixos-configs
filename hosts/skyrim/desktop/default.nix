@@ -83,7 +83,12 @@ in {
     };
   };
 
+  environment.sessionVariables = {
+    TEST_SOPS = "$__file{${config.sops.secrets.testSops.path}}";
+  };
+
   users.users.cody = {
+    # initialPassword = "towerponyforestjeep";
     initialPassword = "towerponyforestjeep";
     isNormalUser = true;
     extraGroups = [

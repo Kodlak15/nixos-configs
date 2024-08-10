@@ -1,12 +1,15 @@
 {
   pkgs,
   lib,
+  inputs,
+  config,
   ...
 }: let
   rootPart = "/dev/disk/by-label/ROOT";
 in {
   imports = [
     ./hardware-configuration.nix
+    inputs.sops-nix.nixosModules.sops
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -40,6 +43,20 @@ in {
 
   swapDevices = [];
 
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/cody/sops/age/morrowind.txt";
+    secrets = {
+      "proxy-pass" = {
+        # mode = "0440";
+        mode = "0777";
+        owner = config.users.users.cody.name;
+        group = config.users.users.cody.group;
+      };
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     neovim
     tmux
@@ -66,6 +83,7 @@ in {
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:3000";
+            # proxyPass = "$__file{${config.sops.secrets.proxy-pass.path}}";
           };
         };
       };

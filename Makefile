@@ -16,5 +16,8 @@ iso-minimal:
 update:
 	nix flake update
 
+sops-update:
+	./scripts/sops.sh --update
+
 gc:
 	nix-collect-garbage
