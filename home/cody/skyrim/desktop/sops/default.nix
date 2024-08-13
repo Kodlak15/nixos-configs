@@ -29,6 +29,11 @@
         path = "/home/cody/.ssh/cyrodil";
         sopsFile = ./secrets.yaml;
       };
+      # Look into a better way to deal with this
+      "ssh_config" = {
+        path = "/home/cody/.ssh/config";
+        sopsFile = ./secrets.yaml;
+      };
     };
   };
 }

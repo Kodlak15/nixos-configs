@@ -15,7 +15,7 @@
     ./gtk
     ./nixpkgs
     # ./sops
-    ./ssh
+    # ./ssh
     ./swwwmgr
     ./tmux
     ./virtualization
@@ -32,6 +32,9 @@
 
         # Secret management
         sops
+
+        # Office software
+        libreoffice
 
         # Debugging and reverse engineering
         gdb

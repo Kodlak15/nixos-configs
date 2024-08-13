@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   config,
   ...
 }: let
@@ -14,7 +15,9 @@ in {
   programs.firefox = {
     enable = true;
     # For screen sharing under wayland
-    package = pkgs.wrapFirefox (pkgs.${pname}.override {pipewireSupport = true;}) {};
+    # package = pkgs.wrapFirefox (pkgs.${pname}.override {pipewireSupport = true;}) {};
+    # NOTE trying stable package because unstable was bugging out
+    package = pkgs-stable.wrapFirefox (pkgs.${pname}.override {pipewireSupport = true;}) {};
     profiles = {
       kodlak = {
         name = "kodlak";
