@@ -14,7 +14,7 @@
     ./git
     ./gtk
     ./nixpkgs
-    ./sops
+    # ./sops
     ./ssh
     ./swwwmgr
     ./tmux
