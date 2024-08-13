@@ -114,7 +114,7 @@
     homeConfigurations = {
       "cody@skyrim/desktop" = lib.homeManagerConfiguration {
         modules = [
-          ./home/cody/skyrim
+          ./home/cody/skyrim/common
           ./home/cody/skyrim/desktop
           nur.hmModules.nur # Nix User Repository
         ];
@@ -126,7 +126,7 @@
       };
       "cody@skyrim/laptop" = lib.homeManagerConfiguration {
         modules = [
-          ./home/cody/skyrim
+          ./home/cody/skyrim/common
           ./home/cody/skyrim/laptop
           nur.hmModules.nur # Nix User Repository
         ];
