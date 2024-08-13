@@ -2,7 +2,6 @@
   imports = [
     ./alacritty
     ./neovim
-    ./sops
     ./firefox
     ./gaming
     ./pywal
@@ -12,7 +11,8 @@
     ./git
     ./gtk
     ./nixpkgs
-    ./ssh
+    ./sops
+    # ./ssh
     ./swwwmgr
     ./tmux
     ./virtualization

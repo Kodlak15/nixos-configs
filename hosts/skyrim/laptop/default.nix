@@ -91,21 +91,24 @@ in {
     };
   };
 
-  users.users.cody = {
-    initialPassword = "towerponyforestjeep";
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "audio"
-      "video"
-      "input"
-      "dialout"
-      "docker"
-      "libvirtd"
-      "wireshark"
-      "networkmanager"
-    ];
-    openssh.authorizedKeys.keys = [];
+  users = {
+    mutableUsers = false;
+    users.cody = {
+      hashedPasswordFile = config.sops.secrets.password.path;
+      isNormalUser = true;
+      extraGroups = [
+        "wheel"
+        "audio"
+        "video"
+        "input"
+        "dialout"
+        "docker"
+        "libvirtd"
+        "wireshark"
+        "networkmanager"
+      ];
+      openssh.authorizedKeys.keys = [];
+    };
   };
 
   system.stateVersion = "23.05";

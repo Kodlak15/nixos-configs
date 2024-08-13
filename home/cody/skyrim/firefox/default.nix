@@ -29,6 +29,7 @@ in {
         };
         search = {
           default = "DuckDuckGo";
+          force = true;
           engines = {
             "Nix Packages" = {
               urls = [
