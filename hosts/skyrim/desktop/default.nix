@@ -83,11 +83,6 @@ in {
     };
   };
 
-  # environment.sessionVariables = {
-  # TEST_SOPS = "$__file{${config.sops.secrets.testSops.path}}";
-  # TEST_SOPS = "testSops";
-  # };
-
   users = {
     mutableUsers = false;
     users.cody = {
