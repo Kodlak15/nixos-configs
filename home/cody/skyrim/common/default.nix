@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./alacritty
+    ./brave
     ./neovim
     ./firefox
     ./gaming
@@ -28,7 +29,7 @@
     (
       with pkgs; [
         # Browsers
-        brave
+        # brave
 
         # Secret management
         sops
