@@ -4,6 +4,7 @@
     inputs.nixvim.homeManagerModules.nixvim
     ./hyprland
     ./eww
+    ./sops
   ];
 
   home = {

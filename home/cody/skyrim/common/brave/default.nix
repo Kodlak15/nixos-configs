@@ -15,6 +15,10 @@
         # Bitwarden
         id = "nngceckbapebfimnlniiiahkandclblb";
       }
+      {
+        # Morpheon Dark Theme
+        id = "mafbdhjdkjnoafhfelkjpchpaepjknad";
+      }
     ];
     commandLineArgs = [
       "--enable-features=UseOzonePlatform"

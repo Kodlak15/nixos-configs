@@ -8,11 +8,16 @@ keys:
     - &skyrim_laptop age1cmuz8xkkhvdvan58xaq70s23nwsv0slt724mjmxu93th874v0ezqgfyn89
     - &morrowind age19lmevlzcnfaagnwqunlj5l9mq067ym2gndujtrr20mvrv54363hsmnc9c8
 creation_rules:
-  - path_regex: hosts/skyrim/secrets.yaml$
+  - path_regex: hosts/skyrim/desktop/secrets.yaml$
     key_groups:
     - age:
       - *cody
       - *skyrim_desktop
+  - path_regex: hosts/skyrim/laptop/secrets.yaml$
+    key_groups:
+    - age:
+      - *cody
+      - *skyrim_laptop
   - path_regex: home/cody/skyrim/desktop/sops/secrets.yaml$
     key_groups:
     - age:
