@@ -16,8 +16,8 @@
         id = "nngceckbapebfimnlniiiahkandclblb";
       }
       {
-        # Morpheon Dark Theme
-        id = "mafbdhjdkjnoafhfelkjpchpaepjknad";
+        # All Black Theme
+        id = "mkplpffahhkjfocfbfapcemhhkgmljpn";
       }
     ];
     commandLineArgs = [
