@@ -98,9 +98,10 @@ in {
   };
 
   users = {
-    mutableUsers = false;
+    # mutableUsers = false;
     users.cody = {
-      hashedPasswordFile = config.sops.secrets.password.path;
+      # hashedPasswordFile = config.sops.secrets.password.path;
+      hashedPassword = "$y$j9T$o3IYxTwHmV1ocaOXDcNhs/$z.746YINjBuHcnEkALGK3jdUzUasNTx4f8WQpSUqyY9";
       isNormalUser = true;
       extraGroups = [
         "wheel"
