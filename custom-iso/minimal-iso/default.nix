@@ -13,6 +13,10 @@
     ''( tr '[:lower:]' '[:upper:]' | sed -e 's/\([0-9A-F]\{2\}\)/\\\\\\x\1/gI'| xargs printf )'';
   pbkdf2Sha512 = pkgs.callPackage ./pbkdf2-sha512.nix {};
   mountykepart = pkgs.writeShellScriptBin "mountykepart" ''
+    echo "Enter 2FA password:"
+    read -s USER_PASSPHRASE
+
+    # Get the salt
     mount --mkdir "/dev/disk/by-label/EFI-NIXOS" "/mnt/boot"
     SALT="$(head -n 1 "/mnt/boot/crypt-storage/default")"
 

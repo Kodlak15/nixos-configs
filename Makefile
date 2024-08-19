@@ -11,7 +11,7 @@ morrowind:
 	./scripts/deploy.sh morrowind --local
 
 iso-minimal:
-	nix build .#nixosConfigurations.iso.minimal.config.system.build.isoImage
+	nix build .#nixosConfigurations.minimal-iso.config.system.build.isoImage
 
 update:
 	nix flake update
