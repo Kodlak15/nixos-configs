@@ -77,6 +77,9 @@
 
   users = {
     defaultUserShell = pkgs.zsh;
+    users.root = {
+      initialHashedPassword = "$y$j9T$cVBuDErrQuq9PhUTj94mZ0$SNaVM8HEx1AHJgZEFvekLmhAWYm0OhDESkmfRmNLw89";
+    };
   };
 
   environment = {
