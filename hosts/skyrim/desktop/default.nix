@@ -68,19 +68,19 @@ in {
 
   networking.hostName = "skyrim";
 
-  sops = {
-    age = {
-      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-      keyFile = "/var/lib/sops-nix/key.txt";
-      generateKey = true;
-    };
-    secrets = {
-      password = {
-        sopsFile = ./secrets.yaml;
-        neededForUsers = true;
-      };
-    };
-  };
+  # sops = {
+  #   age = {
+  #     sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+  #     keyFile = "/var/lib/sops-nix/key.txt";
+  #     generateKey = true;
+  #   };
+  #   secrets = {
+  #     password = {
+  #       sopsFile = ./secrets.yaml;
+  #       neededForUsers = true;
+  #     };
+  #   };
+  # };
 
   hardware = {
     nvidia = {
