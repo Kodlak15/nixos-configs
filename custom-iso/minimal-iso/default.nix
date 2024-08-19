@@ -12,6 +12,24 @@
     "hextorb"
     ''( tr '[:lower:]' '[:upper:]' | sed -e 's/\([0-9A-F]\{2\}\)/\\\\\\x\1/gI'| xargs printf )'';
   pbkdf2Sha512 = pkgs.callPackage ./pbkdf2-sha512.nix {};
+  mountykepart = pkgs.writeShellScriptBin "mountykepart" ''
+    mount --mkdir "/dev/disk/by-label/EFI-NIXOS" "/mnt/boot"
+    SALT="$(head -n 1 "/mnt/boot/crypt-storage/default")"
+
+    # Calculate the LUKS key and open the LUKS partition
+    CHALLENGE="$(echo -n $SALT | openssl dgst -binary -sha512 | "${rbtohex}/bin/rbtohex")"
+    RESPONSE=$(ykchalresp -2 -x $CHALLENGE 2>/dev/null)
+    KEY_LENGTH=512
+    ITERATIONS=1000000
+    LUKS_KEY="$(echo -n $USER_PASSPHRASE | ${pbkdf2Sha512}/bin/pbkdf2-sha512 $(($KEY_LENGTH / 8)) $ITERATIONS $RESPONSE | ${rbtohex}/bin/rbtohex)"
+    echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup open "$LUKSPART" nixos-crypt --key-file=-
+
+    # Mount the subvolumes
+    mount --mkdir -o subvol="@" "/dev/mapper/nixos-crypt" "/mnt/nixos"
+    mount --mkdir -o subvol="@home" "/dev/mapper/nixos-crypt" "/mnt/nixos/home"
+    mount --mkdir -o subvol="@tmp" "/dev/mapper/nixos-crypt" "/mnt/nixos/tmp"
+    mount --mkdir -o subvol="@var" "/dev/mapper/nixos-crypt" "/mnt/nixos/var"
+  '';
 in {
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
@@ -70,5 +88,6 @@ in {
     rbtohex
     hextorb
     pbkdf2Sha512
+    mountykepart
   ];
 }
