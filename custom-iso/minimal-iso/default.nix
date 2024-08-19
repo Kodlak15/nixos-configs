@@ -26,7 +26,7 @@
     KEY_LENGTH=512
     ITERATIONS=1000000
     LUKS_KEY="$(echo -n $USER_PASSPHRASE | ${pbkdf2Sha512}/bin/pbkdf2-sha512 $(($KEY_LENGTH / 8)) $ITERATIONS $RESPONSE | ${rbtohex}/bin/rbtohex)"
-    echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup open "$LUKSPART" nixos-crypt --key-file=-
+    echo -n "$LUKS_KEY" | "${hextorb}/bin/hextorb" | cryptsetup open "/dev/disk/by-label/NIXOS" nixos-crypt --key-file=-
 
     # Mount the subvolumes
     mount --mkdir -o subvol="@" "/dev/mapper/nixos-crypt" "/mnt/nixos"
