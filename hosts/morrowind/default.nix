@@ -79,7 +79,6 @@ in {
         locations = {
           "/" = {
             proxyPass = "http://127.0.0.1:3000";
-            # proxyPass = "$__file{${config.sops.secrets.proxyPass.path}}";
           };
         };
       };
@@ -119,7 +118,7 @@ in {
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [80 443 5432];
+    allowedTCPPorts = [80 443 62621];
   };
 
   system.stateVersion = "24.11";
