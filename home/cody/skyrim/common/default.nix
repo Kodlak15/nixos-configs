@@ -112,6 +112,7 @@
         # Media
         spotify
         playerctl
+        ncpamixer
         pavucontrol
         vlc
         ffmpeg
