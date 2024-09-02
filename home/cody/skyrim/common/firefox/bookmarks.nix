@@ -26,6 +26,10 @@
           url = "https://chatgpt.com/";
         }
         {
+          name = "Claude";
+          url = "https://claude.ai/new";
+        }
+        {
           name = "pwn.college";
           url = "https://pwn.college/dojos";
         }
