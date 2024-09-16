@@ -28,8 +28,8 @@
   home.packages =
     (
       with pkgs; [
-        # Browsers
-        # brave
+        # Version control
+        codeberg-cli
 
         # Secret management
         sops
