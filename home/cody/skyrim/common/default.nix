@@ -34,6 +34,9 @@
         # Secret management
         sops
 
+        # Version control
+        codeberg-cli
+
         # Office software
         libreoffice
 
