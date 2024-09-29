@@ -11,7 +11,9 @@
       }
 
       decoration {
-          rounding = 10
+          # rounding = 10
+          # rounding = 5
+          rounding = 2
           blur {
             enabled = false
           }
