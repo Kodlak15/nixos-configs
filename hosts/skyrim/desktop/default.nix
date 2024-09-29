@@ -9,6 +9,7 @@ in {
   ];
 
   boot = {
+    kernelParams = ["amd_iommu=on"];
     loader = {
       efi.canTouchEfiVariables = true;
       grub = {

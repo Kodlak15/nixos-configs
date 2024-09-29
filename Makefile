@@ -10,6 +10,9 @@ skyrim-home:
 morrowind:
 	./scripts/deploy.sh morrowind --local
 
+rift:
+	./scripts/deploy.sh rift --local
+
 iso-minimal:
 	nix build .#nixosConfigurations.minimal-iso.config.system.build.isoImage
 

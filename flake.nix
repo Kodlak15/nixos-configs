@@ -101,6 +101,12 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
+      "rift" = lib.nixosSystem {
+        modules = [
+          ./hosts/rift
+        ];
+        specialArgs = {inherit inputs outputs;};
+      };
       "minimal-iso" = lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

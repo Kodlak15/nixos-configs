@@ -27,8 +27,6 @@
       "cudatoolkit"
     ];
 
-  boot.kernelParams = ["amd_iommu=on"];
-
   programs = {
     steam = {
       enable = true;
@@ -117,7 +115,13 @@
 
   virtualisation = {
     docker.enable = true;
-    libvirtd.enable = true;
+    # libvirtd.enable = true;
+    libvirtd = {
+      enable = true;
+      qemu.ovmf.enable = true;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
+    };
   };
 
   programs.dconf = {
