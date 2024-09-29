@@ -1,11 +1,10 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 }: {
   imports = [
-    ./hyprland
+    ./i3
   ];
 
   home = {
