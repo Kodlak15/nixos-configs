@@ -27,6 +27,8 @@
       "cudatoolkit"
     ];
 
+  boot.kernelParams = ["amd_iommu=on"];
+
   programs = {
     steam = {
       enable = true;
