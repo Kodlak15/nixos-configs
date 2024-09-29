@@ -1,125 +1,46 @@
 {
   pkgs,
   lib,
-  inputs,
-  config,
+  modulesPath,
   ...
-}: let
-  rootPart = "/dev/disk/by-label/ROOT";
-in {
+}: {
   imports = [
-    ./hardware-configuration.nix
-    inputs.sops-nix.nixosModules.sops
+    (modulesPath + "/installer/scan/not-detected.nix")
+    (modulesPath + "/profiles/qemu-guest.nix")
+    ./disk-config.nix
   ];
-
-  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
-  networking.hostName = "morrowind";
-
-  fileSystems = {
-    "/" = {
-      device = rootPart;
-      fsType = "btrfs";
-      options = ["subvol=@"];
-    };
-    "/home" = {
-      device = rootPart;
-      fsType = "btrfs";
-      options = ["subvol=@home"];
-    };
-    "/tmp" = {
-      device = rootPart;
-      fsType = "btrfs";
-      options = ["subvol=@tmp"];
-    };
-    "/var" = {
-      device = rootPart;
-      fsType = "btrfs";
-      options = ["subvol=@var"];
-    };
-  };
-
-  swapDevices = [];
-
-  # sops = {
-  #   age.keyFile = "/home/cody/.config/sops/age/keys.txt";
-  #   secrets = {
-  #     "proxyPass" = {
-  #       sopsFile = ./secrets.yaml;
-  #     };
-  #   };
-  # };
-
-  environment.systemPackages = with pkgs; [
-    neovim
-    tmux
-    age
-  ];
 
   boot = {
     loader = {
       grub = {
         enable = true;
-        device = "/dev/sda";
+        devices = ["nodev"];
+        efiSupport = true;
+        efiInstallAsRemovable = true;
       };
     };
   };
 
   services = {
-    nginx = {
-      enable = true;
-      logError = "stderr debug";
-      recommendedProxySettings = true;
-      recommendedTlsSettings = true;
-      virtualHosts."cascade-botanicals.com" = {
-        enableACME = true;
-        forceSSL = true;
-        locations = {
-          "/" = {
-            proxyPass = "http://127.0.0.1:3000";
-          };
-        };
-      };
-    };
-    openssh = {
-      enable = true;
-      ports = [22];
-      settings = {
-        PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
-      };
-    };
+    openssh.enable = true;
   };
 
-  security = {
-    acme = {
-      acceptTerms = true;
-      defaults = {
-        email = "stanlcod15@protonmail.com";
-      };
-    };
-  };
-
-  virtualisation = {
-    docker = {
-      enable = true;
-    };
-  };
+  environment.systemPackages = with pkgs; [
+    curl
+    wget
+    git
+  ];
 
   users.users = {
     root = {
+      initialHashedPassword = "$y$j9T$vVNMHVnnesyBcnbDxNQ7T/$JqywYFyoePyzWLEW822Sv2pWYyQoLJgAo.wCzurMyNC";
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwaOrqTJ6Xq8qU3y/Vn02tHMUZJISNRA/fLAVfYCN21 openpgp:0x344DA983"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN0jIg6UYuO+MSjBEcaaJXAoY3yLl7q7tqMVB0yFiqGr"
       ];
     };
   };
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [80 443 62621];
-  };
-
-  system.stateVersion = "24.11";
+  system.stateVersion = "24.05";
 }

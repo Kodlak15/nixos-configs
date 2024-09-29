@@ -43,6 +43,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko.url = "github:nix-community/disko";
+
     swwwmgr.url = "github:Kodlak15/swww-manager";
     nvim.url = "github:Kodlak15/nvim-flake";
     tweather.url = "github:Kodlak15/tweather";
@@ -55,6 +57,7 @@
     home-manager,
     flake-utils,
     nur,
+    disko,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -104,6 +107,7 @@
       "rift" = lib.nixosSystem {
         modules = [
           ./hosts/rift
+          disko.nixosModules.disko
         ];
         specialArgs = {inherit inputs outputs;};
       };
