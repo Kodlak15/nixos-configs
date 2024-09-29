@@ -108,6 +108,12 @@
         modules = [
           ./hosts/rift
           disko.nixosModules.disko
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.cody = import ./home/cody/rift;
+          }
         ];
         specialArgs = {inherit inputs outputs;};
       };

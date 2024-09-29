@@ -25,6 +25,13 @@
 
   services = {
     openssh.enable = true;
+    xserver = {
+      enable = true;
+      windowManager.i3.enable = true;
+    };
+    displayManager = {
+      defaultSession = "none+i3";
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -33,12 +40,30 @@
     git
   ];
 
-  users.users = {
-    root = {
-      initialHashedPassword = "$y$j9T$vVNMHVnnesyBcnbDxNQ7T/$JqywYFyoePyzWLEW822Sv2pWYyQoLJgAo.wCzurMyNC";
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN0jIg6UYuO+MSjBEcaaJXAoY3yLl7q7tqMVB0yFiqGr"
-      ];
+  programs = {
+    hyprland.enable = true;
+  };
+
+  users = {
+    users = {
+      cody = {
+        initialHashedPassword = "$y$j9T$vVNMHVnnesyBcnbDxNQ7T/$JqywYFyoePyzWLEW822Sv2pWYyQoLJgAo.wCzurMyNC";
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN0jIg6UYuO+MSjBEcaaJXAoY3yLl7q7tqMVB0yFiqGr"
+        ];
+        group = "cody";
+        isNormalUser = true;
+      };
+      root = {
+        initialHashedPassword = "$y$j9T$vVNMHVnnesyBcnbDxNQ7T/$JqywYFyoePyzWLEW822Sv2pWYyQoLJgAo.wCzurMyNC";
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN0jIg6UYuO+MSjBEcaaJXAoY3yLl7q7tqMVB0yFiqGr"
+        ];
+      };
+    };
+    # TODO:
+    groups = {
+      cody = {};
     };
   };
 
