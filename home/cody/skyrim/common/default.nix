@@ -34,8 +34,8 @@
         # Secret management
         sops
 
-        # Version control
-        codeberg-cli
+        # Lighttable/darkroom for photography
+        darktable
 
         # Office software
         libreoffice

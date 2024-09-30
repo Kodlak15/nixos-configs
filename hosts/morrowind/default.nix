@@ -118,7 +118,7 @@ in {
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [80 443 62621];
+    allowedTCPPorts = [80 443 62621 465 587];
   };
 
   system.stateVersion = "24.11";
