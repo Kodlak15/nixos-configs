@@ -44,6 +44,7 @@
     };
 
     disko.url = "github:nix-community/disko";
+    impermanence.url = "github:nix-community/impermanence";
 
     swwwmgr.url = "github:Kodlak15/swww-manager";
     nvim.url = "github:Kodlak15/nvim-flake";
@@ -58,6 +59,7 @@
     flake-utils,
     nur,
     disko,
+    impermanence,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -108,12 +110,15 @@
         modules = [
           ./hosts/rift
           disko.nixosModules.disko
+          impermanence.nixosModules.impermanence
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.cody = import ./home/cody/rift;
+            home-manager.backupFileExtension = "backup";
           }
+          # nur.hmModules.nur # Nix User Repository
         ];
         specialArgs = {inherit inputs outputs;};
       };

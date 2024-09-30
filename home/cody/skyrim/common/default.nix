@@ -50,6 +50,7 @@
         neofetch
         nix-output-monitor
         btop
+        htop
         lsof
         nvtopPackages.full
         lm_sensors
