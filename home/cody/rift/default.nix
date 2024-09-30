@@ -4,8 +4,10 @@
   ...
 }: {
   imports = [
-    ./i3
     ./firefox
+    ./i3
+    ./neovim
+    ./zellij
   ];
 
   home = {
@@ -13,8 +15,8 @@
     homeDirectory = lib.mkDefault "/home/cody";
 
     packages = with pkgs; [
-      kitty
       neofetch
+      p7zip
     ];
 
     stateVersion = "24.05";
