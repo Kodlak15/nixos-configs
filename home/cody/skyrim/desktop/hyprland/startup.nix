@@ -6,8 +6,6 @@
 
       # Startup scripts
       exec-once = mullvad connect
-      # exec-once = $HOME/.nix-profile/bin/eww open status-bar
-      # exec-once = $HOME/.nix-profile/bin/eww open workspaces-toolbar
       exec-once = eww open-many status-bar workspaces-toolbar
       exec-once = $HOME/.nix-profile/bin/swww init
     '';
