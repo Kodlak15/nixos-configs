@@ -1,12 +1,13 @@
 {lib, ...}: {
   disko.devices = {
     disk.disk1 = {
-      device = lib.mkDefault "/dev/vda";
       type = "disk";
+      device = lib.mkDefault "/dev/vda";
       content = {
         type = "gpt";
         partitions = {
           esp = {
+            label = "rift-boot";
             name = "ESP";
             size = "512M";
             type = "EF00";
@@ -14,6 +15,9 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
+              mountOptions = [
+                "defaults"
+              ];
             };
           };
           luks = {
@@ -27,8 +31,10 @@
                 "--perf-no_read_workqueue"
                 "--perf-no_write_workqueue"
               ];
-              # NOTE: https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html
-              settings = {crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];};
+              settings = {
+                # https://0pointer.net/blog/unlocking-luks2-volumes-with-tpm2-fido2-pkcs11-security-hardware-on-systemd-248.html
+                crypttabExtraOpts = ["fido2-device=auto" "token-timeout=10"];
+              };
               content = {
                 type = "btrfs";
                 extraArgs = ["-L" "rift" "-f"];
