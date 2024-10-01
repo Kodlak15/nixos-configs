@@ -88,11 +88,17 @@
         "/etc/NetworkManager/system-connections"
       ];
     };
+    shells = with pkgs; [zsh];
+    variables = {
+      EDITOR = "${pkgs.neovim}";
+    };
   };
 
   users = {
     users = {
       cody = {
+        shell = pkgs.zsh;
+        ignoreShellProgramCheck = true;
         hashedPassword = "$y$j9T$lIQkLrh/jE5pTGqAVcGCB/$YF1Uk6rTBsRednb2cr.ed8NP7.wKSWcYObe9Gl8RxN0";
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN0jIg6UYuO+MSjBEcaaJXAoY3yLl7q7tqMVB0yFiqGr"

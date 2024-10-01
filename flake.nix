@@ -117,6 +117,10 @@
             home-manager.useUserPackages = true;
             home-manager.users.cody = import ./home/cody/rift;
             home-manager.backupFileExtension = "backup";
+            home-manager.extraSpecialArgs = {
+              pkgs-stable = pkgsForStable.x86_64-linux;
+              inherit inputs outputs;
+            };
           }
           # nur.hmModules.nur # Nix User Repository
         ];
