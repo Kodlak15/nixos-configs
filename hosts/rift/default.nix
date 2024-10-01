@@ -96,6 +96,7 @@
       wget
       git
       libfido2
+      virtiofsd
     ];
     persistence."/persist" = {
       enable = true;
@@ -122,6 +123,9 @@
         hashedPassword = "$y$j9T$lIQkLrh/jE5pTGqAVcGCB/$YF1Uk6rTBsRednb2cr.ed8NP7.wKSWcYObe9Gl8RxN0";
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN0jIg6UYuO+MSjBEcaaJXAoY3yLl7q7tqMVB0yFiqGr"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB3fdO9C72OaYhK3W2OhINnlRCcopOblJJI/z9frc1F0"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwaOrqTJ6Xq8qU3y/Vn02tHMUZJISNRA/fLAVfYCN21"
+          ""
         ];
         group = "cody";
         extraGroups = [
@@ -135,6 +139,8 @@
         initialHashedPassword = "$y$j9T$vVNMHVnnesyBcnbDxNQ7T/$JqywYFyoePyzWLEW822Sv2pWYyQoLJgAo.wCzurMyNC";
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN0jIg6UYuO+MSjBEcaaJXAoY3yLl7q7tqMVB0yFiqGr"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB3fdO9C72OaYhK3W2OhINnlRCcopOblJJI/z9frc1F0"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwaOrqTJ6Xq8qU3y/Vn02tHMUZJISNRA/fLAVfYCN21"
         ];
       };
     };

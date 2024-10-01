@@ -59,9 +59,9 @@ in {
   };
 
   users.users = {
-    nixos = {
+    root = {
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBFPX5biiGhDszrPE8BWvgKz4Ow1etck3E9aacuKXObQ cody@everest"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwaOrqTJ6Xq8qU3y/Vn02tHMUZJISNRA/fLAVfYCN21"
       ];
     };
   };

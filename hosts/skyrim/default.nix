@@ -141,5 +141,6 @@
     bc
     killall
     age
+    virtiofsd
   ];
 }
