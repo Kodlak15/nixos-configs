@@ -27,48 +27,40 @@
     };
     initrd = {
       # https://nixos.org/manual/nixos/stable/#sec-luks-file-systems-fido2
-      systemd.enable = true;
-      # NOTE: alternative to systemd init, but can't seem to get to work
-      # luks = {
-      #   fido2Support = true;
-      #   devices = {
-      #     root = {
-      #       # device = "/dev/disk/by-partlabel/rift-luks";
-      #       fido2 = {
-      #         # credential = "3d0007a9276300ba9c7eae1318465567da8c67706c43043809ff0c4f2d3bb6507eab72473c4432b640d594938e2c98a8";
-      #         # credential = "2a0dcdae3cd8b487047654e67d3db7eca5ae2149f19cb466fd355157a520e47c365af39171ec7b8ffeacd9dcf0fa0a47";
-      #         credential = "7cfb3fd5553be7bc3849f3798ebf7f0ba680ad8a6bc69f09b3ac997d4e2a1c29978be78a4636b285f6cb32c25869725a";
-      #         passwordLess = true;
-      #       };
-      #     };
-      #   };
-      # };
-      # NOTE: cannot be used alongside systemd during initrd
-      # will need to find another way to handle impermanence
-      # postDeviceCommands = lib.mkAfter ''
-      #   mkdir /btrfs_tmp
-      #   mount /dev/mapper/root /btrfs_tmp
-      #   if [[ -e /btrfs_tmp/root ]]; then
-      #       mkdir -p /btrfs_tmp/old_roots
-      #       timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
-      #       mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
-      #   fi
-      #
-      #   delete_subvolume_recursively() {
-      #       IFS=$'\n'
-      #       for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-      #           delete_subvolume_recursively "/btrfs_tmp/$i"
-      #       done
-      #       btrfs subvolume delete "$1"
-      #   }
-      #
-      #   for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
-      #       delete_subvolume_recursively "$i"
-      #   done
-      #
-      #   btrfs subvolume create /btrfs_tmp/root
-      #   umount /btrfs_tmp
-      # '';
+      systemd = {
+        enable = true;
+        services = {
+          wipe-root = {
+            requires = ["dev-mapper-root.device"];
+            after = ["dev-mapper-root.device"];
+            wantedBy = ["initrd.target"];
+            script = lib.mkAfter ''
+              mkdir /btrfs_tmp
+              mount /dev/mapper/root /btrfs_tmp
+              if [[ -e /btrfs_tmp/root ]]; then
+                  mkdir -p /btrfs_tmp/old_roots
+                  timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+                  mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+              fi
+
+              delete_subvolume_recursively() {
+                  IFS=$'\n'
+                  for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+                      delete_subvolume_recursively "/btrfs_tmp/$i"
+                  done
+                  btrfs subvolume delete "$1"
+              }
+
+              for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
+                  delete_subvolume_recursively "$i"
+              done
+
+              btrfs subvolume create /btrfs_tmp/root
+              umount /btrfs_tmp
+            '';
+          };
+        };
+      };
     };
   };
 
