@@ -63,7 +63,7 @@
       };
       pulse.enable = true;
     };
-    pcscd.enable = false; # Enable to change settings on sc, disable to use w/ gpg
+    pcscd.enable = true; # Enable to change settings on sc, disable to use w/ gpg
     mullvad-vpn.enable = true;
     udev.packages = with pkgs; [
       yubikey-personalization

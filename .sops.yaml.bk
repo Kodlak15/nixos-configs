@@ -1,0 +1,35 @@
+keys:
+  # Users
+  - &users:
+    - &cody age1dydz4ev0fumamtrm25fvvy46czwfqd4x8r6g82k8cezue6t54p7qy0gsvu
+  # Hosts
+  - &hosts:
+    - &skyrim_desktop age150gmckkl9a667rw3ql7vukk2ty2yrdxnxvcw0fp3vupae6tvq9ksjsh7f2
+    - &skyrim_laptop age1cmuz8xkkhvdvan58xaq70s23nwsv0slt724mjmxu93th874v0ezqgfyn89
+    - &morrowind age19lmevlzcnfaagnwqunlj5l9mq067ym2gndujtrr20mvrv54363hsmnc9c8
+creation_rules:
+  - path_regex: hosts/skyrim/desktop/secrets.yaml$
+    key_groups:
+    - age:
+      - *cody
+      - *skyrim_desktop
+  - path_regex: hosts/skyrim/laptop/secrets.yaml$
+    key_groups:
+    - age:
+      - *cody
+      - *skyrim_laptop
+  - path_regex: home/cody/skyrim/desktop/sops/secrets.yaml$
+    key_groups:
+    - age:
+      - *cody
+      - *skyrim_desktop
+  - path_regex: home/cody/skyrim/laptop/sops/secrets.yaml$
+    key_groups:
+    - age:
+      - *cody
+      - *skyrim_laptop
+  - path_regex: hosts/morrowind/secrets.yaml$
+    key_groups:
+    - age:
+      - *cody
+      - *morrowind
