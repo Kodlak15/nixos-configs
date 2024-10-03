@@ -2,9 +2,12 @@
   pkgs,
   lib,
   modulesPath,
+  inputs,
+  config,
   ...
 }: {
   imports = [
+    inputs.sops-nix.nixosModules.sops
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disk-config.nix
@@ -15,6 +18,25 @@
   networking.hostName = "rift";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  sops = {
+    # defaultSopsFile = ../../secrets.yaml;
+    defaultSopsFile = ./secrets.yaml;
+    validateSopsFiles = false;
+    age = {
+      # Automatically import host SSH keys as age keys
+      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+      # This uses an age key that is expected to alredy be in the filsystem
+      keyFile = "/var/lib/sops-nix/key.txt";
+      # Generate a new key if the key specified does not exist
+      generateKey = true;
+    };
+    secrets = {
+      cody-password = {
+        neededForUsers = true;
+      };
+    };
+  };
 
   boot = {
     loader = {
@@ -80,6 +102,17 @@
     displayManager = {
       defaultSession = "none+i3";
     };
+    pcscd.enable = true;
+  };
+
+  programs = {
+    gnupg = {
+      agent = {
+        enable = true;
+        pinentryPackage = pkgs.pinentry-curses;
+        enableSSHSupport = true;
+      };
+    };
   };
 
   environment = {
@@ -89,6 +122,10 @@
       git
       libfido2
       virtiofsd
+      gnumake
+      ripgrep
+      sops
+      pass
     ];
     persistence."/persist" = {
       enable = true;
@@ -99,6 +136,7 @@
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
+        "/etc/ssh"
       ];
     };
     shells = with pkgs; [zsh];
@@ -108,11 +146,13 @@
   };
 
   users = {
+    mutableUsers = false;
     users = {
       cody = {
         shell = pkgs.zsh;
         ignoreShellProgramCheck = true;
-        hashedPassword = "$y$j9T$lIQkLrh/jE5pTGqAVcGCB/$YF1Uk6rTBsRednb2cr.ed8NP7.wKSWcYObe9Gl8RxN0";
+        # hashedPassword = "$y$j9T$lIQkLrh/jE5pTGqAVcGCB/$YF1Uk6rTBsRednb2cr.ed8NP7.wKSWcYObe9Gl8RxN0";
+        hashedPasswordFile = config.sops.secrets."cody-password".path;
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN0jIg6UYuO+MSjBEcaaJXAoY3yLl7q7tqMVB0yFiqGr"
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB3fdO9C72OaYhK3W2OhINnlRCcopOblJJI/z9frc1F0"
