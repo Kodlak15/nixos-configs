@@ -1,11 +1,11 @@
 keys:
-  - &users:
-    - &cody age143hl6yga8azgetapcyllks29lle0p23q02c0xaxheek0y36dfdesxvv2me
-  - &hosts:
-    - &rift age1n9he08xzkatj24czw5knf8y60csscqtutyjmxcpfnw08lawh93fqsmd0gu
+  # Users
+  - &user_cody age143hl6yga8azgetapcyllks29lle0p23q02c0xaxheek0y36dfdesxvv2me
+  # Hosts
+  - &host_rift age1n9he08xzkatj24czw5knf8y60csscqtutyjmxcpfnw08lawh93fqsmd0gu
 creation_rules: 
-  - path_regex: secrets.yaml$
+  - path_regex: hosts/rift/secrets.yaml$
     key_groups:
     - age:
-      - *cody
-      - *rift
+      - *user_cody
+      - *host_rift
