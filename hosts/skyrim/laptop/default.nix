@@ -1,69 +1,117 @@
-{config, ...}: let
-  luks = "nixos-crypt";
-  luksPart = "/dev/disk/by-label/NIXOS";
-  rootPart = "/dev/disk/by-label/ROOT";
-  bootPart = "/dev/disk/by-label/EFI-NIXOS";
-in {
+{
+  config,
+  lib,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
+    ./disk-config.nix
   ];
 
+  # boot = {
+  #   kernelParams = ["intel_iommu=on" "iommu=pt"];
+  #   loader = {
+  #     efi.canTouchEfiVariables = true;
+  #     grub = {
+  #       enable = true;
+  #       devices = ["nodev"];
+  #       efiSupport = true;
+  #       useOSProber = true;
+  #     };
+  #   };
+  #   initrd = {
+  #     kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
+  #     luks = {
+  #       yubikeySupport = true;
+  #       devices.${luks} = {
+  #         device = luksPart;
+  #         yubikey = {
+  #           slot = 2;
+  #           twoFactor = true;
+  #           gracePeriod = 30;
+  #           keyLength = 64;
+  #           saltLength = 16;
+  #           storage = {
+  #             device = bootPart;
+  #             fsType = "vfat";
+  #             path = "/crypt-storage/default";
+  #           };
+  #         };
+  #       };
+  #     };
+  #   };
+  # };
+
   boot = {
-    kernelParams = ["intel_iommu=on" "iommu=pt"];
     loader = {
-      efi.canTouchEfiVariables = true;
       grub = {
         enable = true;
         devices = ["nodev"];
         efiSupport = true;
-        useOSProber = true;
+        efiInstallAsRemovable = true;
       };
     };
     initrd = {
-      kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
-      luks = {
-        yubikeySupport = true;
-        devices.${luks} = {
-          device = luksPart;
-          yubikey = {
-            slot = 2;
-            twoFactor = true;
-            gracePeriod = 30;
-            keyLength = 64;
-            saltLength = 16;
-            storage = {
-              device = bootPart;
-              fsType = "vfat";
-              path = "/crypt-storage/default";
-            };
+      # https://nixos.org/manual/nixos/stable/#sec-luks-file-systems-fido2
+      systemd = {
+        enable = true;
+        services = {
+          wipe-root = {
+            requires = ["dev-mapper-root.device"];
+            after = ["dev-mapper-root.device"];
+            wantedBy = ["initrd.target"];
+            script = lib.mkAfter ''
+              mkdir /btrfs_tmp
+              mount /dev/mapper/root /btrfs_tmp
+              if [[ -e /btrfs_tmp/root ]]; then
+                  mkdir -p /btrfs_tmp/old_roots
+                  timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+                  mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+              fi
+
+              delete_subvolume_recursively() {
+                  IFS=$'\n'
+                  for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+                      delete_subvolume_recursively "/btrfs_tmp/$i"
+                  done
+                  btrfs subvolume delete "$1"
+              }
+
+              for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30); do
+                  delete_subvolume_recursively "$i"
+              done
+
+              btrfs subvolume create /btrfs_tmp/root
+              umount /btrfs_tmp
+            '';
           };
         };
       };
     };
   };
 
-  fileSystems = {
-    "/" = {
-      device = rootPart;
-      fsType = "btrfs";
-      options = ["subvol=@"];
-    };
-    "/home" = {
-      device = rootPart;
-      fsType = "btrfs";
-      options = ["subvol=@home"];
-    };
-    "/tmp" = {
-      device = rootPart;
-      fsType = "btrfs";
-      options = ["subvol=@tmp"];
-    };
-    "/var" = {
-      device = rootPart;
-      fsType = "btrfs";
-      options = ["subvol=@var"];
-    };
-  };
+  # fileSystems = {
+  #   "/" = {
+  #     device = rootPart;
+  #     fsType = "btrfs";
+  #     options = ["subvol=@"];
+  #   };
+  #   "/home" = {
+  #     device = rootPart;
+  #     fsType = "btrfs";
+  #     options = ["subvol=@home"];
+  #   };
+  #   "/tmp" = {
+  #     device = rootPart;
+  #     fsType = "btrfs";
+  #     options = ["subvol=@tmp"];
+  #   };
+  #   "/var" = {
+  #     device = rootPart;
+  #     fsType = "btrfs";
+  #     options = ["subvol=@var"];
+  #   };
+  # };
 
   swapDevices = [];
 

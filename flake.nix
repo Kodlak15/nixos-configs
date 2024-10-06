@@ -97,6 +97,8 @@
         modules = [
           ./hosts/skyrim
           ./hosts/skyrim/laptop
+          disko.nixosModules.disko
+          impermanence.nixosModules.impermanence
         ];
         specialArgs = {inherit inputs outputs;};
       };
