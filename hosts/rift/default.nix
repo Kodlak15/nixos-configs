@@ -30,6 +30,12 @@
         sopsFile = ./secrets.yaml;
         neededForUsers = true;
       };
+      rift-host-key = {
+        sopsFile = ./secrets.yaml;
+      };
+      rift-host-public-key = {
+        sopsFile = ./secrets.yaml;
+      };
     };
   };
 
@@ -124,6 +130,13 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
       };
+      hostKeys = [
+        {
+          path = "/etc/ssh/ssh_host_ed25519_key";
+          type = "ed25519";
+          value = config.sops.secrets.rift-host-key.path;
+        }
+      ];
     };
     xserver = {
       enable = true;
@@ -173,6 +186,9 @@
     shells = with pkgs; [zsh];
     variables = {
       EDITOR = "${pkgs.neovim}";
+    };
+    etc = {
+      "ssh/ssh_host_ed25519_key.pub".source = config.sops.secrets.rift-host-public-key.path;
     };
   };
 
