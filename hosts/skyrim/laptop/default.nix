@@ -1,43 +1,27 @@
 {
   config,
   lib,
+  inputs,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
     ./disk-config.nix
+    inputs.sops-nix.nixosModules.sops
   ];
 
-  # boot = {
-  #   kernelParams = ["intel_iommu=on" "iommu=pt"];
-  #   loader = {
-  #     efi.canTouchEfiVariables = true;
-  #     grub = {
-  #       enable = true;
-  #       devices = ["nodev"];
-  #       efiSupport = true;
-  #       useOSProber = true;
-  #     };
+  networking.hostName = "skyrim";
+
+  # sops = {
+  #   age = {
+  #     sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
+  #     keyFile = "/var/lib/sops-nix/key.txt";
+  #     generateKey = true;
   #   };
-  #   initrd = {
-  #     kernelModules = ["vfat" "nls_cp437" "nls_iso8859-1" "usbhid"];
-  #     luks = {
-  #       yubikeySupport = true;
-  #       devices.${luks} = {
-  #         device = luksPart;
-  #         yubikey = {
-  #           slot = 2;
-  #           twoFactor = true;
-  #           gracePeriod = 30;
-  #           keyLength = 64;
-  #           saltLength = 16;
-  #           storage = {
-  #             device = bootPart;
-  #             fsType = "vfat";
-  #             path = "/crypt-storage/default";
-  #           };
-  #         };
-  #       };
+  #   secrets = {
+  #     password = {
+  #       sopsFile = ./secrets.yaml;
+  #       neededForUsers = true;
   #     };
   #   };
   # };
@@ -90,47 +74,6 @@
     };
   };
 
-  # fileSystems = {
-  #   "/" = {
-  #     device = rootPart;
-  #     fsType = "btrfs";
-  #     options = ["subvol=@"];
-  #   };
-  #   "/home" = {
-  #     device = rootPart;
-  #     fsType = "btrfs";
-  #     options = ["subvol=@home"];
-  #   };
-  #   "/tmp" = {
-  #     device = rootPart;
-  #     fsType = "btrfs";
-  #     options = ["subvol=@tmp"];
-  #   };
-  #   "/var" = {
-  #     device = rootPart;
-  #     fsType = "btrfs";
-  #     options = ["subvol=@var"];
-  #   };
-  # };
-
-  swapDevices = [];
-
-  networking.hostName = "skyrim";
-
-  # sops = {
-  #   age = {
-  #     sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-  #     keyFile = "/var/lib/sops-nix/key.txt";
-  #     generateKey = true;
-  #   };
-  #   secrets = {
-  #     password = {
-  #       sopsFile = ./secrets.yaml;
-  #       neededForUsers = true;
-  #     };
-  #   };
-  # };
-
   hardware = {
     nvidia = {
       modesetting.enable = true;
@@ -172,6 +115,22 @@
         "networkmanager"
       ];
       openssh.authorizedKeys.keys = [];
+    };
+  };
+
+  environment = {
+    persistence."/persist" = {
+      enable = true;
+      hideMounts = true;
+      directories = [
+        "/var/log"
+        "/var/lib/bluetooth"
+        "/var/lib/nixos"
+        "/var/lib/sops-nix"
+        "/var/lib/systemd/coredump"
+        "/etc/NetworkManager/system-connections"
+        "/etc/ssh"
+      ];
     };
   };
 

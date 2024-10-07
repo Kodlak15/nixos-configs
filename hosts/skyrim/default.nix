@@ -1,13 +1,13 @@
 {
   pkgs,
   lib,
-  inputs,
+  # inputs,
   ...
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   imports = [
-    inputs.sops-nix.nixosModules.sops
+    # inputs.sops-nix.nixosModules.sops
   ];
 
   nix.settings = {
