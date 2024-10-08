@@ -9,7 +9,6 @@
     ./cursor
     ./neovim
     ./firefox
-    ./gaming
     ./pywal
     ./zellij
     ./yubikey
@@ -38,20 +37,10 @@
         # Lighttable/darkroom for photography
         darktable
 
-        # Office software
-        libreoffice
-
-        # Debugging and reverse engineering
-        gdb
-
-        # LLM Clients
-        gpt4all
-
         # System info
         neofetch
         nix-output-monitor
         btop
-        htop
         lsof
         nvtopPackages.full
         lm_sensors
@@ -121,9 +110,6 @@
         pavucontrol
         vlc
         ffmpeg
-
-        # Screen recording/streaming
-        obs-studio
 
         # Power and brightness
         acpi
