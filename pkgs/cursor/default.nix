@@ -1,7 +1,7 @@
 # Code from https://gist.github.com/lukalot/fcbf3216ad13b8303ab0947af0d5abd5
 {pkgs, ...}: let
   pname = "cursor";
-  version = "0.35.0";
+  version = "0.41.0";
 
   src = pkgs.fetchurl {
     # this will break if the version is updated.
