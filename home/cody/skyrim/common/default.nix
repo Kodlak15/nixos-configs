@@ -7,6 +7,7 @@
     ./alacritty
     ./brave
     ./cursor
+    ./kitty
     ./neovim
     ./firefox
     ./pywal
@@ -18,7 +19,6 @@
     # ./sops
     # ./ssh
     ./swwwmgr
-    ./tmux
     ./virtualization
     ./wallpaper
     ./weather
