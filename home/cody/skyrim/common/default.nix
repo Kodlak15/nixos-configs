@@ -6,6 +6,7 @@
   imports = [
     ./alacritty
     ./brave
+    ./cursor
     ./neovim
     ./firefox
     ./gaming

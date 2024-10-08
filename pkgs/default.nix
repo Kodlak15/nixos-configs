@@ -3,6 +3,7 @@
   swww-manager = pkgs.python3Packages.callPackage ./swww-manager {};
   go-blueprint = pkgs.callPackage ./go-blueprint {};
   minimal-iso = pkgs.callPackage ./minimal-iso {};
+  cursor = pkgs.callPackage ./cursor {};
   install = {
     skyrim = {
       desktop = pkgs.callPackage ./install/skyrim/desktop {};
