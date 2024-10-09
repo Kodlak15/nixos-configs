@@ -1,7 +1,7 @@
 {
   description = "https://github.com/Kodlak15 NixOS Configurations";
 
-    inputs = {
+  inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
 

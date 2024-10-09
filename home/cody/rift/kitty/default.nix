@@ -1,8 +1,9 @@
 {
   programs.kitty = {
     enable = true;
+    keybindings = {};
     settings = {
-      window_padding_width = 50;
+      window_padding_width = 5;
     };
   };
 }

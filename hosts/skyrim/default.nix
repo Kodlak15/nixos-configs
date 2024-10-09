@@ -25,6 +25,7 @@
       "steam-original"
       "steam-run"
       "cudatoolkit"
+      "canon-cups-ufr2"
     ];
 
   programs = {
@@ -50,7 +51,26 @@
   services = {
     openssh.enable = true;
     dbus.enable = true;
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = with pkgs; [
+        gutenprint
+        canon-cups-ufr2
+      ];
+      browsedConf = ''
+        BrowseDNSSDSubTypes _cups,_print
+        BrowseLocalProtocols all
+        BrowseRemoteProtocols all
+        CreateIPPPrinterQueues All
+
+        BrowseProtocols all
+      '';
+    };
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
     libinput.enable = true;
     xserver = {
       videoDrivers = ["nvidia"];
@@ -111,6 +131,7 @@
   hardware = {
     gpgSmartcards.enable = true;
     pulseaudio.enable = false;
+    sane.enable = true;
   };
 
   virtualisation = {
@@ -142,5 +163,6 @@
     killall
     age
     virtiofsd
+    cups-bjnp # cups backend for canon printers
   ];
 }

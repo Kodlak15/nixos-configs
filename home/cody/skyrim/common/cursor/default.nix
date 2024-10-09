@@ -1,13 +1,10 @@
 {pkgs, ...}: {
   home.packages = [pkgs.cursor];
 
-  # NOTE:
-  # No way to configure cursor with nix as of now
-  # Can load vscode config within cursor instead
-  # In order to do so vscode.enable = true must be set
+  # Unable to configure cursor directly for now
+  # Can configure vscode declaratively and load configuration into cursor
   programs.vscode = {
     enable = true;
-    # package = pkgs.cursor;
     extensions = with pkgs.vscode-extensions; [
       # Color schemes
       mvllow.rose-pine

@@ -115,6 +115,8 @@ in {
         "usb"
         "plugdev"
         "networkmanager"
+        "scanner"
+        "lp"
       ];
       openssh.authorizedKeys.keys = [];
     };
