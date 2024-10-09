@@ -15,6 +15,7 @@
     userSettings = {
       "vim.leader" = "<space>";
       "vim.useSystemClipboard" = true;
+      "vim.smartRelativeLine" = true;
       "vim.handleKeys" = {
         "<C-d>" = true;
         "<C-f>" = true;
