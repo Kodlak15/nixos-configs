@@ -1,6 +1,8 @@
 {
   programs.kitty = {
     enable = true;
-    themeFile = "Catppuccin-Mocha";
+    settings = {
+      window_padding_width = 50;
+    };
   };
 }
