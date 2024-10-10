@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home.packages = [pkgs.cursor];
+  home.packages = [pkgs.code-cursor];
 
   # Unable to configure cursor directly for now
   # Can configure vscode declaratively and load configuration into cursor
@@ -13,6 +13,16 @@
     ];
     keybindings = [];
     userSettings = {
+      "editor.formatOnSave" = true;
+      "[templ]" = {
+        "editor.defaultFormatter" = "a-h.templ";
+      };
+      "tailwindCSS.includeLanguages" = {
+        "templ" = "html";
+      };
+      "emmet.includeLanguages" = {
+        "templ" = "html";
+      };
       "vim.leader" = "<space>";
       "vim.useSystemClipboard" = true;
       "vim.smartRelativeLine" = true;
