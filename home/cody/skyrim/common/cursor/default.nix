@@ -13,8 +13,8 @@
     ];
     keybindings = [];
     userSettings = {
-      "editor.formatOnSave" = true;
       "[templ]" = {
+        "editor.formatOnSave" = true;
         "editor.defaultFormatter" = "a-h.templ";
       };
       "tailwindCSS.includeLanguages" = {
@@ -22,6 +22,9 @@
       };
       "emmet.includeLanguages" = {
         "templ" = "html";
+      };
+      "files.associations" = {
+        "*.templ" = "templ";
       };
       "vim.leader" = "<space>";
       "vim.useSystemClipboard" = true;
