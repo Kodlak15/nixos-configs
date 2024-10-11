@@ -6,10 +6,8 @@
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
-      # Color schemes
-      mvllow.rose-pine
-      # Editor modifications
       vscodevim.vim
+      mvllow.rose-pine
     ];
     keybindings = [];
     userSettings = {
@@ -87,6 +85,24 @@
         {
           before = ["<leader>" "e"];
           commands = ["workbench.action.toggleSidebarVisibility"];
+        }
+        {
+          before = ["<leader>" "k"];
+          commands = ["editor.action.commentLine"];
+        }
+        {
+          before = ["<leader>" "h"];
+          commands = ["editor.action.commentBlock"];
+        }
+      ];
+      "vim.visualModeKeyBindingsNonRecursive" = [
+        {
+          before = ["<leader>" "k"];
+          commands = ["editor.action.commentLine"];
+        }
+        {
+          before = ["<leader>" "h"];
+          commands = ["editor.action.commentBlock"];
         }
       ];
     };
