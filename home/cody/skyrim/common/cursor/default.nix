@@ -15,6 +15,8 @@
         "editor.formatOnSave" = true;
         "editor.defaultFormatter" = "a-h.templ";
       };
+      "editor.guides.indentation" = false;
+      "editor.guides.highlightActiveIndentation" = false;
       "tailwindCSS.includeLanguages" = {
         "templ" = "html";
       };
@@ -46,6 +48,16 @@
         {
           before = ["K"];
           commands = ["editor.action.showDefinitionPreviewHover"];
+        }
+        {
+          # Next LSP error
+          before = ["g" "l"];
+          commands = ["editor.action.marker.next"];
+        }
+        {
+          # Previous LSP error
+          before = ["g" "h"];
+          commands = ["editor.action.marker.prev"];
         }
         {
           before = ["g" "i"];

@@ -1,13 +1,13 @@
 {
   pkgs,
   lib,
-  # inputs,
+  inputs,
   ...
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   imports = [
-    # inputs.sops-nix.nixosModules.sops
+    inputs.sops-nix.nixosModules.sops
   ];
 
   nix.settings = {
@@ -27,6 +27,20 @@
       "cudatoolkit"
       "canon-cups-ufr2"
     ];
+
+  sops = {
+    age = {
+      sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
+    };
+    secrets = {
+      anthropic_api_key = {
+        sopsFile = ./secrets.yaml;
+        neededForUsers = true;
+      };
+    };
+  };
 
   programs = {
     steam = {
