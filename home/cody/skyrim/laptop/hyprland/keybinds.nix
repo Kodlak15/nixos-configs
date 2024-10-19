@@ -1,7 +1,8 @@
 {
   wayland.windowManager.hyprland = {
     extraConfig = ''
-      bindm = $altMod, mouse:273, resizewindow
+      bindm = ALT_L, mouse:272, movewindow
+      bindm = ALT_L, mouse:273, resizewindow
     '';
     settings = {
       "$mod" = "SUPER";
@@ -15,8 +16,8 @@
           "$mod, f, fullscreen"
           # "$mod, RETURN, exec, alacritty"
           "$mod, RETURN, exec, kitty"
-          "$mod, b, exec, brave"
-          "$mod ALT_L, b, exec, firefox"
+          "$mod, b, exec, firefox"
+          "$mod ALT_L, b, exec, brave"
           "$mod, t, exec, thunar"
           "$mod ALT_L, v, exec, virt-manager"
           "$mod, left, movefocus, l"
@@ -26,9 +27,6 @@
           # Scroll through existing workspaces with mainMod + scroll
           "$mod, mouse_down, workspace, e+1"
           "$mod, mouse_up, workspace, e-1"
-          # Move/resize windows with altMod + LMB/RMB and dragging
-          "ALT_L, mouse:272, movewindow"
-          # "ALT_L, mouse:273, resizewindow" NOTE: this bugs out config
           # Adjust volume
           ", F1, exec, amixer -D default set Master 1+ toggle"
           ", F2, exec, wpctl set-volume 56 0.05-"

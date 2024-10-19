@@ -1,6 +1,7 @@
 keys:
   # Users
-  - &user_cody age143hl6yga8azgetapcyllks29lle0p23q02c0xaxheek0y36dfdesxvv2me
+  # - &user_cody age143hl6yga8azgetapcyllks29lle0p23q02c0xaxheek0y36dfdesxvv2me
+  - &user_cody age1yvzmwm4ny4qjj2scfalkxttdl3y3ehvmpscft75cf4sl7w6rr5aq4vxqh3
   # Hosts
   - &host_skyrim_desktop age150gmckkl9a667rw3ql7vukk2ty2yrdxnxvcw0fp3vupae6tvq9ksjsh7f2
   - &host_skyrim_laptop age1n88xr9w8japluasn9qakj6uaultwzcu337ny4gdesynn68w4f4xqpam9fq
@@ -17,3 +18,9 @@ creation_rules:
     - age:
       - *user_cody
       - *host_rift
+  - path_regex: home/cody/skyrim/common/sops/secrets.yaml$
+    key_groups:
+    - age:
+      - *user_cody
+      - *host_skyrim_desktop
+      - *host_skyrim_laptop

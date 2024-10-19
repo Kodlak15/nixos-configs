@@ -128,6 +128,9 @@
         "/var/lib/nixos"
         "/var/lib/sops-nix"
         "/var/lib/systemd/coredump"
+        "/var/lib/libvirt"
+        "/var/cache/mullvad-vpn"
+        "/etc/mullvad-vpn"
         "/etc/NetworkManager/system-connections"
         "/etc/ssh"
       ];

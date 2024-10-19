@@ -54,6 +54,9 @@
       # Set default editor (TODO: this should be done elsewhere, needed for laptop)
       export EDITOR="nvim"
 
+      # Make API keys available in environment
+      export ANTHROPIC_API_KEY="$(cat $XDG_RUNTIME_DIR/anthropic_api_key)"
+
       # Git status info
       autoload -Uz vcs_info
       precmd() { vcs_info }

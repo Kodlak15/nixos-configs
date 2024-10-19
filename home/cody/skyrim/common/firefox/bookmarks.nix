@@ -22,6 +22,10 @@
           url = "https://www.hetzner.com/";
         }
         {
+          name = "AWS";
+          url = "https://aws.amazon.com";
+        }
+        {
           name = "ChatGPT";
           url = "https://chatgpt.com/";
         }

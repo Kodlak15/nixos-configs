@@ -9,6 +9,10 @@
     };
     validateSopsFiles = false;
     secrets = {
+      "anthropic_api_key" = {
+        path = "%r/anthropic_api_key";
+        sopsFile = ./secrets.yaml;
+      };
       "private_keys/sops" = {
         path = "/home/cody/.config/sops/age/keys.txt";
         sopsFile = ./secrets.yaml;
