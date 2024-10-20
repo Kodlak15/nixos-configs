@@ -1,13 +1,11 @@
 {
   config,
   lib,
-  inputs,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
     ./disk-config.nix
-    inputs.sops-nix.nixosModules.sops
   ];
 
   networking.hostName = "skyrim";
