@@ -43,6 +43,16 @@
           before = ["k" "j"];
           after = ["<Esc>"];
         }
+        {
+          before = ["<C-n>"];
+          commands = ["selectNextSuggestion"];
+          when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && text";
+        }
+        {
+          before = ["<C-p>"];
+          commands = ["selectPrevSuggestion"];
+          when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && text";
+        }
       ];
       "vim.normalModeKeyBindingsNonRecursive" = [
         {
@@ -83,18 +93,18 @@
           before = ["L"];
           commands = ["workbench.action.nextEditor"];
         }
-        # 1. Search for text in workspace
         {
+          # Search for text in workspace
           before = ["<leader>" "f" "g"];
           commands = ["workbench.action.findInFiles"];
         }
-        # 2. Search for file in workspace
         {
+          # Search for file in workspace
           before = ["<leader>" "g"];
           commands = ["workbench.action.quickOpen"];
         }
-        # 3. Toggle primary sidebar
         {
+          # Toggle primary sidebar
           before = ["<leader>" "e"];
           commands = ["workbench.action.toggleSidebarVisibility"];
         }
