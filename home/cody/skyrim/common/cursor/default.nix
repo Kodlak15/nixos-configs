@@ -9,7 +9,13 @@
       vscodevim.vim
       mvllow.rose-pine
     ];
-    keybindings = [];
+    keybindings = [
+      {
+        # Remove default key for quickOpen
+        "key" = "ctrl+p";
+        "command" = "-workbench.action.quickOpen";
+      }
+    ];
     userSettings = {
       "[templ]" = {
         "editor.formatOnSave" = true;
