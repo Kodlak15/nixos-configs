@@ -9,14 +9,8 @@
       vscodevim.vim
       mvllow.rose-pine
     ];
-    keybindings = [
-      {
-        # Remove default key for quickOpen
-        "key" = "ctrl+p";
-        "command" = "-workbench.action.quickOpen";
-      }
-    ];
     userSettings = {
+      "editor.formatOnSave" = true;
       "[templ]" = {
         "editor.formatOnSave" = true;
         "editor.defaultFormatter" = "a-h.templ";
@@ -108,6 +102,11 @@
           # Search for file in workspace
           before = ["<leader>" "g"];
           commands = ["workbench.action.quickOpen"];
+        }
+        {
+          # Remove default key for quickOpen
+          before = ["<C-p>"];
+          commands = ["-workbench.action.quickOpen"];
         }
         {
           # Toggle primary sidebar
