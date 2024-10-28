@@ -38,6 +38,10 @@
           url = "https://pwn.college/dojos";
         }
         {
+          name = "cryptohack";
+          url = "https://cryptohack.org/courses/";
+        }
+        {
           name = "htb";
           url = "https://www.hackthebox.com/";
         }
