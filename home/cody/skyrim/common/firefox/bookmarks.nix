@@ -46,6 +46,10 @@
           url = "https://www.hackthebox.com/";
         }
         {
+          name = "excalidraw";
+          url = "https://exaclidraw.com";
+        }
+        {
           name = "Chess";
           url = "https://www.chess.com/";
         }
