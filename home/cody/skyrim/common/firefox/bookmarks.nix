@@ -42,12 +42,16 @@
           url = "https://cryptohack.org/courses/";
         }
         {
+          name = "exercism";
+          url = "https://exercism.org";
+        }
+        {
           name = "htb";
           url = "https://www.hackthebox.com/";
         }
         {
           name = "excalidraw";
-          url = "https://exaclidraw.com";
+          url = "https://excalidraw.com";
         }
         {
           name = "Chess";
