@@ -4,7 +4,8 @@ keys:
   - &user_cody age1yvzmwm4ny4qjj2scfalkxttdl3y3ehvmpscft75cf4sl7w6rr5aq4vxqh3
   # Hosts
   - &host_skyrim_desktop age150gmckkl9a667rw3ql7vukk2ty2yrdxnxvcw0fp3vupae6tvq9ksjsh7f2
-  - &host_skyrim_laptop age1n88xr9w8japluasn9qakj6uaultwzcu337ny4gdesynn68w4f4xqpam9fq
+  # - &host_skyrim_laptop age1n88xr9w8japluasn9qakj6uaultwzcu337ny4gdesynn68w4f4xqpam9fq
+  - &host_skyrim_laptop age19xvps0gnjjl4erlckrd2gc6k6ya2d4tn5pupj79yttm7akg9udwqhujdk5
   - &host_rift age1n9he08xzkatj24czw5knf8y60csscqtutyjmxcpfnw08lawh93fqsmd0gu
 creation_rules: 
   - path_regex: hosts/skyrim
