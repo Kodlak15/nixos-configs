@@ -1,7 +1,7 @@
 {inputs, ...}: {
   imports = [
     inputs.hyprland.homeManagerModules.default
-    inputs.nixvim.homeManagerModules.nixvim
+    # inputs.nixvim.homeManagerModules.nixvim
     ./hyprland
     ./eww
     # ./sops

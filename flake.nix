@@ -20,10 +20,10 @@
 
     nur.url = "github:nix-community/NUR";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixvim = {
+    #   url = "github:nix-community/nixvim";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     eww = {
       url = "github:elkowar/eww";
