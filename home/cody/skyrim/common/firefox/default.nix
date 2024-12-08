@@ -1,11 +1,5 @@
-{
-  pkgs,
-  # pkgs-stable,
-  config,
-  ...
-}: let
-  addons = config.nur.repos.rycee.firefox-addons;
-  # pname = "firefox-unwrapped";
+{pkgs, ...}: let
+  addons = pkgs.nur.repos.rycee.firefox-addons;
 in {
   imports = [
     ./policies.nix
@@ -14,10 +8,6 @@ in {
 
   programs.firefox = {
     enable = true;
-    # For screen sharing under wayland
-    # package = pkgs.wrapFirefox (pkgs.${pname}.override {pipewireSupport = true;}) {};
-    # NOTE trying stable package because unstable was bugging out
-    # package = pkgs-stable.wrapFirefox (pkgs.${pname}.override {pipewireSupport = true;}) {};
     profiles = {
       kodlak = {
         name = "kodlak";

@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  nur,
+  ...
+}: {
   flake-inputs = final: _: {
     inputs =
       builtins.mapAttrs (
@@ -12,6 +16,8 @@
       )
       inputs;
   };
+
+  nur = nur.overlays.default;
 
   # Adds my custom packages
   additions = final: prev:

@@ -18,12 +18,10 @@
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     hyprcursor.url = "github:hyprwm/hyprcursor";
 
-    nur.url = "github:nix-community/NUR";
-
-    # nixvim = {
-    #   url = "github:nix-community/nixvim";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     eww = {
       url = "github:elkowar/eww";
@@ -83,7 +81,7 @@
     packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
     devShells = forEachSystem (pkgs: import ./shells {inherit pkgs;});
     formatter = forEachSystem (pkgs: pkgs.alejandra);
-    overlays = import ./overlays {inherit inputs;};
+    overlays = import ./overlays {inherit inputs nur;};
 
     nixosConfigurations = {
       "skyrim/desktop" = lib.nixosSystem {
@@ -124,7 +122,6 @@
               inherit inputs outputs;
             };
           }
-          # nur.hmModules.nur # Nix User Repository
         ];
         specialArgs = {inherit inputs outputs;};
       };
@@ -143,7 +140,6 @@
         modules = [
           ./home/cody/skyrim/common
           ./home/cody/skyrim/desktop
-          nur.hmModules.nur # Nix User Repository
         ];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {
@@ -155,7 +151,6 @@
         modules = [
           ./home/cody/skyrim/common
           ./home/cody/skyrim/laptop
-          nur.hmModules.nur # Nix User Repository
         ];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {
