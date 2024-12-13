@@ -5,7 +5,7 @@ rebuild_nixos_local() {
 }
 
 rebuild_nixos_remote() {
-	echo "UNIMPLEMENTED"
+	nixos-rebuild switch --flake ".#$1" --target-host "$1" --build-host "$1" --max-jobs auto
 }
 
 case "$2" in

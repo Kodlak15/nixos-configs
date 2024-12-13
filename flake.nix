@@ -100,6 +100,13 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
+      "elsweyr" = lib.nixosSystem {
+        modules = [
+          "${inputs.nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
+          ./hosts/elsweyr
+        ];
+        specialArgs = {inherit inputs outputs;};
+      };
       "morrowind" = lib.nixosSystem {
         modules = [
           ./hosts/morrowind
@@ -132,6 +139,12 @@
           ./custom-iso/minimal-iso
         ];
         specialArgs = {inherit inputs outputs;};
+      };
+      "digital-ocean-image" = lib.nixosSystem {
+        modules = [
+          "${inputs.nixpkgs}/nixos/modules/virtualisation/digital-ocean-image.nix"
+          ./images/digital-ocean
+        ];
       };
     };
 

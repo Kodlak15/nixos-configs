@@ -7,6 +7,7 @@ keys:
   # - &host_skyrim_laptop age1n88xr9w8japluasn9qakj6uaultwzcu337ny4gdesynn68w4f4xqpam9fq
   - &host_skyrim_laptop age19xvps0gnjjl4erlckrd2gc6k6ya2d4tn5pupj79yttm7akg9udwqhujdk5
   - &host_rift age1n9he08xzkatj24czw5knf8y60csscqtutyjmxcpfnw08lawh93fqsmd0gu
+  - &host_elsweyr age1fj5wc8h3n7p5zyy2j2jw4jtq6rz8sk6ch5dns59y8u6gfwyhddmsmjf5vg
 creation_rules: 
   - path_regex: hosts/skyrim
     key_groups:
@@ -19,6 +20,11 @@ creation_rules:
     - age:
       - *user_cody
       - *host_rift
+  - path_regex: hosts/elsweyr/secrets.yaml$
+    key_groups:
+    - age:
+      - *user_cody
+      - *host_elsweyr
   - path_regex: home/cody/skyrim/common/sops/secrets.yaml$
     key_groups:
     - age:
