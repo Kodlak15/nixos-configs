@@ -40,6 +40,16 @@
       "caddy_config" = {
         owner = config.services.caddy.user;
         content = ''
+          www.${config.sops.placeholder.domain} {
+            tls {
+              dns cloudflare {
+                zone_token ${config.sops.placeholder.cloudflare_zone_token}
+                api_token ${config.sops.placeholder.cloudflare_dns_token}
+              }
+            }
+            redir https://${config.sops.placeholder.domain}{uri}
+          }
+
           ${config.sops.placeholder.domain} {
             tls {
               dns cloudflare {
