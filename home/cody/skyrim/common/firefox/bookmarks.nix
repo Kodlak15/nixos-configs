@@ -18,8 +18,12 @@
           url = "https://cloud.digitalocean.com";
         }
         {
+          name = "Cloudflare";
+          url = "https://www.cloudflare.com";
+        }
+        {
           name = "Hetzner";
-          url = "https://www.hetzner.com/";
+          url = "https://www.hetzner.com";
         }
         {
           name = "AWS";
