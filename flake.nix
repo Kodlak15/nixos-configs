@@ -1,5 +1,3 @@
-# TODO:
-# - test install and rebuild cyrodil on spare desktop ssd
 {
   description = "My nixos configurations.";
 
