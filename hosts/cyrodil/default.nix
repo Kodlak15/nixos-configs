@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: {
   imports = [
@@ -31,7 +32,7 @@
     ];
 
   networking = {
-    hostName = "skyrim";
+    hostName = "cyrodil";
     networkmanager.enable = true;
     firewall = {
       enable = true;
@@ -53,7 +54,6 @@
   };
 
   programs = {
-    hyprland.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -139,10 +139,14 @@
     getty.autologinUser = "cody";
   };
 
+  # security = {
+  #   rtkit.enable = true;
+  # };
+
   environment = {
     shells = with pkgs; [zsh];
     variables = {
-      EDITOR = "nvim";
+      EDITOR = "${pkgs.neovim}";
     };
     shellInit = ''
       gpg-connect-agent /bye
@@ -195,15 +199,20 @@
   };
 
   hardware = {
-    gpgSmartcards.enable = true;
-    pulseaudio.enable = false;
-    sane.enable = true;
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
       open = true;
       nvidiaSettings = true;
+      prime = {
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
     graphics = {
@@ -260,10 +269,10 @@
   };
 
   users = {
+    # mutableUsers = false;
     users.cody = {
-      shell = pkgs.zsh;
-      # hashedPassword = "$y$j9T$o3IYxTwHmV1ocaOXDcNhs/$z.746YINjBuHcnEkALGK3jdUzUasNTx4f8WQpSUqyY9";
-      hashedPassword = "$y$j9T$mNohI202LL6Mn1AdfRsNI.$J2LbLUuKbpSkpMfSVqHEQOowdNpy1OJBzgy.gE6HX59";
+      # hashedPasswordFile = config.sops.secrets.password_hash.path;
+      hashedPassword = "$y$j9T$o3IYxTwHmV1ocaOXDcNhs/$z.746YINjBuHcnEkALGK3jdUzUasNTx4f8WQpSUqyY9";
       isNormalUser = true;
       extraGroups = [
         "wheel"
@@ -284,13 +293,12 @@
       ];
     };
     users.root = {
-      shell = pkgs.zsh;
-      # initialHashedPassword = "$y$j9T$cVBuDErrQuq9PhUTj94mZ0$SNaVM8HEx1AHJgZEFvekLmhAWYm0OhDESkmfRmNLw89";
-      initialHashedPassword = "$y$j9T$8G1IlVd0y6vomYkFesWs2/$DrN1fkM7ZcLfg6DJ2yUyeHMnFbkiW3SCCAbaZ1f/yz8";
+      initialHashedPassword = "$y$j9T$cVBuDErrQuq9PhUTj94mZ0$SNaVM8HEx1AHJgZEFvekLmhAWYm0OhDESkmfRmNLw89";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwaOrqTJ6Xq8qU3y/Vn02tHMUZJISNRA/fLAVfYCN21"
       ];
     };
+    defaultUserShell = pkgs.zsh;
   };
 
   system.stateVersion = "23.05";

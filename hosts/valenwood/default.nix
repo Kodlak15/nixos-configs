@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  config,
+  inputs,
   ...
 }: {
   imports = [
@@ -15,7 +15,10 @@
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    overlays = [inputs.nur.overlays.default];
+    config.allowUnfree = true;
+  };
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
@@ -31,10 +34,11 @@
     ];
 
   networking = {
-    hostName = "skyrim";
+    hostName = "valenwood";
     networkmanager.enable = true;
     firewall = {
       enable = true;
+      allowedTCPPorts = [22];
     };
   };
 
@@ -44,16 +48,10 @@
       keyFile = "/var/lib/sops-nix/key.txt";
       generateKey = true;
     };
-    secrets = {
-      anthropic_api_key = {
-        sopsFile = ./secrets.yaml;
-        neededForUsers = true;
-      };
-    };
+    secrets = {};
   };
 
   programs = {
-    hyprland.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -70,7 +68,8 @@
       enable = true;
       package = pkgs.wireshark-qt;
     };
-    ssh.startAgent = false; # TODO may need to delete later
+    ssh.startAgent = false;
+    fuse.userAllowOther = true;
   };
 
   services = {
@@ -119,10 +118,6 @@
       nssmdns4 = true;
       openFirewall = true;
     };
-    libinput.enable = true;
-    xserver = {
-      videoDrivers = ["nvidia"];
-    };
     pipewire = {
       enable = true;
       alsa = {
@@ -142,7 +137,7 @@
   environment = {
     shells = with pkgs; [zsh];
     variables = {
-      EDITOR = "nvim";
+      EDITOR = "${pkgs.neovim}";
     };
     shellInit = ''
       gpg-connect-agent /bye
@@ -166,6 +161,7 @@
         efiInstallAsRemovable = true;
       };
     };
+    # NOTE: see impermanence issue below
     initrd = {
       postDeviceCommands = lib.mkAfter ''
         mkdir /btrfs_tmp
@@ -198,18 +194,6 @@
     gpgSmartcards.enable = true;
     pulseaudio.enable = false;
     sane.enable = true;
-    nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-      open = true;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
   };
 
   virtualisation = {
@@ -254,16 +238,37 @@
         "/var/cache/mullvad-vpn"
         "/etc/mullvad-vpn"
         "/etc/NetworkManager/system-connections"
-        "/etc/ssh"
       ];
+      files = [];
+      users.cody = {
+        directories = [
+          {
+            directory = ".ssh";
+            mode = "0700";
+          }
+          {
+            directory = ".gnupg";
+            mode = "0700";
+          }
+          {
+            directory = ".local/share/Steam";
+            mode = "0700";
+          }
+          {
+            directory = ".local/share/keyrings";
+            mode = "0700";
+          }
+        ];
+        files = [];
+      };
     };
   };
 
   users = {
+    # mutableUsers = false;
     users.cody = {
-      shell = pkgs.zsh;
-      # hashedPassword = "$y$j9T$o3IYxTwHmV1ocaOXDcNhs/$z.746YINjBuHcnEkALGK3jdUzUasNTx4f8WQpSUqyY9";
-      hashedPassword = "$y$j9T$mNohI202LL6Mn1AdfRsNI.$J2LbLUuKbpSkpMfSVqHEQOowdNpy1OJBzgy.gE6HX59";
+      # hashedPasswordFile = config.sops.secrets.password_hash.path;
+      hashedPassword = "$y$j9T$o3IYxTwHmV1ocaOXDcNhs/$z.746YINjBuHcnEkALGK3jdUzUasNTx4f8WQpSUqyY9";
       isNormalUser = true;
       extraGroups = [
         "wheel"
@@ -284,13 +289,12 @@
       ];
     };
     users.root = {
-      shell = pkgs.zsh;
-      # initialHashedPassword = "$y$j9T$cVBuDErrQuq9PhUTj94mZ0$SNaVM8HEx1AHJgZEFvekLmhAWYm0OhDESkmfRmNLw89";
-      initialHashedPassword = "$y$j9T$8G1IlVd0y6vomYkFesWs2/$DrN1fkM7ZcLfg6DJ2yUyeHMnFbkiW3SCCAbaZ1f/yz8";
+      initialHashedPassword = "$y$j9T$cVBuDErrQuq9PhUTj94mZ0$SNaVM8HEx1AHJgZEFvekLmhAWYm0OhDESkmfRmNLw89";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwaOrqTJ6Xq8qU3y/Vn02tHMUZJISNRA/fLAVfYCN21"
       ];
     };
+    defaultUserShell = pkgs.zsh;
   };
 
   system.stateVersion = "23.05";
