@@ -16,6 +16,7 @@
     ./sops
     # ./ssh
     ./swwwmgr
+    ./tmux
     ./virtualization
     ./wallpaper
     ./weather
