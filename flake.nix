@@ -73,7 +73,6 @@
             ];
             specialArgs = {inherit inputs outputs;};
           };
-          # NOTE: this requires a full reinstall
           "cyrodil" = inputs.nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
@@ -84,7 +83,6 @@
             ];
             specialArgs = {inherit inputs outputs;};
           };
-          # NOTE: test config (try in vm)
           "valenwood" = inputs.nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
