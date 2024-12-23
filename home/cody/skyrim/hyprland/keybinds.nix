@@ -37,15 +37,15 @@
           # Eww
           "$mod, x, exec, $HOME/.config/eww/scripts/window.sh --toggle status-bar && $HOME/.config/eww/scripts/window.sh --toggle workspaces-toolbar"
           # Change wallpaper
-          "$mod ALT_L, s, exec, swwwmgr -d $HOME/.config/wallpaper/space/ && eww reload"
-          "$mod ALT_L, f, exec, swwwmgr -d $HOME/.config/wallpaper/forest/ && eww reload"
-          "$mod ALT_L, o, exec, swwwmgr -d $HOME/.config/wallpaper/ocean/ && eww reload"
-          "$mod ALT_L, m, exec, swwwmgr -d $HOME/.config/wallpaper/mountains/ && eww reload"
-          "$mod ALT_L, g, exec, swwwmgr -d $HOME/.config/wallpaper/gaming/ && eww reload"
-          "$mod ALT_L, d, exec, swwwmgr -d $HOME/.config/wallpaper/digital/ && eww reload"
-          "$mod ALT_L, n, exec, swwwmgr -n && eww reload"
-          "$mod ALT_L, p, exec, swwwmgr -p && eww reload"
-          "$mod ALT_L, r, exec, swwwmgr -r && eww reload"
+          "$mod ALT_L, s, exec, swwwmgr -d $HOME/.config/wallpaper/space/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
+          "$mod ALT_L, f, exec, swwwmgr -d $HOME/.config/wallpaper/forest/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
+          "$mod ALT_L, o, exec, swwwmgr -d $HOME/.config/wallpaper/ocean/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
+          "$mod ALT_L, m, exec, swwwmgr -d $HOME/.config/wallpaper/mountains/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
+          "$mod ALT_L, g, exec, swwwmgr -d $HOME/.config/wallpaper/gaming/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
+          "$mod ALT_L, d, exec, swwwmgr -d $HOME/.config/wallpaper/digital/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
+          "$mod ALT_L, n, exec, swwwmgr -n && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
+          "$mod ALT_L, p, exec, swwwmgr -p && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
+          "$mod ALT_L, r, exec, swwwmgr -r && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
         ]
         ++ (builtins.concatLists (builtins.genList (
             i: let
