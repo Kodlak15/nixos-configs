@@ -10,5 +10,10 @@
       step = "90";
       type = "fade";
     };
+    hooks = {
+      after_set = [
+        "wal -i {image}"
+      ];
+    };
   };
 }

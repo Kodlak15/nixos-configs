@@ -1,10 +1,8 @@
 let
-  # NOTE: consider symlinking image to state directory and call wal on that
-  # makes no sense to call wall on the config directory
-  setWallpaperDir = imgDir: "swwwmgr -d $HOME/.config/wallpaper/${imgDir}/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload";
-  nextWallpaper = "swwwmgr -n && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload";
-  prevWallpaper = "swwwmgr -p && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload";
-  randomWallpaper = "swwwmgr -r && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload";
+  setWallpaperDir = imgDir: "swwwmgr -d $HOME/.config/wallpaper/${imgDir} && eww reload";
+  nextWallpaper = "swwwmgr -n && eww reload";
+  prevWallpaper = "swwwmgr -p && eww reload";
+  randomWallpaper = "swwwmgr -r && eww reload";
 in {
   wayland.windowManager.hyprland = {
     extraConfig = ''
