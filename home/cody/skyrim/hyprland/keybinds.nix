@@ -1,4 +1,11 @@
-{
+let
+  # NOTE: consider symlinking image to state directory and call wal on that
+  # makes no sense to call wall on the config directory
+  setWallpaperDir = imgDir: "swwwmgr -d $HOME/.config/wallpaper/${imgDir}/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload";
+  nextWallpaper = "swwwmgr -n && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload";
+  prevWallpaper = "swwwmgr -p && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload";
+  randomWallpaper = "swwwmgr -r && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload";
+in {
   wayland.windowManager.hyprland = {
     extraConfig = ''
       bindm = ALT_L, mouse:272, movewindow
@@ -37,15 +44,15 @@
           # Eww
           "$mod, x, exec, $HOME/.config/eww/scripts/window.sh --toggle status-bar && $HOME/.config/eww/scripts/window.sh --toggle workspaces-toolbar"
           # Change wallpaper
-          "$mod ALT_L, s, exec, swwwmgr -d $HOME/.config/wallpaper/space/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
-          "$mod ALT_L, f, exec, swwwmgr -d $HOME/.config/wallpaper/forest/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
-          "$mod ALT_L, o, exec, swwwmgr -d $HOME/.config/wallpaper/ocean/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
-          "$mod ALT_L, m, exec, swwwmgr -d $HOME/.config/wallpaper/mountains/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
-          "$mod ALT_L, g, exec, swwwmgr -d $HOME/.config/wallpaper/gaming/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
-          "$mod ALT_L, d, exec, swwwmgr -d $HOME/.config/wallpaper/digital/ && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
-          "$mod ALT_L, n, exec, swwwmgr -n && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
-          "$mod ALT_L, p, exec, swwwmgr -p && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
-          "$mod ALT_L, r, exec, swwwmgr -r && wal -i $HOME/.cache/wal/hyprland-colors.conf && eww reload"
+          "$mod ALT_L, s, exec, ${setWallpaperDir "space"}"
+          "$mod ALT_L, f, exec, ${setWallpaperDir "forest"}"
+          "$mod ALT_L, o, exec, ${setWallpaperDir "ocean"}"
+          "$mod ALT_L, m, exec, ${setWallpaperDir "mountains"}"
+          "$mod ALT_L, g, exec, ${setWallpaperDir "gaming"}"
+          "$mod ALT_L, d, exec, ${setWallpaperDir "digital"}"
+          "$mod ALT_L, n, exec, ${nextWallpaper}"
+          "$mod ALT_L, p, exec, ${prevWallpaper}"
+          "$mod ALT_L, r, exec, ${randomWallpaper}"
         ]
         ++ (builtins.concatLists (builtins.genList (
             i: let
