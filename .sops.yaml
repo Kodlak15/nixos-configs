@@ -2,9 +2,7 @@ keys:
   # Users
   - &user_cody age1yvzmwm4ny4qjj2scfalkxttdl3y3ehvmpscft75cf4sl7w6rr5aq4vxqh3
   # Hosts
-  # - &host_skyrim age19xvps0gnjjl4erlckrd2gc6k6ya2d4tn5pupj79yttm7akg9udwqhujdk5 # old
-  - &host_skyrim age1klgpjpt9llkvs0mtrvv6f0xlxpdc3u53fastexj46flk72a7yfsqwxj9pq
-  # age1vxw6uxkv2nwajztu2msp52y8gcyv82xh8anmd54ge86l4r6l54lsa9padt
+  - &host_skyrim age1vxw6uxkv2nwajztu2msp52y8gcyv82xh8anmd54ge86l4r6l54lsa9padt
   - &host_cyrodil age150gmckkl9a667rw3ql7vukk2ty2yrdxnxvcw0fp3vupae6tvq9ksjsh7f2
   - &host_valenwood age14hnjzjwwv5jjk986pg2h2h335402u5fq37nnc9xunxa66lplmcaqjv90qc
 creation_rules: 
