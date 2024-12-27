@@ -4,6 +4,7 @@
     ./brave
     ./cursor
     ./kitty
+    ./ghostty
     ./neovim
     ./firefox
     # ./impermanence

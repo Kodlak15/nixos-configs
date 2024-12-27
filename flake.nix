@@ -36,6 +36,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty.url = "github:ghostty-org/ghostty";
     impermanence.url = "github:nix-community/impermanence";
     swwwmgr.url = "github:Kodlak15/swww-manager";
     nvim.url = "github:Kodlak15/nvim-flake";
