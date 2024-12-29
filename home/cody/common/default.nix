@@ -99,7 +99,7 @@
       gimp
 
       # Manage GoPro videos
-      gopro
+      # gopro # (broken last I checked, at least on nixpkgs-unstable)
 
       # Media
       spotify

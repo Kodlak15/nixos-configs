@@ -245,7 +245,7 @@
       killall
       age
       virtiofsd
-      cups-bjnp # cups backend for canon printers
+      # cups-bjnp # cups backend for canon printers
     ];
     persistence."/persist" = {
       enable = true;
