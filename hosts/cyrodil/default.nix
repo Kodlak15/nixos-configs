@@ -39,19 +39,19 @@
     };
   };
 
-  # sops = {
-  #   age = {
-  #     sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
-  #     keyFile = "/var/lib/sops-nix/key.txt";
-  #     generateKey = true;
-  #   };
-  #   secrets = {
-  #     anthropic_api_key = {
-  #       sopsFile = ./secrets.yaml;
-  #       neededForUsers = true;
-  #     };
-  #   };
-  # };
+  sops = {
+    age = {
+      sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
+    };
+    secrets = {
+      anthropic_api_key = {
+        sopsFile = ./secrets.yaml;
+        neededForUsers = true;
+      };
+    };
+  };
 
   programs = {
     steam = {
@@ -171,6 +171,7 @@
       };
     };
     initrd = {
+      # luks.devices."/dev/disk/by-partlabel/cyrodil-luks".fido2.passwordLess = true;
       postDeviceCommands = lib.mkAfter ''
         mkdir /btrfs_tmp
         mount /dev/mapper/root /btrfs_tmp
@@ -248,7 +249,7 @@
       killall
       age
       virtiofsd
-      # cups-bjnp # cups backend for canon printers
+      fido2luks
     ];
     persistence."/persist" = {
       enable = true;
@@ -272,7 +273,7 @@
     # mutableUsers = false;
     users.cody = {
       # hashedPasswordFile = config.sops.secrets.password_hash.path;
-      hashedPassword = "$y$j9T$o3IYxTwHmV1ocaOXDcNhs/$z.746YINjBuHcnEkALGK3jdUzUasNTx4f8WQpSUqyY9";
+      hashedPassword = "$y$j9T$4rqef9eP7tE8/VoMw/B7S/$.ac9xBZtHsjmkz0YrBJn84uF5ot4sJ7iYTNQ/9VxNi6";
       isNormalUser = true;
       extraGroups = [
         "wheel"
@@ -293,7 +294,7 @@
       ];
     };
     users.root = {
-      initialHashedPassword = "$y$j9T$cVBuDErrQuq9PhUTj94mZ0$SNaVM8HEx1AHJgZEFvekLmhAWYm0OhDESkmfRmNLw89";
+      initialHashedPassword = "$y$j9T$C0KKoJoaUpeRwDYaW5dj20$.tvNBzhUxrWJAI2BXj7YtpKgJLez03IS6WMeel26Zr/";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwaOrqTJ6Xq8qU3y/Vn02tHMUZJISNRA/fLAVfYCN21"
       ];
