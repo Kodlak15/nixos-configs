@@ -245,7 +245,6 @@
       killall
       age
       virtiofsd
-      # cups-bjnp # cups backend for canon printers
     ];
     persistence."/persist" = {
       enable = true;
@@ -260,7 +259,7 @@
         "/var/cache/mullvad-vpn"
         "/etc/mullvad-vpn"
         "/etc/NetworkManager/system-connections"
-        "/etc/ssh"
+        # "/etc/ssh"
       ];
     };
   };

@@ -12,7 +12,7 @@ run_nixos_anywhere() {
 	nix run github:nix-community/nixos-anywhere -- \
 		--flake ".#$flake" \
 		--target-host "$target_host" \
-		--generate-hardware-config nixos-generate-config ./hosts/$flake/hardware-configuration.nix
+		--generate-hardware-config nixos-generate-config "./hosts/$flake/hardware-configuration.nix"
 }
 
 install() {

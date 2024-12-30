@@ -6,7 +6,7 @@
   disko.devices = {
     disk.disk1 = {
       type = "disk";
-      device = lib.mkDefault "/dev/disk/by-label/cyrodil"; # Give the disk this label before running nixos-anywhere
+      device = lib.mkDefault "/dev/nvme1n1"; # Give the disk this label before running nixos-anywhere
       content = {
         type = "gpt";
         partitions = {

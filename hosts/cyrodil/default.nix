@@ -39,19 +39,19 @@
     };
   };
 
-  sops = {
-    age = {
-      sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
-      keyFile = "/var/lib/sops-nix/key.txt";
-      generateKey = true;
-    };
-    secrets = {
-      anthropic_api_key = {
-        sopsFile = ./secrets.yaml;
-        neededForUsers = true;
-      };
-    };
-  };
+  # sops = {
+  #   age = {
+  #     sshKeyPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
+  #     keyFile = "/var/lib/sops-nix/key.txt";
+  #     generateKey = true;
+  #   };
+  #   secrets = {
+  #     anthropic_api_key = {
+  #       sopsFile = ./secrets.yaml;
+  #       neededForUsers = true;
+  #     };
+  #   };
+  # };
 
   programs = {
     steam = {
@@ -248,7 +248,7 @@
       killall
       age
       virtiofsd
-      cups-bjnp # cups backend for canon printers
+      # cups-bjnp # cups backend for canon printers
     ];
     persistence."/persist" = {
       enable = true;
@@ -263,7 +263,7 @@
         "/var/cache/mullvad-vpn"
         "/etc/mullvad-vpn"
         "/etc/NetworkManager/system-connections"
-        "/etc/ssh"
+        # "/etc/ssh"
       ];
     };
   };
