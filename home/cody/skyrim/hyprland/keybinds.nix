@@ -19,7 +19,6 @@ in {
           "$mod, p, pseudo"
           "$mod, j, togglesplit"
           "$mod, f, fullscreen"
-          # "$mod, RETURN, exec, kitty"
           "$mod, RETURN, exec, ghostty"
           "$mod, b, exec, firefox"
           "$mod ALT_L, b, exec, brave"
@@ -33,14 +32,15 @@ in {
           "$mod, mouse_down, workspace, e+1"
           "$mod, mouse_up, workspace, e-1"
           # Adjust volume
-          ", F1, exec, amixer -D default set Master 1+ toggle"
-          ", F2, exec, wpctl set-volume 56 0.05-"
-          ", F3, exec, wpctl set-volume 56 0.05+"
+          ", F1, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
+          ", F2, exec, wpctl set-volume @DEFAULT_SINK@ 0.05-"
+          ", F3, exec, wpctl set-volume @DEFAULT_SINK@ 0.05+"
           # Adjust brightness
           ", F6, exec, brightnessctl set 5%-"
           ", F7, exec, brightnessctl set 5%+"
           # Eww
           "$mod, x, exec, $HOME/.config/eww/scripts/window.sh --toggle status-bar && $HOME/.config/eww/scripts/window.sh --toggle workspaces-toolbar"
+          "$mod, c, exec, $HOME/.config/eww/scripts/window.sh --toggle control"
           # Change wallpaper
           "$mod ALT_L, s, exec, ${setWallpaperDir "space"}"
           "$mod ALT_L, f, exec, ${setWallpaperDir "forest"}"
@@ -57,7 +57,9 @@ in {
               ws = i + 1;
             in [
               "$mod, code:1${toString i}, workspace, ${toString ws}"
+              "$mod, code:1${toString i}, exec, eww close control"
               "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+              "$mod SHIFT, code:1${toString i}, exec, eww close control"
             ]
           )
           9));
