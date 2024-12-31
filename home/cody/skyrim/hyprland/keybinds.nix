@@ -39,8 +39,9 @@ in {
           ", F6, exec, brightnessctl set 5%-"
           ", F7, exec, brightnessctl set 5%+"
           # Eww
-          "$mod, x, exec, $HOME/.config/eww/scripts/window.sh --toggle status-bar && $HOME/.config/eww/scripts/window.sh --toggle workspaces-toolbar"
+          "$mod, x, exec, $HOME/.config/eww/scripts/window.sh --toggle status-bar"
           "$mod, c, exec, $HOME/.config/eww/scripts/window.sh --toggle control"
+          "$mod, l, exec, $HOME/.config/eww/scripts/window.sh --toggle launcher"
           # Change wallpaper
           "$mod ALT_L, s, exec, ${setWallpaperDir "space"}"
           "$mod ALT_L, f, exec, ${setWallpaperDir "forest"}"

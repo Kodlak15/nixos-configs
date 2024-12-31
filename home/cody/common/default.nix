@@ -35,6 +35,9 @@
       # Lighttable/darkroom for photography
       darktable
 
+      # Game development
+      godot_4
+
       # System info
       neofetch
       nix-output-monitor
