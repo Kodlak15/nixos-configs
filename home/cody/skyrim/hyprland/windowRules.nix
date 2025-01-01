@@ -15,6 +15,7 @@
       windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Cursor)
       windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(GNU Image Manipulation Program)
       windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(WebCord)
+      windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Godot)
 
       windowrule = opacity 0.95 0.95, class:^(nvim)$
     '';
