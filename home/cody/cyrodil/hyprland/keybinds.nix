@@ -41,6 +41,7 @@ in {
           # Eww
           "$mod, x, exec, $HOME/.config/eww/scripts/window.sh --toggle status-bar"
           "$mod, c, exec, $HOME/.config/eww/scripts/window.sh --toggle control"
+          "$mod, l, exec, $HOME/.config/eww/scripts/window.sh --toggle launcher"
           # Change wallpaper
           "$mod ALT_L, s, exec, ${setWallpaperDir "space"}"
           "$mod ALT_L, f, exec, ${setWallpaperDir "forest"}"
@@ -58,8 +59,10 @@ in {
             in [
               "$mod, code:1${toString i}, workspace, ${toString ws}"
               "$mod, code:1${toString i}, exec, eww close control"
+              "$mod, code:1${toString i}, exec, eww close launcher"
               "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
               "$mod SHIFT, code:1${toString i}, exec, eww close control"
+              "$mod SHIFT, code:1${toString i}, exec, eww close launcher"
             ]
           )
           9));

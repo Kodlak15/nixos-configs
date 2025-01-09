@@ -58,9 +58,11 @@ in {
               ws = i + 1;
             in [
               "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod, code:1${toString i}, exec, eww close control && eww close launcher"
+              "$mod, code:1${toString i}, exec, eww close control"
+              "$mod, code:1${toString i}, exec, eww close launcher"
               "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
               "$mod SHIFT, code:1${toString i}, exec, eww close control"
+              "$mod SHIFT, code:1${toString i}, exec, eww close launcher"
             ]
           )
           9));
