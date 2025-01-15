@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }: {
   imports = [
@@ -139,10 +138,6 @@
     getty.autologinUser = "cody";
   };
 
-  # security = {
-  #   rtkit.enable = true;
-  # };
-
   environment = {
     shells = with pkgs; [zsh];
     variables = {
@@ -207,14 +202,6 @@
       powerManagement.finegrained = false;
       open = true;
       nvidiaSettings = true;
-      prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
-      };
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
     graphics = {
@@ -265,7 +252,6 @@
         "/var/cache/mullvad-vpn"
         "/etc/mullvad-vpn"
         "/etc/NetworkManager/system-connections"
-        # "/etc/ssh"
       ];
     };
   };

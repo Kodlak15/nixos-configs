@@ -142,11 +142,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1736528770,
-        "narHash": "sha256-3vTUNultdae7M2qM9IVaQx6YIWOxH6YMFj5maU2+8bw=",
+        "lastModified": 1736530549,
+        "narHash": "sha256-zjnBr0d7HA7zz1Je3W8jZcfJUlglmATGFkJ//vJ6bfM=",
         "owner": "Kodlak15",
         "repo": "eww-configs",
-        "rev": "203f5b3aa88bfdaab38083578fd110a835ea97c2",
+        "rev": "30097121361528de09e1f6917da523cd94e1af31",
         "type": "github"
       },
       "original": {
