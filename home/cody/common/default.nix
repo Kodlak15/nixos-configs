@@ -9,6 +9,7 @@
     ./firefox
     # ./impermanence
     ./pywal
+    # ./ollama
     ./zellij
     ./yubikey
     ./git
@@ -37,6 +38,11 @@
 
       # Game development
       godot_4
+      blender
+
+      # LLMs
+      # ollama
+      # open-webui
 
       # System info
       neofetch
