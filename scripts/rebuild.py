@@ -33,7 +33,6 @@ def rebuild_nixos(host: str, target_host: str, build_host: Union[str, None] = No
             print(f"Rebuilding {host} for {target_host} on {build_host}")
             subprocess.run(
                 [
-                    # "sudo",
                     "nixos-rebuild",
                     "switch",
                     "--flake",

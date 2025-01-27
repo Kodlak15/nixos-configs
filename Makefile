@@ -8,9 +8,9 @@ collect-garbage:
 install-skyrim:
 	./scripts/install.sh skyrim
 rebuild-skyrim:
-	./scripts/rebuild.py --option "full" --host "skyrim" --user "cody" --target-host "root@skyrim"
+	./scripts/rebuild.py --option "full" --host "skyrim" --user "cody"
 rebuild-skyrim-nixos:
-	./scripts/rebuild.py --option "nixos" --host "skyrim" --target-host "root@skyrim"
+	./scripts/rebuild.py --option "nixos" --host "skyrim"
 rebuild-skyrim-nixos-remote:
 	./scripts/rebuild.py --option "nixos" --host "skyrim" --target-host "root@skyrim" --build-host "cyrodil"
 rebuild-skyrim-home:
@@ -20,7 +20,7 @@ rebuild-skyrim-home:
 install-cyrodil:
 	./scripts/install.sh cyrodil
 rebuild-cyrodil:
-	./scripts/rebuild.py --option "full" --host "cyrodil" --user "cody" --target-host "root@cyrodil"
+	./scripts/rebuild.py --option "full" --host "cyrodil" --user "cody"
 rebuild-cyrodil-nixos:
 	./scripts/rebuild.py --option "nixos" --host "cyrodil" --target-host "root@cyrodil"
 rebuild-cyrodil-home:
@@ -30,7 +30,7 @@ rebuild-cyrodil-home:
 install-valenwood:
 	./scripts/install.sh valenwood
 rebuild-valenwood:
-	./scripts/rebuild.py --option "full" --host "valenwood" --user "cody" --target-host "root@valenwood"
+	./scripts/rebuild.py --option "full" --host "valenwood" --user "cody"
 rebuild-valenwood-nixos:
 	./scripts/rebuild.py --option "nixos" --host "valenwood" --target-host "root@valenwood"
 rebuild-valenwood-nixos-remote:

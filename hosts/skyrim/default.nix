@@ -104,18 +104,18 @@
         }
       ];
     };
-    # ollama = {
-    #   enable = true;
-    #   acceleration = "cuda";
-    #   loadModels = [
-    #     "deepseek-r1"
-    #     "llama3.3"
-    #   ];
-    # };
-    # open-webui = {
-    #   enable = true;
-    #   openFirewall = true;
-    # };
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+      loadModels = [
+        # "deepseek-r1"
+        "llama3.2"
+      ];
+    };
+    open-webui = {
+      enable = true;
+      openFirewall = true;
+    };
     dbus.enable = true;
     printing = {
       enable = true;
