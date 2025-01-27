@@ -108,6 +108,7 @@
     open-webui = {
       enable = true;
       openFirewall = true;
+      port = 8888;
     };
     dbus.enable = true;
     printing = {

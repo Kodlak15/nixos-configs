@@ -22,7 +22,7 @@ install-cyrodil:
 rebuild-cyrodil:
 	./scripts/rebuild.py --option "full" --host "cyrodil" --user "cody"
 rebuild-cyrodil-nixos:
-	./scripts/rebuild.py --option "nixos" --host "cyrodil" --target-host "root@cyrodil"
+	./scripts/rebuild.py --option "nixos" --host "cyrodil"
 rebuild-cyrodil-home:
 	./scripts/rebuild.py --option "home" --host "cyrodil" --user "cody"
 
@@ -32,7 +32,7 @@ install-valenwood:
 rebuild-valenwood:
 	./scripts/rebuild.py --option "full" --host "valenwood" --user "cody"
 rebuild-valenwood-nixos:
-	./scripts/rebuild.py --option "nixos" --host "valenwood" --target-host "root@valenwood"
+	./scripts/rebuild.py --option "nixos" --host "valenwood"
 rebuild-valenwood-nixos-remote:
 	./scripts/rebuild.py --option "nixos" --host "valenwood" --target-host "root@valenwood" --build-host "cyrodil"
 rebuild-valenwood-home:
