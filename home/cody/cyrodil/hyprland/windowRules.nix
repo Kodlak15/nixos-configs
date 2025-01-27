@@ -13,6 +13,7 @@
       windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Cursor)
       windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Steam)
       windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Godot)
+      windowrulev2 = opacity 1.0 override 1.0 override, initialTitle:(Blender)
       windowrule = opacity 0.95 0.95, class:^(nvim)$
     '';
   };

@@ -40,10 +40,6 @@
       godot_4
       blender
 
-      # LLMs
-      # ollama
-      # open-webui
-
       # System info
       neofetch
       nix-output-monitor
