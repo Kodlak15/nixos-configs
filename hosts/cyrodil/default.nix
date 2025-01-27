@@ -102,7 +102,7 @@
       acceleration = "cuda";
       loadModels = [
         "deepseek-r1"
-        "llama3.3"
+        "llama3.2"
       ];
     };
     open-webui = {

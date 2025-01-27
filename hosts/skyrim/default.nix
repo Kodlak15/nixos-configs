@@ -108,7 +108,6 @@
       enable = true;
       acceleration = "cuda";
       loadModels = [
-        # "deepseek-r1"
         "llama3.2"
       ];
     };
