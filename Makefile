@@ -11,6 +11,8 @@ rebuild-skyrim:
 	./scripts/rebuild.py --option "full" --host "skyrim" --user "cody" --target-host "root@skyrim"
 rebuild-skyrim-nixos:
 	./scripts/rebuild.py --option "nixos" --host "skyrim" --target-host "root@skyrim"
+rebuild-skyrim-nixos-remote:
+	./scripts/rebuild.py --option "nixos" --host "skyrim" --target-host "cody@skyrim" --build-host "cyrodil"
 rebuild-skyrim-home:
 	./scripts/rebuild.py --option "home" --host "skyrim" --user "cody"
 
@@ -31,5 +33,7 @@ rebuild-valenwood:
 	./scripts/rebuild.py --option "full" --host "valenwood" --user "cody" --target-host "root@valenwood"
 rebuild-valenwood-nixos:
 	./scripts/rebuild.py --option "nixos" --host "valenwood" --target-host "root@valenwood"
+rebuild-valenwood-nixos-remote:
+	./scripts/rebuild.py --option "nixos" --host "valenwood" --target-host "cody@valenwood" --build-host "cyrodil"
 rebuild-valenwood-home:
 	./scripts/rebuild.py --option "home" --host "valenwood" --user "cody"
