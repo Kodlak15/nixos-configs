@@ -16,15 +16,11 @@
           blur {
             enabled = false
           }
-          # drop_shadow = false
-          # shadow_range = 4
-          # shadow_render_power = 3
-          # col.shadow = rgba(1a1a1aee)
           fullscreen_opacity = 1.0
-          active_opacity = 0.95
-          inactive_opacity = 0.95
-          # active_opacity = 0.90
-          # inactive_opacity = 0.90
+          # active_opacity = 0.95
+          # inactive_opacity = 0.95
+          active_opacity = 1.0
+          inactive_opacity = 1.0
       }
 
       dwindle {
