@@ -14,6 +14,8 @@
       gtk-titlebar = false
       window-padding-x = 6
       window-padding-y = 6
+
+      keybind = ctrl+b>j=new_split:down
     '';
   };
 }
