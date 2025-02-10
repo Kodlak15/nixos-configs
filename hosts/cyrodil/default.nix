@@ -112,6 +112,7 @@
       openFirewall = true;
       port = 8888;
     };
+    pulseaudio.enable = false;
     dbus.enable = true;
     printing = {
       enable = true;
@@ -259,11 +260,12 @@
       hideMounts = true;
       directories = [
         "/var/log"
-        "/var/lib/bluetooth"
-        "/var/lib/nixos"
-        "/var/lib/sops-nix"
-        "/var/lib/systemd/coredump"
-        "/var/lib/libvirt"
+        "/var/lib"
+        # "/var/lib/bluetooth"
+        # "/var/lib/nixos"
+        # "/var/lib/sops-nix"
+        # "/var/lib/systemd/coredump"
+        # "/var/lib/libvirt"
         "/var/cache/mullvad-vpn"
         "/etc/mullvad-vpn"
         "/etc/NetworkManager/system-connections"
