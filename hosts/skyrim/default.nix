@@ -33,7 +33,7 @@
       "steam-original"
       "steam-run"
       "cudatoolkit"
-      "canon-cups-ufr2"
+      # "canon-cups-ufr2"
     ];
 
   networking = {
@@ -122,7 +122,7 @@
       enable = true;
       drivers = with pkgs; [
         gutenprint
-        canon-cups-ufr2
+        # canon-cups-ufr2
       ];
       browsedConf = ''
         BrowseDNSSDSubTypes _cups,_print
@@ -317,6 +317,13 @@
       ];
     };
   };
+
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   system.stateVersion = "23.05";
 }
