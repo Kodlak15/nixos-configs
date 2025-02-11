@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   lib,
   config,
   ...
@@ -111,7 +112,8 @@
     # There seems to be an issue with a dependency for open-webui that is causing rebuild to fail
     # Could consider using the package from the stable branch of nixpkgs if the issue persists
     open-webui = {
-      enable = false; # see issue above
+      enable = true; # see issue above
+      package = pkgs-stable.open-webui; # using stable package until unstable one is fixed
       openFirewall = true;
       port = 8888;
     };
@@ -257,6 +259,7 @@
       age
       virtiofsd
       fido2luks
+      nvidia-container-toolkit
     ];
     persistence."/persist" = {
       enable = true;
