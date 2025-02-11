@@ -27,7 +27,7 @@
       "steam-original"
       "steam-run"
       "cudatoolkit"
-      "canon-cups-ufr2"
+      # "canon-cups-ufr2"
     ];
 
   networking = {
@@ -107,8 +107,11 @@
         "llama3.2"
       ];
     };
+    # ISSUE: https://github.com/NixOS/nixpkgs/issues/380636
+    # There seems to be an issue with a dependency for open-webui that is causing rebuild to fail
+    # Could consider using the package from the stable branch of nixpkgs if the issue persists
     open-webui = {
-      enable = true;
+      enable = false; # see issue above
       openFirewall = true;
       port = 8888;
     };
@@ -118,7 +121,7 @@
       enable = true;
       drivers = with pkgs; [
         gutenprint
-        canon-cups-ufr2
+        # canon-cups-ufr2
       ];
       browsedConf = ''
         BrowseDNSSDSubTypes _cups,_print

@@ -51,7 +51,6 @@
     inherit (self) outputs;
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [];
       debug = false; # If having issues, set to true for useful debugging output in the repl
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       perSystem = {
@@ -61,7 +60,9 @@
         pkgs,
         system,
         ...
-      }: {};
+      }: {
+        # Packages, shells, etc.
+      };
       flake = {
         nixosConfigurations = {
           "skyrim" = inputs.nixpkgs.lib.nixosSystem {
@@ -119,6 +120,7 @@
             extraSpecialArgs = {inherit inputs outputs;};
           };
           "cody@cyrodil" = inputs.home-manager.lib.homeManagerConfiguration {
+            # "temp" = inputs.home-manager.lib.homeManagerConfiguration {
             modules = [
               ./home/cody/cyrodil
             ];
