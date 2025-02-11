@@ -38,7 +38,7 @@
 
       # Game development
       godot_4
-      blender
+      # blender
 
       # System info
       neofetch

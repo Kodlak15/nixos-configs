@@ -111,11 +111,11 @@
         "llama3.2"
       ];
     };
-    open-webui = {
-      enable = true;
-      openFirewall = true;
-      port = 8888;
-    };
+    # open-webui = {
+    #   enable = true;
+    #   openFirewall = true;
+    #   port = 8888;
+    # };
     pulseaudio.enable = false;
     dbus.enable = true;
     printing = {
