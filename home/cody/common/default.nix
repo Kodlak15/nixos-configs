@@ -50,6 +50,9 @@
       pciutils
       usbutils
 
+      # Cloud CLI tools
+      doctl
+
       # System tools
       bat
       eza # Disabling due to autocomplete bug (see Issue 1038)
