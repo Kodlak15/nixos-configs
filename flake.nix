@@ -67,7 +67,7 @@
       };
       flake = {
         nixosConfigurations = {
-          "skyrim" = inputs.nixpkgs.lib.nixosSystem {
+          "skyrim" = inputs.nixpkgs.lib.nixosSystem rec {
             system = "x86_64-linux";
             modules = [
               ./hosts/skyrim
@@ -75,7 +75,10 @@
               inputs.impermanence.nixosModules.impermanence
               inputs.sops-nix.nixosModules.sops
             ];
-            specialArgs = {inherit inputs outputs;};
+            specialArgs = {
+              inherit inputs outputs;
+              pkgs-stable = import inputs.nixpkgs-stable {inherit system;};
+            };
           };
           "cyrodil" = inputs.nixpkgs.lib.nixosSystem rec {
             system = "x86_64-linux";
