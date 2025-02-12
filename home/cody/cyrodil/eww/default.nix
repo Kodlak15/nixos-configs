@@ -3,13 +3,13 @@
   inputs,
   ...
 }: {
-  imports = [
-    ../../../../modules/home-manager/eww-fixed.nix
-  ];
-
-  disabledModules = [
-    "programs/eww.nix"
-  ];
+  # imports = [
+  #   ../../../../modules/home-manager/eww-fixed.nix
+  # ];
+  #
+  # disabledModules = [
+  #   "programs/eww.nix"
+  # ];
 
   programs.eww = {
     enable = true;
