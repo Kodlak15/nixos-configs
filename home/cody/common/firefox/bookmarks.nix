@@ -1,7 +1,6 @@
 {
   programs.firefox.profiles.kodlak.bookmarks = [
     {
-      # Bookmarks that will appear on the toolbar
       name = "Toolbar";
       toolbar = true;
       bookmarks = [
@@ -20,6 +19,10 @@
         {
           name = "Cloudflare";
           url = "https://www.cloudflare.com";
+        }
+        {
+          name = "Replicate";
+          url = "https://replicate.com";
         }
         {
           name = "Hetzner";
@@ -61,69 +64,69 @@
           name = "Chess";
           url = "https://www.chess.com/";
         }
+      ];
+    }
+    {
+      # Nix resources
+      name = "Nix";
+      bookmarks = [
         {
-          # Nix resources
-          name = "Nix";
+          name = "NixOS and Flakes Book";
+          url = "https://nixos-and-flakes.thiscute.world/";
+        }
+        {
+          name = "Nix Packages Search";
+          url = "https://search.nixos.org/packages";
+        }
+        {
+          name = "Home Manager Options";
+          url = "https://nix-community.github.io/home-manager/options.xhtml";
+        }
+        {
+          name = "nix.dev";
+          url = "https://nix.dev/";
+        }
+      ];
+    }
+    {
+      name = "Wayland";
+      bookmarks = [
+        {
+          name = "wlroots";
+          url = "https://gitlab.freedesktop.org/wlroots/wlroots";
+        }
+        {
+          name = "river";
+          url = "https://github.com/riverwm/river";
+        }
+      ];
+    }
+    {
+      name = "GameDev";
+      bookmarks = [
+        {
+          name = "Bevy";
           bookmarks = [
             {
-              name = "NixOS and Flakes Book";
-              url = "https://nixos-and-flakes.thiscute.world/";
+              name = "bevy";
+              url = "https://bevyengine.org/";
             }
             {
-              name = "Nix Packages Search";
-              url = "https://search.nixos.org/packages";
+              name = "examples";
+              url = "https://github.com/bevyengine/bevy/tree/latest/examples#examples";
             }
             {
-              name = "Home Manager Options";
-              url = "https://nix-community.github.io/home-manager/options.xhtml";
-            }
-            {
-              name = "nix.dev";
-              url = "https://nix.dev/";
+              name = "cheatbook";
+              url = "https://bevy-cheatbook.github.io/fundamentals.html";
             }
           ];
         }
         {
-          name = "Wayland";
+          name = "blender";
           bookmarks = [
             {
-              name = "wlroots";
-              url = "https://gitlab.freedesktop.org/wlroots/wlroots";
-            }
-            {
-              name = "river";
-              url = "https://github.com/riverwm/river";
-            }
-          ];
-        }
-        {
-          name = "GameDev";
-          bookmarks = [
-            {
-              name = "Bevy";
-              bookmarks = [
-                {
-                  name = "bevy";
-                  url = "https://bevyengine.org/";
-                }
-                {
-                  name = "examples";
-                  url = "https://github.com/bevyengine/bevy/tree/latest/examples#examples";
-                }
-                {
-                  name = "cheatbook";
-                  url = "https://bevy-cheatbook.github.io/fundamentals.html";
-                }
-              ];
-            }
-            {
-              name = "blender";
-              bookmarks = [
-                {
-                  name = "manual";
-                  url = "https://docs.blender.org/manual/en/dev/";
-                }
-              ];
+              name = "manual";
+              url = "https://docs.blender.org/manual/en/dev/";
             }
           ];
         }
