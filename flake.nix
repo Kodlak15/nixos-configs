@@ -4,7 +4,6 @@
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -77,7 +76,6 @@
             ];
             specialArgs = {
               inherit inputs outputs;
-              pkgs-stable = import inputs.nixpkgs-stable {inherit system;};
             };
           };
           "cyrodil" = inputs.nixpkgs.lib.nixosSystem rec {
@@ -90,7 +88,6 @@
             ];
             specialArgs = {
               inherit inputs outputs;
-              pkgs-stable = import inputs.nixpkgs-stable {inherit system;};
             };
           };
           "valenwood" = inputs.nixpkgs.lib.nixosSystem {

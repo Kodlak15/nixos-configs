@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-stable,
   lib,
   config,
   ...
@@ -108,12 +107,8 @@
         "llama3.2"
       ];
     };
-    # ISSUE: https://github.com/NixOS/nixpkgs/issues/380636
-    # There seems to be an issue with a dependency for open-webui that is causing rebuild to fail
-    # Could consider using the package from the stable branch of nixpkgs if the issue persists
     open-webui = {
       enable = true; # see issue above
-      package = pkgs-stable.open-webui; # using stable package until unstable one is fixed
       openFirewall = true;
       port = 8888;
     };
