@@ -17,8 +17,6 @@
             enabled = false
           }
           fullscreen_opacity = 1.0
-          # active_opacity = 0.95
-          # inactive_opacity = 0.95
           active_opacity = 1.0
           inactive_opacity = 1.0
       }
@@ -27,10 +25,6 @@
           pseudotile = true # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
           preserve_split = true # you probably want this
       }
-
-      # master {
-      #     new_is_master = true
-      # }
     '';
   };
 }
