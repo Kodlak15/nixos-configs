@@ -6,7 +6,6 @@
     ./kitty
     ./ghostty
     ./neovim
-    ./firefox
     # ./impermanence
     ./pywal
     # ./ollama
