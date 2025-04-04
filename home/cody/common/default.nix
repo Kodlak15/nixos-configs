@@ -37,7 +37,9 @@
 
       # Game development
       godot_4
+
       # blender
+      blender
 
       # System info
       neofetch
@@ -73,6 +75,7 @@
 
       # VPN
       mullvad-vpn
+      mullvad-browser
 
       # Blue light filter
       wlsunset

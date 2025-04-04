@@ -11,7 +11,6 @@
       }
 
       decoration {
-          # rounding = 10
           rounding = 2
           blur {
             enabled = false
