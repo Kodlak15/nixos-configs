@@ -119,7 +119,10 @@
             ];
             pkgs = import inputs.nixpkgs {
               system = "x86_64-linux";
-              overlays = [inputs.nur.overlays.default];
+              overlays = [
+                inputs.nur.overlays.default
+                (final: prev: {blender = prev.blender.override {cudaSupport = true;};})
+              ];
               config.allowUnfree = true;
             };
             extraSpecialArgs = {inherit inputs outputs;};
@@ -131,7 +134,10 @@
             ];
             pkgs = import inputs.nixpkgs {
               system = "x86_64-linux";
-              overlays = [inputs.nur.overlays.default];
+              overlays = [
+                inputs.nur.overlays.default
+                (final: prev: {blender = prev.blender.override {cudaSupport = true;};})
+              ];
               config.allowUnfree = true;
             };
             extraSpecialArgs = {inherit inputs outputs;};

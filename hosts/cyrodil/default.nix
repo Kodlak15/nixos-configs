@@ -27,7 +27,6 @@
       "steam-original"
       "steam-run"
       "cudatoolkit"
-      # "canon-cups-ufr2"
     ];
 
   networking = {
@@ -216,9 +215,11 @@
       modesetting.enable = true;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
-      open = true;
+      # open = true;
+      open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
     graphics = {
       enable = true;
@@ -284,6 +285,7 @@
         "wheel"
         "audio"
         "video"
+        "render"
         "input"
         "docker"
         "libvirtd"
