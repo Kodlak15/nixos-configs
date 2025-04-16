@@ -26,7 +26,7 @@
       gtk-titlebar = false;
       window-padding-x = 6;
       window-padding-y = 6;
-      background-opacity = 0.8;
+      background-opacity = 0.95;
     };
   };
 }
