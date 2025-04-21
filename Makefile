@@ -1,7 +1,7 @@
 # Nix commands
-update-flake:
+update:
 	sudo nix flake update
-collect-garbage:
+cg:
 	sudo nix-collect-garbage -d
 
 # Skyrim (Personal laptop)

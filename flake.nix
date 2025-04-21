@@ -4,6 +4,7 @@
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-24_11.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -125,7 +126,13 @@
               ];
               config.allowUnfree = true;
             };
-            extraSpecialArgs = {inherit inputs outputs;};
+            extraSpecialArgs = {
+              inherit inputs outputs;
+              pkgs-24_11 = import inputs.nixpkgs-24_11 {
+                system = "x86_64-linux";
+                config.allowUnfree = true;
+              };
+            };
           };
           "cody@cyrodil" = inputs.home-manager.lib.homeManagerConfiguration {
             # "temp" = inputs.home-manager.lib.homeManagerConfiguration {
@@ -136,7 +143,9 @@
               system = "x86_64-linux";
               overlays = [
                 inputs.nur.overlays.default
-                (final: prev: {blender = prev.blender.override {cudaSupport = true;};})
+                (final: prev: {
+                  blender = prev.blender.override {cudaSupport = true;};
+                })
               ];
               config.allowUnfree = true;
             };
