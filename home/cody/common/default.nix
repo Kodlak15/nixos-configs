@@ -41,6 +41,8 @@
         darktable
 
         # Game development
+        # ISSUE: https://github.com/NixOS/nixpkgs/issues/399818
+        # Temporarily using stable package until this is resolved
         # godot_4
 
         # blender
