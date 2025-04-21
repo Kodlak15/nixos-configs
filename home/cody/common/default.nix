@@ -1,6 +1,6 @@
 {
   pkgs,
-  pkgs-24_11,
+  pkgs-godot-fix,
   ...
 }: {
   imports = [
@@ -42,7 +42,7 @@
 
         # Game development
         # ISSUE: https://github.com/NixOS/nixpkgs/issues/399818
-        # Temporarily using stable package until this is resolved
+        # Temporarily using 24.11 package until this is resolved
         # godot_4
 
         # blender
@@ -142,6 +142,6 @@
         alejandra
         shfmt
       ]
-      ++ [pkgs-24_11.godot_4]
+      ++ [pkgs-godot-fix.godot_4]
   );
 }
