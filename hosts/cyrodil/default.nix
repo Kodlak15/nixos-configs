@@ -180,6 +180,7 @@
         efiSupport = true;
         efiInstallAsRemovable = true;
         useOSProber = true;
+        configurationLimit = 20;
       };
     };
     initrd = {

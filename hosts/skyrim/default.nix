@@ -188,6 +188,7 @@
         devices = ["nodev"];
         efiSupport = true;
         efiInstallAsRemovable = true;
+        configurationLimit = 20;
       };
     };
     initrd = {
