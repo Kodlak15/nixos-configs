@@ -160,6 +160,7 @@
       yubikey-personalization
     ];
     getty.autologinUser = "cody";
+    blueman.enable = true;
   };
 
   environment = {
@@ -240,6 +241,11 @@
       enable = true;
       enable32Bit = true;
     };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    opentabletdriver.enable = true;
   };
 
   virtualisation = {
