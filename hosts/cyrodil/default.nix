@@ -151,6 +151,7 @@
       yubikey-personalization
     ];
     getty.autologinUser = "cody";
+    blueman.enable = true;
   };
 
   environment = {
@@ -225,6 +226,11 @@
       enable = true;
       enable32Bit = true;
     };
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    opentabletdriver.enable = true;
   };
 
   virtualisation = {
@@ -263,11 +269,6 @@
       directories = [
         "/var/log"
         "/var/lib"
-        # "/var/lib/bluetooth"
-        # "/var/lib/nixos"
-        # "/var/lib/sops-nix"
-        # "/var/lib/systemd/coredump"
-        # "/var/lib/libvirt"
         "/var/cache/mullvad-vpn"
         "/etc/mullvad-vpn"
         "/etc/NetworkManager/system-connections"
@@ -295,6 +296,7 @@
         "networkmanager"
         "scanner"
         "lp"
+        "bluetooth"
       ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwaOrqTJ6Xq8qU3y/Vn02tHMUZJISNRA/fLAVfYCN21"
