@@ -10,6 +10,7 @@
     ./colors.nix
     ./startup.nix
     ./plugins.nix
+    ./devices.nix
   ];
 
   wayland.windowManager.hyprland = {
