@@ -113,7 +113,8 @@
 
         # View and/or edit images
         imv
-        gimp
+        # gimp
+        gimp3-with-plugins
 
         # Manage GoPro videos
         # gopro # (broken last I checked, at least on nixpkgs-unstable)
