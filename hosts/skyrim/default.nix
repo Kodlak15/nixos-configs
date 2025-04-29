@@ -246,7 +246,6 @@
       enable = true;
       powerOnBoot = true;
     };
-    opentabletdriver.enable = true;
   };
 
   virtualisation = {
