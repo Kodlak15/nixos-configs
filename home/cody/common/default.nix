@@ -29,120 +29,119 @@
   ];
 
   home.packages = (
-    with pkgs;
-      [
-        # Version control
-        codeberg-cli
+    with pkgs; [
+      # Version control
+      codeberg-cli
 
-        # Secret management
-        sops
+      # Secret management
+      sops
 
-        # Lighttable/darkroom for photography
-        darktable
+      # Lighttable/darkroom for photography
+      darktable
 
-        # Game development
-        # ISSUE: https://github.com/NixOS/nixpkgs/issues/399818
-        # Temporarily using 24.11 package until this is resolved
-        # godot_4
+      # Game development
+      # ISSUE: https://github.com/NixOS/nixpkgs/issues/399818
+      # Temporarily using 24.11 package until this is resolved
+      godot_4
 
-        # blender
-        blender
+      # blender
+      blender
 
-        # System info
-        neofetch
-        nix-output-monitor
-        btop
-        lsof
-        nvtopPackages.full
-        lm_sensors
-        pciutils
-        usbutils
+      # System info
+      neofetch
+      nix-output-monitor
+      btop
+      lsof
+      nvtopPackages.full
+      lm_sensors
+      pciutils
+      usbutils
 
-        # Cloud CLI tools
-        doctl
+      # Cloud CLI tools
+      doctl
 
-        # System tools
-        bat
-        eza # Disabling due to autocomplete bug (see Issue 1038)
-        ripgrep
-        fzf
-        tree
-        socat
-        file
-        which
-        tree
-        p7zip
-        jq
-        ydotool
-        inotify-tools
-        unzip
+      # System tools
+      bat
+      eza # Disabling due to autocomplete bug (see Issue 1038)
+      ripgrep
+      fzf
+      tree
+      socat
+      file
+      which
+      tree
+      p7zip
+      jq
+      ydotool
+      inotify-tools
+      unzip
 
-        # Torrent client
-        qbittorrent
+      # Torrent client
+      qbittorrent
 
-        # VPN
-        mullvad-vpn
-        mullvad-browser
+      # VPN
+      mullvad-vpn
+      mullvad-browser
 
-        # Blue light filter
-        wlsunset
+      # Blue light filter
+      wlsunset
 
-        # Wallpaper
-        swww
+      # Wallpaper
+      swww
 
-        # Markdown viewer/editor
-        glow
+      # Markdown viewer/editor
+      glow
 
-        # Security
-        gnupg
+      # Security
+      gnupg
 
-        # Network analysis
-        nmap
+      # Network analysis
+      nmap
 
-        # Flipper Zero software
-        qflipper
+      # Flipper Zero software
+      qflipper
 
-        # Gaming
-        webcord # discord alternative
-        winetricks
-        wineWowPackages.waylandFull
+      # Gaming
+      webcord # discord alternative
+      winetricks
+      wineWowPackages.waylandFull
 
-        # Containerisation and virtualisation
-        virt-manager
-        docker-compose
+      # Containerisation and virtualisation
+      virt-manager
+      docker-compose
 
-        # View and/or edit images
-        imv
-        # gimp
-        gimp3-with-plugins
+      # View and/or edit images
+      imv
+      # gimp
+      gimp3-with-plugins
 
-        # Manage GoPro videos
-        # gopro # (broken last I checked, at least on nixpkgs-unstable)
+      # Manage GoPro videos
+      # gopro # (broken last I checked, at least on nixpkgs-unstable)
 
-        # Media
-        spotify
-        playerctl
-        ncpamixer
-        pavucontrol
-        vlc
-        ffmpeg
+      # Media
+      spotify
+      playerctl
+      ncpamixer
+      pavucontrol
+      vlc
+      ffmpeg
 
-        # Power and brightness
-        acpi
-        brightnessctl
+      # Power and brightness
+      acpi
+      brightnessctl
 
-        # File expolorer
-        xfce.thunar
+      # File expolorer
+      xfce.thunar
 
-        # Screenshots
-        grim
-        slurp
+      # Screenshots
+      grim
+      slurp
 
-        # Formatters (place these elsewhere)
-        nixpkgs-fmt
-        alejandra
-        shfmt
-      ]
-      ++ [pkgs-godot-fix.godot_4]
+      # Formatters (place these elsewhere)
+      nixpkgs-fmt
+      alejandra
+      shfmt
+    ]
+    # ++ [pkgs-godot-fix.godot_4]
   );
 }

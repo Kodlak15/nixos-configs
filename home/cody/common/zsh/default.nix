@@ -43,7 +43,7 @@
         };
       }
     ];
-    initExtra = ''
+    initContent = ''
       export TERM=xterm-256color
       export ZELLIJ_AUTO_START=false
 

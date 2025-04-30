@@ -5,7 +5,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # Fix for godot issue, can remove once fix is available in unstable channel
-    nixpkgs-godot-fix.url = "github:NixOS/nixpkgs/e32a27edc351e188df549efdcee3ca11bdb4af28";
+    # nixpkgs-godot-fix.url = "github:NixOS/nixpkgs/e32a27edc351e188df549efdcee3ca11bdb4af28";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
