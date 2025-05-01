@@ -4,8 +4,6 @@
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # Fix for godot issue, can remove once fix is available in unstable channel
-    # nixpkgs-godot-fix.url = "github:NixOS/nixpkgs/e32a27edc351e188df549efdcee3ca11bdb4af28";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,8 +60,7 @@
         pkgs,
         system,
         ...
-      }: let
-      in {
+      }: {
         # Packages, shells, etc.
       };
       flake = {
@@ -129,10 +126,6 @@
             };
             extraSpecialArgs = {
               inherit inputs outputs;
-              pkgs-godot-fix = import inputs.nixpkgs-godot-fix {
-                system = "x86_64-linux";
-                config.allowUnfree = true;
-              };
             };
           };
           "cody@cyrodil" = inputs.home-manager.lib.homeManagerConfiguration {
@@ -152,10 +145,6 @@
             };
             extraSpecialArgs = {
               inherit inputs outputs;
-              pkgs-godot-fix = import inputs.nixpkgs-godot-fix {
-                system = "x86_64-linux";
-                config.allowUnfree = true;
-              };
             };
           };
         };

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs-godot-fix,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./alacritty
     ./brave
@@ -40,8 +36,6 @@
       darktable
 
       # Game development
-      # ISSUE: https://github.com/NixOS/nixpkgs/issues/399818
-      # Temporarily using 24.11 package until this is resolved
       godot_4
 
       # blender
@@ -142,6 +136,5 @@
       alejandra
       shfmt
     ]
-    # ++ [pkgs-godot-fix.godot_4]
   );
 }
