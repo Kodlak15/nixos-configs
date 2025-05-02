@@ -20,7 +20,7 @@ in {
           "$mod, j, togglesplit"
           "$mod, f, fullscreen"
           "$mod, RETURN, exec, ghostty"
-          "$mod  b, exec, brave"
+          "$mod, b, exec, brave"
           "$mod, t, exec, thunar"
           "$mod ALT_L, v, exec, virt-manager"
           "$mod, left, movefocus, l"
