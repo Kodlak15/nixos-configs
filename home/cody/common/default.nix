@@ -30,8 +30,8 @@
       codeberg-cli
 
       # Code editors
-      code-cursor
-      windsurf
+      # code-cursor
+      # windsurf
 
       # Secret management
       sops

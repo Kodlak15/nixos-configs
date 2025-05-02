@@ -22,6 +22,7 @@
       alacritty = "nvidia-offload alacritty";
       screenshot = "$HOME/nix/flakes/nixos/scripts/screenshot.sh";
       cat = "bat";
+      cursor = "cursor --enable-features=UseOzonePlatform --ozone-platform=wayland";
     };
     plugins = [
       {
