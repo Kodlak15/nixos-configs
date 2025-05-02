@@ -6,7 +6,7 @@
           gaps_out = 4
           border_size = 2
           col.active_border = rgba(ffffffff)
-          col.inactive_border = $color11 rgba(00000000) 90deg
+          col.inactive_border = rgba(ffcc66ff) rgba(00000000) 90deg
           layout = dwindle
       }
 
