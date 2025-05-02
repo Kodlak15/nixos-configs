@@ -2,7 +2,6 @@
   imports = [
     ./alacritty
     ./brave
-    ./cursor
     ./kitty
     ./ghostty
     ./neovim
@@ -21,6 +20,7 @@
     ./virtualization
     ./wallpaper
     ./weather
+    ./vscode
     ./zsh
   ];
 
@@ -28,6 +28,10 @@
     with pkgs; [
       # Version control
       codeberg-cli
+
+      # Code editors
+      code-cursor
+      windsurf
 
       # Secret management
       sops

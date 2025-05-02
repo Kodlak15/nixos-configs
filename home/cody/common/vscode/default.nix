@@ -1,10 +1,6 @@
 {pkgs, ...}: {
-  home.packages = [pkgs.code-cursor];
-
-  # Unable to configure cursor directly for now
-  # Can configure vscode declaratively and load configuration into cursor
   programs.vscode = {
-    enable = true;
+    enable = false;
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
         vscodevim.vim
