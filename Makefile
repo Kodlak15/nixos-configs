@@ -1,6 +1,10 @@
 # Nix commands
 update:
-	sudo nix flake update
+	./scripts/update.sh
+	# if sudo nix flake update; then 
+	# 	git add .
+	# 	git commit -m "Update lock file"
+	# fi
 cg:
 	sudo nix-collect-garbage -d
 

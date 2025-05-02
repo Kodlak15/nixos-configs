@@ -65,7 +65,7 @@
       };
       flake = {
         nixosConfigurations = {
-          "skyrim" = inputs.nixpkgs.lib.nixosSystem rec {
+          "skyrim" = inputs.nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
               ./hosts/skyrim
@@ -77,7 +77,7 @@
               inherit inputs outputs;
             };
           };
-          "cyrodil" = inputs.nixpkgs.lib.nixosSystem rec {
+          "cyrodil" = inputs.nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
               ./hosts/cyrodil
@@ -137,9 +137,7 @@
               system = "x86_64-linux";
               overlays = [
                 inputs.nur.overlays.default
-                (final: prev: {
-                  blender = prev.blender.override {cudaSupport = true;};
-                })
+                (final: prev: {blender = prev.blender.override {cudaSupport = true;};})
               ];
               config.allowUnfree = true;
             };
