@@ -6,7 +6,7 @@
       pane_frames = false;
       tab_bar = false;
       default_layout = "compact";
-      theme = "ayu_dark";
+      theme = "ayu_mirage";
       keybinds = {
         unbind = [
           "Ctrl p"
