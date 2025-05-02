@@ -108,10 +108,12 @@
       virt-manager
       docker-compose
 
-      # View and/or edit images
+      # View images
       imv
-      # gimp
+
+      # Drawing/painting/editing tools
       gimp3-with-plugins
+      krita
 
       # Manage GoPro videos
       # gopro # (broken last I checked, at least on nixpkgs-unstable)

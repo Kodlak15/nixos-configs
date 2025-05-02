@@ -82,13 +82,13 @@
       }
 
       # Set pywal generated terminal colors
-      (cat ~/.cache/wal/sequences &)
+      # (cat ~/.cache/wal/sequences &)
 
       # Add pywal support for tty
-      source ~/.cache/wal/colors-tty.sh
+      # source ~/.cache/wal/colors-tty.sh
 
       # Source the colors file
-      source $HOME/.cache/wal/colors-zsh.zsh
+      # source $HOME/.cache/wal/colors-zsh.zsh
 
       # Prompt
       PROMPT=' %~ % $(__git_ps1 "(%s)")󰄾 '
