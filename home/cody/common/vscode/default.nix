@@ -1,18 +1,19 @@
 {pkgs, ...}: {
   programs.vscode = {
-    enable = false;
+    enable = true;
+    package = pkgs.code-cursor;
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
         vscodevim.vim
-        vscode-extensions.teabyii.ayu
-        vscode-extensions.golang.go
-        vscode-extensions.geequlim.godot-tools
-        vscode-extensions.ms-python.python
-        vscode-extensions.bradlc.vscode-tailwindcss
-        vscode-extensions.dbaeumer.vscode-eslint
-        vscode-extensions.jnoortheen.nix-ide
-        vscode-extensions.kamadorueda.alejandra
-        vscode-extensions.timonwong.shellcheck
+        teabyii.ayu
+        golang.go
+        geequlim.godot-tools
+        ms-python.python
+        bradlc.vscode-tailwindcss
+        dbaeumer.vscode-eslint
+        jnoortheen.nix-ide
+        kamadorueda.alejandra
+        timonwong.shellcheck
       ];
       userSettings = {
         "editor.formatOnSave" = true;
