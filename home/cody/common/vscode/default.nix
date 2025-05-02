@@ -4,7 +4,15 @@
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
         vscodevim.vim
-        mvllow.rose-pine
+        vscode-extensions.teabyii.ayu
+        vscode-extensions.golang.go
+        vscode-extensions.geequlim.godot-tools
+        vscode-extensions.ms-python.python
+        vscode-extensions.bradlc.vscode-tailwindcss
+        vscode-extensions.dbaeumer.vscode-eslint
+        vscode-extensions.jnoortheen.nix-ide
+        vscode-extensions.kamadorueda.alejandra
+        vscode-extensions.timonwong.shellcheck
       ];
       userSettings = {
         "editor.formatOnSave" = true;
@@ -30,7 +38,7 @@
           "<C-d>" = true;
           "<C-f>" = true;
         };
-        "workbench.colorTheme" = "Rosé Pine";
+        "workbench.colorTheme" = "Ayu Mirage";
         "vim.insertModeKeyBindings" = [
           {
             before = ["j" "k"];
