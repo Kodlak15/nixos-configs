@@ -36,6 +36,9 @@
       # Secret management
       sops
 
+      # C compiler
+      gcc
+
       # Lighttable/darkroom for photography
       darktable
 
