@@ -7,33 +7,38 @@ cg:
 # Skyrim (Personal laptop)
 install-skyrim:
 	./scripts/install.sh skyrim
-rebuild-skyrim:
-	./scripts/rebuild.py --option "full" --host "skyrim" --user "cody"
-rebuild-skyrim-nixos:
-	./scripts/rebuild.py --option "nixos" --host "skyrim"
-rebuild-skyrim-nixos-remote:
-	./scripts/rebuild.py --option "nixos" --host "skyrim" --target-host "root@skyrim" --build-host "cyrodil"
-rebuild-skyrim-home:
-	./scripts/rebuild.py --option "home" --host "skyrim" --user "cody"
+skyrim:
+	sudo nixos-rebuild switch --flake ".#cody@skyrim"
+	find "$(HOME)" -type f -name "*.hm.bk" -delete
+	home-manager switch -b "hm.bk" --flake ".#cody@skyrim"
+skyrim-nixos:
+	sudo nixos-rebuild switch --flake ".#cody@skyrim"
+skyrim-home:
+	find "$(HOME)" -type f -name "*.hm.bk" -delete
+	home-manager switch -b "hm.bk" --flake ".#cody@skyrim"
 
 # Cyrodil (Personal desktop)
 install-cyrodil:
 	./scripts/install.sh cyrodil
-rebuild-cyrodil:
-	./scripts/rebuild.py --option "full" --host "cyrodil" --user "cody"
-rebuild-cyrodil-nixos:
-	./scripts/rebuild.py --option "nixos" --host "cyrodil"
-rebuild-cyrodil-home:
-	./scripts/rebuild.py --option "home" --host "cyrodil" --user "cody"
+cyrodil:
+	sudo nixos-rebuild switch --flake ".#cody@cyrodil"
+	find "$(HOME)" -type f -name "*.hm.bk" -delete
+	home-manager switch -b "hm.bk" --flake ".#cody@cyrodil"
+cyrodil-nixos:
+	sudo nixos-rebuild switch --flake ".#cody@cyrodil"
+cyrodil-home:
+	find "$(HOME)" -type f -name "*.hm.bk" -delete
+	home-manager switch -b "hm.bk" --flake ".#cody@cyrodil"
 
 # Valenwood (Test VM)
 install-valenwood:
 	./scripts/install.sh valenwood
-rebuild-valenwood:
-	./scripts/rebuild.py --option "full" --host "valenwood" --user "cody"
-rebuild-valenwood-nixos:
-	./scripts/rebuild.py --option "nixos" --host "valenwood"
-rebuild-valenwood-nixos-remote:
-	./scripts/rebuild.py --option "nixos" --host "valenwood" --target-host "root@valenwood" --build-host "cyrodil"
-rebuild-valenwood-home:
-	./scripts/rebuild.py --option "home" --host "valenwood" --user "cody"
+valenwood:
+	sudo nixos-rebuild switch --flake ".#cody@valenwood"
+	find "$(HOME)" -type f -name "*.hm.bk" -delete
+	home-manager switch -b "hm.bk" --flake ".#cody@valenwood"
+valenwood-nixos:
+	sudo nixos-rebuild switch --flake ".#cody@valenwood"
+valenwood-home:
+	find "$(HOME)" -type f -name "*.hm.bk" -delete
+	home-manager switch -b "hm.bk" --flake ".#cody@valenwood"

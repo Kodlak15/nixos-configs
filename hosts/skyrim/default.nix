@@ -10,7 +10,7 @@
   ];
 
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = ["nix-command" "flakes" "pipe-operators"];
     substituters = [
       "https://hyprland.cachix.org"
       "https://ghostty.cachix.org"

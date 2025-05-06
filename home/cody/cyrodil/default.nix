@@ -11,6 +11,10 @@
     username = "cody";
     homeDirectory = "/home/cody";
 
+    shellAliases = {
+      home-manager = "home-manager -b hm.bak";
+    };
+
     stateVersion = "23.05";
   };
 
