@@ -9,6 +9,7 @@
       gtk-titlebar = false;
       window-padding-x = 6;
       window-padding-y = 6;
+      window-padding-color = "background";
       background-opacity = 0.80;
     };
   };
