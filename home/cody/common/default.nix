@@ -25,6 +25,8 @@
     ./godot
   ];
 
+  home.shellAliases = {};
+
   home.packages = (
     with pkgs; [
       # Version control
