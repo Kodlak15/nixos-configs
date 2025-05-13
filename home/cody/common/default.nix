@@ -25,7 +25,20 @@
     ./godot
   ];
 
-  home.shellAliases = {};
+  home.shellAliases = {
+    NIXCFG = "$HOME/nix/flakes/nixos/";
+    ls = "eza -l";
+    lsa = "eza -la";
+    e = "fzedit";
+    o = "fzopen";
+    z = "zellij";
+    nd = "nix develop";
+    nb = "nix build";
+    nr = "nix run";
+    screenshot = "$HOME/nix/flakes/nixos/scripts/screenshot.sh";
+    cat = "bat";
+    cursor = "cursor --enable-features=UseOzonePlatform --ozone-platform=wayland";
+  };
 
   home.packages = (
     with pkgs; [

@@ -10,19 +10,23 @@
       path = "${config.xdg.dataHome}/zsh/history";
     };
     shellAliases = {
-      NIXCFG = "$HOME/nix/flakes/nixos/";
-      ls = "eza -l";
-      lsa = "eza -la";
-      e = "fzedit";
-      o = "fzopen";
-      z = "zellij";
-      nd = "nix develop";
-      nb = "nix build";
-      nr = "nix run";
-      alacritty = "nvidia-offload alacritty";
-      screenshot = "$HOME/nix/flakes/nixos/scripts/screenshot.sh";
-      cat = "bat";
-      cursor = "cursor --enable-features=UseOzonePlatform --ozone-platform=wayland";
+      # NIXCFG = "$HOME/nix/flakes/nixos/";
+      # ls = "eza -l";
+      # lsa = "eza -la";
+      # e = "fzedit";
+      # o = "fzopen";
+      # z = "zellij";
+      # nd = "nix develop";
+      # nb = "nix build";
+      # nr = "nix run";
+      # screenshot = "$HOME/nix/flakes/nixos/scripts/screenshot.sh";
+      # cat = "bat";
+      # cursor = "cursor --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    };
+    oh-my-zsh = {
+      enable = false;
+      plugins = ["git"];
+      theme = "robbyrussell";
     };
     plugins = [
       {
