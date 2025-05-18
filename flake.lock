@@ -1409,11 +1409,11 @@
         "systems": "systems_8"
       },
       "locked": {
-        "lastModified": 1747598153,
-        "narHash": "sha256-LjA+D0wThBDN00qJy7hVVKoqqP1p/+mNmFW+OmgeIqc=",
+        "lastModified": 1747598238,
+        "narHash": "sha256-i1W+afzhw5EyZg2crc7FmmhC/tWJA4H4w1aDSn0NJTQ=",
         "owner": "Kodlak15",
         "repo": "nvim-flake",
-        "rev": "b3ba425f7b106e80a5b973524dc8d7d3a3f430ce",
+        "rev": "c10b3bcaa7e5ed63096ddfd6f7d14a64aea57b89",
         "type": "github"
       },
       "original": {
