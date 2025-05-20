@@ -14,6 +14,7 @@
     ./animations.nix
     ./colors.nix
     ./devices.nix
+    ./plugins.nix
   ];
 
   wayland.windowManager.hyprland = {
