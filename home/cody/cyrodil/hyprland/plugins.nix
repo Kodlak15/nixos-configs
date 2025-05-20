@@ -3,13 +3,9 @@
   inputs,
   ...
 }: {
-  home.packages = [
-    # inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
-  ];
+  home.packages = with pkgs; [hyprsunset];
+
   wayland.windowManager.hyprland = {
-    plugins = [
-      # TODO
-      # inputs.hyprcursor.packages.${pkgs.system}.default
-    ];
+    plugins = [];
   };
 }
