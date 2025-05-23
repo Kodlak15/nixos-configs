@@ -165,9 +165,13 @@
     '';
   };
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
-  ];
+  fonts.packages = with pkgs;
+    [
+      # nerd-fonts.fira-code
+      # nerd-fonts.droid-sans-mono
+      texlivePackages.lm-math
+    ]
+    ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts));
 
   time.timeZone = "US/Pacific";
   i18n.defaultLocale = "en_US.UTF-8";

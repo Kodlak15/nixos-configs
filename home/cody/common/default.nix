@@ -148,6 +148,7 @@
       # Power and brightness
       acpi
       brightnessctl
+      hyprsunset
 
       # File expolorer
       xfce.thunar
