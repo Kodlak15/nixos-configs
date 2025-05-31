@@ -1018,11 +1018,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1748650146,
-        "narHash": "sha256-xQsKSjoDnnu1PzUjj59+8nlnVSEUhE/duK7K7W+qa+c=",
+        "lastModified": 1748650851,
+        "narHash": "sha256-Ne5kbtFBuB6rCUgHMFwDCP4wb1th0u+tCjlWNiKFUv8=",
         "owner": "Kodlak15",
         "repo": "nvim-flake",
-        "rev": "9e814976df7e0fd2e1c315a6d22eb0b335615f33",
+        "rev": "8ba001073b369c73f0dba58114f5c9c7067a3573",
         "type": "github"
       },
       "original": {
