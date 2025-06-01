@@ -15,7 +15,7 @@
       env = MOZ_ENABLE_WAYLAND,1
       env = MOZ_DBUS_REMOTE,1
       env = GDK_BACKEND,wayland,xll,*
-      env = QT_QPA_PLATFORM,wayland,xcb
+      env = QT_QPA_PLATFORM,wayland
 
       # Needed to run steam in offload mode
       env = XDG_DATA_HOME,$HOME/.local/share

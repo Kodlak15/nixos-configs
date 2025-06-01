@@ -16,7 +16,7 @@
       env = MOZ_DBUS_REMOTE,1
       env = GDK_BACKEND,wayland,xll,*
 
-      env = QT_QPA_PLATFORM,wayland;xcb
+      env = QT_QPA_PLATFORM,wayland
       env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 
       env = GBM_BACKEND,nvidia-drm
