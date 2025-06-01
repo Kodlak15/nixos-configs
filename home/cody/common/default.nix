@@ -65,8 +65,8 @@
       blender
 
       # Tex editor
-      texliveFull
-      texstudio
+      # texliveFull
+      # texstudio
 
       # System info
       neofetch
