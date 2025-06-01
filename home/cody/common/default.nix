@@ -64,6 +64,9 @@
       # blender
       blender
 
+      # Tex editor
+      texstudio
+
       # System info
       neofetch
       nix-output-monitor
