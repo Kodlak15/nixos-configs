@@ -65,6 +65,7 @@
       blender
 
       # Tex editor
+      texliveFull
       texstudio
 
       # System info
