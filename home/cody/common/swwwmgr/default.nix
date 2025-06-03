@@ -5,8 +5,8 @@
 }: {
   imports = [inputs.swwwmgr.homeManagerModules.default];
 
-  # home.packages = [inputs.swwwmgr.packages."x86_64-linux".default];
   home.packages = [pkgs.swww];
+  # home.packages = [inputs.swwwmgr.packages.${pkgs.system}.default];
 
   programs.swwwmgr = {
     enable = true;
