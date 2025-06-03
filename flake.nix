@@ -8,6 +8,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,6 +18,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     hyprcursor.url = "github:hyprwm/hyprcursor";
+
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,21 +27,26 @@
     eww = {
       url = "github:elkowar/eww";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
+      # inputs.rust-overlay.follows = "rust-overlay";
     };
     eww-configs.url = "github:Kodlak15/eww-configs";
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    # rust-overlay = {
+    #   url = "github:oxalica/rust-overlay";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    swww.url = "github:LGFae/swww";
     ghostty.url = "github:ghostty-org/ghostty";
     impermanence.url = "github:nix-community/impermanence";
     swwwmgr.url = "github:Kodlak15/swww-manager";

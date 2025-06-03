@@ -108,7 +108,7 @@
       wlsunset
 
       # Wallpaper
-      swww
+      # swww
 
       # Markdown viewer/editor
       glow
