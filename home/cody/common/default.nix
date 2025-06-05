@@ -23,6 +23,7 @@
     ./vscode
     ./zsh
     ./godot
+    ./systemd
   ];
 
   home.shellAliases = {

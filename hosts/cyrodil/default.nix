@@ -117,7 +117,6 @@
       enable = true;
       drivers = with pkgs; [
         gutenprint
-        # canon-cups-ufr2
       ];
       browsedConf = ''
         BrowseDNSSDSubTypes _cups,_print
