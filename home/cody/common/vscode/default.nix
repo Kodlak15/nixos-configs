@@ -36,7 +36,8 @@
         };
         "files.associations" = {
           "*.templ" = "templ";
-          "*.html.heex" = "html";
+          # "*.html.heex" = "phoenix-heex";
+          "*.heex" = "phoenix-heex";
         };
         "vim.leader" = "<space>";
         "vim.useSystemClipboard" = true;

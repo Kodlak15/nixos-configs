@@ -21,7 +21,11 @@
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
-    plugins = [];
+    settings = {
+      misc = {
+        enable_anr_dialog = false;
+      };
+    };
     extraConfig = ''
 
       # Get rid of default wallpaper
