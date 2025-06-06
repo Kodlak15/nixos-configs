@@ -18,6 +18,7 @@
         phoenixframework.phoenix
       ];
       userSettings = {
+        "update.mode" = "none"; # don't check for updates
         "editor.formatOnSave" = true;
         "[templ]" = {
           "editor.formatOnSave" = true;
