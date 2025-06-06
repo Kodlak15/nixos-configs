@@ -14,6 +14,8 @@
         jnoortheen.nix-ide
         kamadorueda.alejandra
         timonwong.shellcheck
+        elixir-lsp.vscode-elixir-ls
+        phoenixframework.phoenix
       ];
       userSettings = {
         "editor.formatOnSave" = true;
@@ -25,12 +27,15 @@
         "editor.guides.highlightActiveIndentation" = false;
         "tailwindCSS.includeLanguages" = {
           "templ" = "html";
+          "phoenix-heex" = "html";
         };
         "emmet.includeLanguages" = {
           "templ" = "html";
+          "phoenix-heex" = "html";
         };
         "files.associations" = {
           "*.templ" = "templ";
+          "*.html.heex" = "html";
         };
         "vim.leader" = "<space>";
         "vim.useSystemClipboard" = true;
