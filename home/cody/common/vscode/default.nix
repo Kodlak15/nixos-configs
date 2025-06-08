@@ -20,6 +20,7 @@
         ms-python.python
         ms-python.pylint
         ms-pyright.pyright
+        ziglang.vscode-zig
       ];
       userSettings = {
         "update.mode" = "none"; # don't check for updates
