@@ -16,6 +16,10 @@
         timonwong.shellcheck
         elixir-lsp.vscode-elixir-ls
         phoenixframework.phoenix
+        ms-toolsai.jupyter
+        ms-python.python
+        ms-python.pylint
+        ms-pyright.pyright
       ];
       userSettings = {
         "update.mode" = "none"; # don't check for updates
@@ -36,7 +40,6 @@
         };
         "files.associations" = {
           "*.templ" = "templ";
-          # "*.html.heex" = "phoenix-heex";
           "*.heex" = "phoenix-heex";
         };
         "vim.leader" = "<space>";
