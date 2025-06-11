@@ -24,6 +24,7 @@
     ./zsh
     ./godot
     ./systemd
+    ./opencode
   ];
 
   home.shellAliases = {
