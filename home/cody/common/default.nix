@@ -25,6 +25,7 @@
     ./godot
     ./systemd
     ./opencode
+    ./claude-code
   ];
 
   home.shellAliases = {
