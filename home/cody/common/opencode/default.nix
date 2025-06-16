@@ -1,4 +1,4 @@
 {pkgs, ...}: {
-  # TODO: make a home manager module to customize later
-  # project is still early in development, so just testing for now
+  # TODO: make a home manager module to customize with nix
+  home.packages = with pkgs; [opencode];
 }
