@@ -1,4 +1,5 @@
-{pkgs, ...}: {
-  # TODO: make a home manager module to customize with nix
-  home.packages = with pkgs; [opencode];
+{pkgs, ...}: let
+  opencode = pkgs.callPackage ./package.nix {};
+in {
+  home.packages = [opencode];
 }

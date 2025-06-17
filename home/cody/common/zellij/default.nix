@@ -9,8 +9,9 @@
       theme = "ayu_mirage";
       keybinds = {
         unbind = [
-          "Ctrl p"
-          "Ctrl n"
+          "Ctrl p" # interferes with nvim binding
+          "Ctrl n" # interferes with nvim binding
+          "Ctrl o" # interferes with opencode binding
         ];
       };
       default_shell = "zsh";
