@@ -1,5 +1,4 @@
-{pkgs, ...}: let
-  opencode = pkgs.callPackage ./package.nix {};
-in {
-  home.packages = [opencode];
+{pkgs, ...}: {
+  # NOTE: nixpkgs version is not current yet
+  home.packages = [pkgs.opencode];
 }
