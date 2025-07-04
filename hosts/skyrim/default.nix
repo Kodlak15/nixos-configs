@@ -192,6 +192,7 @@
         efiSupport = true;
         efiInstallAsRemovable = true;
         configurationLimit = 20;
+        splashImage = ./background.jpg;
       };
     };
     initrd = {
