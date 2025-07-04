@@ -33,7 +33,6 @@
       "steam-original"
       "steam-run"
       "cudatoolkit"
-      # "canon-cups-ufr2"
     ];
 
   networking = {
@@ -72,10 +71,10 @@
     zsh = {
       enable = true;
     };
-    wireshark = {
-      enable = true;
-      package = pkgs.wireshark-qt;
-    };
+    # wireshark = {
+    #   enable = true;
+    #   package = pkgs.wireshark-qt;
+    # };
     ssh.startAgent = false; # TODO may need to delete later
   };
 
