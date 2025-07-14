@@ -184,6 +184,7 @@
         efiInstallAsRemovable = true;
         useOSProber = true;
         configurationLimit = 20;
+        splashImage = ./background.jpg;
       };
     };
     initrd = {
