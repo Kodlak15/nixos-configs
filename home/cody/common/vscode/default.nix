@@ -23,6 +23,7 @@
         ziglang.vscode-zig
         shd101wyy.markdown-preview-enhanced
         james-yu.latex-workshop
+        tecosaur.latex-utilities
       ];
       userSettings = {
         "update.mode" = "none"; # don't check for updates
