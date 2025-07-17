@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   programs.vscode = {
     enable = true;
-    # package = pkgs.code-cursor;
     package = pkgs.vscodium;
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
@@ -22,6 +21,8 @@
         ms-python.pylint
         ms-pyright.pyright
         ziglang.vscode-zig
+        shd101wyy.markdown-preview-enhanced
+        james-yu.latex-workshop
       ];
       userSettings = {
         "update.mode" = "none"; # don't check for updates
