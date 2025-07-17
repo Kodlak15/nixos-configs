@@ -59,7 +59,7 @@
       gcc
 
       # Lighttable/darkroom for photography
-      darktable
+      # darktable
 
       # Game development
       # godot_4
