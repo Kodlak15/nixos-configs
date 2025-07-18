@@ -137,6 +137,9 @@
       # View images
       imv
 
+      # PDF viewer
+      zathura
+
       # Drawing/painting/editing tools
       gimp3-with-plugins
       krita
