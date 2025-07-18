@@ -21,8 +21,8 @@
         ms-python.pylint
         ms-pyright.pyright
         ziglang.vscode-zig
-        shd101wyy.markdown-preview-enhanced
-        james-yu.latex-workshop
+        # shd101wyy.markdown-preview-enhanced
+        # james-yu.latex-workshop
       ];
       userSettings = {
         "update.mode" = "none"; # don't check for updates
