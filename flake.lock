@@ -1013,11 +1013,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1752818442,
-        "narHash": "sha256-3zzb+Fbb1PQWItKpsLYW614hQZ9lQgXNPEulSrSXu28=",
+        "lastModified": 1752820593,
+        "narHash": "sha256-Xz2Z8rwzDPeFpPHVmIAee0NasD3dJMkxSLpPyaJpf7M=",
         "owner": "Kodlak15",
         "repo": "nvim-flake",
-        "rev": "9406e9d157f82086ae22e31754f650cb78b178e7",
+        "rev": "b4accab9fb1a6122632976eabd824f1a932fdbe0",
         "type": "github"
       },
       "original": {
