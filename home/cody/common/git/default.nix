@@ -1,4 +1,11 @@
-{
+{pkgs, ...}: {
+  # CLI tools
+  home.packages = with pkgs; [
+    gh
+    glab
+    codeberg-cli
+  ];
+
   programs.git = {
     enable = true;
     userName = "Kodlak15";
