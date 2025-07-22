@@ -6,7 +6,7 @@
       pane_frames = false;
       tab_bar = false;
       default_layout = "compact";
-      theme = "ayu_mirage";
+      theme = "ayu_dark";
       keybinds = {
         unbind = [
           "Ctrl p" # interferes with nvim binding
