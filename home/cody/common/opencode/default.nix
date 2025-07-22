@@ -1,4 +1,4 @@
 {pkgs, ...}: {
-  # NOTE: nixpkgs version is not current yet
-  home.packages = [pkgs.opencode];
+  # NOTE: disabling until this stabilizes a bit
+  # home.packages = [pkgs.opencode];
 }
