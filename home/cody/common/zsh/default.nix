@@ -9,24 +9,11 @@
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
     };
-    shellAliases = {
-      # NIXCFG = "$HOME/nix/flakes/nixos/";
-      # ls = "eza -l";
-      # lsa = "eza -la";
-      # e = "fzedit";
-      # o = "fzopen";
-      # z = "zellij";
-      # nd = "nix develop";
-      # nb = "nix build";
-      # nr = "nix run";
-      # screenshot = "$HOME/nix/flakes/nixos/scripts/screenshot.sh";
-      # cat = "bat";
-      # cursor = "cursor --enable-features=UseOzonePlatform --ozone-platform=wayland";
-    };
     oh-my-zsh = {
-      enable = false;
+      enable = true;
       plugins = ["git"];
-      theme = "robbyrussell";
+      # theme = "robbyrussell";
+      theme = "lambda";
     };
     plugins = [
       {
@@ -96,7 +83,7 @@
       # source $HOME/.cache/wal/colors-zsh.zsh
 
       # Prompt
-      PROMPT=' %~ % $(__git_ps1 "(%s)")󰄾 '
+      # PROMPT=' %~ % $(__git_ps1 "(%s)")󰄾 '
     '';
     loginExtra = ''
       if [ "$(tty)" = "/dev/tty1" ]; then
