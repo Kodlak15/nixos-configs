@@ -321,11 +321,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1753207024,
-        "narHash": "sha256-kvS/XqZjRKI2rpSK5DUg1DP3anI6x54ZWPD2sF4JPeU=",
+        "lastModified": 1753216825,
+        "narHash": "sha256-MbLs23Hc51rbYNraBYXC6HLpxc5P/1GMy7B7OhnpuOU=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "7eab97653d204671d37da79dab86a2cec50f5af7",
+        "rev": "49cf8d80a6f689d97c8ddfa2b972da8858c07176",
         "type": "github"
       },
       "original": {
@@ -968,11 +968,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753206707,
-        "narHash": "sha256-hIfWMOLTTPqikXt5H/xLMWw2NIePdmwe5siqg5L3QO0=",
+        "lastModified": 1753218897,
+        "narHash": "sha256-XabPzinYjJUrBHdo3qTPwCk1FreHK5Rt5GRqqE3Ktw8=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "99f6c6ee1b264b0b15f9b4c35d7e246d694a66b3",
+        "rev": "45cf89fe14ec0d01aa1ccbef06936b7ce0603f82",
         "type": "github"
       },
       "original": {
@@ -1013,11 +1013,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1752820593,
-        "narHash": "sha256-Xz2Z8rwzDPeFpPHVmIAee0NasD3dJMkxSLpPyaJpf7M=",
+        "lastModified": 1753219350,
+        "narHash": "sha256-TQZcl9WoffpnVSGtdI1/wlYd3L2HB6QKEEEA86J3wBM=",
         "owner": "Kodlak15",
         "repo": "nvim-flake",
-        "rev": "b4accab9fb1a6122632976eabd824f1a932fdbe0",
+        "rev": "f5e830a1547181c94aa508523b7750d79c1ea806",
         "type": "github"
       },
       "original": {
