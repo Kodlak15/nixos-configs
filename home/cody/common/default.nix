@@ -26,6 +26,7 @@
     ./systemd
     ./opencode
     ./claude-code
+    ./zathura
   ];
 
   home.shellAliases = {
@@ -138,7 +139,7 @@
       imv
 
       # PDF viewer
-      zathura
+      # zathura
 
       # Drawing/painting/editing tools
       gimp3-with-plugins

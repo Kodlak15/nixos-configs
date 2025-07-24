@@ -1,0 +1,56 @@
+set window-title-basename "true"
+set selection-clipboard "clipboard"
+
+# Ayu Dark color theme for Zathura
+# Based on the ayu dark colorscheme
+
+#
+# Ayu Dark color theme
+#
+
+set notification-error-bg       rgba(217,87,87,1)     # Error red
+set notification-error-fg       rgba(191,189,182,1)   # Foreground
+set notification-warning-bg     rgba(255,180,84,1)    # Warning yellow
+set notification-warning-fg     rgba(11,14,20,1)      # Background
+set notification-bg             rgba(11,14,20,1)      # Background
+set notification-fg             rgba(191,189,182,1)   # Foreground
+
+set completion-bg               rgba(11,14,20,1)      # Background
+set completion-fg               rgba(86,91,102,1)     # Comment
+set completion-group-bg         rgba(11,14,20,1)      # Background
+set completion-group-fg         rgba(86,91,102,1)     # Comment
+set completion-highlight-bg     rgba(64,159,255,0.3)  # Selection
+set completion-highlight-fg     rgba(191,189,182,1)   # Foreground
+
+set index-bg                    rgba(11,14,20,1)      # Background
+set index-fg                    rgba(191,189,182,1)   # Foreground
+set index-active-bg             rgba(64,159,255,0.3)  # Selection
+set index-active-fg             rgba(191,189,182,1)   # Foreground
+
+set inputbar-bg                 rgba(11,14,20,1)      # Background
+set inputbar-fg                 rgba(191,189,182,1)   # Foreground
+set statusbar-bg                rgba(11,14,20,1)      # Background
+set statusbar-fg                rgba(191,189,182,1)   # Foreground
+
+set highlight-color             rgba(230,180,80,0.5)  # Focus border
+set highlight-active-color      rgba(230,180,80,0.8)  # Active highlight
+
+set default-bg                  rgba(11,14,20,1)      # Background
+set default-fg                  rgba(191,189,182,1)   # Foreground
+
+set render-loading              true
+set render-loading-fg           rgba(11,14,20,1)      # Background
+set render-loading-bg           rgba(191,189,182,1)   # Foreground
+
+#
+# Recolor mode settings
+#
+
+set recolor-lightcolor          rgba(11,14,20,1)      # Background
+set recolor-darkcolor           rgba(191,189,182,1)   # Foreground
+
+#
+# Startup options
+#
+set adjust-open width
+set recolor true
