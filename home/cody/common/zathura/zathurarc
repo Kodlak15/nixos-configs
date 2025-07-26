@@ -32,8 +32,8 @@ set inputbar-fg                 rgba(191,189,182,1)   # Foreground
 set statusbar-bg                rgba(11,14,20,1)      # Background
 set statusbar-fg                rgba(191,189,182,1)   # Foreground
 
-set highlight-color             rgba(230,180,80,0.5)  # Focus border
-set highlight-active-color      rgba(230,180,80,0.8)  # Active highlight
+set highlight-color             rgba(255,143,64,0.5)  # Focus border
+set highlight-active-color      rgba(255,143,64,0.8)  # Active highlight
 
 set default-bg                  rgba(11,14,20,1)      # Background
 set default-fg                  rgba(191,189,182,1)   # Foreground

@@ -1,11 +1,13 @@
 {inputs, ...}: {
+  imports = [./ghostty-colors.nix];
+
   programs.ghostty = {
     enable = true;
     package = inputs.ghostty.packages.x86_64-linux.default;
     enableZshIntegration = true;
     settings = {
-      # theme = "Ayu Mirage";
-      theme = "ayu";
+      # theme = "ayu";
+      theme = "ayu_dark";
       font-family = "Fira Code Nerd Font";
       font-size = 12;
       gtk-titlebar = false;
