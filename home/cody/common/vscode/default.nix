@@ -52,7 +52,7 @@
           "<C-d>" = true;
           "<C-f>" = true;
         };
-        "workbench.colorTheme" = "Ayu Mirage";
+        "workbench.colorTheme" = "Ayu Dark";
         "vim.insertModeKeyBindings" = [
           {
             before = ["j" "k"];
