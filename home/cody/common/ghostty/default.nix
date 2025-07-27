@@ -14,8 +14,8 @@
       window-padding-x = 6;
       window-padding-y = 6;
       window-padding-color = "background";
-      # background-opacity = 0.80;
-      background-opacity = 1.00;
+      background-opacity = 0.80;
+      # background-opacity = 1.00;
     };
   };
 }
