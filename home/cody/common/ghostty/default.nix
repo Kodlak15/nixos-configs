@@ -8,7 +8,8 @@
     settings = {
       # theme = "ayu";
       theme = "ayu_dark";
-      font-family = "Fira Code Nerd Font";
+      # font-family = "Fira Code Nerd Font";
+      font-family = "FiraCode Nerd Font";
       font-size = 12;
       gtk-titlebar = false;
       window-padding-x = 6;
