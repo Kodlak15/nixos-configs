@@ -27,14 +27,8 @@
     eww = {
       url = "github:elkowar/eww";
       inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.rust-overlay.follows = "rust-overlay";
     };
     eww-configs.url = "github:Kodlak15/eww-configs";
-
-    # rust-overlay = {
-    #   url = "github:oxalica/rust-overlay";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -51,7 +45,6 @@
     impermanence.url = "github:nix-community/impermanence";
     swwwmgr.url = "github:Kodlak15/swww-manager";
     nvim.url = "github:Kodlak15/nvim-flake";
-    # tweather.url = "github:Kodlak15/tweather";
   };
 
   outputs = inputs @ {
@@ -88,6 +81,7 @@
               inherit inputs outputs;
             };
           };
+
           "cyrodil" = inputs.nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
@@ -100,6 +94,7 @@
               inherit inputs outputs;
             };
           };
+
           "valenwood" = inputs.nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
@@ -139,8 +134,8 @@
               inherit inputs outputs;
             };
           };
+
           "cody@cyrodil" = inputs.home-manager.lib.homeManagerConfiguration {
-            # "temp" = inputs.home-manager.lib.homeManagerConfiguration {
             modules = [
               ./home/cody/cyrodil
             ];

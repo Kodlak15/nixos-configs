@@ -52,11 +52,6 @@
   };
 
   programs = {
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -265,9 +260,7 @@
   };
 
   users = {
-    # mutableUsers = false;
     users.cody = {
-      # hashedPasswordFile = config.sops.secrets.password_hash.path;
       hashedPassword = "$y$j9T$o3IYxTwHmV1ocaOXDcNhs/$z.746YINjBuHcnEkALGK3jdUzUasNTx4f8WQpSUqyY9";
       isNormalUser = true;
       extraGroups = [
