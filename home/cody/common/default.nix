@@ -26,6 +26,7 @@
     ./systemd
     ./opencode
     ./claude-code
+    ./webull
     ./zathura
   ];
 
