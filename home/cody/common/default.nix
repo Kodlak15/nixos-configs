@@ -3,7 +3,6 @@
     ./brave
     ./ghostty
     ./neovim
-    ./pywal
     ./zellij
     ./yubikey
     ./git
@@ -11,7 +10,6 @@
     ./nixpkgs
     ./sops
     ./swwwmgr
-    ./tmux
     ./virtualization
     ./wallpaper
     ./weather

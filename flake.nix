@@ -41,7 +41,6 @@
     };
 
     swww.url = "github:LGFae/swww";
-    ghostty.url = "github:ghostty-org/ghostty";
     impermanence.url = "github:nix-community/impermanence";
     swwwmgr.url = "github:Kodlak15/swww-manager";
     nvim.url = "github:Kodlak15/nvim-flake";
