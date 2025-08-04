@@ -94,27 +94,6 @@
               inherit inputs outputs;
             };
           };
-
-          "valenwood" = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [
-              ./hosts/valenwood
-              inputs.disko.nixosModules.disko
-              inputs.impermanence.nixosModules.impermanence
-              inputs.sops-nix.nixosModules.sops
-              inputs.home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.cody = import ./home/cody/valenwood;
-                  backupFileExtension = "backup";
-                  extraSpecialArgs = {inherit inputs outputs;};
-                };
-              }
-            ];
-            specialArgs = {inherit inputs outputs;};
-          };
         };
 
         homeConfigurations = {

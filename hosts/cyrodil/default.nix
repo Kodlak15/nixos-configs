@@ -188,7 +188,6 @@
       };
     };
     initrd = {
-      # luks.devices."/dev/disk/by-partlabel/cyrodil-luks".fido2.passwordLess = true;
       postDeviceCommands = lib.mkAfter ''
         mkdir /btrfs_tmp
         mount /dev/mapper/root /btrfs_tmp
@@ -221,10 +220,8 @@
       modesetting.enable = true;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
-      # open = true;
-      open = false;
+      open = true;
       nvidiaSettings = true;
-      # package = config.boot.kernelPackages.nvidiaPackages.stable;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
     graphics = {

@@ -7,9 +7,6 @@
     ./monitors.nix
     ./startup.nix
     ./animations.nix
-    ./colors.nix
-    ./startup.nix
-    ./plugins.nix
     ./devices.nix
   ];
 

@@ -1,8 +1,4 @@
 {
-  pkgs,
-  inputs,
-  ...
-}: {
   imports = [
     ./keybinds.nix
     ./environment.nix
@@ -10,11 +6,8 @@
     ./windowSettings.nix
     ./startup.nix
     ./monitors.nix
-    ./startup.nix
     ./animations.nix
-    ./colors.nix
     ./devices.nix
-    ./plugins.nix
   ];
 
   wayland.windowManager.hyprland = {

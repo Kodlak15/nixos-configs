@@ -1,20 +1,15 @@
 {pkgs, ...}: {
   imports = [
-    ./alacritty
     ./brave
-    ./kitty
     ./ghostty
     ./neovim
-    # ./impermanence
     ./pywal
-    # ./ollama
     ./zellij
     ./yubikey
     ./git
     ./gtk
     ./nixpkgs
     ./sops
-    # ./ssh
     ./swwwmgr
     ./tmux
     ./virtualization
@@ -50,28 +45,14 @@
       # Version control
       codeberg-cli
 
-      # Code editors
-      # code-cursor
-      # windsurf
-
       # Secret management
       sops
 
       # C compiler
       gcc
 
-      # Lighttable/darkroom for photography
-      # darktable
-
-      # Game development
-      # godot_4
-
-      # blender
+      # Art and Graphics
       blender
-
-      # Tex editor
-      # texliveFull
-      # texstudio
 
       # System info
       neofetch
@@ -88,7 +69,7 @@
 
       # System tools
       bat
-      eza # Disabling due to autocomplete bug (see Issue 1038)
+      eza
       ripgrep
       fzf
       tree
@@ -111,9 +92,6 @@
 
       # Blue light filter
       wlsunset
-
-      # Wallpaper
-      # swww
 
       # Markdown viewer/editor
       glow
@@ -139,15 +117,9 @@
       # View images
       imv
 
-      # PDF viewer
-      # zathura
-
       # Drawing/painting/editing tools
       gimp3-with-plugins
       krita
-
-      # Manage GoPro videos
-      # gopro # (broken last I checked, at least on nixpkgs-unstable)
 
       # Media
       spotify

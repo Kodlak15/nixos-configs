@@ -12,7 +12,6 @@
     oh-my-zsh = {
       enable = true;
       plugins = ["git"];
-      # theme = "robbyrussell";
       theme = "lambda";
     };
     plugins = [
@@ -35,27 +34,13 @@
         };
       }
     ];
+
     initContent = ''
       export TERM=xterm-256color
       export ZELLIJ_AUTO_START=false
 
-      # Edit PATH
-      export PATH="$PATH:$HOME/nix/flakes/nixos/scripts/"
-      export PATH="$PATH:$HOME/bin/"
-
-      # Set default editor (TODO: this should be done elsewhere, needed for laptop)
-      export EDITOR="nvim"
-
       # Make API keys available in environment
       export ANTHROPIC_API_KEY="$(cat $XDG_RUNTIME_DIR/anthropic_api_key)"
-
-      # Git status info
-      autoload -Uz vcs_info
-      precmd() { vcs_info }
-      zstyle ':vcs_info:git:*' formats " %F{#e0af68} %b%f"
-      setopt prompt_subst
-      source $HOME/.nix-profile/share/git/contrib/completion/git-prompt.sh
-      setopt PROMPT_SUBST
 
       # Fuzzy find and open a directory
       fzopen() {
@@ -72,19 +57,8 @@
       		"$EDITOR" "$file"
       	fi
       }
-
-      # Set pywal generated terminal colors
-      # (cat ~/.cache/wal/sequences &)
-
-      # Add pywal support for tty
-      # source ~/.cache/wal/colors-tty.sh
-
-      # Source the colors file
-      # source $HOME/.cache/wal/colors-zsh.zsh
-
-      # Prompt
-      # PROMPT=' %~ % $(__git_ps1 "(%s)")󰄾 '
     '';
+
     loginExtra = ''
       if [ "$(tty)" = "/dev/tty1" ]; then
         case "$(hostnamectl chassis | xargs)" in
@@ -93,6 +67,7 @@
         esac
       fi
     '';
+
     profileExtra = ''
       if [ "$(tty)" = "/dev/tty1" ]; then
         case "$(hostnamectl chassis | xargs)" in
