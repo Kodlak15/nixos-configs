@@ -34,6 +34,11 @@
     networkmanager.enable = true;
     firewall = {
       enable = true;
+      interfaces.virbr0 = {
+        allowedUDPPorts = [53 67 68];
+        allowedTCPPorts = [53];
+      };
+      allowPing = true;
     };
   };
 
@@ -263,6 +268,7 @@
       virtiofsd
       fido2luks
       nvidia-container-toolkit
+      dnsmasq
     ];
     persistence."/persist" = {
       enable = true;

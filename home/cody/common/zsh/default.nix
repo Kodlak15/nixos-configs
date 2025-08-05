@@ -52,9 +52,9 @@
 
       # Fuzzy find and edit a file with default text editor
       fzedit() {
-      	file="$(${pkgs.fzf}/bin/fzf)"
+      	file="$(fzf)"
       	if [[ -n "$file" ]]; then
-      		"$EDITOR" "$file"
+      		nvim "$file"
       	fi
       }
     '';
