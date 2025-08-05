@@ -30,15 +30,10 @@ cyrodil-home:
 	find "$(HOME)" -type f -name "*.hm.bk" -delete
 	home-manager switch -b "hm.bk" --flake ".#cody@cyrodil"
 
-# Valenwood (Test VM)
-install-valenwood:
-	./scripts/install.sh valenwood
-valenwood:
-	sudo nixos-rebuild switch --flake ".#valenwood"
-	find "$(HOME)" -type f -name "*.hm.bk" -delete
-	home-manager switch -b "hm.bk" --flake ".#cody@valenwood"
-valenwood-nixos:
-	sudo nixos-rebuild switch --flake ".#valenwood"
-valenwood-home:
-	find "$(HOME)" -type f -name "*.hm.bk" -delete
-	home-manager switch -b "hm.bk" --flake ".#cody@valenwood"
+# rift
+install-rift:
+	./scripts/install.sh rift
+rift:
+	sudo nixos-rebuild switch --flake ".#rift"
+rift-nixos:
+	sudo nixos-rebuild switch --flake ".#rift"

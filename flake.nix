@@ -66,7 +66,9 @@
       }: {
         # Packages, shells, etc.
       };
+
       flake = {
+        # NixOS system configurations
         nixosConfigurations = {
           "skyrim" = inputs.nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
@@ -93,8 +95,30 @@
               inherit inputs outputs;
             };
           };
+
+          "rift" = inputs.nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              ./hosts/rift
+              inputs.disko.nixosModules.disko
+              inputs.impermanence.nixosModules.impermanence
+              inputs.sops-nix.nixosModules.sops
+              inputs.home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.cody = import ./home/cody/rift;
+                  backupFileExtension = "backup";
+                  extraSpecialArgs = {inherit inputs outputs;};
+                };
+              }
+            ];
+            specialArgs = {inherit inputs outputs;};
+          };
         };
 
+        # Standalone home manager configurations
         homeConfigurations = {
           "cody@skyrim" = inputs.home-manager.lib.homeManagerConfiguration {
             modules = [
