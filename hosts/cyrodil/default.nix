@@ -243,7 +243,10 @@
     docker.enable = true;
     libvirtd = {
       enable = true;
-      qemu.ovmf.enable = true;
+      qemu = {
+        ovmf.enable = true;
+        swtpm.enable = true;
+      };
       onBoot = "ignore";
       onShutdown = "shutdown";
     };
@@ -269,6 +272,8 @@
       fido2luks
       nvidia-container-toolkit
       dnsmasq
+      mesa # hardware-accel
+      libglvnd # hardware-accel
     ];
     persistence."/persist" = {
       enable = true;
