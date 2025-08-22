@@ -21,6 +21,7 @@
     ./claude-code
     ./webull
     ./zathura
+    ./tradingview
   ];
 
   home.shellAliases = {
