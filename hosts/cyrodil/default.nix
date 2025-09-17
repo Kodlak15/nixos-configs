@@ -112,7 +112,10 @@
       ];
     };
     open-webui = {
-      enable = true; # see issue above
+      # NOTE: build keeps breaking on unstable and not using, so disabling for now
+      # a fix has been merged and should be available in the near future:
+      # https://github.com/NixOS/nixpkgs/pull/437465
+      enable = false;
       openFirewall = true;
       port = 8888;
     };
