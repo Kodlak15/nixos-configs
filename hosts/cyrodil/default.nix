@@ -164,7 +164,7 @@
   environment = {
     shells = with pkgs; [zsh];
     variables = {
-      EDITOR = "${pkgs.neovim}";
+      EDITOR = "nvim";
     };
     shellInit = ''
       gpg-connect-agent /bye
