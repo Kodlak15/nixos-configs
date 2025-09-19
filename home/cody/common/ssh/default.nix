@@ -11,10 +11,6 @@
         identityFile = "/home/cody/.ssh/pwn";
         user = "hacker";
       };
-      cyrodil = {
-        hostname = "peckspaintingmt.com";
-        identityFile = "/home/cody/.ssh/cyrodil";
-      };
       codeberg = {
         hostname = "codeberg.org";
         user = "git";

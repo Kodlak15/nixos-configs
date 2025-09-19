@@ -12,14 +12,13 @@
     ./swwwmgr
     ./virtualization
     ./wallpaper
-    ./weather
     ./vscode
     ./zsh
     ./godot
     ./systemd
-    ./opencode
+    # ./opencode
     ./claude-code
-    ./webull
+    # ./webull
     ./zathura
     ./tradingview
   ];
