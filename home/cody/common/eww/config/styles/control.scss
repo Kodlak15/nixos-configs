@@ -1,0 +1,97 @@
+/* @use "/home/cody/.cache/wal/colors" as *; */
+/* @use "./themes/ayu_mirage" as *; */
+@use "./themes/ayu_dark" as *;
+
+// Control
+
+.control {
+  background: $background;
+  border: 0.2rem solid $accent;
+  border-radius: 0.3rem;
+  padding: 2.0rem;
+}
+
+.vpn-toggler {
+  background: $accent;
+  color: white;
+  padding: 0.8rem;
+  border: 0.2rem solid $accent;
+  border-radius: 0.3rem;
+}
+
+.vpn-toggler-button-container {
+  /* padding: 0.8rem; */
+  /* border: 0.1rem solid white; */
+  border-radius: 0.3rem;
+}
+
+.vpn-toggler-label {
+  background: $background;
+  color: white;
+  padding: 0.5rem;
+  border: 0.1rem solid white;
+  border-radius: 0.3rem;
+}
+
+.vpn-toggler-button-on {
+  background: $background;
+  border: 0.1rem solid white;
+  border-radius: 0.3rem;
+}
+
+.vpn-toggler-button-on-active {
+  background: $background;
+  color: $accent;
+  border: 0.1rem solid white;
+  border-radius: 0.3rem;
+}
+
+.vpn-toggler-button-off {
+  background: $background;
+  border: 0.1rem solid white;
+  border-radius: 0.3rem;
+}
+
+.vpn-toggler-button-off-active {
+  background: $background;
+  color: $accent;
+  border: 0.1rem solid white;
+  border-radius: 0.3rem;
+}
+
+.volume {
+  background: $accent;
+  color: $foreground;
+  padding: 0.8rem;
+  border-radius: 0.3rem;
+
+  .volume-icon {
+    font-size: 12px;
+  }
+
+  scale {
+    all: unset;
+    background: $background;
+    border: 0.1rem solid white;
+    border-radius: 0.3rem;
+    padding: 1.2rem;
+  }
+
+  trough {
+    background: #ffffff;
+    border: none;
+    border-radius: 20px;
+    min-height: 4px;
+  }
+
+  slider {
+    background-image: none;
+    background: $foreground;
+    box-shadow: none;
+    text-shadow: none;
+  }
+
+  highlight {
+    background: $accent;
+  }
+}

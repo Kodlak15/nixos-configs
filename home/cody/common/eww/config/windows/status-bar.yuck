@@ -1,0 +1,81 @@
+(defpoll chassis_type
+	:interval "999999999999s" 
+	:initial "" 
+	"hostnamectl chassis | xargs"
+)
+
+(defpoll hostname
+	:interval "999999999999s" 
+	:initial "" 
+	"hostname"
+)
+
+(defpoll user 
+	:interval "999999999999s" 
+	:initial "" 
+	"whoami"
+)
+
+(defwidget left []
+	(box
+		:class "bar-left"
+		:space-evenly false
+		(box
+			:class "nix-info"
+			:space-evenly false
+			(image 
+				;; :path "/home/cody/.cache/wal/nix-snowflake.svg"
+				;; :path "./images/nix-snowflake.svg"
+				:path "./images/nix-snowflake.svg"
+				:class "nix-logo"
+				:image-height 20
+				:image-width 20
+			)
+			(label :text "${user}@${hostname}")
+		)
+	)
+)
+
+(defwidget center []
+	(box
+		:class "bar-center"
+		(workspaces)
+	)
+)
+
+(defwidget right []
+	(box
+		:class "bar-right"
+		:space-evenly false
+		:halign "end"
+		:spacing 6
+		(revealer :reveal {chassis_type == "laptop"} (battery))
+		;; (battery)
+		(datetime)
+	)
+)
+
+(defwidget bar-container []
+	(centerbox
+		:class "bar"
+		(left)
+		(center)
+		(right)
+	)
+)
+
+(defwindow status-bar
+	:monitor 0
+	:geometry (
+		geometry
+		:x "0%"
+		:y "0%"
+		:width "100%"
+		:height "36px"
+		:anchor "top center"
+	)
+	:stacking "fg"
+	:exclusive true
+	:namespace "status-bar"
+	(bar-container)
+)

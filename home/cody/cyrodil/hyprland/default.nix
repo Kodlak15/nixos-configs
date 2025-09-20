@@ -45,9 +45,9 @@
         no_hardware_cursors = true
       }
 
-      gestures {
-          workspace_swipe = false
-      }
+      # gestures {
+      #     workspace_swipe = false
+      # }
     '';
   };
 }

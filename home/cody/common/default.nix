@@ -21,6 +21,7 @@
     # ./webull
     ./zathura
     ./tradingview
+    ./eww
   ];
 
   home.shellAliases = {

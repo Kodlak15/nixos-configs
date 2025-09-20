@@ -3,7 +3,6 @@
     inputs.hyprland.homeManagerModules.default
     ../common
     ./hyprland
-    ./eww
     # ./sops
   ];
 
