@@ -52,6 +52,7 @@
           "<C-d>" = true;
           "<C-f>" = true;
         };
+        "vim.timeout" = 200;
         "workbench.colorTheme" = "Ayu Dark";
         "vim.insertModeKeyBindings" = [
           {
