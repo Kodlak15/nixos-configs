@@ -71,9 +71,8 @@ in {
   };
 
   config = let
-    # shortVersion = with lib;
-    #   strings.concatStringsSep "." (lists.sublist 0 2 (strings.splitString "." cfg.package.version));
-    shortVersion = lib.lists.head (lib.splitString "-" cfg.package.version);
+    shortVersion = with lib;
+      strings.concatStringsSep "." (lists.sublist 0 2 (strings.splitString "." cfg.package.version));
     baseColor = cfg.settings.interface.theme.base_color;
     accentColor = cfg.settings.interface.theme.accent_color;
     preferWayland = lib.boolToString cfg.settings.run.platforms.linuxbsd.preferWayland;
