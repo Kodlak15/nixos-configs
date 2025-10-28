@@ -50,7 +50,7 @@
         fi
       }
 
-      # Fuzzy find and edit a file with default text editor
+      # Fuzzy find and edit a file with neovim
       fzedit() {
       	file="$(fzf)"
       	if [[ -n "$file" ]]; then
