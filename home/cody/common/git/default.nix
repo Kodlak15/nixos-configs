@@ -8,9 +8,15 @@
 
   programs.git = {
     enable = true;
-    settings = {
-      userName = "Kodlak15";
-      userEmail = "stanlcod15@protonmail.com";
-    };
+    userName = "Kodlak15";
+    userEmail = "stanlcod15@protonmail.com";
+    # NOTE: this is supposed to be the correct way of declaring these settings,
+    # but the values were not being set properly and git stopped working.
+    # settings = {
+    #   user = {
+    #     userName = "Kodlak15";
+    #     userEmail = "stanlcod15@protonmail.com";
+    #   };
+    # };
   };
 }
