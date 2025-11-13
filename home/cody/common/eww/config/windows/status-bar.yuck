@@ -24,8 +24,6 @@
 			:class "nix-info"
 			:space-evenly false
 			(image 
-				;; :path "/home/cody/.cache/wal/nix-snowflake.svg"
-				;; :path "./images/nix-snowflake.svg"
 				:path "./images/nix-snowflake.svg"
 				:class "nix-logo"
 				:image-height 20
@@ -49,8 +47,12 @@
 		:space-evenly false
 		:halign "end"
 		:spacing 6
-		(revealer :reveal {chassis_type == "laptop"} (battery))
-		;; (battery)
+		(mullvad)
+		(revealer 
+			:width {chassis_type != "laptop" ? 0 : 1}
+			:reveal {chassis_type == "laptop"} 
+			(battery) 
+		)
 		(datetime)
 	)
 )

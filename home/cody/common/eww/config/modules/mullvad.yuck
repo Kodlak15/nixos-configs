@@ -1,17 +1,16 @@
 (deflisten server-name 
 	:initial ""
-	"./scripts/mullvad.sh --server-name"
+	`mullvad status | grep "Relay:" | awk -F ':' '{print $2}' | xargs`
 )
 
 (deflisten server-ip 
 	:initial ""
-	"./scripts/mullvad.sh --server-ip"
+	`mullvad status | grep "Visible location:" | awk -F ':' '{print $3}' | xargs`
 )
 
-(deflisten state
-	:initial "Connected"
-	"tail -F ./listeners/mullvad/state.log"
-	;; "head -n 1 $HOME/.local/state/eww/listeners/mullvad/status"
+(deflisten vpn_state
+	:initial ""
+	`mullvad status | head -n 1`
 )
 
 (defwidget mullvad []
@@ -19,8 +18,10 @@
 		:class "mullvad"
 		:space-evenly false
 		(eventbox 
-			:onrightclick "./scripts/mullvad.sh --applet"
-			:onclick "./scripts/mullvad.sh --toggle"
+			:onclick {
+					"${vpn_state}" == "Connected" ? "mullvad disconnect" :
+					"mullvad connect"
+			}
 			:timeout "2s"
 			:cursor "pointer"
 			(box
@@ -28,7 +29,7 @@
 				:spacing 6
 				(label :text "󰖂 ")
 				(label :text {
-					"${state}" == "Connected" ? "${server-name}:${server-ip}" :
+					"${vpn_state}" == "Connected" ? "${server-name}:${server-ip}" :
 					"Disconnected"
 				})
 			)

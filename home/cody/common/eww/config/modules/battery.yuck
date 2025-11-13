@@ -1,7 +1,7 @@
 (defpoll battery_remaining
 	:initial "100"
 	:interval "30s"
-	`./scripts/battery.sh -r`
+	`acpi -b | awk -F ', ' '{print$2}' | awk -F '%' '{print$1}'`
 )
 
 (defpoll charging
@@ -19,6 +19,7 @@
 		}
 		(label
 			:text {
+				charging == false ? "" :
 				battery_remaining > 80 ? " " :
 				battery_remaining > 60 ? " " :
 				battery_remaining > 40 ? " " :

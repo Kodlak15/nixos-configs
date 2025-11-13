@@ -102,7 +102,7 @@
       nmap
 
       # Flipper Zero software
-      qflipper
+      qFlipper
 
       # Gaming
       webcord # discord alternative
