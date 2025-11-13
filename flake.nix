@@ -48,7 +48,7 @@
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
-        inputs.flake-parts.flakeModules.flakeModules
+        # inputs.flake-parts.flakeModules.flakeModules
         inputs.flake-parts.flakeModules.easyOverlay
       ];
       debug = false; # If having issues, set to true for useful debugging output in the repl
@@ -69,9 +69,6 @@
           inherit (config.packages) example;
         };
 
-        # packages.example = pkgs.writeShellScriptBin "example" ''
-        #   echo hello
-        # '';
         packages = import ./packages {inherit pkgs;};
       };
 
