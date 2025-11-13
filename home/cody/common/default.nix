@@ -36,6 +36,7 @@
 
   home.packages = (
     with pkgs; [
+      example # just for testing custom package loading
       sops
       gcc
       neofetch

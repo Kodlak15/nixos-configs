@@ -69,9 +69,10 @@
           inherit (config.packages) example;
         };
 
-        packages.example = pkgs.writeShellScriptBin "example" ''
-          echo hello
-        '';
+        # packages.example = pkgs.writeShellScriptBin "example" ''
+        #   echo hello
+        # '';
+        packages = import ./packages {inherit pkgs;};
       };
 
       flake = {
