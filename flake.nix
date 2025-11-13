@@ -47,6 +47,10 @@
     inherit (self) outputs;
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [
+        inputs.flake-parts.flakeModules.flakeModules
+        inputs.flake-parts.flakeModules.easyOverlay
+      ];
       debug = false; # If having issues, set to true for useful debugging output in the repl
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       perSystem = {
@@ -55,9 +59,19 @@
         inputs',
         pkgs,
         system,
+        final,
         ...
       }: {
-        # Packages, shells, etc.
+        overlayAttrs = {
+          # custom packages can be integrated into 'pkgs' variable here
+          # this way I can add my package to a system or shell config using
+          # pkgs.<mypkg>
+          inherit (config.packages) example;
+        };
+
+        packages.example = pkgs.writeShellScriptBin "example" ''
+          echo hello
+        '';
       };
 
       flake = {
@@ -87,27 +101,6 @@
             specialArgs = {
               inherit inputs outputs;
             };
-          };
-
-          "rift" = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [
-              ./hosts/rift
-              inputs.disko.nixosModules.disko
-              inputs.impermanence.nixosModules.impermanence
-              inputs.sops-nix.nixosModules.sops
-              inputs.home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.cody = import ./home/cody/rift;
-                  backupFileExtension = "backup";
-                  extraSpecialArgs = {inherit inputs outputs;};
-                };
-              }
-            ];
-            specialArgs = {inherit inputs outputs;};
           };
         };
 

@@ -16,11 +16,8 @@
     ./zsh
     ./godot
     ./systemd
-    # ./opencode
     ./claude-code
-    # ./webull
     ./zathura
-    ./tradingview
     ./eww
   ];
 
@@ -41,19 +38,8 @@
 
   home.packages = (
     with pkgs; [
-      # Version control
-      codeberg-cli
-
-      # Secret management
       sops
-
-      # C compiler
       gcc
-
-      # Art and Graphics
-      blender
-
-      # System info
       neofetch
       nix-output-monitor
       btop
@@ -62,11 +48,6 @@
       lm_sensors
       pciutils
       usbutils
-
-      # Cloud CLI tools
-      doctl
-
-      # System tools
       bat
       eza
       ripgrep
@@ -81,69 +62,37 @@
       ydotool
       inotify-tools
       unzip
-
-      # Torrent client
       qbittorrent
-
-      # VPN
       mullvad-vpn
       mullvad-browser
-
-      # Blue light filter
-      wlsunset
-
-      # Markdown viewer/editor
       glow
-
-      # Security
       gnupg
-
-      # Network analysis
       nmap
-
-      # Flipper Zero software
       qFlipper
-
-      # Gaming
       webcord # discord alternative
       winetricks
       wineWowPackages.waylandFull
-
-      # Containerisation and virtualisation
       virt-manager
       docker-compose
-
-      # View images
-      imv
-
-      # Drawing/painting/editing tools
+      imv # image viewer
       gimp3-with-plugins
       krita
-
-      # Media
       spotify
       playerctl
       ncpamixer
       pavucontrol
       vlc
       ffmpeg
-
-      # Power and brightness
       acpi
       brightnessctl
       hyprsunset
-
-      # File expolorer
+      wlsunset
       xfce.thunar
-
-      # Screenshots
       grim
       slurp
-
-      # Formatters (place these elsewhere)
-      nixpkgs-fmt
-      alejandra
-      shfmt
+      nixpkgs-fmt # nix formatter
+      alejandra # (better) nix formatter
+      shfmt # shell formatter (can't remember why this was here tbh, may remove)
     ]
   );
 }
