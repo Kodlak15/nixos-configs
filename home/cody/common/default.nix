@@ -16,13 +16,11 @@
     ./zsh
     ./godot
     ./systemd
-    ./claude-code
     ./zathura
     ./eww
   ];
 
   home.shellAliases = {
-    NIXCFG = "$HOME/nix/flakes/nixos/";
     ls = "eza -l";
     lsa = "eza -la";
     e = "fzedit";
@@ -31,9 +29,9 @@
     nd = "nix develop";
     nb = "nix build";
     nr = "nix run";
-    screenshot = "$HOME/nix/flakes/nixos/scripts/screenshot.sh";
+    # TODO: create custom package and add to default overlay, then use that here instead
+    # screenshot = "$HOME/nix/flakes/nixos/scripts/screenshot.sh";
     cat = "bat";
-    cursor = "cursor --enable-features=UseOzonePlatform --ozone-platform=wayland";
   };
 
   home.packages = (
@@ -65,6 +63,7 @@
       qbittorrent
       mullvad-vpn
       mullvad-browser
+      claude-code
       glow
       gnupg
       nmap

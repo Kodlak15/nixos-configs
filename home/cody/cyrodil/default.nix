@@ -1,9 +1,7 @@
 {inputs, ...}: {
   imports = [
     inputs.hyprland.homeManagerModules.default
-    ../common
     ./hyprland
-    # ./sops
   ];
 
   home = {

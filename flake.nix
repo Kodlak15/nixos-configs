@@ -63,7 +63,7 @@
         ...
       }: {
         overlayAttrs = {
-          # custom packages can be integrated into 'pkgs' variable here
+          # Custom packages can be integrated into 'pkgs' variable here
           # this way I can add my package to a system or shell config using
           # pkgs.<mypkg>
           inherit (config.packages) example;
@@ -109,6 +109,7 @@
           "cody@skyrim" = inputs.home-manager.lib.homeManagerConfiguration {
             modules = [
               ./home/cody/skyrim
+              ./home/cody/common
             ];
             pkgs = import inputs.nixpkgs {
               system = "x86_64-linux";
@@ -126,6 +127,7 @@
           "cody@cyrodil" = inputs.home-manager.lib.homeManagerConfiguration {
             modules = [
               ./home/cody/cyrodil
+              ./home/cody/common
             ];
             pkgs = import inputs.nixpkgs {
               system = "x86_64-linux";
