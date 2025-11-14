@@ -69,6 +69,7 @@
           inherit (config.packages) example;
         };
 
+        # devShells.default = import ./shells/default {inherit pkgs;};
         packages = import ./packages {inherit pkgs;};
       };
 
