@@ -1,13 +1,14 @@
 {
   imports = [
-    ./keybinds.nix
-    ./environment.nix
-    ./windowRules.nix
-    ./windowSettings.nix
-    ./monitors.nix
-    ./startup.nix
     ./animations.nix
     ./devices.nix
+    ./environment.nix
+    ./input.nix
+    ./keybinds.nix
+    ./monitors.nix
+    ./startup.nix
+    ./windowRules.nix
+    ./windowSettings.nix
   ];
 
   wayland.windowManager.hyprland = {
@@ -44,10 +45,6 @@
       cursor {
         no_hardware_cursors = true
       }
-
-      # gestures {
-      #     workspace_swipe = false
-      # }
     '';
   };
 }
