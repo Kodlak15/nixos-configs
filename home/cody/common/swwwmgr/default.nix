@@ -1,3 +1,4 @@
+# This setup does not make a lot of sense
 {
   pkgs,
   inputs,
@@ -6,7 +7,6 @@
   imports = [inputs.swwwmgr.homeManagerModules.default];
 
   home.packages = [pkgs.swww];
-  # home.packages = [inputs.swwwmgr.packages.${pkgs.system}.default];
 
   programs.swwwmgr = {
     enable = true;

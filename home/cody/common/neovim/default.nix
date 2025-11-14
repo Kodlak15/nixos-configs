@@ -2,6 +2,8 @@
   pkgs,
   inputs,
   ...
-}: {
-  home.packages = [inputs.nvim.packages.${pkgs.system}.default];
+}: let
+  system = pkgs.stdenv.hostPlatform.system;
+in {
+  home.packages = [inputs.nvim.packages.${system}.default];
 }

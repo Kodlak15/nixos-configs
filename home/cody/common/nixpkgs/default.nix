@@ -6,8 +6,8 @@
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
-      # TODO temporary solution
-      permittedInsecurePackages = ["electron-27.3.11" "electron-28.3.3"];
+      # NOTE: needed for webcord
+      permittedInsecurePackages = ["electron-36.9.5"];
     };
   };
 }
