@@ -117,30 +117,8 @@
         "llama3.2"
       ];
     };
-    open-webui = {
-      # NOTE: build keeps breaking on unstable and not using, so disabling for now
-      # a fix has been merged and should be available in the near future:
-      # https://github.com/NixOS/nixpkgs/pull/437465
-      enable = false;
-      openFirewall = true;
-      port = 8888;
-    };
     pulseaudio.enable = false;
     dbus.enable = true;
-    printing = {
-      enable = true;
-      drivers = with pkgs; [
-        gutenprint
-      ];
-      browsedConf = ''
-        BrowseDNSSDSubTypes _cups,_print
-        BrowseLocalProtocols all
-        BrowseRemoteProtocols all
-        CreateIPPPrinterQueues All
-
-        BrowseProtocols all
-      '';
-    };
     avahi = {
       enable = true;
       nssmdns4 = true;
@@ -272,7 +250,6 @@
     libvirtd = {
       enable = true;
       qemu = {
-        # ovmf.enable = true;
         swtpm.enable = true;
       };
       onBoot = "ignore";
