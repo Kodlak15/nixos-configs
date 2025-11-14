@@ -67,7 +67,7 @@
 )
 
 (defwindow status-bar
-	:monitor 0
+	:monitor `["<primary>", "Dell Inc. AW2725DF 1Q31ZZ3", "DP-5", 0]`
 	:geometry (
 		geometry
 		:x "0%"
