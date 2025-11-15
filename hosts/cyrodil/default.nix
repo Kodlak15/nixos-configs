@@ -66,7 +66,8 @@
     };
     gamescope = {
       enable = true;
-      capSysNice = true;
+      # ISSUE: https://github.com/NixOS/nixpkgs/issues/351516
+      capSysNice = false;
     };
     gnupg.agent = {
       enable = true;
