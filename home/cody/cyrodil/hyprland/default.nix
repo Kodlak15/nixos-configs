@@ -39,7 +39,6 @@
           touchpad {
               natural_scroll = false
           }
-          sensitivity = 0.25 # -1.0 - 1.0, 0 means no modification.
       }
 
       cursor {
