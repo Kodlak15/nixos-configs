@@ -1,5 +1,5 @@
 {
-  description = "My nixos configurations.";
+  description = "My nixos configurations";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
