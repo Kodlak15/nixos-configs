@@ -40,6 +40,7 @@
       sops
       gcc
       neofetch
+      xdg-utils
       nix-output-monitor
       btop
       lsof
