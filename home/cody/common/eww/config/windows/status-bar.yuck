@@ -47,13 +47,15 @@
 		:space-evenly false
 		:halign "end"
 		:spacing 6
-		(mullvad)
+		(mullvad) 
+		(label :text "|") 
+		(datetime) 
+		(label :width {chassis_type == "laptop" ? 0 : 1} :text "|") 
 		(revealer 
 			:width {chassis_type != "laptop" ? 0 : 1}
 			:reveal {chassis_type == "laptop"} 
-			(battery) 
+			(battery)
 		)
-		(datetime)
 	)
 )
 

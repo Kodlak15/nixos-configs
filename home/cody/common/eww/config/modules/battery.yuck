@@ -19,7 +19,7 @@
 		}
 		(label
 			:text {
-				charging == false ? "" :
+				chassis_type != "laptop" ? "" :
 				battery_remaining > 80 ? " " :
 				battery_remaining > 60 ? " " :
 				battery_remaining > 40 ? " " :
