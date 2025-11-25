@@ -1,16 +1,13 @@
-(deflisten server-name 
+;; TODO: find a more efficient way to handle this
+(defpoll vpn-server 
 	:initial ""
+	:interval "5s"
 	`mullvad status | grep "Relay:" | awk -F ':' '{print $2}' | xargs`
 )
 
-(deflisten server-ip 
+(deflisten vpn-status
 	:initial ""
-	`mullvad status | grep "Visible location:" | awk -F ':' '{print $3}' | xargs`
-)
-
-(deflisten vpn_state
-	:initial ""
-	`mullvad status | head -n 1`
+	`scripts/vpn.sh --status`
 )
 
 (defwidget mullvad []
@@ -18,18 +15,15 @@
 		:class "mullvad"
 		:space-evenly false
 		(eventbox 
-			:onclick {
-					"${vpn_state}" == "Connected" ? "mullvad disconnect" :
-					"mullvad connect"
-			}
-			:timeout "2s"
+			:onclick "scripts/vpn.sh --toggle"
+			:timeout "5s"
 			:cursor "pointer"
 			(box
 				:space-evenly false
 				:spacing 6
 				(label :text "󰖂 ")
 				(label :text {
-					"${vpn_state}" == "Connected" ? "${server-name}:${server-ip}" :
+					"${vpn-status}" == "connected" ? "${vpn-server}" :
 					"Disconnected"
 				})
 			)

@@ -103,11 +103,11 @@
       ];
     };
     ollama = {
-      enable = true;
+      enable = false; # NOTE: takes a ton of time to compile and haven't been using it
       acceleration = "cuda";
     };
     open-webui = {
-      enable = true;
+      enable = false; # NOTE: the has been causing me nothing but problems
       openFirewall = true;
       port = 8888;
       environment = {
