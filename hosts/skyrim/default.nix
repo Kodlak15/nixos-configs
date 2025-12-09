@@ -103,8 +103,8 @@
       ];
     };
     ollama = {
-      enable = false; # NOTE: takes a ton of time to compile and haven't been using it
-      acceleration = "cuda";
+      enable = false; # haven't been using this and takes a long time to build
+      # acceleration = "cuda";
     };
     open-webui = {
       enable = false; # NOTE: the has been causing me nothing but problems

@@ -20,6 +20,7 @@
 	(box
 		:class "bar-left"
 		:space-evenly false
+		:spacing 6
 		(box
 			:class "nix-info"
 			:space-evenly false
@@ -29,8 +30,15 @@
 				:image-height 20
 				:image-width 20
 			)
-			(label :text "${user}@${hostname}")
 		)
+		(label :text "${user}@${hostname}")
+		;; todo (set up some apps to open)
+		;; (revealer
+		;; 	:reveal true
+		;; 	(box
+		;; 		"test"
+		;; 	)
+		;; )
 	)
 )
 

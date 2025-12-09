@@ -109,8 +109,8 @@
       ];
     };
     ollama = {
-      enable = true;
-      acceleration = "cuda";
+      enable = false; # haven't been using this and takes a long time to build
+      # acceleration = "cuda";
       loadModels = [
         "deepseek-r1"
         "deepseek-r1:14b"
