@@ -233,7 +233,9 @@
       modesetting.enable = true;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
-      open = true;
+      # ISSUE: https://github.com/NixOS/nixpkgs/issues/467814
+      # Should be fixed next update, disabling open driver for now
+      open = false;
       nvidiaSettings = true;
     };
     graphics = {
