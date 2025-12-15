@@ -62,8 +62,10 @@
     loginExtra = ''
       if [ "$(tty)" = "/dev/tty1" ]; then
         case "$(hostnamectl chassis | xargs)" in
-          "desktop") exec Hyprland &> /dev/null ;;
-          "laptop") exec nvidia-offload Hyprland &> /dev/null ;;
+          # "desktop") exec Hyprland &> /dev/null ;;
+          # "laptop") exec nvidia-offload Hyprland &> /dev/null ;;
+          "desktop") exec start-hyprland &> /dev/null ;;
+          "laptop") exec nvidia-offload start-hyprland &> /dev/null ;;
         esac
       fi
     '';
@@ -71,8 +73,10 @@
     profileExtra = ''
       if [ "$(tty)" = "/dev/tty1" ]; then
         case "$(hostnamectl chassis | xargs)" in
-          "desktop") exec Hyprland &> /dev/null ;;
-          "laptop") exec nvidia-offload Hyprland &> /dev/null ;;
+          # "desktop") exec Hyprland &> /dev/null ;;
+          # "laptop") exec nvidia-offload Hyprland &> /dev/null ;;
+          "desktop") exec start-hyprland &> /dev/null ;;
+          "laptop") exec nvidia-offload start-hyprland &> /dev/null ;;
         esac
       fi
     '';
