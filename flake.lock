@@ -1059,11 +1059,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1766194588,
-        "narHash": "sha256-uIdslt8fhvgFCSH+8Ztd3Gpb2ZpSkVi6UdGiD6ENwDc=",
+        "lastModified": 1766286906,
+        "narHash": "sha256-BXJBohzQlt1JgwOUqIlA962+9S3pz/5RYpwosaHXmEE=",
         "owner": "Kodlak15",
         "repo": "nvim-flake",
-        "rev": "c7c3b8310b8e9918032afa9f812b4e6e1f55947c",
+        "rev": "1c8329ca1afa6dda7b6f4a9a411e8996e4dc11fa",
         "type": "github"
       },
       "original": {
