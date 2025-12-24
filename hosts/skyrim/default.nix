@@ -251,7 +251,8 @@
       powerManagement.finegrained = false;
       # ISSUE: https://github.com/NixOS/nixpkgs/issues/467814
       # Should be fixed next update, disabling open driver for now
-      open = false;
+      # open = false;
+      open = true;
       nvidiaSettings = true;
       prime = {
         offload = {

@@ -1,10 +1,8 @@
 {
   wayland.windowManager.hyprland = {
-    extraConfig = ''
-      # ----------------------------------------------
-      # 		      id    res@ref	         pos     scale
-      # ----------------------------------------------
-      monitor = DP-1, 3456x2160@60.0,  0x0,    1
-    '';
+    settings.monitor = [
+      "eDP-1, highrr, 0x0,    1.5"
+      " DP-1, highrr, 3456x0, 1"
+    ];
   };
 }
