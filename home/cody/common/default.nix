@@ -70,7 +70,7 @@
       gnupg
       nmap
       qFlipper
-      webcord # discord alternative
+      # webcord # discord alternative (package currently broken, disabling for now)
       winetricks
       wineWowPackages.waylandFull
       virt-manager
@@ -88,7 +88,7 @@
       brightnessctl
       hyprsunset
       wlsunset
-      xfce.thunar
+      thunar
       grim
       slurp
       nixpkgs-fmt # nix formatter
