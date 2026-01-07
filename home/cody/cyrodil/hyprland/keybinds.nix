@@ -14,7 +14,8 @@ in {
       bind =
         [
           "$mod, q, killactive"
-          "$mod ALT_L, m, exit"
+          # "$mod ALT_L, m, exit"
+          "$mod, backslash, exit"
           "$mod, v, toggleFloating"
           "$mod, p, pseudo"
           "$mod, j, togglesplit"
