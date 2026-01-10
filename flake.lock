@@ -463,11 +463,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1767907620,
-        "narHash": "sha256-DlVgDsFB5d9hcfUYWd3So9WcOhrBh9F18OyUZL3YG/A=",
+        "lastModified": 1768000181,
+        "narHash": "sha256-7p4kVQGlhlt6em/yDV787uSKs9C8WzkvtjwXHWZ34Ok=",
         "ref": "refs/heads/main",
-        "rev": "5b1b79c29c5e0ea974b2a9da5d122dd0f3bedca6",
-        "revCount": 6801,
+        "rev": "81e7498ec27156ee97aabba6fe4993412d98d1ab",
+        "revCount": 6803,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -1055,11 +1055,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767975924,
-        "narHash": "sha256-dcCPM3hiqyMyCKjO7oL4TU8Ag31XLBakJ1FmLkjNIPc=",
+        "lastModified": 1768016525,
+        "narHash": "sha256-lFmKJlb2MA0+HCDszXUYRbZwG+YgmStIzt2e33eL/Eo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "9c362c051421a3cd4480bde62ca04cb6fb31079f",
+        "rev": "88cd4852893a951df1ceb473379f9c2234c19e12",
         "type": "github"
       },
       "original": {
@@ -1100,11 +1100,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1766286906,
-        "narHash": "sha256-BXJBohzQlt1JgwOUqIlA962+9S3pz/5RYpwosaHXmEE=",
+        "lastModified": 1768017010,
+        "narHash": "sha256-rLY88YeTOz06S95s1PpufVHKYEP0FR1f3gQFqfofzYs=",
         "owner": "Kodlak15",
         "repo": "nvim-flake",
-        "rev": "1c8329ca1afa6dda7b6f4a9a411e8996e4dc11fa",
+        "rev": "c3101f9c08d51e77c088f040bf6c143a012e87a4",
         "type": "github"
       },
       "original": {
