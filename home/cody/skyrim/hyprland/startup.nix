@@ -1,12 +1,14 @@
 {
   wayland.windowManager.hyprland = {
-    extraConfig = ''
+    settings.exec-once = [
       # Set XWayland scale
-      exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1
-
-      # Startup scripts
-      exec-once = mullvad connect
-      exec-once = eww open-many status-bar workspaces-toolbar
-    '';
+      "xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1"
+      # Connect to vpn
+      "mullvad connect"
+      # Open status bar
+      "eww open status-bar"
+      # Start blue light filter
+      "wlsunset"
+    ];
   };
 }
