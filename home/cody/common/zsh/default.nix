@@ -40,7 +40,7 @@
       export ZELLIJ_AUTO_START=false
 
       # Make API keys available in environment
-      export ANTHROPIC_API_KEY="$(cat $XDG_RUNTIME_DIR/anthropic_api_key)"
+      # export ANTHROPIC_API_KEY="$(cat $XDG_RUNTIME_DIR/anthropic_api_key)"
 
       # Fuzzy find and open a directory
       fzopen() {
