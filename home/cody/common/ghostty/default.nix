@@ -11,10 +11,11 @@
       gtk-titlebar = false;
       window-padding-x = 6;
       window-padding-y = 6;
-      window-padding-color = "background";
+      # window-padding-balance = true;
+      # window-padding-color = "background";
       window-inherit-working-directory = false;
       working-directory = "home";
-      background-opacity = 0.80;
+      # background-opacity = 0.8;
     };
   };
 }

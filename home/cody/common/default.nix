@@ -18,6 +18,7 @@
     ./systemd
     ./zathura
     ./eww
+    ./opencode
   ];
 
   home.shellAliases = {

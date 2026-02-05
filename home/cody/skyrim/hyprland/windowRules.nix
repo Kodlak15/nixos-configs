@@ -1,8 +1,10 @@
 {
   wayland.windowManager.hyprland = {
     settings.windowrule = [
-      # ISSUE: https://github.com/hyprwm/Hyprland/discussions/8078
-      # "match:class (brave)(.*), match:title (Bitwarden), float 1"
+      "match:initial_title Ghostty, opacity 0.8"
+      "match:title ^nvim.*, opacity 1.0"
+      "match:title o, opacity 1.0" # e = fuzzy find a directory and cd
+      "match:title e, opacity 1.0" # e = fuzzy find a file and edit with nvim
     ];
   };
 }
