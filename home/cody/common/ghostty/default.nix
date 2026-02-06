@@ -6,8 +6,10 @@
     enableZshIntegration = true;
     settings = {
       theme = "ayu_dark";
-      font-family = "FiraCode Nerd Font";
-      font-size = 12;
+      # font-family = "FiraCode Nerd Font";
+      font-family = "FiraCode Nerd Font Mono";
+      # font-size = 12;
+      font-size = 14;
       gtk-titlebar = false;
       window-padding-x = 6;
       window-padding-y = 6;
