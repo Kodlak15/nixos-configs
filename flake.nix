@@ -120,6 +120,7 @@
             };
             extraSpecialArgs = {
               inherit inputs outputs;
+              configType = "skyrim";
             };
           };
 
@@ -138,6 +139,7 @@
             };
             extraSpecialArgs = {
               inherit inputs outputs;
+              configType = "cyrodil";
             };
           };
         };
