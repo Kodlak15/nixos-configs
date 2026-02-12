@@ -19,6 +19,7 @@
     ./zathura
     ./eww
     ./opencode
+    ./firefox
   ];
 
   home.shellAliases = {
