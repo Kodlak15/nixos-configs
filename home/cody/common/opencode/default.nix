@@ -5,6 +5,10 @@
     package = pkgs.opencode;
     settings = {
       theme = "ayu";
+      permission = {
+        edit = "ask";
+        bash = "ask";
+      };
     };
   };
 }
