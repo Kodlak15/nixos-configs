@@ -9,6 +9,7 @@
         edit = "ask";
         bash = "ask";
       };
+      model = "moonshotai/kimi-k2.5";
     };
   };
 }
