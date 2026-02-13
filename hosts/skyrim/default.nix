@@ -156,6 +156,7 @@
     mullvad-vpn.enable = true;
     udev.packages = with pkgs; [
       yubikey-personalization
+      dolphin-emu
     ];
     getty.autologinUser = "cody";
     blueman.enable = true;
@@ -184,6 +185,9 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [
+      "gcadapter_oc"
+    ];
     loader = {
       grub = {
         enable = true;

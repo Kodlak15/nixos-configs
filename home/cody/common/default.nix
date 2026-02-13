@@ -96,6 +96,7 @@
       nixpkgs-fmt # nix formatter
       alejandra # (better) nix formatter
       shfmt # shell formatter (can't remember why this was here tbh, may remove)
+      dolphin-emu
     ]
   );
 }
