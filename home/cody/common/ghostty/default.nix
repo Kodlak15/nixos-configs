@@ -17,6 +17,7 @@
       window-inherit-working-directory = false;
       working-directory = "home";
       background-opacity = 1.0;
+      mouse-scroll-multiplier = 0.5;
     };
   };
 }

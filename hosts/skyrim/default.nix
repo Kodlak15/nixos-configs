@@ -70,10 +70,10 @@
     zsh = {
       enable = true;
     };
-    # wireshark = {
-    #   enable = true;
-    #   package = pkgs.wireshark-qt;
-    # };
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
     ssh.startAgent = false; # TODO may need to delete later
   };
 
