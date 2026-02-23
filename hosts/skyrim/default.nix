@@ -107,7 +107,7 @@
       # acceleration = "cuda";
     };
     open-webui = {
-      enable = false; # NOTE: the has been causing me nothing but problems
+      enable = false; # the has been causing me nothing but problems
       openFirewall = true;
       port = 8888;
       environment = {
@@ -256,7 +256,7 @@
       # ISSUE: https://github.com/NixOS/nixpkgs/issues/467814
       # Should be fixed next update, disabling open driver for now
       # open = false;
-      open = true;
+      open = false;
       nvidiaSettings = true;
       prime = {
         offload = {
