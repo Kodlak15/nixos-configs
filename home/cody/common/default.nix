@@ -20,6 +20,7 @@
     ./eww
     ./opencode
     ./firefox
+    ./obsidian
   ];
 
   home.shellAliases = {
