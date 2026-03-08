@@ -180,6 +180,7 @@
         splashImage = ./background.jpg;
       };
     };
+    binfmt.emulatedSystems = ["i386-linux"];
     plymouth = {
       enable = true;
       theme = "rings";

@@ -32,9 +32,7 @@
     nd = "nix develop";
     nb = "nix build";
     nr = "nix run";
-    # TODO: create custom package and add to default overlay, then use that here instead
-    # screenshot = "$HOME/nix/flakes/nixos/scripts/screenshot.sh";
-    cat = "bat";
+    # cat = "bat"; # NOTE this was kind of annoying, so I disabled
   };
 
   home.packages = (
@@ -75,12 +73,13 @@
       qFlipper
       # webcord # discord alternative (package currently broken, disabling for now)
       winetricks
-      wineWowPackages.waylandFull
+      # wineWowPackages.waylandFull
+      wineWow64Packages.waylandFull
       virt-manager
       docker-compose
       imv # image viewer
       gimp3-with-plugins
-      krita
+      # krita # ISSUE https://github.com/NixOS/nixpkgs/issues/485826
       spotify
       playerctl
       ncpamixer
