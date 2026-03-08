@@ -40,7 +40,7 @@
       example # just for testing custom package loading
       sops
       gcc
-      neofetch
+      fastfetch
       xdg-utils
       nix-output-monitor
       btop
