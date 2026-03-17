@@ -71,9 +71,8 @@
       gnupg
       nmap
       qFlipper
-      # webcord # discord alternative (package currently broken, disabling for now)
+      webcord
       winetricks
-      # wineWowPackages.waylandFull
       wineWow64Packages.waylandFull
       virt-manager
       docker-compose
@@ -97,6 +96,7 @@
       alejandra # (better) nix formatter
       shfmt # shell formatter (can't remember why this was here tbh, may remove)
       dolphin-emu
+      tradingview
     ]
   );
 }
