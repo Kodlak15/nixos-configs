@@ -24,6 +24,7 @@ in {
           "$mod, RETURN, exec, ghostty"
           "$mod, b, exec, brave"
           "$mod, t, exec, thunar"
+          "$mod, g, exec, gimp"
           "$mod ALT_L, v, exec, virt-manager"
           "$mod, left, movefocus, l"
           "$mod, right, movefocus, r"
