@@ -5,7 +5,9 @@
         gaps_in = 4;
         gaps_out = 8;
         border_size = 2;
-        "col.active_border" = "rgba(e6b450ff) rgba(d95757ff) 90deg";
+        # "col.active_border" = "rgba(e6b450ff) rgba(d95757ff) 90deg";
+        # "col.inactive_border" = "rgba(565b66ff)";
+        "col.active_border" = "rgba(d2a6ffff) rgba(39bae6ff) 90deg";
         "col.inactive_border" = "rgba(565b66ff)";
         layout = "dwindle";
       };
