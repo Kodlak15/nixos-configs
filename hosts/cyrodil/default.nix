@@ -118,6 +118,17 @@
         "llama3.2"
       ];
     };
+    open-webui = {
+      enable = true;
+      openFirewall = true;
+      port = 8888;
+      environment = {
+        WEBUI_AUTH = "False";
+        ENV = "dev";
+        ANONYMIZED_TELEMETRY = "False";
+        DO_NOT_TRACK = "True";
+      };
+    };
     pulseaudio.enable = false;
     dbus.enable = true;
     avahi = {

@@ -107,11 +107,10 @@
       # acceleration = "cuda";
     };
     open-webui = {
-      enable = false; # the has been causing me nothing but problems
+      enable = true;
       openFirewall = true;
       port = 8888;
       environment = {
-        OLLAMA_API_BASE_URL = "http://127.0.0.1:11434";
         WEBUI_AUTH = "False";
         ENV = "dev";
         ANONYMIZED_TELEMETRY = "False";
