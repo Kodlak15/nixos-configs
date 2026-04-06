@@ -66,7 +66,7 @@
       qbittorrent
       mullvad-vpn
       mullvad-browser
-      claude-code
+      # claude-code # ISSUE: https://github.com/NixOS/nixpkgs/issues/507045
       glow
       gnupg
       nmap

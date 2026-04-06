@@ -4,7 +4,7 @@
     enable = true;
     package = pkgs.opencode;
     settings = {
-      theme = "ayu";
+      tui.theme = "ayu";
       permission = {
         edit = "ask";
         bash = "ask";
