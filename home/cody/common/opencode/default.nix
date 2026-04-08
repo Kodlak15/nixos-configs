@@ -3,8 +3,9 @@
   programs.opencode = {
     enable = true;
     package = pkgs.opencode;
+    tui.theme = "ayu";
     settings = {
-      tui.theme = "ayu";
+      # tui.theme = "ayu";
       permission = {
         edit = "ask";
         bash = "ask";
