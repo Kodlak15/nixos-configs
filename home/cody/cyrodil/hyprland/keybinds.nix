@@ -1,8 +1,8 @@
 let
-  setWallpaperDir = imgDir: "swwwmgr -d $HOME/.config/wallpaper/${imgDir} && eww reload";
-  nextWallpaper = "swwwmgr -n && eww reload";
-  prevWallpaper = "swwwmgr -p && eww reload";
-  randomWallpaper = "swwwmgr -r && eww reload";
+  setWallpaperDir = imgDir: "swwwmgr -d $HOME/.config/wallpaper/${imgDir}";
+  nextWallpaper = "swwwmgr -n";
+  prevWallpaper = "swwwmgr -p";
+  randomWallpaper = "swwwmgr -r";
 in {
   wayland.windowManager.hyprland = {
     extraConfig = ''
