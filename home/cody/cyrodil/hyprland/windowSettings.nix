@@ -27,7 +27,7 @@
         inactive_opacity = 1.0;
       };
       dwindle = {
-        pseudotile = true;
+        # pseudotile = true;
         preserve_split = true;
       };
     };
