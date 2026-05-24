@@ -107,7 +107,7 @@
       # acceleration = "cuda";
     };
     open-webui = {
-      enable = true;
+      enable = false; # this wasn't building and I haven't been using it
       openFirewall = true;
       port = 8888;
       environment = {
