@@ -12,7 +12,7 @@
     ./swwwmgr
     ./virtualization
     ./wallpaper
-    ./vscode
+    ./vscodium
     ./zsh
     ./godot
     ./systemd
