@@ -16,8 +16,8 @@
         elixir-lsp.vscode-elixir-ls
         phoenixframework.phoenix
         ms-toolsai.jupyter
-        # ms-python.python # ISSUE: https://github.com/NixOS/nixpkgs/pull/522705
-        ms-python.pylint
+        ms-python.python # ISSUE: https://github.com/NixOS/nixpkgs/pull/522705
+        # ms-python.pylint
         ms-pyright.pyright
         ziglang.vscode-zig
         # shd101wyy.markdown-preview-enhanced
